@@ -1,12 +1,11 @@
 # Project Name
 
-> Pithy project description
+Find new fashion based on your style, shop in virtual reality
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Anne Lee, Marissa Okada
+  - __Scrum Master__: Victor Mu, Carlos Flores
 
 ## Table of Contents
 
@@ -20,15 +19,11 @@
 
 ## Usage
 
-> Some usage instructions
+
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+
 
 ## Development
 
