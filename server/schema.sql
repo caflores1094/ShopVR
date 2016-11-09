@@ -16,8 +16,8 @@ CREATE TABLE users (
 -- Creating categories table
 CREATE TABLE categories (
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
-  name VARCHAR(100) NOT NULL,
-)
+  name VARCHAR(100) NOT NULL
+);
 
 -- Creating items table
 CREATE TABLE items (
@@ -26,6 +26,15 @@ CREATE TABLE items (
   item_name VARCHAR(100) NOT NULL,
   price INT NOT NULL,
   pic BLOB NOT NULL,
-  category_id INT FOREIGN KEY REFERENCES CATEGORIES (ID)
+  category_id INT FOREIGN KEY REFERENCES CATEGORIES (ID),
+  user_id INT FOREIGN KEY REFERENCES USERS (ID),
   PRIMARY KEY (ID)
+);
+
+-- Creating join table between users and items
+CREATE TABLE users_items AS (
+  SELECT users.id, users.name, items.item_name, items.pic, items.brand, items.price
+  FROM users
+  INNER JOIN items
+  ON users.id=items.user_id
 );
