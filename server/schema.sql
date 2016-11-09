@@ -10,13 +10,14 @@ CREATE TABLE users (
   gender VARCHAR(10),
   price INT,
   profile_pic BLOB,
-  PRIMARY KEY (ID)
+  PRIMARY KEY (id)
 );
 
 -- Creating categories table
 CREATE TABLE categories (
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
-  name VARCHAR(100) NOT NULL
+  name VARCHAR(100) NOT NULL,
+  PRIMARY KEY (id)
 );
 
 -- Creating items table
@@ -26,9 +27,11 @@ CREATE TABLE items (
   item_name VARCHAR(100) NOT NULL,
   price INT NOT NULL,
   pic BLOB NOT NULL,
-  category_id INT FOREIGN KEY REFERENCES CATEGORIES (ID),
-  user_id INT FOREIGN KEY REFERENCES USERS (ID),
-  PRIMARY KEY (ID)
+  category_id INT NOT NULL,
+  FOREIGN KEY fk_cat(category_id) REFERENCES categories(id),
+  user_id INT NOT NULL,
+  FOREIGN KEY fk_user(user_id) REFERENCES users(id),
+  PRIMARY KEY (id)
 );
 
 -- Creating join table between users and items
@@ -39,3 +42,5 @@ CREATE TABLE users_items AS (
   INNER JOIN items
   ON users.id=items.user_id
 );
+
+-- Run mysql -u <username> server/schema.sql to create databases
