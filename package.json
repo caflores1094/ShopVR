@@ -4,7 +4,9 @@
   "description": "Discover new fashion pieces, shop in VR",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js"
+    "start": "npm-run-all --parallel watch:build watch:server",
+    "watch:build": "webpack",
+    "watch:server": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
@@ -17,8 +19,16 @@
   },
   "homepage": "https://github.com/novelhovel/ShopVR#readme",
   "dependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.7",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
   }
 }
