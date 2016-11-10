@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS shopvr;
 USE shopvr;
 
 -- Creating users table
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   name VARCHAR(100) NOT NULL,
   email VARCHAR(100),
@@ -14,14 +14,14 @@ CREATE TABLE users (
 );
 
 -- Creating categories table
-CREATE TABLE categories (
+CREATE TABLE IF NOT EXISTS categories (
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   name VARCHAR(100) NOT NULL,
   PRIMARY KEY (id)
 );
 
 -- Creating items table
-CREATE TABLE items (
+CREATE TABLE IF NOT EXISTS items (
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   brand VARCHAR(100) NOT NULL,
   item_name VARCHAR(100) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE items (
 
 -- Creating join table between users and items
 -- creates an inner join on foreign key reference in items back to user id
-CREATE TABLE users_items AS (
+CREATE TABLE users_items IF NOT EXISTS AS (
   SELECT users.id, users.name, items.item_name, items.pic, items.brand, items.price
   FROM users
   INNER JOIN items
