@@ -20,7 +20,7 @@ module.exports = {
     get: function(callback) {
       var queryStr = 'select * from items';
       db.query(queryStr, function(err, results) {
-        callback(err, results);
+        callback(results);
       });
     },
     post: function(params, callback) {
