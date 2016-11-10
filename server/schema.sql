@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS items (
 
 -- Creating join table between users and items
 -- creates an inner join on foreign key reference in items back to user id
-CREATE TABLE users_items IF NOT EXISTS AS (
+CREATE TABLE IF NOT EXISTS users_items AS (
   SELECT users.id, users.name, items.item_name, items.pic, items.brand, items.price
   FROM users
   INNER JOIN items
