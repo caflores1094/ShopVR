@@ -24,7 +24,11 @@ module.exports = {
       });
     },
     post: function(params, callback) {
-      var queryStr = 'insert into '
+      var queryStr = 'insert into items(brand, item_name, price, pic, category_id, user_id) \
+                      values(?)';
+      db.query(queryStr, params, function(err, results) {
+        callback(err, results);
+      });
     }
   }
 };

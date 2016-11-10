@@ -1,4 +1,4 @@
-CREATE DATABASE shopvr;
+CREATE DATABASE IF NOT EXISTS shopvr;
 
 USE shopvr;
 
