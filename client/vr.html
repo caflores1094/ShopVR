@@ -10,13 +10,25 @@
   <body>
     <a-scene physics>
 
-      <a-entity camera universal-controls kinematic-body position="0 1.8 0">
+    <!--   <a-entity camera universal-controls kinematic-body position="0 1.8 0">
         <a-entity position="0 0 -1"
                   geometry="primitive: ring; radiusOuter: 0.007; radiusInner: 0.004;"
                   material="color: black; shader: flat"
                   cursor="maxDistance: 30;">
         <a-animation begin="click" easing="ease-in" attribute="scale"
           fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+        </a-entity>
+      </a-entity> -->
+      <a-entity camera
+                universal-controls
+                kinematic-body
+                position="0 1.764 0"
+                jump-ability="maxJumps: 1;">
+        <a-entity cursor="maxDistance: 30"
+                  position="0 0 -1"
+                  geometry="primitive: ring; radiusOuter: 0.007; radiusInner: 0.004;"
+                  material="color: black; shader: flat"
+                  >
         </a-entity>
       </a-entity>
 
