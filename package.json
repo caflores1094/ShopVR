@@ -28,6 +28,7 @@
     "nodemon": "^1.11.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "request": "^2.78.0",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   }
