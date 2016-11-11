@@ -26,7 +26,7 @@
       // (then via server endpoint, use controller to check if already in DB
       // if not put it in DB)
       $.ajax({
-        type: 'POST',
+        type: 'GET',
         url: '/auth/login',
         data: response,
         success: function() {
