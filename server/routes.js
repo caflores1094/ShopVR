@@ -1,9 +1,9 @@
 var router = require('express').Router();
 //TODO: need to get the right controller
-var controller = require('./Controllers');
+var controller = require('./controllers');
 
-router.post('/auth/login',  controller.auth.login);
+router.get('/auth/login', controller.login);
 
-router.post('/auth/logout', controller.auth.logout);
+// router.post('/auth/logout', controller.auth.logout);
 
 module.exports = router;
