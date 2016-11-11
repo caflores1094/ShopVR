@@ -21468,7 +21468,7 @@
 	         return _react2.default.createElement(
 	            'div',
 	            null,
-	            'Hello World!'
+	            'Hello World!!!!!'
 	         );
 	      }
 	   }]);

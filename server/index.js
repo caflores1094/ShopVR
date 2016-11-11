@@ -13,6 +13,6 @@ server.listen(server.get('port'), function () {
 server.use(bodyParser.json()); // for parsing application/json
 server.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlenco
 server.use(express.static(__dirname + '/../client'));
-console.log(__dirname);
+
 
 module.exports = server;
