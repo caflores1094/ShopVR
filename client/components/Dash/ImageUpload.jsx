@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 
 class ImageUpload extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class ImageUpload extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     // TODO: do something with -> this.state.file
-    // console.log('handle uploading-', this.state.file);
+
     console.log('change state', this.state);
   }
 
