@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS shopvr;
+CREATE DATABASE shopvr;
 
 USE shopvr;
 
@@ -6,18 +6,20 @@ USE shopvr;
 CREATE TABLE IF NOT EXISTS users (
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   name VARCHAR(100) NOT NULL,
-  email VARCHAR(100),
+  email VARCHAR(100) UNIQUE,
   gender VARCHAR(10),
-  price INT,
-  profile_pic BLOB,
-  PRIMARY KEY (id)
+  locale VARCHAR(10),
+  timezone VARCHAR(10),
+  friends VARCHAR(10000),
+  fb_id TEXT,
+  profile_pic VARCHAR(1000),
+  PRIMARY KEY (ID)
 );
 
 -- Creating categories table
 CREATE TABLE IF NOT EXISTS categories (
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
-  name VARCHAR(100) NOT NULL,
-  PRIMARY KEY (id)
+  name VARCHAR(100) NOT NULL
 );
 
 -- Creating items table
@@ -27,11 +29,11 @@ CREATE TABLE IF NOT EXISTS items (
   item_name VARCHAR(100) NOT NULL,
   price INT NOT NULL,
   pic BLOB NOT NULL,
-  category_id INT NOT NULL,
+  category_id INT,
   FOREIGN KEY fk_cat(category_id) REFERENCES categories(id),
-  user_id INT NOT NULL,
+  user_id INT,
   FOREIGN KEY fk_user(user_id) REFERENCES users(id),
-  PRIMARY KEY (id)
+  PRIMARY KEY (ID)
 );
 
 -- Creating join table between users and items
@@ -42,5 +44,3 @@ CREATE TABLE IF NOT EXISTS users_items AS (
   INNER JOIN items
   ON users.id=items.user_id
 );
-
--- Run mysql -u <username> server/schema.sql to create databases
