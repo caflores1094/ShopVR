@@ -3,13 +3,18 @@ import React from 'react';
 class ImageUpload extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {file: '',imagePreviewUrl: ''};
+    this.state = {
+      file: '',
+      imagePreviewUrl: '',
+      tag: ''
+    };
   }
 
   handleSubmit(e) {
     e.preventDefault();
     // TODO: do something with -> this.state.file
-    console.log('handle uploading-', this.state.file);
+    // console.log('handle uploading-', this.state.file);
+    console.log('change state', this.state);
   }
 
   handleImageChange(e) {
@@ -26,6 +31,13 @@ class ImageUpload extends React.Component {
     }
 
     reader.readAsDataURL(file)
+  }
+
+  handleTagChange(e) {
+    e.preventDefault();
+    this.setState({
+      tag: e.target.value
+    });
   }
 
   render() {
@@ -46,7 +58,7 @@ class ImageUpload extends React.Component {
             {$imagePreview}
           </div>
           <p>Step 2: Add Tags</p>
-          <input className="tagInput" type="text" />
+          <input className="tagInput" type="text" onChange={(e)=>this.handleTagChange(e)} />
           <p>Step 3: Submit</p>
           <button className="submitButton" type="submit" onClick={(e)=>this.handleSubmit(e)}>Submit</button>
         </form>

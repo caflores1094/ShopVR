@@ -28628,7 +28628,11 @@
 
 	    var _this = _possibleConstructorReturn(this, (ImageUpload.__proto__ || Object.getPrototypeOf(ImageUpload)).call(this, props));
 
-	    _this.state = { file: '', imagePreviewUrl: '' };
+	    _this.state = {
+	      file: '',
+	      imagePreviewUrl: '',
+	      tag: ''
+	    };
 	    return _this;
 	  }
 
@@ -28637,7 +28641,8 @@
 	    value: function handleSubmit(e) {
 	      e.preventDefault();
 	      // TODO: do something with -> this.state.file
-	      console.log('handle uploading-', this.state.file);
+	      // console.log('handle uploading-', this.state.file);
+	      console.log('change state', this.state);
 	    }
 	  }, {
 	    key: 'handleImageChange',
@@ -28657,6 +28662,14 @@
 	      };
 
 	      reader.readAsDataURL(file);
+	    }
+	  }, {
+	    key: 'handleTagChange',
+	    value: function handleTagChange(e) {
+	      e.preventDefault();
+	      this.setState({
+	        tag: e.target.value
+	      });
 	    }
 	  }, {
 	    key: 'render',
@@ -28702,7 +28715,9 @@
 	            null,
 	            'Step 2: Add Tags'
 	          ),
-	          _react2.default.createElement('input', { className: 'tagInput', type: 'text' }),
+	          _react2.default.createElement('input', { className: 'tagInput', type: 'text', onChange: function onChange(e) {
+	              return _this3.handleTagChange(e);
+	            } }),
 	          _react2.default.createElement(
 	            'p',
 	            null,
