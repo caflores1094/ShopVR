@@ -13,7 +13,8 @@
   <script src="https://cdn.webrtc-experiment.com/getMediaElement.js"></script>
 </head>
 <body>
-  <!-- this is the FB SDK for login-->
+  <!-- this is the FB SDK for login 
+  Put this in react after mvp: http://stackoverflow.com/questions/27717555/implement-facebook-api-login-with-reactjs-->
   <script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -28,15 +29,8 @@
       // take response data and pass via ajax call to server endpoint
       // (then via server endpoint, use controller to check if already in DB
       // if not put it in DB)
-      $.ajax({
-        type: 'GET',
-        url: '/auth/login',
-        data: response,
-        success: function() {
-          console.log('successfully created user');
-        }
-      });
       testAPI();
+      
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -98,12 +92,49 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
+    var userdata = null;
+    FB.api('/me', {fields: 'id, name, email, friends, gender, picture, locale, timezone, location'}, function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
+      console.log(response, 'response');
+      userdata = response;
+      console.log(userdata, 'userdata');
+
+      $.ajax({
+       type: 'POST',
+       url: '/login/facebook',
+       data: response,
+       success: function() {
+         console.log('successfully posted on client side');
+       },
+       error: function(error) {
+        console.log('Error in sending ajax data');
+       }
+     });
     });
   }
+
+  function logOut() {
+    FB.logout(function(response) {
+      console.log('logged out', response);
+    });
+  }
+
+  // function testAjax() {
+  //     $.ajax({
+  //     type: 'POST',
+  //     url: '/',
+  //     data: {hi:'hi'},
+  //     success: function() {
+  //       console.log('successfully posted on client side');
+  //     },
+  //     error: function(error) {
+  //         console.log('Error in sending ajax data');
+  //     }
+  //   });
+  // }
+  // testAjax();
 </script>
 
 <!--
@@ -112,8 +143,10 @@
   the FB.login() function when clicked.
 -->
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+<fb:login-button scope="public_profile,email,user_friends" onlogin="checkLoginState();">
 </fb:login-button>
+
+<button style="height:1.9em; width:6em; border: 0.1em; border-color: black" onClick="logOut();">Log out</button>
 
 <div id="status">
 </div>
@@ -123,6 +156,20 @@
   <script src = "./bundle.js"></script>
   <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
   <script src="http://cdn.rawgit.com/donmccurdy/aframe-extras/v2.6.0/dist/aframe-extras.min.js"></script>
+  <div>
+     <input type="text" id="room-id" value='testing'>
+     <button id="open-room">Open Room</button>
+     <button id="join-room">Join Room</button>
+  </div>
+
+  <div id="videos-container"></div>
+  <div id="audios-container"></div>
+
+  <script src = "./bundle.js"></script>
+  <script src="https://rtcmulticonnection.herokuapp.com/RTCMultiConnection.min.js"></script>
+  <script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
+  <script src="https://cdn.webrtc-experiment.com:443/getScreenId.js"></script>
+  <script src="https://cdn.webrtc-experiment.com/getMediaElement.js"></script>
   <script src = "./lib/webRTC.js"></script>
- --></body>
+</body>
 </html>
