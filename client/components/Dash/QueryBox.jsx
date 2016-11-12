@@ -1,10 +1,44 @@
 import React from 'react';
 
 class QueryBox extends React.Component {
+  constructor(props) {
+      super(props);
+  }
+  createCheckbox(label) {
+    return <p><input type='checkbox'/>{label}</p>;
+  }
+  createCheckboxes(items) {
+    return items.map(this.createCheckbox);
+  }
+
    render() {
       return (
          <div>
-            This is the querybox.
+         <h1>Search</h1>
+         <form>
+           <p>Price Range:
+           <input type="number" defaultValue={this.props.user.lowprice}/> - <input type="number" defaultValue={this.props.user.highprice}/>
+           </p>
+
+           <p>Gender:
+             <select defaultValue={this.props.user.gender}>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+             </select>
+           </p>
+
+           <p>Brands:</p>
+           {this.createCheckboxes(['American Eagle', 'Zara', 'Lululemon', 'Gap', 'Ann Taylor'])}
+
+           <p>Categories:</p>
+           {this.createCheckboxes(['Cocktail Dresses', 'Black Short Boots', 'Knit Sweaters', 'Skinny Jeans', 'Black Leather Jackets'])}
+
+           <p>Keywords:
+             <input type="text"/>
+           </p>
+
+           <input type="submit" value="Submit" />
+         </form>
          </div>
       );
    }

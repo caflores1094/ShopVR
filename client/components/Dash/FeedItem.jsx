@@ -4,7 +4,10 @@ class FeedItem extends React.Component {
    render() {
       return (
          <div>
-            This is a feeditem.
+            <img src={this.props.item.imgurl} />
+            <p>{this.props.item.brand}</p>
+            <p>{this.props.item.item}</p>
+            <p>{this.props.item.price}</p>
          </div>
       );
    }

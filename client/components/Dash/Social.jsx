@@ -4,7 +4,8 @@ class Social extends React.Component {
    render() {
       return (
          <div>
-            This is the social box.
+            <h1>Share with Friends</h1>
+            
          </div>
       );
    }

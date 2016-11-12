@@ -4,10 +4,14 @@ import QueryBox from './Dash/QueryBox.jsx';
 import Social from './Dash/Social.jsx';
 
 class Dashboard extends React.Component {
+  constructor(props) {
+      super(props);
+  }
+
    render() {
       return (
         <div>
-          <QueryBox />
+          <QueryBox user={this.props.user}/>
           <Feed />
           <Social />
         </div>

@@ -4,13 +4,14 @@ import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 import App from './components/App.jsx';
 import Dashboard from './components/Dashboard.jsx';
 import Profile from './components/Profile.jsx';
+import { createStore } from 'redux';
 
 
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={App} >
-      <Route path="/a" component={Dashboard}/>
-      <Route path="/b" component={Profile}/>
+      <IndexRoute component={Dashboard}/>
+      <Route path="/profile" component={Profile}/>
     </Route>
   </Router>
 ), document.getElementById('app'))
