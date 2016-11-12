@@ -28678,13 +28678,18 @@
 	        $imagePreview = _react2.default.createElement(
 	          'div',
 	          { className: 'previewText' },
-	          'Please select an Image for Preview'
+	          'No preview available'
 	        );
 	      }
 
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'previewComponent' },
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Image Upload'
+	        ),
 	        _react2.default.createElement(
 	          'form',
 	          { onSubmit: function onSubmit(e) {
