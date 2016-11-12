@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var router = require('express').Router();
 
 var authController = require('./controllers/auth.js');
+var picController = require('./controllers/pic.js');
 
 var server = express();
 
@@ -22,5 +23,6 @@ router.post('/login/facebook', authController.login);
 router.get('/', function(req, res) {
   res.sendFile('/client/index.html', {root: __dirname + '/..'});
 });
+router.post('/api/upload', picController.pictures.post);
 
 module.exports = server;

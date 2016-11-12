@@ -5,7 +5,6 @@ module.exports = {
     get: function(req, callback) {
       models.users.getOne(req.email, function(err, results) {
         if (err) console.log('got undefined', err);
-        console.log('results', results);
       });
       callback(null, null);
     },

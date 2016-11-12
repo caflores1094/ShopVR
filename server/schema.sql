@@ -49,8 +49,8 @@ CREATE TABLE IF NOT EXISTS pictures (
 CREATE TABLE IF NOT EXISTS tags (
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   tag TEXT,
-  pic_id INT,
-  FOREIGN KEY fk_picture(pic_id) REFERENCES pictures(id)
+  pic_name INT,
+  FOREIGN KEY fk_picture(pic_name) REFERENCES pictures(name)
 )
 
 -- Creating join table between picture and tags
