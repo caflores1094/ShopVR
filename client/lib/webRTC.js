@@ -1,10 +1,3 @@
-document.getElementById('open-room').onclick = function() {
-    connection.open(document.getElementById('room-id').value);
-};
-document.getElementById('join-room').onclick = function() {
-    connection.join(document.getElementById('room-id').value);
-};
-
 var connection = new RTCMultiConnection();
 connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 

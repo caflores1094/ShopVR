@@ -26810,7 +26810,7 @@
 /* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	   value: true
@@ -26840,16 +26840,37 @@
 	   }
 
 	   _createClass(Social, [{
-	      key: 'render',
+	      key: "render",
 	      value: function render() {
 	         return _react2.default.createElement(
-	            'div',
+	            "div",
 	            null,
 	            _react2.default.createElement(
-	               'h1',
+	               "h1",
 	               null,
-	               'Share with Friends'
-	            )
+	               "Share with Friends"
+	            ),
+	            _react2.default.createElement(
+	               "div",
+	               null,
+	               _react2.default.createElement("input", { type: "text", id: "room-id", value: "testing" }),
+	               _react2.default.createElement(
+	                  "button",
+	                  { id: "open-room", onClick: function onClick() {
+	                        return connection.open(document.getElementById('room-id').value);
+	                     } },
+	                  "Open Room"
+	               ),
+	               _react2.default.createElement(
+	                  "button",
+	                  { id: "join-room", onClick: function onClick() {
+	                        return connection.join(document.getElementById('room-id').value);
+	                     } },
+	                  "Join Room"
+	               )
+	            ),
+	            _react2.default.createElement("div", { id: "videos-container" }),
+	            _react2.default.createElement("div", { id: "audios-container" })
 	         );
 	      }
 	   }]);

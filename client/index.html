@@ -7,7 +7,10 @@
   <!-- <script src="node_modules/jquery/dist/jquery.js"></script> -->
   <!-- <script src="src/data/exampleVideoData.js"></script> -->
   <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-
+  <script src="https://rtcmulticonnection.herokuapp.com/RTCMultiConnection.min.js"></script>
+  <script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
+  <script src="https://cdn.webrtc-experiment.com:443/getScreenId.js"></script>
+  <script src="https://cdn.webrtc-experiment.com/getMediaElement.js"></script>
 </head>
 <body>
   <!-- this is the FB SDK for login-->
@@ -115,22 +118,10 @@
 <div id="status">
 </div>
 
-  <div>
-     <input type="text" id="room-id" value='testing'>
-     <button id="open-room">Open Room</button>
-     <button id="join-room">Join Room</button>
-  </div>
-
-  <div id="videos-container"></div>
-  <div id="audios-container"></div>
 
   <div id = "app"></div>
 
   <script src = "./bundle.js"></script>
-  <script src="https://rtcmulticonnection.herokuapp.com/RTCMultiConnection.min.js"></script>
-  <script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
-  <script src="https://cdn.webrtc-experiment.com:443/getScreenId.js"></script>
-  <script src="https://cdn.webrtc-experiment.com/getMediaElement.js"></script>
   <script src = "./lib/webRTC.js"></script>
 </body>
 </html>
