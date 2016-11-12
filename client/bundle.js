@@ -28633,15 +28633,15 @@
 	  }
 
 	  _createClass(ImageUpload, [{
-	    key: '_handleSubmit',
-	    value: function _handleSubmit(e) {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
 	      e.preventDefault();
 	      // TODO: do something with -> this.state.file
 	      console.log('handle uploading-', this.state.file);
 	    }
 	  }, {
-	    key: '_handleImageChange',
-	    value: function _handleImageChange(e) {
+	    key: 'handleImageChange',
+	    value: function handleImageChange(e) {
 	      var _this2 = this;
 
 	      e.preventDefault();
@@ -28682,23 +28682,39 @@
 	        _react2.default.createElement(
 	          'form',
 	          { onSubmit: function onSubmit(e) {
-	              return _this3._handleSubmit(e);
+	              return _this3.handleSubmit(e);
 	            } },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'Step 1: Upload Image'
+	          ),
 	          _react2.default.createElement('input', { className: 'fileInput', type: 'file', onChange: function onChange(e) {
-	              return _this3._handleImageChange(e);
+	              return _this3.handleImageChange(e);
 	            } }),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'imgPreview' },
+	            $imagePreview
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'Step 2: Add Tags'
+	          ),
+	          _react2.default.createElement('input', { className: 'tagInput', type: 'text' }),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'Step 3: Submit'
+	          ),
 	          _react2.default.createElement(
 	            'button',
 	            { className: 'submitButton', type: 'submit', onClick: function onClick(e) {
-	                return _this3._handleSubmit(e);
+	                return _this3.handleSubmit(e);
 	              } },
-	            'Upload Image'
+	            'Submit'
 	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'imgPreview' },
-	          $imagePreview
 	        )
 	      );
 	    }
