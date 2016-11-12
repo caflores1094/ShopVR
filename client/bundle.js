@@ -60,6 +60,10 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
+	var _VRview = __webpack_require__(261);
+
+	var _VRview2 = _interopRequireDefault(_VRview);
+
 	var _Dashboard = __webpack_require__(233);
 
 	var _Dashboard2 = _interopRequireDefault(_Dashboard);
@@ -67,6 +71,14 @@
 	var _Profile = __webpack_require__(238);
 
 	var _Profile2 = _interopRequireDefault(_Profile);
+
+	var _Setting = __webpack_require__(260);
+
+	var _Setting2 = _interopRequireDefault(_Setting);
+
+	var _SharedView = __webpack_require__(263);
+
+	var _SharedView2 = _interopRequireDefault(_SharedView);
 
 	var _redux = __webpack_require__(239);
 
@@ -111,7 +123,9 @@
 	    { path: '/', component: _App2.default, store: (0, _redux.createStore)(appReducers) },
 	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _Dashboard2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/profile', component: _Profile2.default })
-	  )
+	  ),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/vr', component: _VRview2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/view', component: _SharedView2.default })
 	), document.getElementById('app'));
 
 /***/ },
@@ -26402,12 +26416,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _aframeReact = __webpack_require__(228);
-
-	var _setting = __webpack_require__(231);
-
-	var _setting2 = _interopRequireDefault(_setting);
-
 	var _Navbar = __webpack_require__(232);
 
 	var _Navbar2 = _interopRequireDefault(_Navbar);
@@ -26434,24 +26442,12 @@
 	  function App(props) {
 	    _classCallCheck(this, App);
 
-	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
-
-	    _this.state = {
-	      openVR: false
-	    };
-	    return _this;
+	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 	  }
 
 	  _createClass(App, [{
-	    key: 'exitVR',
-	    value: function exitVR() {
-	      this.setState({ openVR: false });
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _this2 = this;
-
 	      var context = this;
 	      var children = _react2.default.Children.map(this.props.children, function (child) {
 	        return _react2.default.cloneElement(child, {
@@ -26460,21 +26456,10 @@
 	        });
 	      });
 
-	      if (this.state.openVR) {
-	        return _react2.default.createElement(_setting2.default, { exitVR: this.exitVR.bind(this) });
-	      }
-
 	      return _react2.default.createElement(
 	        'div',
 	        null,
 	        _react2.default.createElement(_Navbar2.default, { store: this.props.route.store }),
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: function onClick() {
-	              return _this2.setState({ openVR: true });
-	            } },
-	          'Enter VR'
-	        ),
 	        _react2.default.createElement(
 	          'div',
 	          null,
@@ -26854,151 +26839,7 @@
 	}
 
 /***/ },
-/* 231 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _aframeReact = __webpack_require__(228);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	// var extras = require('aframe-extras');
-	// extras.registerAll();
-
-	var dimensions = {
-	  fullLength: 50,
-	  fullWidth: 40,
-	  frontGrassLength: 10,
-	  sideGrassesLength: 35,
-	  sideGrassesWidth: 5,
-	  sideGrassX: 22.5,
-	  sideGrassZ: 17.5,
-	  backGrassZ: 42.5,
-	  grassMaterial: 'src: url(./lib/grass.jpg); repeat: 25 25',
-	  sidefenceLength: 50,
-	  backFenceLength: 40,
-	  fenceHeight: 2,
-	  wallHeight: 4,
-	  sideWallLength: 35,
-	  backWallLength: 30,
-	  mallMaterial: 'color: grey',
-	  ceilingMaterial: 'color: grey',
-	  fenceColor: 'grey',
-	  entranceSides: 13,
-	  ceilingWidth: 30,
-	  ceilingLength: 35
-
-	};
-
-	var Setting = function (_React$Component) {
-	  _inherits(Setting, _React$Component);
-
-	  function Setting(props) {
-	    _classCallCheck(this, Setting);
-
-	    return _possibleConstructorReturn(this, (Setting.__proto__ || Object.getPrototypeOf(Setting)).call(this, props));
-	  }
-
-	  _createClass(Setting, [{
-	    key: 'render',
-	    value: function render() {
-	      var _this2 = this;
-
-	      // <a-entity camera
-	      //         universal-controls
-	      //         kinematic-body
-	      //         position="0 1.764 0"
-	      //         jump-ability="maxJumps: 1;">
-	      // <a-entity cursor="maxDistance: 30"
-	      //           position="0 0 -1"
-	      //           geometry="primitive: ring; radiusOuter: 0.007; radiusInner: 0.004;"
-	      //           material="color: black; shader: flat"
-	      //           >
-	      // </a-entity>
-	      // </a-entity>
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: function onClick() {
-	              return _this2.props.exitVR();
-	            } },
-	          'Exit VR'
-	        ),
-	        _react2.default.createElement(
-	          _aframeReact.Scene,
-	          { physics: true },
-	          _react2.default.createElement(
-	            _aframeReact.Entity,
-	            { id: 'camera', active: true, camera: true, position: '0 1.8 0', rotation: '0 0 0', 'universal-controls': true, 'kinematic-body': true, 'jump-ability': 'maxJumps: 100;' },
-	            _react2.default.createElement(_aframeReact.Entity, { cursor: 'maxDistance: 30',
-	              position: '0 0 -1',
-	              geometry: 'primitive: ring; radiusOuter: 0.007; radiusInner: 0.004;',
-	              material: 'color: black; shader: flat' })
-	          ),
-	          _react2.default.createElement(_aframeReact.Entity, {
-	            geometry: { primitive: 'sphere', radius: 100 },
-	            material: { shader: 'flat', src: "url(./lib/skybox.jpg)" },
-	            scale: '1 1 -1',
-	            position: '0 0 0'
-	          }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.grassMaterial, geometry: { primitive: 'plane', height: dimensions.frontGrassLength, width: dimensions.fullWidth }, rotation: '-90 90 0', position: '0 0 0', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.grassMaterial, geometry: { primitive: 'plane', height: dimensions.sideGrassesWidth, width: dimensions.fullWidth }, rotation: '-90 90 0', position: dimensions.backGrassZ + "0 0", 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.grassMaterial, geometry: { primitive: 'plane', height: dimensions.sideGrassesWidth, width: dimensions.sideGrassesLength }, rotation: '-90 0 0', position: '22.5 0 17.5', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.grassMaterial, geometry: { primitive: 'plane', height: dimensions.sideGrassesWidth, width: dimensions.sideGrassesLength }, rotation: '-90 0 0', position: '22.5 0 -17.5', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: 'color:' + dimensions.fenceColor, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.sidefenceLength }, rotation: '0 0 0', position: '20 1 -20', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: 'color:' + dimensions.fenceColor, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.sidefenceLength }, rotation: '0 -180 0', position: '20 1 20', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: 'color:' + dimensions.fenceColor, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.backFenceLength }, rotation: '0 90 0', position: '-5 1 0', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: 'color:' + dimensions.fenceColor, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.backFenceLength }, rotation: '0 -90 0', position: '45 1 0', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.sideWallLength }, rotation: '0 0 0', position: '22.5 2 -15', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.sideWallLength }, rotation: '0 -180 0', position: '22.5 2 -15', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.sideWallLength }, rotation: '0 0 0', position: '22.5 2 15', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.sideWallLength }, rotation: '0 -180 0', position: '22.5 2 15', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.backWallLength }, rotation: '0 90 0', position: '40 2 0', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.backWallLength }, rotation: '0 -90 0', position: '40 2 0', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.entranceSides }, rotation: '0 -90 0', position: '5 2 -8.5', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.entranceSides }, rotation: '0 -90 0', position: '5 2 8.5', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.entranceSides }, rotation: '0 90 0', position: '5 2 -8.5', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.entranceSides }, rotation: '0 90 0', position: '5 2 8.5', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.ceilingMaterial, geometry: { primitive: 'box', depth: '.5', height: dimensions.ceilingLength, width: dimensions.ceilingWidth }, rotation: '90 90 0', position: '22.5 4.25 0', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: 'color: grey', geometry: { primitive: 'plane', height: dimensions.ceilingLength, width: dimensions.ceilingWidth }, rotation: '-90 90 0', position: '22.5 0 0', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 90 0', position: '16 2 10', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 -90 0', position: '16 2 10', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 90 0', position: '16 2 -10', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 -90 0', position: '16 2 -10', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 90 0', position: '25 2 -10', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 -90 0', position: '25 2 -10', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 90 0', position: '25 2 10', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 -90 0', position: '25 2 10', 'static-body': true })
-	        )
-	      );
-	    }
-	  }]);
-
-	  return Setting;
-	}(_react2.default.Component);
-
-	exports.default = Setting;
-
-/***/ },
+/* 231 */,
 /* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -27381,7 +27222,7 @@
 /* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	   value: true
@@ -27411,46 +27252,20 @@
 	   }
 
 	   _createClass(Social, [{
-	      key: "render",
+	      key: 'render',
 	      value: function render() {
 	         return _react2.default.createElement(
-	            "div",
+	            'div',
 	            null,
 	            _react2.default.createElement(
-	               "h1",
+	               'h1',
 	               null,
-	               "Share with Friends"
+	               'Share with Friends'
 	            ),
 	            _react2.default.createElement(
-	               "div",
+	               'button',
 	               null,
-	               _react2.default.createElement("input", { type: "text", id: "room-id", defaultValue: "testing" }),
-	               _react2.default.createElement(
-	                  "button",
-	                  { id: "open-room", onClick: function onClick() {
-	                        return connection.open(document.getElementById('room-id').value);
-	                     } },
-	                  "Open Room"
-	               ),
-	               _react2.default.createElement(
-	                  "button",
-	                  { id: "join-room", onClick: function onClick() {
-	                        return connection.join(document.getElementById('room-id').value);
-	                     } },
-	                  "Join Room"
-	               )
-	            ),
-	            _react2.default.createElement("div", { id: "videos-container" }),
-	            _react2.default.createElement("div", { id: "audios-container" }),
-	            _react2.default.createElement(
-	               "div",
-	               null,
-	               _react2.default.createElement("input", { type: "text" }),
-	               _react2.default.createElement(
-	                  "button",
-	                  null,
-	                  "Send Invite"
-	               )
+	               'Start VR'
 	            )
 	         );
 	      }
@@ -28590,6 +28405,329 @@
 	    }, last.apply(undefined, arguments));
 	  };
 	}
+
+/***/ },
+/* 260 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _aframeReact = __webpack_require__(228);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	// var extras = require('aframe-extras');
+	// extras.registerAll();
+
+	var dimensions = {
+	  fullLength: 50,
+	  fullWidth: 40,
+	  frontGrassLength: 10,
+	  sideGrassesLength: 35,
+	  sideGrassesWidth: 5,
+	  sideGrassX: 22.5,
+	  sideGrassZ: 17.5,
+	  backGrassZ: 42.5,
+	  grassMaterial: 'src: url(./lib/grass.jpg); repeat: 25 25',
+	  sidefenceLength: 50,
+	  backFenceLength: 40,
+	  fenceHeight: 2,
+	  wallHeight: 4,
+	  sideWallLength: 35,
+	  backWallLength: 30,
+	  mallMaterial: 'color: grey',
+	  ceilingMaterial: 'color: grey',
+	  fenceColor: 'grey',
+	  entranceSides: 13,
+	  ceilingWidth: 30,
+	  ceilingLength: 35
+
+	};
+
+	var Setting = function (_React$Component) {
+	  _inherits(Setting, _React$Component);
+
+	  function Setting(props) {
+	    _classCallCheck(this, Setting);
+
+	    return _possibleConstructorReturn(this, (Setting.__proto__ || Object.getPrototypeOf(Setting)).call(this, props));
+	  }
+
+	  _createClass(Setting, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          _aframeReact.Scene,
+	          { physics: true },
+	          _react2.default.createElement(
+	            _aframeReact.Entity,
+	            { id: 'camera', active: true, camera: true, position: '0 1.8 0', rotation: '0 0 0', 'universal-controls': true, 'kinematic-body': true, 'jump-ability': 'maxJumps: 100;' },
+	            _react2.default.createElement(_aframeReact.Entity, { cursor: 'maxDistance: 30',
+	              position: '0 0 -1',
+	              geometry: 'primitive: ring; radiusOuter: 0.007; radiusInner: 0.004;',
+	              material: 'color: black; shader: flat' })
+	          ),
+	          _react2.default.createElement(_aframeReact.Entity, {
+	            geometry: { primitive: 'sphere', radius: 100 },
+	            material: { shader: 'flat', src: "url(./lib/skybox.jpg)" },
+	            scale: '1 1 -1',
+	            position: '0 0 0'
+	          }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.grassMaterial, geometry: { primitive: 'plane', height: dimensions.frontGrassLength, width: dimensions.fullWidth }, rotation: '-90 90 0', position: '0 0 0', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.grassMaterial, geometry: { primitive: 'plane', height: dimensions.sideGrassesWidth, width: dimensions.fullWidth }, rotation: '-90 90 0', position: dimensions.backGrassZ + "0 0", 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.grassMaterial, geometry: { primitive: 'plane', height: dimensions.sideGrassesWidth, width: dimensions.sideGrassesLength }, rotation: '-90 0 0', position: '22.5 0 17.5', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.grassMaterial, geometry: { primitive: 'plane', height: dimensions.sideGrassesWidth, width: dimensions.sideGrassesLength }, rotation: '-90 0 0', position: '22.5 0 -17.5', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: 'color:' + dimensions.fenceColor, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.sidefenceLength }, rotation: '0 0 0', position: '20 1 -20', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: 'color:' + dimensions.fenceColor, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.sidefenceLength }, rotation: '0 -180 0', position: '20 1 20', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: 'color:' + dimensions.fenceColor, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.backFenceLength }, rotation: '0 90 0', position: '-5 1 0', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: 'color:' + dimensions.fenceColor, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.backFenceLength }, rotation: '0 -90 0', position: '45 1 0', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.sideWallLength }, rotation: '0 0 0', position: '22.5 2 -15', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.sideWallLength }, rotation: '0 -180 0', position: '22.5 2 -15', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.sideWallLength }, rotation: '0 0 0', position: '22.5 2 15', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.sideWallLength }, rotation: '0 -180 0', position: '22.5 2 15', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.backWallLength }, rotation: '0 90 0', position: '40 2 0', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.backWallLength }, rotation: '0 -90 0', position: '40 2 0', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.entranceSides }, rotation: '0 -90 0', position: '5 2 -8.5', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.entranceSides }, rotation: '0 -90 0', position: '5 2 8.5', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.entranceSides }, rotation: '0 90 0', position: '5 2 -8.5', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.entranceSides }, rotation: '0 90 0', position: '5 2 8.5', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.ceilingMaterial, geometry: { primitive: 'box', depth: '.5', height: dimensions.ceilingLength, width: dimensions.ceilingWidth }, rotation: '90 90 0', position: '22.5 4.25 0', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: 'color: grey', geometry: { primitive: 'plane', height: dimensions.ceilingLength, width: dimensions.ceilingWidth }, rotation: '-90 90 0', position: '22.5 0 0', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 90 0', position: '16 2 10', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 -90 0', position: '16 2 10', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 90 0', position: '16 2 -10', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 -90 0', position: '16 2 -10', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 90 0', position: '25 2 -10', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 -90 0', position: '25 2 -10', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 90 0', position: '25 2 10', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 -90 0', position: '25 2 10', 'static-body': true })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Setting;
+	}(_react2.default.Component);
+
+	exports.default = Setting;
+
+/***/ },
+/* 261 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Sharebar = __webpack_require__(262);
+
+	var _Sharebar2 = _interopRequireDefault(_Sharebar);
+
+	var _Setting = __webpack_require__(260);
+
+	var _Setting2 = _interopRequireDefault(_Setting);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var user = {
+	  username: 'Victor',
+	  email: 'fake@gmail',
+	  gender: 'male',
+	  lowprice: '10',
+	  highprice: '20'
+	};
+
+	var VRview = function (_React$Component) {
+	  _inherits(VRview, _React$Component);
+
+	  function VRview(props) {
+	    _classCallCheck(this, VRview);
+
+	    return _possibleConstructorReturn(this, (VRview.__proto__ || Object.getPrototypeOf(VRview)).call(this, props));
+	  }
+
+	  _createClass(VRview, [{
+	    key: 'render',
+	    value: function render() {
+	      var context = this;
+
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_Sharebar2.default, null),
+	        _react2.default.createElement(_Setting2.default, null)
+	      );
+	    }
+	  }]);
+
+	  return VRview;
+	}(_react2.default.Component);
+
+	exports.default = VRview;
+
+/***/ },
+/* 262 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	   value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ShareBar = function (_React$Component) {
+	   _inherits(ShareBar, _React$Component);
+
+	   function ShareBar(props) {
+	      _classCallCheck(this, ShareBar);
+
+	      return _possibleConstructorReturn(this, (ShareBar.__proto__ || Object.getPrototypeOf(ShareBar)).call(this, props));
+	   }
+
+	   _createClass(ShareBar, [{
+	      key: "render",
+	      value: function render() {
+	         return _react2.default.createElement(
+	            "div",
+	            null,
+	            _react2.default.createElement(
+	               "div",
+	               null,
+	               _react2.default.createElement("input", { type: "text", id: "room-id", defaultValue: "testing" }),
+	               _react2.default.createElement(
+	                  "button",
+	                  { id: "open-room", onClick: function onClick() {
+	                        return connection.open(document.getElementById('room-id').value);
+	                     } },
+	                  "Open Room"
+	               ),
+	               _react2.default.createElement("input", { type: "text" }),
+	               _react2.default.createElement(
+	                  "button",
+	                  null,
+	                  "Send Invite"
+	               ),
+	               _react2.default.createElement(
+	                  "button",
+	                  null,
+	                  "Back to Dashboard"
+	               )
+	            )
+	         );
+	      }
+	   }]);
+
+	   return ShareBar;
+	}(_react2.default.Component);
+
+	exports.default = ShareBar;
+
+/***/ },
+/* 263 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SharedView = function (_React$Component) {
+	  _inherits(SharedView, _React$Component);
+
+	  function SharedView(props) {
+	    _classCallCheck(this, SharedView);
+
+	    return _possibleConstructorReturn(this, (SharedView.__proto__ || Object.getPrototypeOf(SharedView)).call(this, props));
+	  }
+
+	  _createClass(SharedView, [{
+	    key: "render",
+	    value: function render() {
+	      var context = this;
+
+	      return _react2.default.createElement(
+	        "div",
+	        null,
+	        _react2.default.createElement("input", { type: "text", id: "room-id", defaultValue: "testing" }),
+	        _react2.default.createElement(
+	          "button",
+	          { id: "join-room", onClick: function onClick() {
+	              return connection.join(document.getElementById('room-id').value);
+	            } },
+	          "Join Room"
+	        ),
+	        _react2.default.createElement("div", { id: "videos-container" }),
+	        _react2.default.createElement("div", { id: "audios-container" })
+	      );
+	    }
+	  }]);
+
+	  return SharedView;
+	}(_react2.default.Component);
+
+	exports.default = SharedView;
 
 /***/ }
 /******/ ]);
