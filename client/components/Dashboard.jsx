@@ -11,9 +11,9 @@ class Dashboard extends React.Component {
    render() {
       return (
         <div>
-          <QueryBox user={this.props.user}/>
-          <Feed />
-          <Social />
+          <QueryBox user={this.props.user} store={this.props.store}/>
+          <Feed store={this.props.store}/>
+          <Social store={this.props.store}/>
         </div>
       );
    }

@@ -72,12 +72,43 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var userReducer = function userReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case 'LOG_IN_USER':
+	      return Object.assign(state, action.user);
+	    case 'EDIT_USER':
+	      return Object.assign(state, action.user);
+	    default:
+	      return state;
+	  }
+	};
+
+	var feedReducer = function feedReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case 'UPDATE_FEED':
+	      return state.concat(action.feed);
+	    default:
+	      return state;
+	  }
+	};
+
+	var appReducers = (0, _redux.combineReducers)({
+	  user: userReducer,
+	  feed: feedReducer
+	});
+
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRouter.Router,
 	  { history: _reactRouter.browserHistory },
 	  _react2.default.createElement(
 	    _reactRouter.Route,
-	    { path: '/', component: _App2.default },
+	    { path: '/', component: _App2.default, store: (0, _redux.createStore)(appReducers) },
 	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _Dashboard2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/profile', component: _Profile2.default })
 	  )
@@ -26394,26 +26425,27 @@
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
 
-	  function App() {
+	  function App(props) {
 	    _classCallCheck(this, App);
 
-	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 	  }
 
 	  _createClass(App, [{
 	    key: 'render',
 	    value: function render() {
-
+	      var context = this;
 	      var children = _react2.default.Children.map(this.props.children, function (child) {
 	        return _react2.default.cloneElement(child, {
-	          user: user
+	          user: user,
+	          store: context.props.route.store
 	        });
 	      });
 
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_Navbar2.default, null),
+	        _react2.default.createElement(_Navbar2.default, { store: this.props.route.store }),
 	        _react2.default.createElement(
 	          'div',
 	          null,
@@ -26455,10 +26487,10 @@
 	var NavBar = function (_React$Component) {
 	   _inherits(NavBar, _React$Component);
 
-	   function NavBar() {
+	   function NavBar(props) {
 	      _classCallCheck(this, NavBar);
 
-	      return _possibleConstructorReturn(this, (NavBar.__proto__ || Object.getPrototypeOf(NavBar)).apply(this, arguments));
+	      return _possibleConstructorReturn(this, (NavBar.__proto__ || Object.getPrototypeOf(NavBar)).call(this, props));
 	   }
 
 	   _createClass(NavBar, [{
@@ -26532,9 +26564,9 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_QueryBox2.default, { user: this.props.user }),
-	        _react2.default.createElement(_Feed2.default, null),
-	        _react2.default.createElement(_Social2.default, null)
+	        _react2.default.createElement(_QueryBox2.default, { user: this.props.user, store: this.props.store }),
+	        _react2.default.createElement(_Feed2.default, { store: this.props.store }),
+	        _react2.default.createElement(_Social2.default, { store: this.props.store })
 	      );
 	    }
 	  }]);
@@ -26595,10 +26627,10 @@
 	var Feed = function (_React$Component) {
 	  _inherits(Feed, _React$Component);
 
-	  function Feed() {
+	  function Feed(props) {
 	    _classCallCheck(this, Feed);
 
-	    return _possibleConstructorReturn(this, (Feed.__proto__ || Object.getPrototypeOf(Feed)).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (Feed.__proto__ || Object.getPrototypeOf(Feed)).call(this, props));
 	  }
 
 	  _createClass(Feed, [{
@@ -26651,10 +26683,10 @@
 	var FeedItem = function (_React$Component) {
 	   _inherits(FeedItem, _React$Component);
 
-	   function FeedItem() {
+	   function FeedItem(props) {
 	      _classCallCheck(this, FeedItem);
 
-	      return _possibleConstructorReturn(this, (FeedItem.__proto__ || Object.getPrototypeOf(FeedItem)).apply(this, arguments));
+	      return _possibleConstructorReturn(this, (FeedItem.__proto__ || Object.getPrototypeOf(FeedItem)).call(this, props));
 	   }
 
 	   _createClass(FeedItem, [{
@@ -26750,13 +26782,12 @@
 	        _react2.default.createElement(
 	          'form',
 	          null,
+	          _react2.default.createElement('input', { type: 'file', name: 'file', ref: 'file' }),
 	          _react2.default.createElement(
 	            'p',
 	            null,
-	            'Price Range:',
-	            _react2.default.createElement('input', { type: 'number', defaultValue: this.props.user.lowprice }),
-	            ' - ',
-	            _react2.default.createElement('input', { type: 'number', defaultValue: this.props.user.highprice })
+	            'Keywords:',
+	            _react2.default.createElement('input', { type: 'text' })
 	          ),
 	          _react2.default.createElement(
 	            'p',
@@ -26780,6 +26811,14 @@
 	          _react2.default.createElement(
 	            'p',
 	            null,
+	            'Price Range:',
+	            _react2.default.createElement('input', { type: 'number', defaultValue: this.props.user.lowprice }),
+	            ' - ',
+	            _react2.default.createElement('input', { type: 'number', defaultValue: this.props.user.highprice })
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
 	            'Brands:'
 	          ),
 	          this.createCheckboxes(['American Eagle', 'Zara', 'Lululemon', 'Gap', 'Ann Taylor']),
@@ -26789,12 +26828,6 @@
 	            'Categories:'
 	          ),
 	          this.createCheckboxes(['Cocktail Dresses', 'Black Short Boots', 'Knit Sweaters', 'Skinny Jeans', 'Black Leather Jackets']),
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            'Keywords:',
-	            _react2.default.createElement('input', { type: 'text' })
-	          ),
 	          _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
 	        )
 	      );
@@ -26833,10 +26866,10 @@
 	var Social = function (_React$Component) {
 	   _inherits(Social, _React$Component);
 
-	   function Social() {
+	   function Social(props) {
 	      _classCallCheck(this, Social);
 
-	      return _possibleConstructorReturn(this, (Social.__proto__ || Object.getPrototypeOf(Social)).apply(this, arguments));
+	      return _possibleConstructorReturn(this, (Social.__proto__ || Object.getPrototypeOf(Social)).call(this, props));
 	   }
 
 	   _createClass(Social, [{
@@ -26853,7 +26886,7 @@
 	            _react2.default.createElement(
 	               "div",
 	               null,
-	               _react2.default.createElement("input", { type: "text", id: "room-id", value: "testing" }),
+	               _react2.default.createElement("input", { type: "text", id: "room-id", defaultValue: "testing" }),
 	               _react2.default.createElement(
 	                  "button",
 	                  { id: "open-room", onClick: function onClick() {
@@ -26870,7 +26903,17 @@
 	               )
 	            ),
 	            _react2.default.createElement("div", { id: "videos-container" }),
-	            _react2.default.createElement("div", { id: "audios-container" })
+	            _react2.default.createElement("div", { id: "audios-container" }),
+	            _react2.default.createElement(
+	               "div",
+	               null,
+	               _react2.default.createElement("input", { type: "text" }),
+	               _react2.default.createElement(
+	                  "button",
+	                  null,
+	                  "Send Invite"
+	               )
+	            )
 	         );
 	      }
 	   }]);

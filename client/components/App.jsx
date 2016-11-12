@@ -11,21 +11,26 @@ var user = {
 
 
 class App extends React.Component {
-   render() {
-   
-       var children = React.Children.map(this.props.children, function (child) {
-         return React.cloneElement(child, {
-           user: user
-         });
-       });
+  constructor(props) {
+    super(props);
+  }
 
-      return (
-        <div>
-          <Navbar />
-          <div>{children}</div>
-        </div>
-      );
-   }
+  render() {
+    var context = this;
+    var children = React.Children.map(this.props.children, function (child) {
+      return React.cloneElement(child, {
+        user: user,
+        store: context.props.route.store
+      });
+    });
+
+    return (
+      <div>
+        <Navbar store={this.props.route.store}/>
+        <div>{children}</div>
+      </div>
+    );
+  }
 }
 
 export default App;

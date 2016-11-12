@@ -16,8 +16,9 @@ class QueryBox extends React.Component {
          <div>
          <h1>Search</h1>
          <form>
-           <p>Price Range:
-           <input type="number" defaultValue={this.props.user.lowprice}/> - <input type="number" defaultValue={this.props.user.highprice}/>
+           <input type="file" name="file" ref="file"  />
+           <p>Keywords:
+             <input type="text"/>
            </p>
 
            <p>Gender:
@@ -27,15 +28,15 @@ class QueryBox extends React.Component {
              </select>
            </p>
 
+           <p>Price Range:
+           <input type="number" defaultValue={this.props.user.lowprice}/> - <input type="number" defaultValue={this.props.user.highprice}/>
+           </p>
+
            <p>Brands:</p>
            {this.createCheckboxes(['American Eagle', 'Zara', 'Lululemon', 'Gap', 'Ann Taylor'])}
 
            <p>Categories:</p>
            {this.createCheckboxes(['Cocktail Dresses', 'Black Short Boots', 'Knit Sweaters', 'Skinny Jeans', 'Black Leather Jackets'])}
-
-           <p>Keywords:
-             <input type="text"/>
-           </p>
 
            <input type="submit" value="Submit" />
          </form>
