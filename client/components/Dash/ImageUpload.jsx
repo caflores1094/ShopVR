@@ -7,15 +7,28 @@ class ImageUpload extends React.Component {
     this.state = {
       file: '',
       imagePreviewUrl: '',
-      tag: ''
+      tag: []
     };
   }
 
   handleSubmit(e) {
     e.preventDefault();
     // TODO: do something with -> this.state.file
-
     console.log('change state', this.state);
+    let upload = this.state;
+    console.log('data', upload);
+
+    // $.ajax({
+    //   url: '/api/upload',
+    //   type: 'POST',
+    //   data: this.state,
+    //   success: function() {
+    //     console.log('successfully sent to database');
+    //   },
+    //   error: function() {
+    //     console.log('error submitting image');
+    //   }
+    // });
   }
 
   handleImageChange(e) {
@@ -36,8 +49,9 @@ class ImageUpload extends React.Component {
 
   handleTagChange(e) {
     e.preventDefault();
+    let tags = e.target.value.split(', ');
     this.setState({
-      tag: e.target.value
+      tag: tags
     });
   }
 
@@ -59,7 +73,7 @@ class ImageUpload extends React.Component {
           <div className="imgPreview">
             {$imagePreview}
           </div>
-          <p>Step 2: Add Tags</p>
+          <p>Step 2: Add Tags (each separated by ", ")</p>
           <input className="tagInput" type="text" onChange={(e)=>this.handleTagChange(e)} />
           <p>Step 3: Submit</p>
           <button className="submitButton" type="submit" onClick={(e)=>this.handleSubmit(e)}>Submit</button>

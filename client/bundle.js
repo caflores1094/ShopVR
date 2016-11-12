@@ -28767,7 +28767,7 @@
 	    _this.state = {
 	      file: '',
 	      imagePreviewUrl: '',
-	      tag: ''
+	      tag: []
 	    };
 	    return _this;
 	  }
@@ -28777,8 +28777,21 @@
 	    value: function handleSubmit(e) {
 	      e.preventDefault();
 	      // TODO: do something with -> this.state.file
-
 	      console.log('change state', this.state);
+	      var upload = this.state;
+	      console.log('data', upload);
+
+	      // $.ajax({
+	      //   url: '/api/upload',
+	      //   type: 'POST',
+	      //   data: this.state,
+	      //   success: function() {
+	      //     console.log('successfully sent to database');
+	      //   },
+	      //   error: function() {
+	      //     console.log('error submitting image');
+	      //   }
+	      // });
 	    }
 	  }, {
 	    key: 'handleImageChange',
@@ -28803,8 +28816,9 @@
 	    key: 'handleTagChange',
 	    value: function handleTagChange(e) {
 	      e.preventDefault();
+	      var tags = e.target.value.split(', ');
 	      this.setState({
-	        tag: e.target.value
+	        tag: tags
 	      });
 	    }
 	  }, {
@@ -28854,7 +28868,7 @@
 	          _react2.default.createElement(
 	            'p',
 	            null,
-	            'Step 2: Add Tags'
+	            'Step 2: Add Tags (each separated by ", ")'
 	          ),
 	          _react2.default.createElement('input', { className: 'tagInput', type: 'text', onChange: function onChange(e) {
 	              return _this3.handleTagChange(e);
