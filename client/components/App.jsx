@@ -1,13 +1,19 @@
 import React from 'react';
 import {Entity, Scene} from 'aframe-react'
 import Setting from './setting.jsx'
-// var extras = require('aframe-extras');
-// extras.registerAll();
+import Navbar from './Navbar.jsx';
+
+var user = {
+  username: 'Victor',
+  email: 'fake@gmail',
+  gender: 'male',
+  lowprice: '10',
+  highprice: '20'
+};
 
 
 class App extends React.Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -20,18 +26,24 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(__dirname)
+    var context = this;
+    var children = React.Children.map(this.props.children, function (child) {
+      return React.cloneElement(child, {
+        user: user,
+        store: context.props.route.store
+      });
+    });
+
     if(this.state.openVR){
       return (<Setting exitVR={this.exitVR.bind(this)}/>)
     }
-    
+
     return (
-       <div>
-        <div>
-          Hello World!!!!!
-        </div>
+      <div>
+        <Navbar store={this.props.route.store}/>
         <button onClick={()=>this.setState({openVR: true})}>Enter VR</button>
-       </div>
+        <div>{children}</div>
+      </div>
     );
   }
 }
