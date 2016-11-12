@@ -27325,13 +27325,6 @@
 	        _react2.default.createElement(
 	          'form',
 	          null,
-	          _react2.default.createElement('input', { type: 'file', name: 'file', ref: 'file' }),
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            'Keywords:',
-	            _react2.default.createElement('input', { type: 'text' })
-	          ),
 	          _react2.default.createElement(
 	            'p',
 	            null,
