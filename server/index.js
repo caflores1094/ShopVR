@@ -19,7 +19,7 @@ server.use(express.static(__dirname + '/../client'));
 
 server.get('/auth/login', controller.login);
 
-server.get('/test', function (request, response){
+server.get('*', function (request, response){
   response.sendFile(path.resolve(__dirname, '../client', 'index.html'));
 })
 
