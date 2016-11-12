@@ -32,26 +32,26 @@ module.exports = {
   pictures: {
    //save an uploaded image and corresponding tags
     saveImage: function(image, tags, callback) {
-      var queryStr = 'INSERT INTO pictures (name, user_id) VALUES ?';
-      db.query(queryStr, [image], function(err, results) {
+      var queryStr = 'INSERT INTO pictures (name) VALUES ?';
+      db.query(queryStr, [image.name], function(err, results) {
         callback(err, results);
       });
       tags.forEach(function(tag) {
         var tagStr = 'INSERT INTO tags (tag, pic_name) VALUES ?'
-        db.query(tagStr, [tags, image.name], function(err, results) {
+        db.query(tagStr, [tag, image.name], function(err, results) {
           callback(err, results);
         });
       });
     },
-    //get all images that belong to a user
-    getUserImages: function(user, callback) {
-      var queryStr = 'SELECT * from pictures where pictures.user_id =?';
-      db.query(queryStr, [user], function(err, results) {
-        if (err) {
-          console.log(err);
-        }
-        callback(err, results);
-      });
-    }
+    // //get all images that belong to a user
+    // getUserImages: function(user, callback) {
+    //   var queryStr = 'SELECT * from pictures where pictures.user_id =?';
+    //   db.query(queryStr, [user], function(err, results) {
+    //     if (err) {
+    //       console.log(err);
+    //     }
+    //     callback(err, results);
+    //   });
+    // }
   }
 };
