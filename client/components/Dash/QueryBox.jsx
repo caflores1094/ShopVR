@@ -16,11 +16,6 @@ class QueryBox extends React.Component {
          <div>
          <h1>Search</h1>
          <form>
-           <input type="file" name="file" ref="file"  />
-           <p>Keywords:
-             <input type="text"/>
-           </p>
-
            <p>Gender:
              <select defaultValue={this.props.user.gender}>
               <option value="Male">Male</option>
