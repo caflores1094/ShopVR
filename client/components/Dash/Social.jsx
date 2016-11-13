@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 
 class Social extends React.Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class Social extends React.Component {
       return (
          <div>
             <h1>Share with Friends</h1>
-            <button>Start VR</button>
+            <button onClick={() => browserHistory.push('/vr')}>Start VR</button>
          </div>
       );
    }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 
 class ShareBar extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class ShareBar extends React.Component {
               <button id="open-room" onClick={() => connection.open(document.getElementById('room-id').value)}>Open Room</button>
               <input type="text" />
               <button>Send Invite</button>
-              <button>Back to Dashboard</button>
+              <a href='/'><button>Back To Dashboard</button></a>
            </div>
          </div>
       );
