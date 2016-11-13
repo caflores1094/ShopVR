@@ -33,7 +33,7 @@ class ImageUpload extends React.Component {
 
     reader.onloadend = () => {
       this.setState({
-        file: file,
+        file: file.name,
         imagePreviewUrl: reader.result
       });
     }

@@ -28797,7 +28797,7 @@
 
 	      reader.onloadend = function () {
 	        _this2.setState({
-	          file: file,
+	          file: file.name,
 	          imagePreviewUrl: reader.result
 	        });
 	      };
