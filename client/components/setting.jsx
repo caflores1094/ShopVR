@@ -35,21 +35,8 @@ class Setting extends React.Component {
     super(props);
   }
   render() {
-    // <a-entity camera
-        //         universal-controls
-        //         kinematic-body
-        //         position="0 1.764 0"
-        //         jump-ability="maxJumps: 1;">
-        // <a-entity cursor="maxDistance: 30"
-        //           position="0 0 -1"
-        //           geometry="primitive: ring; radiusOuter: 0.007; radiusInner: 0.004;"
-        //           material="color: black; shader: flat"
-        //           >
-        // </a-entity>
-      // </a-entity>
       return(
         <div>
-          <button onClick={()=>this.props.exitVR()}>Exit VR</button>
           <Scene physics>
             <Entity id="camera" active camera position="0 1.8 0" rotation="0 0 0" universal-controls kinematic-body jump-ability="maxJumps: 100;">
               <Entity cursor="maxDistance: 30"
@@ -74,7 +61,7 @@ class Setting extends React.Component {
             <Entity material={'color:' + dimensions.fenceColor} geometry={{primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.sidefenceLength}} rotation="0 0 0" position="20 1 -20" static-body/>
             <Entity material={'color:' + dimensions.fenceColor} geometry={{primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.sidefenceLength}} rotation="0 -180 0" position="20 1 20" static-body/>
             <Entity material={'color:' + dimensions.fenceColor} geometry={{primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.backFenceLength}} rotation="0 90 0" position="-5 1 0" static-body/>
-            <Entity material={'color:' + dimensions.fenceColor} geometry={{primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.backFenceLength}} rotation="0 -90 0" position="45 1 0" static-body/>          
+            <Entity material={'color:' + dimensions.fenceColor} geometry={{primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.backFenceLength}} rotation="0 -90 0" position="45 1 0" static-body/>
 
 
             <Entity material= {dimensions.mallMaterial} geometry={{primitive: 'plane', height: dimensions.wallHeight, width: dimensions.sideWallLength}} rotation="0 0 0" position="22.5 2 -15" static-body/>
@@ -91,7 +78,7 @@ class Setting extends React.Component {
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: dimensions.wallHeight, width: dimensions.entranceSides}} rotation="0 90 0" position="5 2 -8.5" static-body/>
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: dimensions.wallHeight, width: dimensions.entranceSides}} rotation="0 90 0" position="5 2 8.5" static-body/>
 
-            <Entity material={dimensions.ceilingMaterial} geometry={{primitive: 'box', depth: '.5', height: dimensions.ceilingLength, width: dimensions.ceilingWidth}} rotation="90 90 0" position="22.5 4.25 0" static-body/>          
+            <Entity material={dimensions.ceilingMaterial} geometry={{primitive: 'box', depth: '.5', height: dimensions.ceilingLength, width: dimensions.ceilingWidth}} rotation="90 90 0" position="22.5 4.25 0" static-body/>
             <Entity material={'color: grey'} geometry={{primitive: 'plane', height: dimensions.ceilingLength, width: dimensions.ceilingWidth}} rotation="-90 90 0" position="22.5 0 0" static-body/>
 
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 90 0" position="16 2 10" static-body/>
@@ -102,11 +89,6 @@ class Setting extends React.Component {
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 -90 0" position="25 2 -10" static-body/>
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 90 0" position="25 2 10" static-body/>
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 -90 0" position="25 2 10" static-body/>
-
-
-
-
-            
 
           </Scene>
         </div>

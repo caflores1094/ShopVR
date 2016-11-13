@@ -1,6 +1,4 @@
 import React from 'react';
-import {Entity, Scene} from 'aframe-react'
-import Setting from './setting.jsx'
 import Navbar from './Navbar.jsx';
 
 var user = {
@@ -15,14 +13,6 @@ var user = {
 class App extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      openVR: false
-    }
-  }
-
-  exitVR(){
-    this.setState({openVR: false});
   }
 
   render() {
@@ -34,14 +24,9 @@ class App extends React.Component {
       });
     });
 
-    if(this.state.openVR){
-      return (<Setting exitVR={this.exitVR.bind(this)}/>)
-    }
-
     return (
       <div>
         <Navbar store={this.props.route.store}/>
-        <button onClick={()=>this.setState({openVR: true})}>Enter VR</button>
         <div>{children}</div>
       </div>
     );

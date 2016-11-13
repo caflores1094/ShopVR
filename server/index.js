@@ -23,6 +23,17 @@ router.post('/login/facebook', authController.login);
 router.get('/', function(req, res) {
   res.sendFile('/client/index.html', {root: __dirname + '/..'});
 });
+
 router.post('/api/upload', picController.pictures.post);
+
+router.get('/profile', function(req, res) {
+  res.sendFile('/client/index.html', {root: __dirname + '/..'});
+});
+router.get('/vr', function(req, res) {
+  res.sendFile('/client/index.html', {root: __dirname + '/..'});
+});
+router.get('/view', function(req, res) {
+  res.sendFile('/client/index.html', {root: __dirname + '/..'});
+});
 
 module.exports = server;
