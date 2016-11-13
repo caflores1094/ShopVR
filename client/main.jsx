@@ -2,8 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 import App from './components/App.jsx';
+import VRview from './components/VRview.jsx';
 import Dashboard from './components/Dashboard.jsx';
 import Profile from './components/Profile.jsx';
+import Setting from './components/Setting.jsx';
+import SharedView from './components/SharedView.jsx';
 import { createStore, combineReducers } from 'redux';
 
 var userReducer = (state={}, action) => {
@@ -37,5 +40,7 @@ ReactDOM.render((
       <IndexRoute component={Dashboard}/>
       <Route path="/profile" component={Profile}/>
     </Route>
+    <Route path="/vr" component={VRview} />
+    <Route path="/view" component={SharedView} />
   </Router>
 ), document.getElementById('app'))

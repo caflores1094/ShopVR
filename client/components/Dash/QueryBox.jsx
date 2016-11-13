@@ -35,7 +35,7 @@ class QueryBox extends React.Component {
 
            <input type="submit" value="Submit" />
          </form>
-         </div>
+        </div>
       );
    }
 }
