@@ -1,5 +1,6 @@
 import React from 'react';
 import {Entity, Scene} from 'aframe-react'
+import ClothingArticle from './clothingArticle.jsx'
 // var extras = require('aframe-extras');
 // extras.registerAll();
 
@@ -25,8 +26,9 @@ var dimensions = {
   entranceSides: 13,
   ceilingWidth: 30,
   ceilingLength: 35
-
 }
+
+var imageArr = ['url(./lib/testImages/navyDress.jpg)', 'url(./lib/testImages/purpleDress.jpg)', 'src: url(./lib/testImages/blackDress.jpg)']
 
 
 class Setting extends React.Component {
@@ -89,6 +91,9 @@ class Setting extends React.Component {
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 -90 0" position="25 2 -10" static-body/>
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 90 0" position="25 2 10" static-body/>
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 -90 0" position="25 2 10" static-body/>
+
+            <ClothingArticle position={'7 1.5 14'} src={imageArr[0]}/>
+            <ClothingArticle position={'14 1.5 14'} src={imageArr[1]}/>
 
           </Scene>
         </div>
