@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jquery';
+import axios from 'axios';
 
 class ImageUpload extends React.Component {
   constructor(props) {
@@ -15,20 +15,14 @@ class ImageUpload extends React.Component {
     e.preventDefault();
     // TODO: do something with -> this.state.file
     console.log('change state', this.state);
-    let upload = this.state;
-    console.log('data', upload);
-
-    // $.ajax({
-    //   url: '/api/upload',
-    //   type: 'POST',
-    //   data: this.state,
-    //   success: function() {
-    //     console.log('successfully sent to database');
-    //   },
-    //   error: function() {
-    //     console.log('error submitting image');
-    //   }
-    // });
+    
+    axios.post('/api/upload', this.state)
+         .then(function(response) {
+            console.log(response);
+         })
+         .catch(function(response) {
+            console.log(response);
+         });
   }
 
   handleImageChange(e) {
