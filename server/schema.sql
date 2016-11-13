@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS pictures (
 CREATE TABLE IF NOT EXISTS tags (
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   tag TEXT,
-  pic_name INT,
+  pic_name TEXT,
   FOREIGN KEY fk_picture(pic_name) REFERENCES pictures(name)
 )
 
