@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class ImageUpload extends React.Component {
   constructor(props) {
@@ -6,15 +7,22 @@ class ImageUpload extends React.Component {
     this.state = {
       file: '',
       imagePreviewUrl: '',
-      tag: ''
+      tag: []
     };
   }
 
   handleSubmit(e) {
     e.preventDefault();
     // TODO: do something with -> this.state.file
-    // console.log('handle uploading-', this.state.file);
     console.log('change state', this.state);
+    
+    axios.post('/api/upload', this.state)
+         .then(function(response) {
+            console.log(response);
+         })
+         .catch(function(response) {
+            console.log(response);
+         });
   }
 
   handleImageChange(e) {
@@ -25,7 +33,7 @@ class ImageUpload extends React.Component {
 
     reader.onloadend = () => {
       this.setState({
-        file: file,
+        file: file.name,
         imagePreviewUrl: reader.result
       });
     }
@@ -35,8 +43,9 @@ class ImageUpload extends React.Component {
 
   handleTagChange(e) {
     e.preventDefault();
+    let tags = e.target.value.split(', ');
     this.setState({
-      tag: e.target.value
+      tag: tags
     });
   }
 
@@ -58,7 +67,7 @@ class ImageUpload extends React.Component {
           <div className="imgPreview">
             {$imagePreview}
           </div>
-          <p>Step 2: Add Tags</p>
+          <p>Step 2: Add Tags (each separated by ", ")</p>
           <input className="tagInput" type="text" onChange={(e)=>this.handleTagChange(e)} />
           <p>Step 3: Submit</p>
           <button className="submitButton" type="submit" onClick={(e)=>this.handleSubmit(e)}>Submit</button>

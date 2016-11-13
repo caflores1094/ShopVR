@@ -33,12 +33,16 @@ module.exports = {
    //save an uploaded image and corresponding tags
     saveImage: function(image, tags, callback) {
       var queryStr = 'INSERT INTO pictures (name) VALUES ?';
-      db.query(queryStr, [image.name], function(err, results) {
-        callback(err, results);
+      db.query(queryStr, [image], function(err, results) {
+        // callback(err, results);
       });
+      console.log('tags', tags);
       tags.forEach(function(tag) {
+        console.log('a tag', tag);
+        console.log('image', image);
         var tagStr = 'INSERT INTO tags (tag, pic_name) VALUES ?'
-        db.query(tagStr, [tag, image.name], function(err, results) {
+        var val = [tag, image[0][0]];
+        db.query(tagStr, val, function(err, results) {
           callback(err, results);
         });
       });
