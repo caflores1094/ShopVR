@@ -122,9 +122,9 @@
 	    _reactRouter.Route,
 	    { path: '/', component: _App2.default, store: (0, _redux.createStore)(appReducers) },
 	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _Dashboard2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/profile', component: _Profile2.default })
+	    _react2.default.createElement(_reactRouter.Route, { path: '/profile', component: _Profile2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/vr', component: _VRview2.default })
 	  ),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/vr', component: _VRview2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '/view', component: _SharedView2.default })
 	), document.getElementById('app'));
 
@@ -26655,7 +26655,10 @@
 	  function VRview(props) {
 	    _classCallCheck(this, VRview);
 
-	    return _possibleConstructorReturn(this, (VRview.__proto__ || Object.getPrototypeOf(VRview)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (VRview.__proto__ || Object.getPrototypeOf(VRview)).call(this, props));
+
+	    console.log(_this.props);
+	    return _this;
 	  }
 
 	  _createClass(VRview, [{
