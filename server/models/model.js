@@ -37,14 +37,14 @@ module.exports = {
         callback(err, results);
       });
     },
-    saveTag: function(tag, callback) {
-      // tags.forEach(function(tag) {
+    saveTag: function(tags, callback) {
+      tags[0].forEach(function(tag) {
       console.log('in saveTag', tag);
         var tagStr = 'INSERT INTO tags (tag) VALUES ?'
-        db.query(tagStr, [tag], function(err, results) {
+        db.query(tagStr, [[[tag]]], function(err, results) {
           callback(err, results);
         });
-      // });
+      });
     }
     // //get all images that belong to a user
     // getUserImages: function(user, callback) {
