@@ -17,11 +17,8 @@ class ImageUpload extends React.Component {
     console.log('change state', this.state);
     
     axios.post('/api/upload', this.state)
-         .then(function(response) {
-            console.log(response);
-         })
-         .catch(function(response) {
-            console.log(response);
+         .then(function() {
+            console.log('upload successful');
          });
   }
 
