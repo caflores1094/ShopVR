@@ -31,22 +31,21 @@ module.exports = {
 
   pictures: {
    //save an uploaded image and corresponding tags
-    saveImage: function(image, tags, callback) {
+    saveImage: function(image, callback) {
       var queryStr = 'INSERT INTO pictures (name) VALUES ?';
       db.query(queryStr, [image], function(err, results) {
-        // callback(err, results);
-      });
-      console.log('tags', tags);
-      tags.forEach(function(tag) {
-        console.log('a tag', tag);
-        console.log('image', image);
-        var tagStr = 'INSERT INTO tags (tag, pic_name) VALUES ?'
-        var val = [tag, image[0][0]];
-        db.query(tagStr, val, function(err, results) {
-          callback(err, results);
-        });
+        callback(err, results);
       });
     },
+    saveTag: function(tag, callback) {
+      // tags.forEach(function(tag) {
+      console.log('in saveTag', tag);
+        var tagStr = 'INSERT INTO tags (tag) VALUES ?'
+        db.query(tagStr, [tag], function(err, results) {
+          callback(err, results);
+        });
+      // });
+    }
     // //get all images that belong to a user
     // getUserImages: function(user, callback) {
     //   var queryStr = 'SELECT * from pictures where pictures.user_id =?';
