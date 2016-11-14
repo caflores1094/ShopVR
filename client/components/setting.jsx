@@ -1,6 +1,7 @@
 import React from 'react';
 import {Entity, Scene} from 'aframe-react'
-import ClothingArticle from './clothingArticle.jsx'
+import ClothingMapper from './clothingMapper.jsx'
+import CashierCounter from './cashierCounter.jsx'
 // var extras = require('aframe-extras');
 // extras.registerAll();
 
@@ -25,11 +26,10 @@ var dimensions = {
   fenceColor: 'grey',
   entranceSides: 13,
   ceilingWidth: 30,
-  ceilingLength: 35
+  ceilingLength: 35,
+  glassMaterial: 'opacity: 0.7',
+  glassHeight: 3
 }
-
-var imageArr = ['url(./lib/testImages/navyDress.jpg)', 'url(./lib/testImages/purpleDress.jpg)', 'src: url(./lib/testImages/blackDress.jpg)']
-
 
 class Setting extends React.Component {
 
@@ -83,23 +83,60 @@ class Setting extends React.Component {
             <Entity material={dimensions.ceilingMaterial} geometry={{primitive: 'box', depth: '.5', height: dimensions.ceilingLength, width: dimensions.ceilingWidth}} rotation="90 90 0" position="22.5 4.25 0" static-body/>
             <Entity material={'color: grey'} geometry={{primitive: 'plane', height: dimensions.ceilingLength, width: dimensions.ceilingWidth}} rotation="-90 90 0" position="22.5 0 0" static-body/>
 
-            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 90 0" position="16 2 10" static-body/>
-            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 -90 0" position="16 2 10" static-body/>
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 90 0" position="17 2 10" static-body/>
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 -90 0" position="17 2 10" static-body/>
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 90 0" position="16 2 -10" static-body/>
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 -90 0" position="16 2 -10" static-body/>
-            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 90 0" position="25 2 -10" static-body/>
-            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 -90 0" position="25 2 -10" static-body/>
-            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 90 0" position="25 2 10" static-body/>
-            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 -90 0" position="25 2 10" static-body/>
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 90 0" position="27 2 -10" static-body/>
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 -90 0" position="27 2 -10" static-body/>
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 90 0" position="27 2 10" static-body/>
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 -90 0" position="27 2 10" static-body/>
 
-            <ClothingArticle position={'7 1.5 14'} src={imageArr[0]}/>
-            <ClothingArticle position={'14 1.5 14'} src={imageArr[1]}/>
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1', height:'4', width:'1'}} position="5.5 2 2.5" static-body/>
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1', height:'4', width:'1'}} position="5.5 2 -2.5" static-body/>
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1', height:'4', width:'1'}} position="5.5 2 5" static-body/>
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1', height:'4', width:'1'}} position="5.5 2 -5" static-body/>
+
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1', height:'4', width:'1'}} position="17 2 5" static-body/>
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1', height:'4', width:'1'}} position="27 2 5" static-body/>
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1', height:'4', width:'1'}} position="27 2 -5" static-body/>
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1', height:'4', width:'1'}} position="16 2 -5" static-body/>
+
+
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', radius: '.5', depth: '1', height:'4', width:'1'}} position="27 2 -2.5" static-body/>
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', radius: '.5', depth: '1', height:'4', width:'1'}} position="27 2 2.5" static-body/>
+            
+            <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: 4, width: 2.5}} rotation="0 90 0" position="27 2 -3.75" static-body/>
+            <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: 4, width: 2.5}} rotation="0 90 0" position="27 2 3.75" static-body/>
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1', height: 1, width: 6}} rotation="0 90 0" position="27 3.5 0" static-body/>
+            
+            <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: dimensions.glassHeight, width: 4.3}} rotation="0 0 0" position="7.16 1.5 -5" static-body/>
+            <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: dimensions.glassHeight, width: 4.3}} rotation="0 0 0" position="13.85 1.5 -5" static-body/>
+            <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: 1, width: 11}} rotation="0 0 0" position="10.8 3.5 -5" static-body/>
+
+            <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: dimensions.glassHeight, width: 4.3}} rotation="0 0 0" position="18.15 1.5 -5" static-body/>
+            <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: dimensions.glassHeight, width: 4.3}} rotation="0 0 0" position="24.85 1.5 -5" static-body/>
+            <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: 1, width: 11}} rotation="0 0 0" position="21.8 3.5 -5" static-body/>
+            
+            <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: dimensions.glassHeight, width: 4.8}} rotation="0 0 0" position="7.5 1.5 5" static-body/>
+            <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: dimensions.glassHeight, width: 4.8}} rotation="0 0 0" position="14.6 1.5 5" static-body/>
+            <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: 1, width: 12}} rotation="0 0 0" position="11.1 3.5 5" static-body/>
+
+            <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: dimensions.glassHeight, width: 3.8}} rotation="0 0 0" position="18.9 1.5 5" static-body/>
+            <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: dimensions.glassHeight, width: 3.8}} rotation="0 0 0" position="25.1 1.5 5" static-body/>
+            <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: 1, width: 10}} rotation="0 0 0" position="22 3.5 5" static-body/>
+
+
+            <CashierCounter position={["11 .8 12.7", "11 1.625 12.4", "11 1.7 12.4", "11 2.1 12.4"]}/>
+            <CashierCounter position={["21.5 .8 12.7", "21.5 1.625 12.4", "21.5 1.7 12.4", "21.5 2.1 12.4"]}/>
+            <CashierCounter position={["11 .8 -12.7", "11 1.625 -12.4", "11 1.7 -12.4", "11 2.1 -12.4"]}/>
+            <CashierCounter position={["21.5 .8 -12.7", "21.5 1.625 -12.4", "21.5 1.7 -12.4", "21.5 2.1 -12.4"]}/>
+
+            <ClothingMapper />
 
           </Scene>
         </div>
       )
     }
-
 }
-
 export default Setting;
