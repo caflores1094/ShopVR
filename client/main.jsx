@@ -13,8 +13,6 @@ var userReducer = (state={}, action) => {
   switch(action.type) {
     case 'LOG_IN_USER':
       return Object.assign(state, action.user);
-    case 'EDIT_USER':
-      return Object.assign(state, action.user);
     default:
       return state;
   }
@@ -34,13 +32,16 @@ var appReducers = combineReducers({
   feed: feedReducer
 });
 
+var store = createStore(appReducers);
+
+
 ReactDOM.render((
   <Router history={browserHistory}>
-    <Route path="/" component={App} store={createStore(appReducers)}>
+    <Route path="/" component={App} store={store}>
       <IndexRoute component={Dashboard}/>
       <Route path="/profile" component={Profile}/>
       <Route path="/vr" component={VRview} />
     </Route>
     <Route path="/view" component={SharedView} />
   </Router>
-), document.getElementById('app'))
+), document.getElementById('app'));
