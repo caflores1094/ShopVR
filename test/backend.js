@@ -24,7 +24,26 @@ describe('Persistant Server', function(){
   it('Should insert a new user into the database', function(done) {
     request({
       method: 'POST',
-      uri: 'http://localhost:3000/login/facebook'
-    })
+      uri: 'http://localhost:3000/login/facebook',
+      json: {
+        name: 'Bob Bob',
+        email: 'bob@bob.com',
+        gender: 'Male',
+        locale: 'en_US',
+        timezone: -8,
+        friends: { summary: { total_count: 400 } },
+        id: '1239281888',
+        picture: { data: { url: 'bob.png' } }
+      }
+    }, function() {
+      var queryStr = 'SELECT * FROM users';
+      var queryArgs = [];
+
+      dbConnection.query(queryStr, queryArgs, function(err, results) {
+        expect(results.length).to.equal.(1);
+        expect(results[0].name).to.equal.('Bob Bob');
+        done();
+      });
+    });
   });
 });
