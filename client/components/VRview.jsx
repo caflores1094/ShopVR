@@ -1,6 +1,6 @@
 import React from 'react';
 import Sharebar from './Sharebar.jsx';
-import Setting from './Setting.jsx';
+import Setting from './setting.jsx';
 
 var user = {
   username: 'Victor',

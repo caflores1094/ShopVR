@@ -64,23 +64,23 @@
 
 	var _VRview2 = _interopRequireDefault(_VRview);
 
-	var _Dashboard = __webpack_require__(236);
+	var _Dashboard = __webpack_require__(237);
 
 	var _Dashboard2 = _interopRequireDefault(_Dashboard);
 
-	var _Profile = __webpack_require__(242);
+	var _Profile = __webpack_require__(243);
 
 	var _Profile2 = _interopRequireDefault(_Profile);
 
-	var _Setting = __webpack_require__(231);
+	var _Setting = __webpack_require__(244);
 
 	var _Setting2 = _interopRequireDefault(_Setting);
 
-	var _SharedView = __webpack_require__(243);
+	var _SharedView = __webpack_require__(245);
 
 	var _SharedView2 = _interopRequireDefault(_SharedView);
 
-	var _redux = __webpack_require__(244);
+	var _redux = __webpack_require__(246);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26539,9 +26539,9 @@
 
 	var _Sharebar2 = _interopRequireDefault(_Sharebar);
 
-	var _Setting = __webpack_require__(231);
+	var _setting = __webpack_require__(231);
 
-	var _Setting2 = _interopRequireDefault(_Setting);
+	var _setting2 = _interopRequireDefault(_setting);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26577,7 +26577,7 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_Sharebar2.default, null),
-	        _react2.default.createElement(_Setting2.default, null)
+	        _react2.default.createElement(_setting2.default, null)
 	      );
 	    }
 	  }]);
@@ -26682,9 +26682,9 @@
 
 	var _aframeReact = __webpack_require__(232);
 
-	var _clothingArticle = __webpack_require__(235);
+	var _clothingMapper = __webpack_require__(235);
 
-	var _clothingArticle2 = _interopRequireDefault(_clothingArticle);
+	var _clothingMapper2 = _interopRequireDefault(_clothingMapper);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26720,8 +26720,6 @@
 	  ceilingWidth: 30,
 	  ceilingLength: 35
 	};
-
-	var imageArr = ['url(./lib/testImages/navyDress.jpg)', 'url(./lib/testImages/purpleDress.jpg)', 'src: url(./lib/testImages/blackDress.jpg)'];
 
 	var Setting = function (_React$Component) {
 	  _inherits(Setting, _React$Component);
@@ -26783,8 +26781,7 @@
 	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 -90 0', position: '25 2 -10', 'static-body': true }),
 	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 90 0', position: '25 2 10', 'static-body': true }),
 	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 -90 0', position: '25 2 10', 'static-body': true }),
-	          _react2.default.createElement(_clothingArticle2.default, { position: '7 1.5 14', src: imageArr[0] }),
-	          _react2.default.createElement(_clothingArticle2.default, { position: '14 1.5 14', src: imageArr[1] })
+	          _react2.default.createElement(_clothingMapper2.default, null)
 	        )
 	      );
 	    }
@@ -27177,6 +27174,82 @@
 
 	var _aframeReact = __webpack_require__(232);
 
+	var _setting = __webpack_require__(231);
+
+	var _setting2 = _interopRequireDefault(_setting);
+
+	var _clothingArticle = __webpack_require__(236);
+
+	var _clothingArticle2 = _interopRequireDefault(_clothingArticle);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	// var extras = require('aframe-extras');
+	// extras.registerAll();
+
+	var imageArr = ['url(./lib/testImages/navyDress.jpg)', 'url(./lib/testImages/purpleDress.jpg)', 'src: url(./lib/testImages/blackDress.jpg)'];
+
+	var positions = ['7 1.5 14', '14 1.5 14', '14 1.5 10'];
+
+	var ClothingMapper = function (_React$Component) {
+	  _inherits(ClothingMapper, _React$Component);
+
+	  function ClothingMapper(props) {
+	    _classCallCheck(this, ClothingMapper);
+
+	    var _this = _possibleConstructorReturn(this, (ClothingMapper.__proto__ || Object.getPrototypeOf(ClothingMapper)).call(this, props));
+
+	    _this.state = {};
+	    return _this;
+	  }
+
+	  _createClass(ClothingMapper, [{
+	    key: 'render',
+	    value: function render() {
+
+	      return _react2.default.createElement(
+	        _aframeReact.Entity,
+	        null,
+	        imageArr.map(function (url, i) {
+	          console.log('INDEX', i);
+	          return _react2.default.createElement(_clothingArticle2.default, { position: positions[i], src: url });
+	        })
+	      );
+	    }
+	    // <ClothingArticle position={'7 1.5 14'} src={imageArr[0]}/>
+	    // <ClothingArticle position={'14 1.5 14'} src={imageArr[1]}/>
+
+	  }]);
+
+	  return ClothingMapper;
+	}(_react2.default.Component);
+
+	exports.default = ClothingMapper;
+
+/***/ },
+/* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _aframeReact = __webpack_require__(232);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27207,7 +27280,7 @@
 	exports.default = ClothingArticle;
 
 /***/ },
-/* 236 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27222,19 +27295,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Feed = __webpack_require__(237);
+	var _Feed = __webpack_require__(238);
 
 	var _Feed2 = _interopRequireDefault(_Feed);
 
-	var _QueryBox = __webpack_require__(239);
+	var _QueryBox = __webpack_require__(240);
 
 	var _QueryBox2 = _interopRequireDefault(_QueryBox);
 
-	var _Social = __webpack_require__(240);
+	var _Social = __webpack_require__(241);
 
 	var _Social2 = _interopRequireDefault(_Social);
 
-	var _ImageUpload = __webpack_require__(241);
+	var _ImageUpload = __webpack_require__(242);
 
 	var _ImageUpload2 = _interopRequireDefault(_ImageUpload);
 
@@ -27275,7 +27348,7 @@
 	exports.default = Dashboard;
 
 /***/ },
-/* 237 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27290,7 +27363,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _FeedItem = __webpack_require__(238);
+	var _FeedItem = __webpack_require__(239);
 
 	var _FeedItem2 = _interopRequireDefault(_FeedItem);
 
@@ -27355,7 +27428,7 @@
 	exports.default = Feed;
 
 /***/ },
-/* 238 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27419,7 +27492,7 @@
 	exports.default = FeedItem;
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27531,7 +27604,7 @@
 	exports.default = QueryBox;
 
 /***/ },
-/* 240 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27593,7 +27666,7 @@
 	exports.default = Social;
 
 /***/ },
-/* 241 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27742,7 +27815,7 @@
 	exports.default = ImageUpload;
 
 /***/ },
-/* 242 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27839,7 +27912,135 @@
 	exports.default = Profile;
 
 /***/ },
-/* 243 */
+/* 244 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _aframeReact = __webpack_require__(232);
+
+	var _clothingMapper = __webpack_require__(235);
+
+	var _clothingMapper2 = _interopRequireDefault(_clothingMapper);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	// var extras = require('aframe-extras');
+	// extras.registerAll();
+
+	var dimensions = {
+	  fullLength: 50,
+	  fullWidth: 40,
+	  frontGrassLength: 10,
+	  sideGrassesLength: 35,
+	  sideGrassesWidth: 5,
+	  sideGrassX: 22.5,
+	  sideGrassZ: 17.5,
+	  backGrassZ: 42.5,
+	  grassMaterial: 'src: url(./lib/grass.jpg); repeat: 25 25',
+	  sidefenceLength: 50,
+	  backFenceLength: 40,
+	  fenceHeight: 2,
+	  wallHeight: 4,
+	  sideWallLength: 35,
+	  backWallLength: 30,
+	  mallMaterial: 'color: grey',
+	  ceilingMaterial: 'color: grey',
+	  fenceColor: 'grey',
+	  entranceSides: 13,
+	  ceilingWidth: 30,
+	  ceilingLength: 35
+	};
+
+	var Setting = function (_React$Component) {
+	  _inherits(Setting, _React$Component);
+
+	  function Setting(props) {
+	    _classCallCheck(this, Setting);
+
+	    return _possibleConstructorReturn(this, (Setting.__proto__ || Object.getPrototypeOf(Setting)).call(this, props));
+	  }
+
+	  _createClass(Setting, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          _aframeReact.Scene,
+	          { physics: true },
+	          _react2.default.createElement(
+	            _aframeReact.Entity,
+	            { id: 'camera', active: true, camera: true, position: '0 1.8 0', rotation: '0 0 0', 'universal-controls': true, 'kinematic-body': true, 'jump-ability': 'maxJumps: 100;' },
+	            _react2.default.createElement(_aframeReact.Entity, { cursor: 'maxDistance: 30',
+	              position: '0 0 -1',
+	              geometry: 'primitive: ring; radiusOuter: 0.007; radiusInner: 0.004;',
+	              material: 'color: black; shader: flat' })
+	          ),
+	          _react2.default.createElement(_aframeReact.Entity, {
+	            geometry: { primitive: 'sphere', radius: 100 },
+	            material: { shader: 'flat', src: "url(./lib/skybox.jpg)" },
+	            scale: '1 1 -1',
+	            position: '0 0 0'
+	          }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.grassMaterial, geometry: { primitive: 'plane', height: dimensions.frontGrassLength, width: dimensions.fullWidth }, rotation: '-90 90 0', position: '0 0 0', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.grassMaterial, geometry: { primitive: 'plane', height: dimensions.sideGrassesWidth, width: dimensions.fullWidth }, rotation: '-90 90 0', position: dimensions.backGrassZ + "0 0", 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.grassMaterial, geometry: { primitive: 'plane', height: dimensions.sideGrassesWidth, width: dimensions.sideGrassesLength }, rotation: '-90 0 0', position: '22.5 0 17.5', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.grassMaterial, geometry: { primitive: 'plane', height: dimensions.sideGrassesWidth, width: dimensions.sideGrassesLength }, rotation: '-90 0 0', position: '22.5 0 -17.5', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: 'color:' + dimensions.fenceColor, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.sidefenceLength }, rotation: '0 0 0', position: '20 1 -20', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: 'color:' + dimensions.fenceColor, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.sidefenceLength }, rotation: '0 -180 0', position: '20 1 20', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: 'color:' + dimensions.fenceColor, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.backFenceLength }, rotation: '0 90 0', position: '-5 1 0', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: 'color:' + dimensions.fenceColor, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.backFenceLength }, rotation: '0 -90 0', position: '45 1 0', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.sideWallLength }, rotation: '0 0 0', position: '22.5 2 -15', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.sideWallLength }, rotation: '0 -180 0', position: '22.5 2 -15', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.sideWallLength }, rotation: '0 0 0', position: '22.5 2 15', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.sideWallLength }, rotation: '0 -180 0', position: '22.5 2 15', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.backWallLength }, rotation: '0 90 0', position: '40 2 0', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.backWallLength }, rotation: '0 -90 0', position: '40 2 0', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.entranceSides }, rotation: '0 -90 0', position: '5 2 -8.5', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.entranceSides }, rotation: '0 -90 0', position: '5 2 8.5', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.entranceSides }, rotation: '0 90 0', position: '5 2 -8.5', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.entranceSides }, rotation: '0 90 0', position: '5 2 8.5', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.ceilingMaterial, geometry: { primitive: 'box', depth: '.5', height: dimensions.ceilingLength, width: dimensions.ceilingWidth }, rotation: '90 90 0', position: '22.5 4.25 0', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: 'color: grey', geometry: { primitive: 'plane', height: dimensions.ceilingLength, width: dimensions.ceilingWidth }, rotation: '-90 90 0', position: '22.5 0 0', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 90 0', position: '16 2 10', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 -90 0', position: '16 2 10', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 90 0', position: '16 2 -10', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 -90 0', position: '16 2 -10', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 90 0', position: '25 2 -10', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 -90 0', position: '25 2 -10', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 90 0', position: '25 2 10', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: 4, width: 10 }, rotation: '0 -90 0', position: '25 2 10', 'static-body': true }),
+	          _react2.default.createElement(_clothingMapper2.default, null)
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Setting;
+	}(_react2.default.Component);
+
+	exports.default = Setting;
+
+/***/ },
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27899,7 +28100,7 @@
 	exports.default = SharedView;
 
 /***/ },
-/* 244 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -27907,27 +28108,27 @@
 	exports.__esModule = true;
 	exports.compose = exports.applyMiddleware = exports.bindActionCreators = exports.combineReducers = exports.createStore = undefined;
 
-	var _createStore = __webpack_require__(245);
+	var _createStore = __webpack_require__(247);
 
 	var _createStore2 = _interopRequireDefault(_createStore);
 
-	var _combineReducers = __webpack_require__(260);
+	var _combineReducers = __webpack_require__(262);
 
 	var _combineReducers2 = _interopRequireDefault(_combineReducers);
 
-	var _bindActionCreators = __webpack_require__(262);
+	var _bindActionCreators = __webpack_require__(264);
 
 	var _bindActionCreators2 = _interopRequireDefault(_bindActionCreators);
 
-	var _applyMiddleware = __webpack_require__(263);
+	var _applyMiddleware = __webpack_require__(265);
 
 	var _applyMiddleware2 = _interopRequireDefault(_applyMiddleware);
 
-	var _compose = __webpack_require__(264);
+	var _compose = __webpack_require__(266);
 
 	var _compose2 = _interopRequireDefault(_compose);
 
-	var _warning = __webpack_require__(261);
+	var _warning = __webpack_require__(263);
 
 	var _warning2 = _interopRequireDefault(_warning);
 
@@ -27951,7 +28152,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 245 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27960,11 +28161,11 @@
 	exports.ActionTypes = undefined;
 	exports['default'] = createStore;
 
-	var _isPlainObject = __webpack_require__(246);
+	var _isPlainObject = __webpack_require__(248);
 
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
-	var _symbolObservable = __webpack_require__(256);
+	var _symbolObservable = __webpack_require__(258);
 
 	var _symbolObservable2 = _interopRequireDefault(_symbolObservable);
 
@@ -28217,12 +28418,12 @@
 	}
 
 /***/ },
-/* 246 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseGetTag = __webpack_require__(247),
-	    getPrototype = __webpack_require__(253),
-	    isObjectLike = __webpack_require__(255);
+	var baseGetTag = __webpack_require__(249),
+	    getPrototype = __webpack_require__(255),
+	    isObjectLike = __webpack_require__(257);
 
 	/** `Object#toString` result references. */
 	var objectTag = '[object Object]';
@@ -28285,12 +28486,12 @@
 
 
 /***/ },
-/* 247 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Symbol = __webpack_require__(248),
-	    getRawTag = __webpack_require__(251),
-	    objectToString = __webpack_require__(252);
+	var Symbol = __webpack_require__(250),
+	    getRawTag = __webpack_require__(253),
+	    objectToString = __webpack_require__(254);
 
 	/** `Object#toString` result references. */
 	var nullTag = '[object Null]',
@@ -28320,10 +28521,10 @@
 
 
 /***/ },
-/* 248 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var root = __webpack_require__(249);
+	var root = __webpack_require__(251);
 
 	/** Built-in value references. */
 	var Symbol = root.Symbol;
@@ -28332,10 +28533,10 @@
 
 
 /***/ },
-/* 249 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var freeGlobal = __webpack_require__(250);
+	var freeGlobal = __webpack_require__(252);
 
 	/** Detect free variable `self`. */
 	var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
@@ -28347,7 +28548,7 @@
 
 
 /***/ },
-/* 250 */
+/* 252 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
@@ -28358,10 +28559,10 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 251 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Symbol = __webpack_require__(248);
+	var Symbol = __webpack_require__(250);
 
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -28410,7 +28611,7 @@
 
 
 /***/ },
-/* 252 */
+/* 254 */
 /***/ function(module, exports) {
 
 	/** Used for built-in method references. */
@@ -28438,10 +28639,10 @@
 
 
 /***/ },
-/* 253 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var overArg = __webpack_require__(254);
+	var overArg = __webpack_require__(256);
 
 	/** Built-in value references. */
 	var getPrototype = overArg(Object.getPrototypeOf, Object);
@@ -28450,7 +28651,7 @@
 
 
 /***/ },
-/* 254 */
+/* 256 */
 /***/ function(module, exports) {
 
 	/**
@@ -28471,7 +28672,7 @@
 
 
 /***/ },
-/* 255 */
+/* 257 */
 /***/ function(module, exports) {
 
 	/**
@@ -28506,14 +28707,14 @@
 
 
 /***/ },
-/* 256 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(257);
+	module.exports = __webpack_require__(259);
 
 
 /***/ },
-/* 257 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, module) {'use strict';
@@ -28522,7 +28723,7 @@
 	  value: true
 	});
 
-	var _ponyfill = __webpack_require__(259);
+	var _ponyfill = __webpack_require__(261);
 
 	var _ponyfill2 = _interopRequireDefault(_ponyfill);
 
@@ -28545,10 +28746,10 @@
 
 	var result = (0, _ponyfill2['default'])(root);
 	exports['default'] = result;
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(258)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(260)(module)))
 
 /***/ },
-/* 258 */
+/* 260 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -28564,7 +28765,7 @@
 
 
 /***/ },
-/* 259 */
+/* 261 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28592,7 +28793,7 @@
 	};
 
 /***/ },
-/* 260 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -28600,13 +28801,13 @@
 	exports.__esModule = true;
 	exports['default'] = combineReducers;
 
-	var _createStore = __webpack_require__(245);
+	var _createStore = __webpack_require__(247);
 
-	var _isPlainObject = __webpack_require__(246);
+	var _isPlainObject = __webpack_require__(248);
 
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
-	var _warning = __webpack_require__(261);
+	var _warning = __webpack_require__(263);
 
 	var _warning2 = _interopRequireDefault(_warning);
 
@@ -28740,7 +28941,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 261 */
+/* 263 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28770,7 +28971,7 @@
 	}
 
 /***/ },
-/* 262 */
+/* 264 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28826,7 +29027,7 @@
 	}
 
 /***/ },
-/* 263 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28837,7 +29038,7 @@
 
 	exports['default'] = applyMiddleware;
 
-	var _compose = __webpack_require__(264);
+	var _compose = __webpack_require__(266);
 
 	var _compose2 = _interopRequireDefault(_compose);
 
@@ -28889,7 +29090,7 @@
 	}
 
 /***/ },
-/* 264 */
+/* 266 */
 /***/ function(module, exports) {
 
 	"use strict";
