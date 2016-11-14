@@ -11,7 +11,7 @@ module.exports = {
     },
     //find one particular user
     getOne: function(email, callback) {
-      var queryStr = 'select * from users where users.email=?'; 
+      var queryStr = 'select * from users where users.email=?';
       db.query(queryStr, [email], function(err, results) {
         if (err) {
           console.log(err);
@@ -23,8 +23,15 @@ module.exports = {
     post: function(user, callback) {
       var newQueryStr = 'INSERT INTO users (name, email, gender, locale, timezone, friends, fb_id, profile_pic) \
                         VALUES ?';
+      var queryStr = 'select * from users where users.id=?';
       db.query(newQueryStr, [user], function(err, results) {
-        callback(err, results);
+        if (err) {
+          callback(err, null);
+        } else {
+          db.query(queryStr, results.insertId, function(err2, results2) {
+            callback(err2, results2);
+          });
+        }
       });
     },
   },

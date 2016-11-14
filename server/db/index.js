@@ -3,7 +3,7 @@ var mysql = require('mysql');
 // Establish connection to mysql database
 var connection = mysql.createConnection({
   user: 'root',
-  password: '123',
+  password: '1107',
   database: 'shopvr'
 });
 
