@@ -1,18 +1,70 @@
 import React from 'react';
 import {Entity, Scene} from 'aframe-react'
-import Setting from './setting.jsx'
 import ClothingArticle from './clothingArticle.jsx'
 
 
 // var extras = require('aframe-extras');
 // extras.registerAll();
 
-var imageArr = ['url(./lib/testImages/navyDress.jpg)', 'url(./lib/testImages/purpleDress.jpg)', 'src: url(./lib/testImages/blackDress.jpg)']
+var imageArr = [
+  'url(./lib/testImages/navyDress.jpg)', 
+  'url(./lib/testImages/purpleDress.jpg)', 
+  'url(./lib/testImages/blackDress.jpg)',
+  'url(./lib/testImages/blackCoat.jpg)',
+  'url(./lib/testImages/blackCoat2.jpg)',
+  'url(./lib/testImages/tanCoat.jpg)',
+
+  'url(./lib/testImages/navyDress.jpg)', 
+  'url(./lib/testImages/purpleDress.jpg)', 
+  'url(./lib/testImages/blackDress.jpg)',
+  'url(./lib/testImages/blackCoat.jpg)',
+  'url(./lib/testImages/blackCoat2.jpg)',
+  'url(./lib/testImages/tanCoat.jpg)',
+
+  'url(./lib/testImages/navyDress.jpg)', 
+  'url(./lib/testImages/purpleDress.jpg)', 
+  'url(./lib/testImages/blackDress.jpg)',
+  'url(./lib/testImages/blackCoat.jpg)',
+  'url(./lib/testImages/blackCoat2.jpg)',
+  'url(./lib/testImages/tanCoat.jpg)',
+
+  'url(./lib/testImages/navyDress.jpg)', 
+  'url(./lib/testImages/purpleDress.jpg)', 
+  'url(./lib/testImages/blackDress.jpg)',
+  'url(./lib/testImages/blackCoat.jpg)',
+  'url(./lib/testImages/blackCoat2.jpg)',
+  'url(./lib/testImages/tanCoat.jpg)'
+]
 
 var positions = [
-  '7 1.5 14',
-  '14 1.5 14',
-  '14 1.5 10',
+  '7 1.5 6',
+  '7 1.5 9',
+  '7 1.5 12',
+  '16 1.5 12',
+  '16 1.5 9',
+  '16 1.5 6',
+
+  '7 1.5 -6',
+  '7 1.5 -9',
+  '7 1.5 -12',
+  '15 1.5 -12',
+  '15 1.5 -9',
+  '15 1.5 -6',
+
+  '18 1.5 -6',
+  '18 1.5 -9',
+  '18 1.5 -12',
+  '25 1.5 -12',
+  '25 1.5 -9',
+  '25 1.5 -6',
+
+  '18 1.5 6',
+  '18 1.5 9',
+  '18 1.5 12',
+  '25 1.5 12',
+  '25 1.5 9',
+  '25 1.5 6',
+
 ]
 
 class ClothingMapper extends React.Component {
@@ -36,11 +88,8 @@ class ClothingMapper extends React.Component {
           }) 
         }
       </Entity>
-      
     );
   }
-        // <ClothingArticle position={'7 1.5 14'} src={imageArr[0]}/>
-        // <ClothingArticle position={'14 1.5 14'} src={imageArr[1]}/>
 }
 
 export default ClothingMapper;
