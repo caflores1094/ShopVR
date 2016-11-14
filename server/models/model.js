@@ -53,15 +53,21 @@ module.exports = {
         });
       });
     }
-    // //get all images that belong to a user
-    // getUserImages: function(user, callback) {
-    //   var queryStr = 'SELECT * from pictures where pictures.user_id =?';
-    //   db.query(queryStr, [user], function(err, results) {
-    //     if (err) {
-    //       console.log(err);
-    //     }
-    //     callback(err, results);
-    //   });
-    // }
+   // //get all images that belong to a user
+    getUserImages: function(user, callback) {
+      var queryStr = 'SELECT * from pictures where pictures.user_id =?';
+      db.query(queryStr, [user], function(err, results) {
+        if (err) console.log('error getting user images', err);
+        callback(err, results);
+      });
+    },
+    // //get all tags that belong to a user
+    getUserTags: function(picName, callback) {
+      var queryStr = 'SELECT * from tags where tags.pic_name = ?';
+      db.query(queryStr, [picName], function(err, results) {
+        if (err) console.log('error getting user tags', err);
+        callback(err, results);
+      });
+    }
   }
 };
