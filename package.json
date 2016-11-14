@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm-run-all --parallel watch:build watch:server",
+    "test": "mocha test/backend.js; RES=$?; kill %1; exit $RES",
     "watch:build": "webpack",
     "watch:server": "nodemon server/index.js"
   },
