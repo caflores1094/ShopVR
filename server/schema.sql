@@ -39,27 +39,28 @@ CREATE TABLE IF NOT EXISTS items (
 -- Creating uploaded pictures table
 CREATE TABLE IF NOT EXISTS pictures (
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
-  name VARCHAR(100),
-  user_id INT,
-  FOREIGN KEY fk_user(user_id) REFERENCES users(id),
-  PRIMARY KEY (ID)  
-)
+  name VARCHAR(255),
+  u_id INT,
+  FOREIGN KEY fk_u(u_id) REFERENCES users(id),
+  PRIMARY KEY (name)  
+);
 
 -- Creating tags table
 CREATE TABLE IF NOT EXISTS tags (
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
-  tag TEXT,
-  pic_name TEXT,
-  FOREIGN KEY fk_picture(pic_name) REFERENCES pictures(name)
-)
+  tag VARCHAR(255),
+  pic_name VARCHAR(255),
+  FOREIGN KEY fk_pic(pic_name) REFERENCES pictures(name),
+  PRIMARY KEY (ID)
+);
 
--- Creating join table between picture and tags
+-- -- Creating join table between picture and tags
 CREATE TABLE IF NOT EXISTS pictures_tags AS (
-  SELECT pictures.id, pictures.name, tags.id, tags.tag
+  SELECT pictures.id, pictures.name, tags.tag
   FROM pictures
   INNER JOIN tags
-  ON pictures.id = tags.pic_id
-)
+  ON pictures.name=tags.pic_name
+);
 
 -- Creating join table between users and items
 -- creates an inner join on foreign key reference in items back to user id
