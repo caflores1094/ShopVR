@@ -39,8 +39,8 @@ ReactDOM.render((
     <Route path="/" component={App} store={createStore(appReducers)}>
       <IndexRoute component={Dashboard}/>
       <Route path="/profile" component={Profile}/>
+      <Route path="/vr" component={VRview} />
     </Route>
-    <Route path="/vr" component={VRview} />
     <Route path="/view" component={SharedView} />
   </Router>
 ), document.getElementById('app'))
