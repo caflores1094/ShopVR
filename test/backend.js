@@ -6,7 +6,7 @@ describe('Persistent Server', function() {
 
   beforeEach(function(done) {
     dbConnection = mysql.createConnection({
-      host: 'localhost',
+      port: 44980,
       user: 'root',
       password: '123',
       database: 'shopvr'
