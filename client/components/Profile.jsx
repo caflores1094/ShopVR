@@ -10,20 +10,20 @@ class Profile extends React.Component {
          <h1>Profile</h1>
          <form>
            <p>Name:
-             <input type="text" defaultValue={this.props.user.username}/>
+             <input type="text" />
            </p>
            <p>Email:
-             <input type="text" defaultValue={this.props.user.email}/>
+             <input type="text" />
            </p>
            <p>Gender:
-             <select defaultValue={this.props.user.gender}>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
+             <select>
+              <option value="male">male</option>
+              <option value="female">female</option>
              </select>
            </p>
            <p>
            Price Range:
-             <input type="number" defaultValue={this.props.user.lowprice}/> - <input type="number" defaultValue={this.props.user.highprice}/>
+             <input type="number"/> - <input type="number"/>
            </p>
            <input type="submit" value="Submit" />
          </form>
