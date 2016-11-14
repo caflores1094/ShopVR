@@ -11,7 +11,7 @@ module.exports = {
 			models.pictures.saveTag([req.body.tag], function(err, results) {
 				if (err) console.log('error adding tags', err);
 			});
-		}
+		},
 		// //get all tags associated with a user
 		getAllImages: function(req, callback) {
 		  console.log('in get all images', req);
