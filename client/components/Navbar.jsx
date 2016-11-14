@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -32,8 +33,14 @@ class NavBar extends React.Component {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', {fields: 'id, name, email, friends, gender, picture, locale, timezone, location'}, function(response) {
       console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
 
+      axios.post('/login/facebook', response)
+      .then(function (response) {
+
+      })
+      .catch(function (error) {
+        console.log('Error in sending ajax data');
+      });
 
     });
   }
@@ -42,8 +49,7 @@ class NavBar extends React.Component {
     if (response.status === 'connected') {
       this.testAPI();
     } else if (response.status === 'not_authorized') {
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
+      console.log('Please log into this app.');
     } else {
       FB.login(function(response) {
         if (response.authResponse) {
@@ -59,8 +65,7 @@ class NavBar extends React.Component {
     if (response.status === 'connected') {
       this.testAPI();
     } else if (response.status === 'not_authorized') {
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
+      console.log('Please log into this app.');
     }
   }
 
@@ -73,7 +78,6 @@ class NavBar extends React.Component {
   logout() {
     FB.logout(function(response) {
       console.log('logged out', response);
-      document.getElementById('status').innerHTML = 'You are now logged out.';
     });
   }
 
@@ -82,7 +86,6 @@ class NavBar extends React.Component {
        <div>
          <button onClick={this.login.bind(this)}>Facebook Login</button>
          <button onClick={this.logout.bind(this)}>Log Out</button>
-         <div id="status"></div>
        </div>
     );
   }

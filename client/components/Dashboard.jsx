@@ -13,9 +13,9 @@ class Dashboard extends React.Component {
       return (
         <div>
           <ImageUpload />
-          <QueryBox user={this.props.user} store={this.props.store}/>
-          <Feed store={this.props.store}/>
-          <Social store={this.props.store}/>
+          <QueryBox />
+          <Feed />
+          <Social />
         </div>
       );
    }
