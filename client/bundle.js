@@ -26481,7 +26481,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	   value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -26499,22 +26499,112 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var NavBar = function (_React$Component) {
-	   _inherits(NavBar, _React$Component);
+	  _inherits(NavBar, _React$Component);
 
-	   function NavBar(props) {
-	      _classCallCheck(this, NavBar);
+	  function NavBar(props) {
+	    _classCallCheck(this, NavBar);
 
-	      return _possibleConstructorReturn(this, (NavBar.__proto__ || Object.getPrototypeOf(NavBar)).call(this, props));
-	   }
+	    return _possibleConstructorReturn(this, (NavBar.__proto__ || Object.getPrototypeOf(NavBar)).call(this, props));
+	  }
 
-	   _createClass(NavBar, [{
-	      key: 'render',
-	      value: function render() {
-	         return _react2.default.createElement('div', null);
+	  _createClass(NavBar, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      window.fbAsyncInit = function () {
+	        FB.init({
+	          appId: '310454652686518',
+	          cookie: true, // enable cookies to allow the server to access
+	          // the session
+	          xfbml: true, // parse social plugins on this page
+	          version: 'v2.8' // use version 2.1
+	        });
+
+	        FB.getLoginStatus(function (response) {
+	          this.refreshCallback(response);
+	        }.bind(this));
+	      }.bind(this);
+
+	      (function (d, s, id) {
+	        var js,
+	            fjs = d.getElementsByTagName(s)[0];
+	        if (d.getElementById(id)) return;
+	        js = d.createElement(s);js.id = id;
+	        js.src = "https://connect.facebook.net/en_US/sdk.js";
+	        fjs.parentNode.insertBefore(js, fjs);
+	      })(document, 'script', 'facebook-jssdk');
+	    }
+	  }, {
+	    key: 'testAPI',
+	    value: function testAPI() {
+	      console.log('Welcome!  Fetching your information.... ');
+	      FB.api('/me', { fields: 'id, name, email, friends, gender, picture, locale, timezone, location' }, function (response) {
+	        console.log('Successful login for: ' + response.name);
+	        document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
+	      });
+	    }
+	  }, {
+	    key: 'loginCallback',
+	    value: function loginCallback(response) {
+	      if (response.status === 'connected') {
+	        this.testAPI();
+	      } else if (response.status === 'not_authorized') {
+	        document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
+	      } else {
+	        FB.login(function (response) {
+	          if (response.authResponse) {
+	            this.testAPI();
+	          } else {
+	            console.log('User cancelled login or did not fully authorize.');
+	          }
+	        }.bind(this));
 	      }
-	   }]);
+	    }
+	  }, {
+	    key: 'refreshCallback',
+	    value: function refreshCallback(response) {
+	      if (response.status === 'connected') {
+	        this.testAPI();
+	      } else if (response.status === 'not_authorized') {
+	        document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
+	      }
+	    }
+	  }, {
+	    key: 'login',
+	    value: function login() {
+	      FB.getLoginStatus(function (response) {
+	        this.loginCallback(response);
+	      }.bind(this));
+	    }
+	  }, {
+	    key: 'logout',
+	    value: function logout() {
+	      FB.logout(function (response) {
+	        console.log('logged out', response);
+	        document.getElementById('status').innerHTML = 'You are now logged out.';
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.login.bind(this) },
+	          'Facebook Login'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.logout.bind(this) },
+	          'Log Out'
+	        ),
+	        _react2.default.createElement('div', { id: 'status' })
+	      );
+	    }
+	  }]);
 
-	   return NavBar;
+	  return NavBar;
 	}(_react2.default.Component);
 
 	exports.default = NavBar;
@@ -27643,10 +27733,8 @@
 	      // TODO: do something with -> this.state.file
 	      console.log('change state', this.state);
 
-	      _axios2.default.post('/api/upload', this.state).then(function (response) {
-	        console.log(response);
-	      }).catch(function (response) {
-	        console.log(response);
+	      _axios2.default.post('/api/upload', this.state).then(function () {
+	        console.log('upload successful');
 	      });
 	    }
 	  }, {
