@@ -52,7 +52,7 @@ module.exports = {
           callback(err, results);
         });
       });
-    }
+    },
    // //get all images that belong to a user
     getUserImages: function(user, callback) {
       var queryStr = 'SELECT * from pictures where pictures.user_id =?';
