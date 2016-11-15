@@ -7,7 +7,10 @@ class App extends React.Component {
 
     this.state = {
       user: {},
-      feed: []
+      feed: [],
+      price: true,
+      brand: true,
+      category: true
     };
   }
 
@@ -19,12 +22,75 @@ class App extends React.Component {
     this.setState({feed: feed});
   }
 
+  sortPrice() {
+    var context = this;
+    this.setState({price: !this.state.price});
+    this.state.feed.sort(function(a,b) {
+      if (context.state.price)
+        return a.price - b.price;
+      else
+        return b.price - a.price;
+    });
+  }
+
+  sortBrand() {
+    var context = this;
+    this.setState({brand: !this.state.brand});
+    console.log(this.state.brand);
+    this.state.feed.sort(function(a,b) {
+      if (context.state.brand) {
+        if (a.retailer.name < b.retailer.name) {
+          return -1;
+        }
+        if (a.retailer.name > b.retailer.name) {
+          return 1;
+        }
+        return 0;
+      } else {
+        if (a.retailer.name < b.retailer.name) {
+          return 1;
+        }
+        if (a.retailer.name > b.retailer.name) {
+          return -1;
+        }
+        return 0;
+      }
+    });
+  }
+
+  sortCat() {
+    var context = this;
+    this.setState({category: !this.state.category});
+    this.state.feed.sort(function(a,b) {
+      if (context.state.category) {
+        if (a.categories[0].name < b.categories[0].name) {
+          return -1;
+        }
+        if (a.categories[0].name > b.categories[0].name) {
+          return 1;
+        }
+        return 0;
+      } else {
+        if (a.categories[0].name < b.categories[0].name) {
+          return 1;
+        }
+        if (a.categories[0].name > b.categories[0].name) {
+          return -1;
+        }
+        return 0;
+      }
+    });
+  }
+
   render() {
     var context = this;
     var children = React.Children.map(this.props.children, function (child) {
       return React.cloneElement(child, {
         user: context.state.user,
         setFeed: context.setFeed.bind(context),
+        sortBrand: context.sortBrand.bind(context),
+        sortCat: context.sortCat.bind(context),
+        sortPrice: context.sortPrice.bind(context),
         feed: context.state.feed
       });
     });
