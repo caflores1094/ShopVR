@@ -3,7 +3,7 @@ var models = require('../models/model.js');
 module.exports = {
   users: {
     get: function(req, callback) {
-      models.users.getOne(req.email, function(err, results) {
+      models.users.getOne(req.id, function(err, results) {
         if (err) callback(err, null);
         else callback(null, results);
       });

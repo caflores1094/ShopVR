@@ -29410,9 +29410,11 @@
 	    value: function handleSubmit(e) {
 	      e.preventDefault();
 	      // TODO: do something with -> this.state.file
-	      console.log('change state', this.state);
+	      var obj = this.state;
+	      obj['u_id'] = this.props.user.id;
+	      console.log('obj: ', obj);
 
-	      _axios2.default.post('/api/upload', this.state).then(function () {
+	      _axios2.default.post('/api/upload', obj).then(function () {
 	        console.log('upload successful');
 	      });
 	    }
@@ -29442,6 +29444,14 @@
 	      var tags = e.target.value.split(', ');
 	      this.setState({
 	        tag: tags
+	      });
+	    }
+	  }, {
+	    key: 'testFunction',
+	    value: function testFunction() {
+	      // console.log(this.props.user)
+	      _axios2.default.get('/api/feed').then(function (result) {
+	        console.log(result);
 	      });
 	    }
 	  }, {
@@ -29507,6 +29517,15 @@
 	                return _this3.handleSubmit(e);
 	              } },
 	            'Submit'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'testAPI', onClick: this.testFunction.bind(this) },
+	            'TESTING'
 	          )
 	        )
 	      );

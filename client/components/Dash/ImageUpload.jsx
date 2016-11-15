@@ -14,9 +14,11 @@ class ImageUpload extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     // TODO: do something with -> this.state.file
-    console.log('change state', this.state);
+    var obj = this.state;
+    obj['u_id'] = this.props.user.id;
+    console.log('obj: ', obj)
     
-    axios.post('/api/upload', this.state)
+    axios.post('/api/upload', obj)
          .then(function() {
             console.log('upload successful');
          });
@@ -47,6 +49,7 @@ class ImageUpload extends React.Component {
   }
 
   testFunction(){
+    // console.log(this.props.user)
     axios.get('/api/feed')
       .then(function(result){
         console.log(result)
@@ -77,7 +80,7 @@ class ImageUpload extends React.Component {
           <button className="submitButton" type="submit" onClick={(e)=>this.handleSubmit(e)}>Submit</button>
         </form>
         <div>
-          <button className="testAPI" onClick={this.testFunction}>TESTING</button>
+          <button className="testAPI" onClick={this.testFunction.bind(this)}>TESTING</button>
 
         </div>
       </div>

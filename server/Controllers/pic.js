@@ -4,18 +4,18 @@ module.exports = {
 	pictures: {
 		//post a pictures and associated tags
 		post: function(req) {
-			models.pictures.saveImage([[req.body.file]], function(err, results) {
+			models.pictures.saveImage(req.body.file, req.body.u_id, function(err, results) {
 				if (err) console.log('error saving picture', err);
-			});
-			console.log('req', req.body.tag);
-			models.pictures.saveTag([req.body.tag], req.body.file, function(err, results) {
-				if (err) console.log('error adding tags', err);
+				console.log('req', req.body.tag);
+				models.pictures.saveTag([req.body.tag], req.body.file, function(err, results) {
+					if (err) console.log('error adding tags', err);
+				});
 			});
 		},
 		// //get all tags associated with a user
 		getAllImages: function(req, callback) {
 		  console.log('in get all images', req);
-		  models.pictures.getUserImages(req.user, function(err, results) {
+		  models.pictures.getUserImages(req.id, function(err, results) {
 			if (err) console.log('error retrieving user images', err);
 			console.log('get user tags results', results);
 		  });

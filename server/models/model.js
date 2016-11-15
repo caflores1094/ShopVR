@@ -10,9 +10,9 @@ module.exports = {
       });
     },
     //find one particular user
-    getOne: function(email, callback) {
-      var queryStr = 'select * from users where users.email=?';
-      db.query(queryStr, [email], function(err, results) {
+    getOne: function(fb_id, callback) {
+      var queryStr = 'select * from users where users.fb_id=?';
+      db.query(queryStr, [fb_id], function(err, results) {
         if (err) {
           console.log(err);
         }
@@ -40,7 +40,7 @@ module.exports = {
    //save an uploaded image and corresponding tags
     saveImage: function(image, userID, callback) {
       var queryStr = 'INSERT INTO pictures (name, u_id) VALUES ?';
-      db.query(queryStr, [image, userID], function(err, results) {
+      db.query(queryStr, [[[image, userID]]], function(err, results) {
         callback(err, results);
       });
     },
@@ -54,9 +54,9 @@ module.exports = {
       });
     },
    // //get all images that belong to a user
-    getUserImages: function(user, callback) {
+    getUserImages: function(userID, callback) {
       var queryStr = 'SELECT * from pictures where pictures.user_id =?';
-      db.query(queryStr, [user], function(err, results) {
+      db.query(queryStr, [userID], function(err, results) {
         if (err) console.log('error getting user images', err);
         callback(err, results);
       });
