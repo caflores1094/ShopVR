@@ -2,7 +2,14 @@ var mysql = require('mysql');
 var request = require('request');
 
 describe('DB connection', function() {
-
+  it('Should connect to the database', function(done) {
+    var connection = mysql.createConnection({
+      user: 'newuser',
+      password: 'password',
+      database: 'shopvr'
+    });
+    connection.connect(done);
+  });
 });
 
 // describe('Persistent Server', function() {
