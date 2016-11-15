@@ -2,8 +2,8 @@ var mysql = require('mysql');
 
 // Establish connection to mysql database
 var connection = mysql.createConnection({
-  user: 'root',
-  password: '1107',
+  user: 'newuser',
+  password: 'password',
   database: 'shopvr'
 });
 
