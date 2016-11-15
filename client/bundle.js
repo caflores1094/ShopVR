@@ -29615,13 +29615,16 @@
 	      // TODO: do something with -> this.state.file
 	      var obj = this.state;
 	      obj['u_id'] = this.props.user.id;
-	      console.log('obj: ', obj);
 
-	      _axios2.default.post('/api/upload', obj).then(function () {
-	        console.log('upload successful');
+	      var context = this;
+	      _axios2.default.post('/api/upload', obj).then(function (result) {
+	        console.log(result);
+	        if (result.data === 'duplicate image') {
+	          alert('Image Name already exists!');
+	        } else {
+	          context.getFeedOnImageUpload();
+	        }
 	      });
-
-	      this.getFeedOnImageUpload();
 	    }
 	  }, {
 	    key: 'handleImageChange',
@@ -29667,8 +29670,7 @@
 	        var searchQuery = tags.concat('+');
 	        var productURL = 'http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&filters=Retailer&limit=25&fts=' + searchQuery;
 	        var getProducts = function getProducts(url, callback) {
-	          _axios2.default.get(url) //, function(err, response, body) {
-	          .then(function (result) {
+	          _axios2.default.get(url).then(function (result) {
 	            console.log(result);
 	            callback(null, result);
 	          });
