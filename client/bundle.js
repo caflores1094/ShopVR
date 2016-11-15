@@ -28271,13 +28271,11 @@
 	                  'Send Invite'
 	               ),
 	               _react2.default.createElement(
-	                  'a',
-	                  { href: '/' },
-	                  _react2.default.createElement(
-	                     'button',
-	                     null,
-	                     'Back To Dashboard'
-	                  )
+	                  'button',
+	                  { onClick: function onClick() {
+	                        return _reactRouter.browserHistory.push('/');
+	                     } },
+	                  'Back To Dashboard'
 	               )
 	            )
 	         );
@@ -29123,8 +29121,7 @@
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      var context = this;
-	      _axios2.default.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&fts=trendy').then(function (response) {
-	        console.log(response.data.products);
+	      _axios2.default.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&fts=&limit=25').then(function (response) {
 	        context.props.setFeed(response.data.products);
 	      }).catch(function (error) {
 	        console.log('asdfError in sending ajax data ', error);
@@ -29253,7 +29250,7 @@
 	      return _react2.default.createElement(
 	        'p',
 	        null,
-	        _react2.default.createElement('input', { type: 'checkbox' }),
+	        _react2.default.createElement('input', { id: label, type: 'checkbox' }),
 	        label
 	      );
 	    }
@@ -29285,36 +29282,34 @@
 	              { defaultValue: this.props.user.gender },
 	              _react2.default.createElement(
 	                'option',
-	                { value: 'male' },
-	                'male'
+	                { value: 'men\'s' },
+	                'men'
 	              ),
 	              _react2.default.createElement(
 	                'option',
-	                { value: 'female' },
-	                'female'
+	                { value: 'women\'s' },
+	                'women'
 	              )
 	            )
 	          ),
 	          _react2.default.createElement(
 	            'p',
 	            null,
-	            'Price Range:',
-	            _react2.default.createElement('input', { defaultValue: this.props.user.id, type: 'number' }),
-	            ' - ',
-	            _react2.default.createElement('input', { type: 'number' })
+	            'Max Price:',
+	            _react2.default.createElement('input', { defaultValue: this.props.user.maxPrice, type: 'number' })
 	          ),
 	          _react2.default.createElement(
 	            'p',
 	            null,
-	            'Brands:'
+	            'Brand:',
+	            _react2.default.createElement('input', null)
 	          ),
-	          this.createCheckboxes(['American Eagle', 'Zara', 'Lululemon', 'Gap', 'Ann Taylor']),
 	          _react2.default.createElement(
 	            'p',
 	            null,
-	            'Categories:'
+	            'Item:',
+	            _react2.default.createElement('input', null)
 	          ),
-	          this.createCheckboxes(['Cocktail Dresses', 'Black Short Boots', 'Knit Sweaters', 'Skinny Jeans', 'Black Leather Jackets']),
 	          _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
 	        )
 	      );
@@ -29634,23 +29629,21 @@
 	              { defaultValue: this.props.user.gender },
 	              _react2.default.createElement(
 	                'option',
-	                { value: 'male' },
-	                'male'
+	                { value: 'men\'s' },
+	                'men'
 	              ),
 	              _react2.default.createElement(
 	                'option',
-	                { value: 'female' },
-	                'female'
+	                { value: 'women\'s' },
+	                'women'
 	              )
 	            )
 	          ),
 	          _react2.default.createElement(
 	            'p',
 	            null,
-	            'Price Range:',
-	            _react2.default.createElement('input', { type: 'number' }),
-	            ' - ',
-	            _react2.default.createElement('input', { type: 'number' })
+	            'Max Price:',
+	            _react2.default.createElement('input', { type: 'number', defaultValue: this.props.user.maxPrice })
 	          ),
 	          _react2.default.createElement(
 	            'button',

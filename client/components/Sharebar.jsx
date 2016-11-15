@@ -13,7 +13,7 @@ class ShareBar extends React.Component {
               <button id="open-room" onClick={() => connection.open(document.getElementById('room-id').value)}>Open Room</button>
               <input type="text" />
               <button>Send Invite</button>
-              <a href='/'><button>Back To Dashboard</button></a>
+              <button onClick={() => browserHistory.push('/')}>Back To Dashboard</button>
            </div>
          </div>
       );
