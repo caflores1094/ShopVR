@@ -4,6 +4,11 @@ Work time is based off of how long it may take 1 person to complete the given ta
 
 Priority is graded from 1 (least important) to 5 (most important)
 
+Description:
+Category:
+Estimation of work time:
+Priority: 
+
 Backend
 
 Description: API endpoints do not serve up a status response code (e.g., missing 200 status code) for /login/facebook, /api/upload, /api/feed
