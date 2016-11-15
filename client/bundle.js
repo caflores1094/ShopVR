@@ -26453,8 +26453,16 @@
 	    }
 	  }, {
 	    key: 'setFeed',
-	    value: function setFeed(feed) {
-	      this.setState({ feed: feed });
+	    value: function setFeed(feed, min, max) {
+	      min = min || 0;
+	      max = max || 10000;
+	      var newfeed = [];
+	      for (var i = 0; i < feed.length; i++) {
+	        if (feed[i].price >= min && feed[i].price <= max) {
+	          newfeed.push(feed[i]);
+	        }
+	      }
+	      this.setState({ feed: newfeed });
 	    }
 	  }, {
 	    key: 'sortPrice',
@@ -29201,7 +29209,7 @@
 	    value: function componentDidMount() {
 	      var context = this;
 	      var gender = this.props.user.gender === 'male' ? "men" : "women";
-	      _axios2.default.get("http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&fts=" + gender + "&limit=25").then(function (response) {
+	      _axios2.default.get("http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&fts=" + gender + "&limit=50").then(function (response) {
 	        console.log(response);
 	        context.props.setFeed(response.data.products);
 	      }).catch(function (error) {
@@ -29366,6 +29374,7 @@
 
 	    _this.state = {
 	      gender: _this.props.user.gender === 'male' ? "men" : "women",
+	      minPrice: _this.props.user.minPrice,
 	      maxPrice: _this.props.user.maxPrice,
 	      brand: '',
 	      item: ''
@@ -29380,7 +29389,7 @@
 
 	      var context = this;
 	      _axios2.default.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&limit=25&fts=' + this.state.gender + '+' + this.state.brand + '+' + this.state.item).then(function (response) {
-	        context.props.setFeed(response.data.products);
+	        context.props.setFeed(response.data.products, context.state.minPrice, context.state.maxPrice);
 	      }).catch(function (error) {
 	        console.log('asdfError in sending ajax data ', error);
 	      });
@@ -29427,7 +29436,11 @@
 	          _react2.default.createElement(
 	            'p',
 	            null,
-	            'Max Price:',
+	            'Price:',
+	            _react2.default.createElement('input', { onChange: function onChange(e) {
+	                return _this2.setState({ minPrice: e.target.value });
+	              }, defaultValue: this.props.user.minPrice, type: 'number' }),
+	            ' -',
 	            _react2.default.createElement('input', { onChange: function onChange(e) {
 	                return _this2.setState({ maxPrice: e.target.value });
 	              }, defaultValue: this.props.user.maxPrice, type: 'number' })

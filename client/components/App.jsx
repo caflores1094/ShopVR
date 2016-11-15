@@ -18,8 +18,16 @@ class App extends React.Component {
     this.setState({user: user});
   }
 
-  setFeed(feed) {
-    this.setState({feed: feed});
+  setFeed(feed, min, max) {
+    min = min || 0;
+    max = max || 10000;
+    var newfeed = [];
+    for (var i = 0; i < feed.length; i++) {
+      if (feed[i].price >= min && feed[i].price <= max) {
+        newfeed.push(feed[i])
+      }
+    }
+    this.setState({feed: newfeed});
   }
 
   sortPrice() {
