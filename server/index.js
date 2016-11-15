@@ -18,15 +18,17 @@ var options = {
 var server = express();
 
 var normalServer = http.createServer(server).listen(3000);
-var secureServer = https.createServer(options, function (req, res) {
-  res.writeHead(200);
-  res.end("secure https server running on 8000");
-}).listen(8000);
+var secureServer = https.createServer(options, server).listen(8000);
 
 server.use(bodyParser.json()); // for parsing application/json
 server.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlenco
 server.use(express.static(__dirname + '/../client'));
 server.use(router);
+
+// secureServer.use(bodyParser.json()); // for parsing application/json
+// secureServer.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlenco
+// secureServer.use(express.static(__dirname + '/../client'));
+// secureServer.use(router);
 
 router.post('/login/facebook', authController.login);
 
