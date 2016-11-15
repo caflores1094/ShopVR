@@ -1,5 +1,6 @@
 var mysql = require('mysql');
 var request = require('request');
+var expect = require('chai').expect;
 var supertest = require('supertest');
 var should = require('should');
 
@@ -31,16 +32,6 @@ describe('Server', function() {
       .get('/shop')
       .expect(404, done);
     });
-    it('Should post to /api/upload', function() {
-      server
-      .post('/api/upload')
-      .expect(201, done);
-    });
-    it('Should post to /api/feed', function() {
-      server
-      .post('/api/feed')
-      .expect(201, done);
-    });
   });
 });
 
@@ -54,56 +45,49 @@ describe('Database', function() {
       });
       connection.connect(done);
     });
+    describe('Should post to database from endpoints', function(done) {
+      var dbConnection;
+
+      beforeEach(function() {
+        dbConnection = mysql.createConnection({
+          user: 'newuser',
+          password: 'password',
+          database: 'shopvr'
+        });
+        dbConnection.connect();
+      });
+
+      afterEach(function() {
+        console.log('ending connection');
+        dbConnection.end();
+      });
+      
+      it('Should insert into users table', function(done) {
+        var sample = {
+          name: 'Bob Bob',
+          email: 'bob@bob.com',
+          gender: 'Male',
+          locale: 'en_US',
+          timezone: -8,
+          friends: 400,
+          fb_id: '1239281888',
+          profile_pic: 'bob.png'
+        };
+        dbConnection.query('INSERT INTO users SET ?', sample, function(err, results) {
+          if (err) {
+            console.log('Error inserting', err);
+          }
+          expect(results.affectedRows).to.equal(1);
+          done();
+        });
+
+        // dbConnection.query(queryString, function(err, results) {
+        //   console.log('result', results);
+        //   expect(results.length).to.equal(1);
+        //   expect(results[0].name).to.equal('Bob Bob');
+        //   done();
+        // });
+      });
+    });
   });
 });
-
-
-// describe('Persistent Server', function() {
-//   var dbConnection;
-
-//   before(function(done) {
-//     dbConnection = mysql.createConnection({
-//       user: 'newuser',
-//       password: 'password',
-//       database: 'shopvr'
-//     });
-//     dbConnection.connect();
-
-//     var tablename = 'users';
-    
-//     // dbConnection.query('truncate ' + tablename, done);
-//   });
-
-//   after(function() {
-//     console.log('ending connection');
-//     dbConnection.end();
-//   });
-
-  // it('Should insert users into DB', function(done) {
-  //   console.log('trying to insert here');
-  //   request({
-  //     method: 'POST',
-  //     uri: 'http://localhost:3000/login/facebook',
-  //     json: {
-  //       name: 'Bob Bob',
-  //       email: 'bob@bob.com',
-  //       gender: 'Male',
-  //       locale: 'en_US',
-  //       timezone: -8,
-  //       friends: { summary: { total_count: 400 } },
-  //       id: '1239281888',
-  //       picture: { data: { url: 'bob.png' } }
-  //     }
-  //   }, function() {
-  //     var queryString = 'SELECT * FROM users';
-  //     var queryArgs = [];
-
-  //     dbConnection.query(queryString, queryArgs, function(err, results) {
-  //       console.log('result', results);
-  //       expect(results.length).to.equal(1);
-  //       // expect(results[0].name).to.equal('Bob Bob');
-  //       done();
-  //     });
-  //   });
-  // });
-// });

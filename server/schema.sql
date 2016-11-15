@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS users (
   locale VARCHAR(10),
   timezone VARCHAR(10),
   friends VARCHAR(10000),
-  fb_id TEXT NOT NULL UNIQUE,
+  fb_id VARCHAR(255) NOT NULL UNIQUE,
   profile_pic VARCHAR(1000),
   PRIMARY KEY (ID)
 );
