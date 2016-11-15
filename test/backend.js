@@ -6,9 +6,8 @@ describe('Persistent Server', function() {
 
   beforeEach(function(done) {
     dbConnection = mysql.createConnection({
-      port: 44980,
-      user: 'root',
-      password: '123',
+      user: 'newuser',
+      password: 'password',
       database: 'shopvr'
     });
     dbConnection.connect();
@@ -37,16 +36,16 @@ describe('Persistent Server', function() {
         id: '1239281888',
         picture: { data: { url: 'bob.png' } }
       }
-    }, function(done) {
-        var queryString = 'SELECT * FROM users';
-        var queryArgs = [];
+    }, function() {
+      var queryString = 'SELECT * FROM users';
+      var queryArgs = [];
 
-        dbConnection.query(queryString, queryArgs, function(err, results) {
-          console.log('result', results);
-          expect(results.length).to.equal(1);
-          // expect(results[0].name).to.equal('Bob Bob');
-        });
-      done();
+      dbConnection.query(queryString, queryArgs, function(err, results) {
+        console.log('result', results);
+        expect(results.length).to.equal(1);
+        // expect(results[0].name).to.equal('Bob Bob');
+        done();
+      });
     });
   });
 });
