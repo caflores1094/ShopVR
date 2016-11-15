@@ -6,7 +6,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      user: {}
+      user: {},
+      feed: []
     };
   }
 
@@ -14,11 +15,17 @@ class App extends React.Component {
     this.setState({user: user});
   }
 
+  setFeed(feed) {
+    this.setState({feed: feed});
+  }
+
   render() {
     var context = this;
     var children = React.Children.map(this.props.children, function (child) {
       return React.cloneElement(child, {
-        user: context.state.user
+        user: context.state.user,
+        setFeed: context.setFeed.bind(context),
+        feed: context.state.feed
       });
     });
 

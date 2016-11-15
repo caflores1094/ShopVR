@@ -26437,7 +26437,8 @@
 	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
 	    _this.state = {
-	      user: {}
+	      user: {},
+	      feed: []
 	    };
 	    return _this;
 	  }
@@ -26448,12 +26449,19 @@
 	      this.setState({ user: user });
 	    }
 	  }, {
+	    key: 'setFeed',
+	    value: function setFeed(feed) {
+	      this.setState({ feed: feed });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var context = this;
 	      var children = _react2.default.Children.map(this.props.children, function (child) {
 	        return _react2.default.cloneElement(child, {
-	          user: context.state.user
+	          user: context.state.user,
+	          setFeed: context.setFeed.bind(context),
+	          feed: context.state.feed
 	        });
 	      });
 
@@ -29039,7 +29047,7 @@
 	        null,
 	        _react2.default.createElement(_ImageUpload2.default, { user: this.props.user }),
 	        _react2.default.createElement(_QueryBox2.default, { user: this.props.user }),
-	        _react2.default.createElement(_Feed2.default, { user: this.props.user }),
+	        _react2.default.createElement(_Feed2.default, { user: this.props.user, feed: this.props.feed, setFeed: this.props.setFeed }),
 	        _react2.default.createElement(_Social2.default, { user: this.props.user })
 	      );
 	    }
@@ -29069,6 +29077,10 @@
 	var _FeedItem = __webpack_require__(265);
 
 	var _FeedItem2 = _interopRequireDefault(_FeedItem);
+
+	var _axios = __webpack_require__(229);
+
+	var _axios2 = _interopRequireDefault(_axios);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29108,6 +29120,17 @@
 	  }
 
 	  _createClass(Feed, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var context = this;
+	      _axios2.default.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&fts=trendy').then(function (response) {
+	        console.log(response.data.products);
+	        context.props.setFeed(response.data.products);
+	      }).catch(function (error) {
+	        console.log('asdfError in sending ajax data ', error);
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -29118,7 +29141,7 @@
 	          null,
 	          'Your Recommendations'
 	        ),
-	        items.map(function (item) {
+	        this.props.feed.map(function (item) {
 	          return _react2.default.createElement(_FeedItem2.default, { item: item, key: item.id });
 	        })
 	      );
@@ -29169,20 +29192,17 @@
 	         return _react2.default.createElement(
 	            'div',
 	            null,
-	            _react2.default.createElement('img', { src: this.props.item.imgurl }),
+	            _react2.default.createElement('img', { src: this.props.item.image.sizes.IPhoneSmall.url }),
 	            _react2.default.createElement(
 	               'p',
 	               null,
-	               this.props.item.brand
+	               this.props.item.name
 	            ),
 	            _react2.default.createElement(
 	               'p',
 	               null,
-	               this.props.item.item
-	            ),
-	            _react2.default.createElement(
-	               'p',
-	               null,
+	               this.props.item.retailer.name,
+	               ' - ',
 	               this.props.item.price
 	            )
 	         );
