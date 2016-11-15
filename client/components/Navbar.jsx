@@ -89,6 +89,7 @@ class NavBar extends React.Component {
     if (this.props.user.hasOwnProperty('name')) {
       return (
          <div>
+           <button onClick={() => browserHistory.push('/')}>Feed</button>
            <button onClick={() => browserHistory.push('profile')}>Profile</button>
            <button onClick={this.logout.bind(this)}>Log Out</button>
          </div>
