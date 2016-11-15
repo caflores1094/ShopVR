@@ -54,6 +54,18 @@ CREATE TABLE IF NOT EXISTS tags (
   PRIMARY KEY (ID)
 );
 
+-- Creating wishlist table 
+CREATE TABLE IF NOT EXISTS wishlist (
+  id INT NOT NULL AUTO_INCREMENT UNIQUE,
+  item_name VARCHAR(255),
+  pic_name VARCHAR(255),
+  price INT,
+  url VARCHAR(10000),
+  userid INT,
+  FOREIGN KEY fk_userid(userid) REFERENCES users(id),
+  PRIMARY KEY (ID)
+);
+
 -- -- Creating join table between picture and tags
 CREATE TABLE IF NOT EXISTS pictures_tags AS (
   SELECT pictures.id, pictures.name, tags.tag
