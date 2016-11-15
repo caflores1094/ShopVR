@@ -3,6 +3,47 @@ var request = require('request');
 var supertest = require('supertest');
 var should = require('should');
 
+describe('Server', function() {
+  var server = supertest.agent("http://localhost:3000");
+  describe('Serving assets', function(done) {
+    it('Should get /', function() {
+      server
+      .get('/')
+      .expect(200, done);
+    });
+    it('Should get /profile', function() {
+      server
+      .get('/profile')
+      .expect(200, done);
+    });
+    it('Should get /view', function() {
+      server
+      .get('/view')
+      .expect(200, done);
+    });
+    it('Should get /vr', function() {
+      server
+      .get('/vr')
+      .expect(200, done);
+    });
+    it('Should not get /shop', function() {
+      server
+      .get('/shop')
+      .expect(404, done);
+    });
+    it('Should post to /api/upload', function() {
+      server
+      .post('/api/upload')
+      .expect(201, done);
+    });
+    it('Should post to /api/feed', function() {
+      server
+      .post('/api/feed')
+      .expect(201, done);
+    });
+  });
+});
+
 describe('Database', function() {
   describe('DB connection', function() {
     it('Should connect to the database', function(done) {
@@ -16,21 +57,6 @@ describe('Database', function() {
   });
 });
 
-describe('Server', function() {
-  var server = supertest.agent("http://localhost:3000");
-  describe('Connect to server', function(done) {
-    it('Should get /', function() {
-      server
-      .get('/')
-      .expect(200, done);
-    });
-    it('Should not get /shop', function() {
-      server
-      .get('/shop')
-      .expect(404, done);
-    });
-  });
-});
 
 // describe('Persistent Server', function() {
 //   var dbConnection;
