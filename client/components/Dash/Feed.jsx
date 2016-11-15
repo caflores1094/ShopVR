@@ -28,6 +28,7 @@ class Feed extends React.Component {
           {this.props.feed.map((item) =>
             <FeedItem item={item} key={item.id}/>
           )}
+          <button onClick={this.props.toggleShow}>Show {this.props.feed.length > 25 ? 'Less' : 'More'}</button>
         </div>
       );
    }

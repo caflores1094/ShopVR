@@ -26439,6 +26439,7 @@
 	    _this.state = {
 	      user: {},
 	      feed: [],
+	      allitems: [],
 	      price: true,
 	      brand: true,
 	      category: true
@@ -26462,7 +26463,12 @@
 	          newfeed.push(feed[i]);
 	        }
 	      }
-	      this.setState({ feed: newfeed });
+	      this.setState({ allitems: newfeed });
+	      if (this.state.allitems.length > 25) {
+	        this.setState({ feed: this.state.allitems.slice(25) });
+	      } else {
+	        this.setState({ feed: this.state.allitems });
+	      }
 	    }
 	  }, {
 	    key: 'sortPrice',
@@ -26478,7 +26484,6 @@
 	    value: function sortBrand() {
 	      var context = this;
 	      this.setState({ brand: !this.state.brand });
-	      console.log(this.state.brand);
 	      this.state.feed.sort(function (a, b) {
 	        if (context.state.brand) {
 	          if (a.retailer.name < b.retailer.name) {
@@ -26525,6 +26530,19 @@
 	      });
 	    }
 	  }, {
+	    key: 'toggleShow',
+	    value: function toggleShow() {
+	      if (this.state.feed.length === 25) {
+	        this.setState({ feed: this.state.allitems });
+	      } else {
+	        if (this.state.allitems.length > 25) {
+	          this.setState({ feed: this.state.allitems.slice(25) });
+	        } else {
+	          this.setState({ feed: this.state.allitems });
+	        }
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var context = this;
@@ -26535,6 +26553,7 @@
 	          sortBrand: context.sortBrand.bind(context),
 	          sortCat: context.sortCat.bind(context),
 	          sortPrice: context.sortPrice.bind(context),
+	          toggleShow: context.toggleShow.bind(context),
 	          feed: context.state.feed
 	        });
 	      });
@@ -29152,7 +29171,8 @@
 	        _react2.default.createElement(_ImageUpload2.default, { user: this.props.user, setFeed: this.props.setFeed }),
 	        _react2.default.createElement(_QueryBox2.default, { user: this.props.user, setFeed: this.props.setFeed }),
 	        _react2.default.createElement(_Feed2.default, { user: this.props.user, feed: this.props.feed, setFeed: this.props.setFeed,
-	          sortPrice: this.props.sortPrice, sortBrand: this.props.sortBrand, sortCat: this.props.sortCat }),
+	          sortPrice: this.props.sortPrice, sortBrand: this.props.sortBrand, sortCat: this.props.sortCat,
+	          toggleShow: this.props.toggleShow }),
 	        _react2.default.createElement(_Social2.default, { user: this.props.user })
 	      );
 	    }
@@ -29251,7 +29271,13 @@
 	        ),
 	        this.props.feed.map(function (item) {
 	          return _react2.default.createElement(_FeedItem2.default, { item: item, key: item.id });
-	        })
+	        }),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.props.toggleShow },
+	          'Show ',
+	          this.props.feed.length > 25 ? 'Less' : 'More'
+	        )
 	      );
 	    }
 	  }]);
@@ -29388,7 +29414,7 @@
 	      e.preventDefault();
 
 	      var context = this;
-	      _axios2.default.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&limit=25&fts=' + this.state.gender + '+' + this.state.brand + '+' + this.state.item).then(function (response) {
+	      _axios2.default.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&limit=50&fts=' + this.state.gender + '+' + this.state.brand + '+' + this.state.item).then(function (response) {
 	        context.props.setFeed(response.data.products, context.state.minPrice, context.state.maxPrice);
 	      }).catch(function (error) {
 	        console.log('asdfError in sending ajax data ', error);

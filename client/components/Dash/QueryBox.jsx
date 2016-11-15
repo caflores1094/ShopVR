@@ -18,7 +18,7 @@ class QueryBox extends React.Component {
     e.preventDefault();
 
     var context = this;
-    axios.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&limit=25&fts=' + this.state.gender + '+' + this.state.brand + '+' + this.state.item)
+    axios.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&limit=50&fts=' + this.state.gender + '+' + this.state.brand + '+' + this.state.item)
     .then(function (response) {
       context.props.setFeed(response.data.products, context.state.minPrice, context.state.maxPrice);
     })
