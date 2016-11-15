@@ -28272,8 +28272,8 @@
 	               ),
 	               _react2.default.createElement(
 	                  'button',
-	                  { onClick: function onClick() {
-	                        return _reactRouter.browserHistory.push('/');
+	                  { onClick: function onClick(e) {
+	                        e.preventDefault();_reactRouter.browserHistory.push('/');
 	                     } },
 	                  'Back To Dashboard'
 	               )
@@ -29043,8 +29043,8 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_ImageUpload2.default, { user: this.props.user }),
-	        _react2.default.createElement(_QueryBox2.default, { user: this.props.user }),
+	        _react2.default.createElement(_ImageUpload2.default, { user: this.props.user, setFeed: this.props.setFeed }),
+	        _react2.default.createElement(_QueryBox2.default, { user: this.props.user, setFeed: this.props.setFeed }),
 	        _react2.default.createElement(_Feed2.default, { user: this.props.user, feed: this.props.feed, setFeed: this.props.setFeed }),
 	        _react2.default.createElement(_Social2.default, { user: this.props.user })
 	      );
@@ -29087,26 +29087,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var items = [{
-	  id: 'a',
-	  brand: 'Vans',
-	  item: 'Classic Black Skater',
-	  imgurl: 'http://a.dryicons.com/images/icon_sets/christmas_surprise_four_in_one/png/128x128/christmas_gift.png',
-	  price: 69.99
-	}, {
-	  id: 'b',
-	  brand: "Levi's",
-	  item: '510 Skinny Jeans',
-	  imgurl: 'http://a.dryicons.com/images/icon_sets/christmas_surprise_four_in_one/png/128x128/christmas_gift.png',
-	  price: 39.99
-	}, {
-	  id: 'c',
-	  brand: 'Zegna',
-	  item: 'Brown Leather Moto Jacket',
-	  imgurl: 'http://a.dryicons.com/images/icon_sets/christmas_surprise_four_in_one/png/128x128/christmas_gift.png',
-	  price: 2999.99
-	}];
 
 	var Feed = function (_React$Component) {
 	  _inherits(Feed, _React$Component);
@@ -29227,6 +29207,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _axios = __webpack_require__(229);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29241,27 +29225,34 @@
 	  function QueryBox(props) {
 	    _classCallCheck(this, QueryBox);
 
-	    return _possibleConstructorReturn(this, (QueryBox.__proto__ || Object.getPrototypeOf(QueryBox)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (QueryBox.__proto__ || Object.getPrototypeOf(QueryBox)).call(this, props));
+
+	    _this.state = {
+	      gender: _this.props.user.gender === 'male' ? "men's" : "women's",
+	      maxPrice: _this.props.user.maxPrice,
+	      brand: '',
+	      item: ''
+	    };
+	    return _this;
 	  }
 
 	  _createClass(QueryBox, [{
-	    key: 'createCheckbox',
-	    value: function createCheckbox(label) {
-	      return _react2.default.createElement(
-	        'p',
-	        null,
-	        _react2.default.createElement('input', { id: label, type: 'checkbox' }),
-	        label
-	      );
-	    }
-	  }, {
-	    key: 'createCheckboxes',
-	    value: function createCheckboxes(items) {
-	      return items.map(this.createCheckbox);
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
+
+	      var context = this;
+	      _axios2.default.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&limit=25&fts=' + this.state.gender + '+' + this.state.brand + '+' + this.state.item).then(function (response) {
+	        context.props.setFeed(response.data.products);
+	      }).catch(function (error) {
+	        console.log('asdfError in sending ajax data ', error);
+	      });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -29272,14 +29263,18 @@
 	        ),
 	        _react2.default.createElement(
 	          'form',
-	          null,
+	          { onSubmit: function onSubmit(e) {
+	              return _this2.handleSubmit(e);
+	            } },
 	          _react2.default.createElement(
 	            'p',
 	            null,
 	            'Gender:',
 	            _react2.default.createElement(
 	              'select',
-	              { defaultValue: this.props.user.gender },
+	              { onChange: function onChange(e) {
+	                  return _this2.setState({ gender: e.target.value });
+	                }, defaultValue: this.props.user.gender },
 	              _react2.default.createElement(
 	                'option',
 	                { value: 'men\'s' },
@@ -29296,21 +29291,31 @@
 	            'p',
 	            null,
 	            'Max Price:',
-	            _react2.default.createElement('input', { defaultValue: this.props.user.maxPrice, type: 'number' })
+	            _react2.default.createElement('input', { onChange: function onChange(e) {
+	                return _this2.setState({ maxPrice: e.target.value });
+	              }, defaultValue: this.props.user.maxPrice, type: 'number' })
 	          ),
 	          _react2.default.createElement(
 	            'p',
 	            null,
 	            'Brand:',
-	            _react2.default.createElement('input', null)
+	            _react2.default.createElement('input', { onChange: function onChange(e) {
+	                return _this2.setState({ brand: e.target.value });
+	              } })
 	          ),
 	          _react2.default.createElement(
 	            'p',
 	            null,
 	            'Item:',
-	            _react2.default.createElement('input', null)
+	            _react2.default.createElement('input', { onChange: function onChange(e) {
+	                return _this2.setState({ item: e.target.value });
+	              } })
 	          ),
-	          _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
+	          _react2.default.createElement(
+	            'button',
+	            { type: 'submit' },
+	            'Submit'
+	          )
 	        )
 	      );
 	    }
@@ -29369,8 +29374,8 @@
 	            ),
 	            _react2.default.createElement(
 	               'button',
-	               { onClick: function onClick() {
-	                     return _reactRouter.browserHistory.push('/vr');
+	               { onClick: function onClick(e) {
+	                     e.preventDefault();_reactRouter.browserHistory.push('/vr');
 	                  } },
 	               'Start VR'
 	            )
@@ -29633,8 +29638,8 @@
 	          ),
 	          _react2.default.createElement(
 	            'button',
-	            { onClick: function onClick() {
-	                return _reactRouter.browserHistory.push('/');
+	            { onClick: function onClick(e) {
+	                e.preventDefault();_reactRouter.browserHistory.push('/');
 	              } },
 	            'Cancel'
 	          )
