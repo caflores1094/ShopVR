@@ -12,8 +12,8 @@ class Dashboard extends React.Component {
    render() {
       return (
         <div>
-          <ImageUpload user={this.props.user}/>
-          <QueryBox user={this.props.user}/>
+          <ImageUpload user={this.props.user} setFeed={this.props.setFeed}/>
+          <QueryBox user={this.props.user} setFeed={this.props.setFeed}/>
           <Feed user={this.props.user} feed={this.props.feed} setFeed={this.props.setFeed}/>
           <Social user={this.props.user}/>
         </div>
