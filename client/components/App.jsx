@@ -8,6 +8,7 @@ class App extends React.Component {
     this.state = {
       user: {},
       feed: [],
+      allitems: [],
       price: true,
       brand: true,
       category: true
@@ -18,8 +19,21 @@ class App extends React.Component {
     this.setState({user: user});
   }
 
-  setFeed(feed) {
-    this.setState({feed: feed});
+  setFeed(feed, min, max) {
+    min = min || 0;
+    max = max || 10000;
+    var newfeed = [];
+    for (var i = 0; i < feed.length; i++) {
+      if (feed[i].price >= min && feed[i].price <= max) {
+        newfeed.push(feed[i])
+      }
+    }
+    this.setState({allitems: newfeed});
+    if (this.state.allitems.length > 25) {
+      this.setState({feed: this.state.allitems.slice(25)});
+    } else {
+      this.setState({feed: this.state.allitems});
+    }
   }
 
   sortPrice() {
@@ -36,7 +50,6 @@ class App extends React.Component {
   sortBrand() {
     var context = this;
     this.setState({brand: !this.state.brand});
-    console.log(this.state.brand);
     this.state.feed.sort(function(a,b) {
       if (context.state.brand) {
         if (a.retailer.name < b.retailer.name) {
@@ -82,6 +95,19 @@ class App extends React.Component {
     });
   }
 
+  toggleShow() {
+    if (this.state.feed.length === 25) {
+      this.setState({feed: this.state.allitems});
+    } else {
+      if (this.state.allitems.length > 25) {
+        this.setState({feed: this.state.allitems.slice(25)});
+      } else {
+        this.setState({feed: this.state.allitems});
+      }
+    }
+
+  }
+
   render() {
     var context = this;
     var children = React.Children.map(this.props.children, function (child) {
@@ -91,6 +117,7 @@ class App extends React.Component {
         sortBrand: context.sortBrand.bind(context),
         sortCat: context.sortCat.bind(context),
         sortPrice: context.sortPrice.bind(context),
+        toggleShow: context.toggleShow.bind(context),
         feed: context.state.feed
       });
     });

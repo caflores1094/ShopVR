@@ -7,6 +7,7 @@ class QueryBox extends React.Component {
 
       this.state = {
         gender: this.props.user.gender === 'male' ? "men" : "women",
+        minPrice: this.props.user.minPrice,
         maxPrice: this.props.user.maxPrice,
         brand: '',
         item: ''
@@ -17,9 +18,9 @@ class QueryBox extends React.Component {
     e.preventDefault();
 
     var context = this;
-    axios.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&limit=25&fts=' + this.state.gender + '+' + this.state.brand + '+' + this.state.item)
+    axios.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&limit=50&fts=' + this.state.gender + '+' + this.state.brand + '+' + this.state.item)
     .then(function (response) {
-      context.props.setFeed(response.data.products);
+      context.props.setFeed(response.data.products, context.state.minPrice, context.state.maxPrice);
     })
     .catch(function (error) {
       console.log('asdfError in sending ajax data ', error);
@@ -38,7 +39,8 @@ class QueryBox extends React.Component {
              </select>
            </p>
 
-           <p>Max Price:
+           <p>Price:
+             <input onChange={(e) => this.setState({minPrice: e.target.value})} defaultValue={this.props.user.minPrice} type="number"/> -
              <input onChange={(e) => this.setState({maxPrice: e.target.value})} defaultValue={this.props.user.maxPrice} type="number"/>
            </p>
 
