@@ -15,7 +15,11 @@ describe('Database', function() {
 });
 
 describe('Server', function() {
-  describe('')
+  describe('Connect to server', function() {
+    it('Should connect to server', function(done) {
+      
+    })
+  });
 });
 
 // describe('Persistent Server', function() {
