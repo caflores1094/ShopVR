@@ -45,7 +45,7 @@ describe('Database', function() {
       });
       connection.connect(done);
     });
-    describe('Should post to database from endpoints', function(done) {
+    describe('Should be able to insert and retrieve from database', function(done) {
       var dbConnection;
 
       beforeEach(function() {
@@ -58,7 +58,6 @@ describe('Database', function() {
       });
 
       afterEach(function() {
-        console.log('ending connection');
         dbConnection.end();
       });
       
@@ -80,12 +79,34 @@ describe('Database', function() {
           expect(results.affectedRows).to.equal(1);
           done();
         });
-
       });
       it('Should have a record of the insert', function(done) {
         dbConnection.query('SELECT * FROM users', function(err, results) {
           expect(results.length).to.equal(1);
           expect(results[0].name).to.equal('Bob Bob');
+          done();
+        });          
+      });
+      it('Should insert into items table', function(done) {
+        var sample = {
+          brand: 'Zara',
+          item_name: 'DENIM CULOTTES',
+          price: 69.90,
+          pic: 'http://static.zara.net/photos///2016/I/0/1/p/6840/265/400/2/w/560/6840265400_1_1_1.jpg?ts=1473326581415',
+          user_id: 1
+        };
+        dbConnection.query('INSERT INTO items SET ?', sample, function(err, results) {
+          if (err) {
+            console.log('Error inserting', err);
+          }
+          expect(results.affectedRows).to.equal(1);
+          done();
+        });
+      });
+      it('Should have a record of the insert', function(done) {
+        dbConnection.query('SELECT * FROM items', function(err, results) {
+          expect(results.length).to.equal(1);
+          expect(results[0].brand).to.equal('Zara');
           done();
         });          
       });

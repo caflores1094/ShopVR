@@ -4,6 +4,11 @@ Work time is based off of how long it may take 1 person to complete the given ta
 
 Priority is graded from 1 (least important) to 5 (most important)
 
+Description:
+Category:
+Estimation of work time:
+Priority: 
+
 Backend
 
 Description: API endpoints do not serve up a status response code (e.g., missing 200 status code) for /login/facebook, /api/upload, /api/feed
@@ -16,10 +21,20 @@ Category: Database
 Estimation of work time: 2 hours
 Priority: 1
 
+Description: SQL query logic to get tags is inefficient (ideally we would use 1 step)
+Category: Database Queries
+Estimation of work time: 2 - 3 hours
+Priority: 1 (matters for scaling)
+
+Description: Tags table has a lot of repetitive information in terms of repeating the same tags for the same image 
+Category: Database
+Estimation of work time: 4 hours
+Priority: 2
+
 Frontend
 
-Description:
-Category:
-Estimation of work time:
-Priority:
+Description: Can't upload large images on front-end and send to the backend
+Category: Pictures, UX
+Estimation of work time: 1.5 hours
+Priority: 2
 
