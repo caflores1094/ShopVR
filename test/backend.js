@@ -45,7 +45,7 @@ describe('Database', function() {
       });
       connection.connect(done);
     });
-    describe('Should post to database from endpoints', function(done) {
+    describe('Should be able to insert and retrieve from database', function(done) {
       var dbConnection;
 
       beforeEach(function() {
