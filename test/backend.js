@@ -84,7 +84,6 @@ describe('Database', function() {
       });
       it('Should have a record of the insert', function(done) {
         dbConnection.query('SELECT * FROM users', function(err, results) {
-          console.log('result', results);
           expect(results.length).to.equal(1);
           expect(results[0].name).to.equal('Bob Bob');
           done();
