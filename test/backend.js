@@ -69,33 +69,25 @@ describe('Database', function() {
           gender: 'Male',
           locale: 'en_US',
           timezone: -8,
-          friends: { summary: { total_count: 400 } },
-          id: '1239281888',
-          picture: { data: { url: 'bob.png' } }
+          friends: 400,
+          fb_id: '1239281888',
+          profile_pic: 'bob.png'
         };
         dbConnection.query('INSERT INTO users SET ?', sample, function(err, results) {
-          expect(results.length).to.equal(1);
+          if (err) {
+            console.log('Error inserting', err);
+          }
+          expect(results.affectedRows).to.equal(1);
           done();
         });
 
-        var queryString = 'SELECT * FROM users';
-        var queryArgs = [];
-
-        dbConnection.query(queryString, queryArgs, function(err, results) {
-          console.log('result', results);
-          expect(results.length).to.equal(1);
-          // expect(results[0].name).to.equal('Bob Bob');
-          done();
-        });
+        // dbConnection.query(queryString, function(err, results) {
+        //   console.log('result', results);
+        //   expect(results.length).to.equal(1);
+        //   expect(results[0].name).to.equal('Bob Bob');
+        //   done();
+        // });
       });
     });
   });
 });
-
-
-// describe('Persistent Server', function() {
-
-  // it('Should insert users into DB', function(done) {
-  //   console.log('trying to insert here');
-  // });
-// });
