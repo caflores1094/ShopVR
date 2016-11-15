@@ -38,3 +38,7 @@ Category: Pictures, UX
 Estimation of work time: 1.5 hours
 Priority: 2
 
+Description: Can't delete unwated wishlist items from profile view of all wishlist item
+Category: Feature, UX
+Estimation of work time: 1.5 hours
+Priority: 3
