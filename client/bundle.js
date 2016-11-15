@@ -26438,7 +26438,10 @@
 
 	    _this.state = {
 	      user: {},
-	      feed: []
+	      feed: [],
+	      price: true,
+	      brand: true,
+	      category: true
 	    };
 	    return _this;
 	  }
@@ -26454,6 +26457,66 @@
 	      this.setState({ feed: feed });
 	    }
 	  }, {
+	    key: 'sortPrice',
+	    value: function sortPrice() {
+	      var context = this;
+	      this.setState({ price: !this.state.price });
+	      this.state.feed.sort(function (a, b) {
+	        if (context.state.price) return a.price - b.price;else return b.price - a.price;
+	      });
+	    }
+	  }, {
+	    key: 'sortBrand',
+	    value: function sortBrand() {
+	      var context = this;
+	      this.setState({ brand: !this.state.brand });
+	      console.log(this.state.brand);
+	      this.state.feed.sort(function (a, b) {
+	        if (context.state.brand) {
+	          if (a.retailer.name < b.retailer.name) {
+	            return -1;
+	          }
+	          if (a.retailer.name > b.retailer.name) {
+	            return 1;
+	          }
+	          return 0;
+	        } else {
+	          if (a.retailer.name < b.retailer.name) {
+	            return 1;
+	          }
+	          if (a.retailer.name > b.retailer.name) {
+	            return -1;
+	          }
+	          return 0;
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'sortCat',
+	    value: function sortCat() {
+	      var context = this;
+	      this.setState({ category: !this.state.category });
+	      this.state.feed.sort(function (a, b) {
+	        if (context.state.category) {
+	          if (a.categories[0].name < b.categories[0].name) {
+	            return -1;
+	          }
+	          if (a.categories[0].name > b.categories[0].name) {
+	            return 1;
+	          }
+	          return 0;
+	        } else {
+	          if (a.categories[0].name < b.categories[0].name) {
+	            return 1;
+	          }
+	          if (a.categories[0].name > b.categories[0].name) {
+	            return -1;
+	          }
+	          return 0;
+	        }
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var context = this;
@@ -26461,6 +26524,9 @@
 	        return _react2.default.cloneElement(child, {
 	          user: context.state.user,
 	          setFeed: context.setFeed.bind(context),
+	          sortBrand: context.sortBrand.bind(context),
+	          sortCat: context.sortCat.bind(context),
+	          sortPrice: context.sortPrice.bind(context),
 	          feed: context.state.feed
 	        });
 	      });
@@ -28272,8 +28338,8 @@
 	               ),
 	               _react2.default.createElement(
 	                  'button',
-	                  { onClick: function onClick(e) {
-	                        e.preventDefault();_reactRouter.browserHistory.push('/');
+	                  { onClick: function onClick() {
+	                        return window.location.assign('/');
 	                     } },
 	                  'Back To Dashboard'
 	               )
@@ -29045,7 +29111,8 @@
 	        null,
 	        _react2.default.createElement(_ImageUpload2.default, { user: this.props.user, setFeed: this.props.setFeed }),
 	        _react2.default.createElement(_QueryBox2.default, { user: this.props.user, setFeed: this.props.setFeed }),
-	        _react2.default.createElement(_Feed2.default, { user: this.props.user, feed: this.props.feed, setFeed: this.props.setFeed }),
+	        _react2.default.createElement(_Feed2.default, { user: this.props.user, feed: this.props.feed, setFeed: this.props.setFeed,
+	          sortPrice: this.props.sortPrice, sortBrand: this.props.sortBrand, sortCat: this.props.sortCat }),
 	        _react2.default.createElement(_Social2.default, { user: this.props.user })
 	      );
 	    }
@@ -29103,9 +29170,10 @@
 	      var context = this;
 	      var gender = this.props.user.gender === 'male' ? "men" : "women";
 	      _axios2.default.get("http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&fts=" + gender + "&limit=25").then(function (response) {
+	        console.log(response);
 	        context.props.setFeed(response.data.products);
 	      }).catch(function (error) {
-	        console.log('asdfError in sending ajax data ', error);
+	        console.log('Error in sending ajax data ', error);
 	      });
 	    }
 	  }, {
@@ -29118,6 +29186,28 @@
 	          'h1',
 	          null,
 	          'Your Recommendations'
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          'Sort by: ',
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.props.sortPrice },
+	            'Price'
+	          ),
+	          ' ',
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.props.sortBrand },
+	            'Retailer'
+	          ),
+	          ' ',
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.props.sortCat },
+	            'Category'
+	          )
 	        ),
 	        this.props.feed.map(function (item) {
 	          return _react2.default.createElement(_FeedItem2.default, { item: item, key: item.id });
@@ -29170,18 +29260,32 @@
 	         return _react2.default.createElement(
 	            'div',
 	            null,
-	            _react2.default.createElement('img', { src: this.props.item.image.sizes.IPhoneSmall.url }),
 	            _react2.default.createElement(
-	               'p',
-	               null,
-	               this.props.item.name
+	               'a',
+	               { href: this.props.item.clickUrl },
+	               _react2.default.createElement('img', { src: this.props.item.image.sizes.IPhoneSmall.url }),
+	               _react2.default.createElement(
+	                  'p',
+	                  null,
+	                  this.props.item.name
+	               )
 	            ),
 	            _react2.default.createElement(
 	               'p',
 	               null,
-	               this.props.item.retailer.name,
-	               ' - ',
+	               this.props.item.currency,
+	               ' ',
 	               this.props.item.price
+	            ),
+	            _react2.default.createElement(
+	               'p',
+	               null,
+	               this.props.item.categories[0].name
+	            ),
+	            _react2.default.createElement(
+	               'p',
+	               null,
+	               this.props.item.retailer.name
 	            )
 	         );
 	      }
