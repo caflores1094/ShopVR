@@ -6,7 +6,7 @@ class QueryBox extends React.Component {
       super(props);
 
       this.state = {
-        gender: this.props.user.gender === 'male' ? "men's" : "women's",
+        gender: this.props.user.gender === 'male' ? "men" : "women",
         maxPrice: this.props.user.maxPrice,
         brand: '',
         item: ''

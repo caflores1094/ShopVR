@@ -29101,7 +29101,8 @@
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      var context = this;
-	      _axios2.default.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&fts=&limit=25').then(function (response) {
+	      var gender = this.props.user.gender === 'male' ? "men" : "women";
+	      _axios2.default.get("http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&fts=" + gender + "&limit=25").then(function (response) {
 	        context.props.setFeed(response.data.products);
 	      }).catch(function (error) {
 	        console.log('asdfError in sending ajax data ', error);
@@ -29228,7 +29229,7 @@
 	    var _this = _possibleConstructorReturn(this, (QueryBox.__proto__ || Object.getPrototypeOf(QueryBox)).call(this, props));
 
 	    _this.state = {
-	      gender: _this.props.user.gender === 'male' ? "men's" : "women's",
+	      gender: _this.props.user.gender === 'male' ? "men" : "women",
 	      maxPrice: _this.props.user.maxPrice,
 	      brand: '',
 	      item: ''

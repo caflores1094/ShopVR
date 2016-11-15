@@ -9,7 +9,8 @@ class Feed extends React.Component {
 
   componentDidMount() {
     var context = this;
-    axios.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&fts=&limit=25')
+    var gender = this.props.user.gender === 'male' ? "men" : "women"
+    axios.get("http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&fts=" + gender + "&limit=25")
     .then(function (response) {
       context.props.setFeed(response.data.products);
     })
