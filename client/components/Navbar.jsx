@@ -80,14 +80,16 @@ class NavBar extends React.Component {
   logout() {
     FB.logout(function(response) {
       console.log('logged out', response);
+      window.location.assign(window.location.pathname);
     });
-    browserHistory.push('/vr');
   }
+
 
   render() {
     if (this.props.user.hasOwnProperty('name')) {
       return (
          <div>
+           <button onClick={() => browserHistory.push('profile')}>Profile</button>
            <button onClick={this.logout.bind(this)}>Log Out</button>
          </div>
       );

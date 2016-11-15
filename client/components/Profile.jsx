@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -25,7 +26,8 @@ class Profile extends React.Component {
            Price Range:
              <input type="number"/> - <input type="number"/>
            </p>
-           <input type="submit" value="Submit" />
+           <button type="submit" value="Submit">Submit</button>
+           <button onClick={() => browserHistory.push('/')}>Cancel</button>
          </form>
        </div>
     );

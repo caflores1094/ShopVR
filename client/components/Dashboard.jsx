@@ -14,7 +14,7 @@ class Dashboard extends React.Component {
         <div>
           <ImageUpload user={this.props.user}/>
           <QueryBox user={this.props.user}/>
-          <Feed user={this.props.user}/>
+          <Feed user={this.props.user} feed={this.props.feed} setFeed={this.props.setFeed}/>
           <Social user={this.props.user}/>
         </div>
       );
