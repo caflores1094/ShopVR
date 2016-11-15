@@ -27,7 +27,7 @@ class Profile extends React.Component {
              <input type="number" defaultValue={this.props.user.maxPrice}/>
            </p>
            <button type="submit" value="Submit">Submit</button>
-           <button onClick={() => browserHistory.push('/')}>Cancel</button>
+           <button onClick={(e) => {e.preventDefault(); browserHistory.push('/');}}>Cancel</button>
          </form>
        </div>
     );

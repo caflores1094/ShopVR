@@ -9,7 +9,7 @@ class Social extends React.Component {
       return (
          <div>
             <h1>Share with Friends</h1>
-            <button onClick={() => browserHistory.push('/vr')}>Start VR</button>
+            <button onClick={(e) => {e.preventDefault(); browserHistory.push('/vr');}}>Start VR</button>
          </div>
       );
    }
