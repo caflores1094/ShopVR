@@ -1,5 +1,7 @@
 var mysql = require('mysql');
 var request = require('request');
+var supertest = require('supertest');
+var should = require('should');
 
 describe('Database', function() {
   describe('DB connection', function() {
@@ -15,10 +17,18 @@ describe('Database', function() {
 });
 
 describe('Server', function() {
-  describe('Connect to server', function() {
-    it('Should connect to server', function(done) {
-      
-    })
+  var server = supertest.agent("http://localhost:3000");
+  describe('Connect to server', function(done) {
+    it('Should get /', function() {
+      server
+      .get('/')
+      .expect(200, done);
+    });
+    it('Should not get /shop', function() {
+      server
+      .get('/shop')
+      .expect(404, done);
+    });
   });
 });
 
