@@ -15,14 +15,18 @@ class ImageUpload extends React.Component {
     // TODO: do something with -> this.state.file
     var obj = this.state;
     obj['u_id'] = this.props.user.id;
-    console.log('obj: ', obj)
     
+    var context = this;
     axios.post('/api/upload', obj)
-         .then(function() {
-            console.log('upload successful');
-         });
+         .then(function(result) {
+          console.log(result)
+            if(result.data === 'duplicate image'){
+              alert('Image Name already exists!')
+            } else{
+              context.getFeedOnImageUpload();
+            }
+          });
 
-    this.getFeedOnImageUpload();
 
   }
 
@@ -63,7 +67,7 @@ class ImageUpload extends React.Component {
         var searchQuery = tags.concat('+');
         var productURL = 'http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&filters=Retailer&limit=25&fts=' + searchQuery;
         var getProducts = function(url, callback) {
-          axios.get(url)//, function(err, response, body) {
+          axios.get(url)
             .then(function(result){
               console.log(result);
               callback(null, result);

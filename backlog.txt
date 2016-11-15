@@ -6,6 +6,8 @@ Priority is graded from 1 (least important) to 5 (most important)
 
 Backend
 
+Description: Different users are currently unable to name their images the same name as other existing images regardless of who created it in the first place
+
 Description: API endpoints do not serve up a status response code (e.g., missing 200 status code) for /login/facebook, /api/upload, /api/feed
 Category: Controllers
 Estimation of work time: 2 - 3 hours
