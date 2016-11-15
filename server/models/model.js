@@ -76,16 +76,30 @@ module.exports = {
       db.query(queryStr, [userID], function(err, results) {
         if (err) console.log('error getting user tags', err);
         var maxIDNum = results[0]['Max(id)'];
-        console.log(results, 'RESULT FORMAT');
-        console.log(maxIDNum);
         var newQuery = "SELECT name from pictures where pictures.id =?"
         db.query(newQuery, maxIDNum, function(err, results) {
           if (err) console.log('error getting picture name', err);
           result = results;
-          console.log(result, 'RESULT FROM QUERY FOR PIC NAME');
           callback(null, result);
         })
       });
+    }
+  },
+  wishlist: {
+    post: function(item, callback) {
+      var queryStr = 'INSERT INTO wishlist (item_name, pic_name, price, url, userid) VALUES ?';
+      db.query(queryStr, [item], function(err, results) {
+        if (err) console.log('error inserting wishlist item', err);
+        callback(null, results);
+      })
+
+    },
+    getAll: function(userID, callback) {
+      var queryStr = 'Select * from wishlist where wishlist.userid = ?';
+      db.query(quertStr, [userID], function(err, results) {
+        if (err) console.log('error getting user wishlist', err);
+        callback(null, results);
+      })
     }
   }
 };
