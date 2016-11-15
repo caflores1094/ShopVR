@@ -38,17 +38,17 @@ module.exports = {
 
   pictures: {
    //save an uploaded image and corresponding tags
-    saveImage: function(image, callback) {
-      var queryStr = 'INSERT INTO pictures (name) VALUES ?';
-      db.query(queryStr, [image], function(err, results) {
+    saveImage: function(image, userID, callback) {
+      var queryStr = 'INSERT INTO pictures (name, u_id) VALUES ?';
+      db.query(queryStr, [image, userID], function(err, results) {
         callback(err, results);
       });
     },
-    saveTag: function(tags, callback) {
+    saveTag: function(tags, imageName, callback) {
       tags[0].forEach(function(tag) {
       console.log('in saveTag', tag);
-        var tagStr = 'INSERT INTO tags (tag) VALUES ?'
-        db.query(tagStr, [[[tag]]], function(err, results) {
+        var tagStr = 'INSERT INTO tags (tag, pic_name) VALUES ?'
+        db.query(tagStr, [[[tag, imageName]]], function(err, results) {
           callback(err, results);
         });
       });

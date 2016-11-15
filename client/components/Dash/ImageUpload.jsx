@@ -46,6 +46,13 @@ class ImageUpload extends React.Component {
     });
   }
 
+  testFunction(){
+    axios.get('/api/feed')
+      .then(function(result){
+        console.log(result)
+      });
+  }
+
   render() {
     let {imagePreviewUrl} = this.state;
     let $imagePreview = null;
@@ -69,6 +76,10 @@ class ImageUpload extends React.Component {
           <p>Step 3: Submit</p>
           <button className="submitButton" type="submit" onClick={(e)=>this.handleSubmit(e)}>Submit</button>
         </form>
+        <div>
+          <button className="testAPI" onClick={this.testFunction}>TESTING</button>
+
+        </div>
       </div>
     )
   }

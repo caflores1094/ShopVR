@@ -8,7 +8,7 @@ module.exports = {
 				if (err) console.log('error saving picture', err);
 			});
 			console.log('req', req.body.tag);
-			models.pictures.saveTag([req.body.tag], function(err, results) {
+			models.pictures.saveTag([req.body.tag], req.body.file, function(err, results) {
 				if (err) console.log('error adding tags', err);
 			});
 		},
