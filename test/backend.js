@@ -3,19 +3,6 @@ var request = require('request');
 var supertest = require('supertest');
 var should = require('should');
 
-describe('Database', function() {
-  describe('DB connection', function() {
-    it('Should connect to the database', function(done) {
-      var connection = mysql.createConnection({
-        user: 'newuser',
-        password: 'password',
-        database: 'shopvr'
-      });
-      connection.connect(done);
-    });
-  });
-});
-
 describe('Server', function() {
   var server = supertest.agent("http://localhost:3000");
   describe('Serving assets', function(done) {
@@ -44,8 +31,32 @@ describe('Server', function() {
       .get('/shop')
       .expect(404, done);
     });
+    it('Should post to /api/upload', function() {
+      server
+      .post('/api/upload')
+      .expect(201, done);
+    });
+    it('Should post to /api/feed', function() {
+      server
+      .post('/api/feed')
+      .expect(201, done);
+    });
   });
 });
+
+describe('Database', function() {
+  describe('DB connection', function() {
+    it('Should connect to the database', function(done) {
+      var connection = mysql.createConnection({
+        user: 'newuser',
+        password: 'password',
+        database: 'shopvr'
+      });
+      connection.connect(done);
+    });
+  });
+});
+
 
 // describe('Persistent Server', function() {
 //   var dbConnection;
