@@ -9,7 +9,7 @@ module.exports = {
       });
     },
     post: function(req, callback) {
-      var params = [[req.name, req.email, req.gender, req.locale, req.timezone, req.friends.summary.total_count, req.id, req.picture.data.url]];
+      var params = [[req.name, req.email, req.gender, req.locale, req.timezone, req.friends.summary.total_count, req.id, req.picture.data.url, 0, 10000]];
       models.users.post(params, function(err, results) {
         if (err) callback(err, null);
         else callback(null, results);

@@ -13,6 +13,8 @@ CREATE TABLE IF NOT EXISTS users (
   friends VARCHAR(10000),
   fb_id VARCHAR(255) NOT NULL UNIQUE,
   profile_pic VARCHAR(1000),
+  min_price INT,
+  max_price INT,
   PRIMARY KEY (ID)
 );
 

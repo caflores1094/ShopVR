@@ -21,7 +21,7 @@ module.exports = {
     },
     //create a new user
     post: function(user, callback) {
-      var newQueryStr = 'INSERT INTO users (name, email, gender, locale, timezone, friends, fb_id, profile_pic) \
+      var newQueryStr = 'INSERT INTO users (name, email, gender, locale, timezone, friends, fb_id, profile_pic, min_price, max_price) \
                         VALUES ?';
       var queryStr = 'select * from users where users.id=?';
       db.query(newQueryStr, [user], function(err, results) {
