@@ -1,5 +1,6 @@
 var mysql = require('mysql');
 var request = require('request');
+var expect = require('chai').expect;
 var supertest = require('supertest');
 var should = require('should');
 
@@ -43,53 +44,48 @@ describe('Database', function() {
         database: 'shopvr'
       });
       connection.connect(done);
-      connection.end();
     });
     describe('Should post to database from endpoints', function(done) {
       var dbConnection;
 
-      before(function(done) {
+      beforeEach(function() {
         dbConnection = mysql.createConnection({
           user: 'newuser',
           password: 'password',
           database: 'shopvr'
         });
         dbConnection.connect();
-
-        var tablename = 'users';
-        
-        // dbConnection.query('truncate ' + tablename, done);
       });
 
-      after(function() {
+      afterEach(function() {
         console.log('ending connection');
         dbConnection.end();
       });
       
-      it('Should post to users table from /login/facebook', function() {
-        request({
-          method: 'POST',
-          uri: 'http://localhost:3000/login/facebook',
-          json: {
-            name: 'Bob Bob',
-            email: 'bob@bob.com',
-            gender: 'Male',
-            locale: 'en_US',
-            timezone: -8,
-            friends: { summary: { total_count: 400 } },
-            id: '1239281888',
-            picture: { data: { url: 'bob.png' } }
-          }
-        }, function() {
-          var queryString = 'SELECT * FROM users';
-          var queryArgs = [];
+      it('Should insert into users table', function(done) {
+        var sample = {
+          name: 'Bob Bob',
+          email: 'bob@bob.com',
+          gender: 'Male',
+          locale: 'en_US',
+          timezone: -8,
+          friends: { summary: { total_count: 400 } },
+          id: '1239281888',
+          picture: { data: { url: 'bob.png' } }
+        };
+        dbConnection.query('INSERT INTO users SET ?', sample, function(err, results) {
+          expect(results.length).to.equal(1);
+          done();
+        });
 
-          dbConnection.query(queryString, queryArgs, function(err, results) {
-            console.log('result', results);
-            expect(results.length).to.equal(1);
-            // expect(results[0].name).to.equal('Bob Bob');
-            done();
-          });
+        var queryString = 'SELECT * FROM users';
+        var queryArgs = [];
+
+        dbConnection.query(queryString, queryArgs, function(err, results) {
+          console.log('result', results);
+          expect(results.length).to.equal(1);
+          // expect(results[0].name).to.equal('Bob Bob');
+          done();
         });
       });
     });
