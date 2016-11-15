@@ -18,13 +18,13 @@ class Profile extends React.Component {
            </p>
            <p>Gender:
              <select defaultValue={this.props.user.gender}>
-              <option value="male">male</option>
-              <option value="female">female</option>
+              <option value="men's">men</option>
+              <option value="women's">women</option>
              </select>
            </p>
            <p>
-           Price Range:
-             <input type="number"/> - <input type="number"/>
+           Max Price:
+             <input type="number" defaultValue={this.props.user.maxPrice}/>
            </p>
            <button type="submit" value="Submit">Submit</button>
            <button onClick={() => browserHistory.push('/')}>Cancel</button>

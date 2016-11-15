@@ -33,9 +33,8 @@ class Feed extends React.Component {
 
   componentDidMount() {
     var context = this;
-    axios.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&fts=trendy')
+    axios.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&fts=&limit=25')
     .then(function (response) {
-      console.log(response.data.products);
       context.props.setFeed(response.data.products);
     })
     .catch(function (error) {
