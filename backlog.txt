@@ -1,0 +1,25 @@
+Current Backlog of minor bugs 
+
+Work time is based off of how long it may take 1 person to complete the given task
+
+Priority is graded from 1 (least important) to 5 (most important)
+
+Backend
+
+Description: API endpoints do not serve up a status response code (e.g., missing 200 status code) for /login/facebook, /api/upload, /api/feed
+Category: Controllers
+Estimation of work time: 2 - 3 hours
+Priority: 3
+
+Description: Picture storage may need to be references to paths in a folder contained in our root directory in order to store large amounts of photographs
+Category: Database
+Estimation of work time: 2 hours
+Priority: 1
+
+Frontend
+
+Description:
+Category:
+Estimation of work time:
+Priority:
+
