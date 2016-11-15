@@ -6,35 +6,35 @@ import ClothingArticle from './clothingArticle.jsx'
 // var extras = require('aframe-extras');
 // extras.registerAll();
 
-var imageArr = [
-  'url(./lib/testImages/navyDress.jpg)', 
-  'url(./lib/testImages/purpleDress.jpg)', 
-  'url(./lib/testImages/blackDress.jpg)',
-  'url(./lib/testImages/blackCoat.jpg)',
-  'url(./lib/testImages/blackCoat2.jpg)',
-  'url(./lib/testImages/tanCoat.jpg)',
+// var imageArr = [
+//   'url(./lib/testImages/navyDress.jpg)', 
+//   'url(./lib/testImages/purpleDress.jpg)', 
+//   'url(./lib/testImages/blackDress.jpg)',
+//   'url(./lib/testImages/blackCoat.jpg)',
+//   'url(./lib/testImages/blackCoat2.jpg)',
+//   'url(./lib/testImages/tanCoat.jpg)',
 
-  'url(./lib/testImages/navyDress.jpg)', 
-  'url(./lib/testImages/purpleDress.jpg)', 
-  'url(./lib/testImages/blackDress.jpg)',
-  'url(./lib/testImages/blackCoat.jpg)',
-  'url(./lib/testImages/blackCoat2.jpg)',
-  'url(./lib/testImages/tanCoat.jpg)',
+//   'url(./lib/testImages/navyDress.jpg)', 
+//   'url(./lib/testImages/purpleDress.jpg)', 
+//   'url(./lib/testImages/blackDress.jpg)',
+//   'url(./lib/testImages/blackCoat.jpg)',
+//   'url(./lib/testImages/blackCoat2.jpg)',
+//   'url(./lib/testImages/tanCoat.jpg)',
 
-  'url(./lib/testImages/navyDress.jpg)', 
-  'url(./lib/testImages/purpleDress.jpg)', 
-  'url(./lib/testImages/blackDress.jpg)',
-  'url(./lib/testImages/blackCoat.jpg)',
-  'url(./lib/testImages/blackCoat2.jpg)',
-  'url(./lib/testImages/tanCoat.jpg)',
+//   'url(./lib/testImages/navyDress.jpg)', 
+//   'url(./lib/testImages/purpleDress.jpg)', 
+//   'url(./lib/testImages/blackDress.jpg)',
+//   'url(./lib/testImages/blackCoat.jpg)',
+//   'url(./lib/testImages/blackCoat2.jpg)',
+//   'url(./lib/testImages/tanCoat.jpg)',
 
-  'url(./lib/testImages/navyDress.jpg)', 
-  'url(./lib/testImages/purpleDress.jpg)', 
-  'url(./lib/testImages/blackDress.jpg)',
-  'url(./lib/testImages/blackCoat.jpg)',
-  'url(./lib/testImages/blackCoat2.jpg)',
-  'url(./lib/testImages/tanCoat.jpg)'
-]
+//   'url(./lib/testImages/navyDress.jpg)', 
+//   'url(./lib/testImages/purpleDress.jpg)', 
+//   'url(./lib/testImages/blackDress.jpg)',
+//   'url(./lib/testImages/blackCoat.jpg)',
+//   'url(./lib/testImages/blackCoat2.jpg)',
+//   'url(./lib/testImages/tanCoat.jpg)'
+// ]
 
 var positions = [
   '7 1.5 6',
