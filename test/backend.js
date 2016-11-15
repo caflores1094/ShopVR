@@ -1,15 +1,21 @@
 var mysql = require('mysql');
 var request = require('request');
 
-describe('DB connection', function() {
-  it('Should connect to the database', function(done) {
-    var connection = mysql.createConnection({
-      user: 'newuser',
-      password: 'password',
-      database: 'shopvr'
+describe('Database', function() {
+  describe('DB connection', function() {
+    it('Should connect to the database', function(done) {
+      var connection = mysql.createConnection({
+        user: 'newuser',
+        password: 'password',
+        database: 'shopvr'
+      });
+      connection.connect(done);
     });
-    connection.connect(done);
   });
+});
+
+describe('Server', function() {
+  describe('')
 });
 
 // describe('Persistent Server', function() {
