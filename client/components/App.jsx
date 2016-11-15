@@ -7,23 +7,39 @@ class App extends React.Component {
 
     this.state = {
       user: {}
-    }
+    };
+  }
+
+  setUser(user) {
+    this.setState({user: user});
   }
 
   render() {
     var context = this;
     var children = React.Children.map(this.props.children, function (child) {
       return React.cloneElement(child, {
-        user: ''
+        user: context.state.user
       });
     });
 
-    return (
-      <div>
-        <Navbar />
-        <div>{children}</div>
-      </div>
-    );
+    if (this.state.user.hasOwnProperty('name')) {
+      return (
+        <div>
+          <Navbar user={this.state.user} setUser={this.setUser.bind(this)}/>
+          <div>{children}</div>
+        </div>
+      );
+    } else {
+      return (
+         <div>
+           <Navbar user={this.state.user} setUser={this.setUser.bind(this)}/>
+           <h1>Why use our app?</h1>
+           <h3>Enter Your Preferences</h3>
+           <h3>Browse Your Recommendations</h3>
+           <h3>Shop in Virtual Reality (w/ Friends)</h3>
+         </div>
+      );
+    }
   }
 }
 

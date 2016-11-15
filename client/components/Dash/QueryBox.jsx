@@ -17,14 +17,14 @@ class QueryBox extends React.Component {
          <h1>Search</h1>
          <form>
            <p>Gender:
-             <select>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
+             <select defaultValue={this.props.user.gender}>
+              <option value="male">male</option>
+              <option value="female">female</option>
              </select>
            </p>
 
            <p>Price Range:
-           <input type="number"/> - <input type="number"/>
+           <input defaultValue={this.props.user.id} type="number"/> - <input type="number"/>
            </p>
 
            <p>Brands:</p>

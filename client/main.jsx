@@ -5,7 +5,7 @@ import App from './components/App.jsx';
 import VRview from './components/VRview.jsx';
 import Dashboard from './components/Dashboard.jsx';
 import Profile from './components/Profile.jsx';
-import Setting from './components/Setting.jsx';
+import Setting from './components/setting.jsx';
 import SharedView from './components/SharedView.jsx';
 import { createStore, combineReducers } from 'redux';
 
@@ -37,7 +37,7 @@ var store = createStore(appReducers);
 
 ReactDOM.render((
   <Router history={browserHistory}>
-    <Route path="/" component={App} store={store}>
+    <Route path="/" component={App}>
       <IndexRoute component={Dashboard}/>
       <Route path="/profile" component={Profile}/>
       <Route path="/vr" component={VRview} />

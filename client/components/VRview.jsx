@@ -13,8 +13,8 @@ class VRview extends React.Component {
 
     return (
       <div>
-        <Sharebar />
-        <Setting />
+        <Sharebar user={this.props.user}/>
+        <Setting user={this.props.user}/>
       </div>
     );
   }

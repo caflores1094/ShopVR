@@ -10,13 +10,13 @@ class Profile extends React.Component {
          <h1>Profile</h1>
          <form>
            <p>Name:
-             <input type="text" />
+             <input type="text" defaultValue={this.props.user.name}/>
            </p>
            <p>Email:
-             <input type="text" />
+             <input type="text" defaultValue={this.props.user.email}/>
            </p>
            <p>Gender:
-             <select>
+             <select defaultValue={this.props.user.gender}>
               <option value="male">male</option>
               <option value="female">female</option>
              </select>
