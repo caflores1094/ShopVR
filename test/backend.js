@@ -18,7 +18,7 @@ describe('Database', function() {
 
 describe('Server', function() {
   var server = supertest.agent("http://localhost:3000");
-  describe('Connect to server', function(done) {
+  describe('Serving static assets', function(done) {
     it('Should get /', function() {
       server
       .get('/')
@@ -28,6 +28,11 @@ describe('Server', function() {
       server
       .get('/shop')
       .expect(404, done);
+    });
+    it('should get /profile', function() {
+      server
+      .get('/profile')
+      .expect(200, done);
     });
   });
 });
