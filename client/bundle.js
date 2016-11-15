@@ -28197,12 +28197,15 @@
 	    key: 'render',
 	    value: function render() {
 	      var context = this;
+	      var vrFeed = this.props.feed.map(function (clothingObj) {
+	        return clothingObj.image.sizes.IPhoneSmall.url;
+	      });
 
 	      return _react2.default.createElement(
 	        'div',
 	        null,
 	        _react2.default.createElement(_Sharebar2.default, { user: this.props.user }),
-	        _react2.default.createElement(_setting2.default, { user: this.props.user })
+	        _react2.default.createElement(_setting2.default, { user: this.props.user, feed: vrFeed })
 	      );
 	    }
 	  }]);
@@ -28439,7 +28442,7 @@
 	          _react2.default.createElement(_cashierCounter2.default, { position: ["21.5 .8 12.7", "21.5 1.625 12.4", "21.5 1.7 12.4", "21.5 2.1 12.4"] }),
 	          _react2.default.createElement(_cashierCounter2.default, { position: ["11 .8 -12.7", "11 1.625 -12.4", "11 1.7 -12.4", "11 2.1 -12.4"] }),
 	          _react2.default.createElement(_cashierCounter2.default, { position: ["21.5 .8 -12.7", "21.5 1.625 -12.4", "21.5 1.7 -12.4", "21.5 2.1 -12.4"] }),
-	          _react2.default.createElement(_clothingMapper2.default, null)
+	          _react2.default.createElement(_clothingMapper2.default, { feed: this.props.feed })
 	        )
 	      );
 	    }
@@ -28866,13 +28869,14 @@
 	  _createClass(ClothingMapper, [{
 	    key: 'render',
 	    value: function render() {
-
+	      this.props.feed.length = 24;
+	      console.log(this.props.feed);
 	      return _react2.default.createElement(
 	        _aframeReact.Entity,
 	        null,
-	        imageArr.map(function (url, i) {
+	        this.props.feed.map(function (url, i) {
 	          console.log('INDEX', i);
-	          return _react2.default.createElement(_clothingArticle2.default, { position: positions[i], src: url });
+	          return _react2.default.createElement(_clothingArticle2.default, { position: positions[i], src: 'url(' + url + ')' });
 	        })
 	      );
 	    }

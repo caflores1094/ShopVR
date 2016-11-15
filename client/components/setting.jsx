@@ -132,7 +132,7 @@ class Setting extends React.Component {
             <CashierCounter position={["11 .8 -12.7", "11 1.625 -12.4", "11 1.7 -12.4", "11 2.1 -12.4"]}/>
             <CashierCounter position={["21.5 .8 -12.7", "21.5 1.625 -12.4", "21.5 1.7 -12.4", "21.5 2.1 -12.4"]}/>
 
-            <ClothingMapper />
+            <ClothingMapper feed={this.props.feed}/>
 
           </Scene>
         </div>

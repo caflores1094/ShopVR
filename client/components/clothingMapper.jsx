@@ -78,13 +78,14 @@ class ClothingMapper extends React.Component {
   }
 
   render() {
-  
+    this.props.feed.length = 24;
+    console.log(this.props.feed)
     return (
       <Entity>
         {
-          imageArr.map(function(url, i){
+          this.props.feed.map(function(url, i){
             console.log('INDEX', i)
-            return <ClothingArticle position={positions[i]} src={url}/>
+            return <ClothingArticle position={positions[i]} src={'url(' + url + ')'}/>
           }) 
         }
       </Entity>
