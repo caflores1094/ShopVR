@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS users (
   locale VARCHAR(10),
   timezone VARCHAR(10),
   friends VARCHAR(10000),
-  fb_id TEXT UNIQUE,
+  fb_id TEXT NOT NULL UNIQUE,
   profile_pic VARCHAR(1000),
   PRIMARY KEY (ID)
 );
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS items (
   brand VARCHAR(100) NOT NULL,
   item_name VARCHAR(100) NOT NULL,
   price INT NOT NULL,
-  pic BLOB NOT NULL,
+  pic LONGBLOB NOT NULL,
   category_id INT,
   FOREIGN KEY fk_cat(category_id) REFERENCES categories(id),
   user_id INT,

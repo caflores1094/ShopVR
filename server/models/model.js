@@ -55,7 +55,7 @@ module.exports = {
     },
    // //get all images that belong to a user
     getUserImages: function(userID, callback) {
-      var queryStr = 'SELECT * from pictures where pictures.user_id =?';
+      var queryStr = 'SELECT * from pictures where pictures.u_id =?';
       db.query(queryStr, [userID], function(err, results) {
         if (err) console.log('error getting user images', err);
         callback(err, results);
@@ -67,6 +67,24 @@ module.exports = {
       db.query(queryStr, [picName], function(err, results) {
         if (err) console.log('error getting user tags', err);
         callback(err, results);
+      });
+    },
+    //get most recent image for a user
+    getRecentImage: function(userID, callback) {
+      var result = null;
+      var queryStr = 'SELECT Max(id) from pictures where pictures.u_id =?';
+      db.query(queryStr, [userID], function(err, results) {
+        if (err) console.log('error getting user tags', err);
+        var maxIDNum = results[0]['Max(id)'];
+        console.log(results, 'RESULT FORMAT');
+        console.log(maxIDNum);
+        var newQuery = "SELECT name from pictures where pictures.id =?"
+        db.query(newQuery, maxIDNum, function(err, results) {
+          if (err) console.log('error getting picture name', err);
+          result = results;
+          console.log(result, 'RESULT FROM QUERY FOR PIC NAME');
+          callback(null, result);
+        })
       });
     }
   }

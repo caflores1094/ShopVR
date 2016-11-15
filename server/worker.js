@@ -98,28 +98,28 @@ request.get('http://localhost:3000/api/feed', function(err, response, body) {
 
 
 //count how many products there are in each category
-// var countURL = 'http://api.shopstyle.com/api/v2/products/histogram?pid=uid4025-36835155-23&filters=Retailer&fts=red+dress';
-// var getTotalNum = function(url, callback) {
-//   request.get(url, function(err, response, body) {
-//     var data = null;
-//     if (err) {
-//      callback(err, null);
-//     } else {
-//       data = JSON.parse(body);
-//       // console.log(data, 'DATA');
-//       callback(null, data);
-//     }
-//   });
-// };
+var countURL = 'http://api.shopstyle.com/api/v2/products/histogram?pid=uid4025-36835155-23&filters=Retailer&fts=red+dress';
+var getTotalNum = function(url, callback) {
+  request.get(url, function(err, response, body) {
+    var data = null;
+    if (err) {
+     callback(err, null);
+    } else {
+      data = JSON.parse(body);
+      // console.log(data, 'DATA');
+      callback(null, data);
+    }
+  });
+};
 
-// getTotalNum(countURL, function(err, response) {
-//   if (err) console.log(err);
-//   var total = 0;
-//   response.retailerHistogram.forEach(function(item) {
-//    total += item.count;
-//   });
-//   console.log(total);
-// });
+getTotalNum(countURL, function(err, response) {
+  if (err) console.log(err);
+  var total = 0;
+  response.retailerHistogram.forEach(function(item) {
+   total += item.count;
+  });
+  console.log(total);
+});
 
 
 // //call getProducts for each category

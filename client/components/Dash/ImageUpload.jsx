@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-
 class ImageUpload extends React.Component {
   constructor(props) {
     super(props);
@@ -50,10 +49,28 @@ class ImageUpload extends React.Component {
 
   testFunction(){
     // console.log(this.props.user)
-    axios.get('/api/feed')
+    var obj = this.state;
+    obj['u_id'] = this.props.user.id;
+    axios.post('/api/feed', obj)
       .then(function(result){
-        console.log(result)
-      });
+
+        var tags = result.data.map((entry)=> entry.tag);
+
+        var searchQuery = tags.concat('+');
+        var productURL = 'http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&filters=Retailer&fts=' + searchQuery;
+        var getProducts = function(url, callback) {
+          axios.get(url)//, function(err, response, body) {
+            .then(function(result){
+              console.log(result);
+              callback(null, result);
+          });
+        };
+
+        getProducts(productURL, function(err, response) {
+          if (err) console.log(err);
+          else console.log(response, 'success getting data from api');
+        })
+       });
   }
 
   render() {

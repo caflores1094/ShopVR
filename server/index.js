@@ -26,7 +26,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/api/upload', picController.pictures.post);
-router.post('/api/feed', picController.pictures.getAllImages);
+router.post('/api/feed', picController.pictures.getMostRecentImage);
 
 router.get('/profile', function(req, res) {
   res.sendFile('/client/index.html', {root: __dirname + '/..'});

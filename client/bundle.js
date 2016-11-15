@@ -29478,8 +29478,27 @@
 	    key: 'testFunction',
 	    value: function testFunction() {
 	      // console.log(this.props.user)
-	      _axios2.default.get('/api/feed').then(function (result) {
-	        console.log(result);
+	      var obj = this.state;
+	      obj['u_id'] = this.props.user.id;
+	      _axios2.default.post('/api/feed', obj).then(function (result) {
+
+	        var tags = result.data.map(function (entry) {
+	          return entry.tag;
+	        });
+
+	        var searchQuery = tags.concat('+');
+	        var productURL = 'http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&filters=Retailer&fts=' + searchQuery;
+	        var getProducts = function getProducts(url, callback) {
+	          _axios2.default.get(url) //, function(err, response, body) {
+	          .then(function (result) {
+	            console.log(result);
+	            callback(null, result);
+	          });
+	        };
+
+	        getProducts(productURL, function (err, response) {
+	          if (err) console.log(err);else console.log(response, 'success getting data from api');
+	        });
 	      });
 	    }
 	  }, {
