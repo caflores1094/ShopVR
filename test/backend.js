@@ -18,21 +18,31 @@ describe('Database', function() {
 
 describe('Server', function() {
   var server = supertest.agent("http://localhost:3000");
-  describe('Serving static assets', function(done) {
+  describe('Serving assets', function(done) {
     it('Should get /', function() {
       server
       .get('/')
+      .expect(200, done);
+    });
+    it('Should get /profile', function() {
+      server
+      .get('/profile')
+      .expect(200, done);
+    });
+    it('Should get /view', function() {
+      server
+      .get('/view')
+      .expect(200, done);
+    });
+    it('Should get /vr', function() {
+      server
+      .get('/vr')
       .expect(200, done);
     });
     it('Should not get /shop', function() {
       server
       .get('/shop')
       .expect(404, done);
-    });
-    it('should get /profile', function() {
-      server
-      .get('/profile')
-      .expect(200, done);
     });
   });
 });
