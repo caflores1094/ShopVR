@@ -29445,6 +29445,8 @@
 	      _axios2.default.post('/api/upload', obj).then(function () {
 	        console.log('upload successful');
 	      });
+
+	      this.getFeedOnImageUpload();
 	    }
 	  }, {
 	    key: 'handleImageChange',
@@ -29475,9 +29477,10 @@
 	      });
 	    }
 	  }, {
-	    key: 'testFunction',
-	    value: function testFunction() {
-	      // console.log(this.props.user)
+	    key: 'getFeedOnImageUpload',
+	    value: function getFeedOnImageUpload() {
+	      var context = this;
+
 	      var obj = this.state;
 	      obj['u_id'] = this.props.user.id;
 	      _axios2.default.post('/api/feed', obj).then(function (result) {
@@ -29487,7 +29490,7 @@
 	        });
 
 	        var searchQuery = tags.concat('+');
-	        var productURL = 'http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&filters=Retailer&fts=' + searchQuery;
+	        var productURL = 'http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&filters=Retailer&limit=25&fts=' + searchQuery;
 	        var getProducts = function getProducts(url, callback) {
 	          _axios2.default.get(url) //, function(err, response, body) {
 	          .then(function (result) {
@@ -29497,7 +29500,8 @@
 	        };
 
 	        getProducts(productURL, function (err, response) {
-	          if (err) console.log(err);else console.log(response, 'success getting data from api');
+	          if (err) console.log(err);else console.log(response.data.products, 'success getting data from api');
+	          context.props.setFeed(response.data.products);
 	        });
 	      });
 	    }
@@ -29564,15 +29568,6 @@
 	                return _this3.handleSubmit(e);
 	              } },
 	            'Submit'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement(
-	            'button',
-	            { className: 'testAPI', onClick: this.testFunction.bind(this) },
-	            'TESTING'
 	          )
 	        )
 	      );

@@ -21,6 +21,9 @@ class ImageUpload extends React.Component {
          .then(function() {
             console.log('upload successful');
          });
+
+    this.getFeedOnImageUpload();
+
   }
 
   handleImageChange(e) {
@@ -47,8 +50,9 @@ class ImageUpload extends React.Component {
     });
   }
 
-  testFunction(){
-    // console.log(this.props.user)
+  getFeedOnImageUpload(){
+    var context = this;
+
     var obj = this.state;
     obj['u_id'] = this.props.user.id;
     axios.post('/api/feed', obj)
@@ -57,7 +61,7 @@ class ImageUpload extends React.Component {
         var tags = result.data.map((entry)=> entry.tag);
 
         var searchQuery = tags.concat('+');
-        var productURL = 'http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&filters=Retailer&fts=' + searchQuery;
+        var productURL = 'http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&filters=Retailer&limit=25&fts=' + searchQuery;
         var getProducts = function(url, callback) {
           axios.get(url)//, function(err, response, body) {
             .then(function(result){
@@ -68,8 +72,10 @@ class ImageUpload extends React.Component {
 
         getProducts(productURL, function(err, response) {
           if (err) console.log(err);
-          else console.log(response, 'success getting data from api');
+          else console.log(response.data.products, 'success getting data from api');
+          context.props.setFeed(response.data.products);
         })
+
        });
   }
 
@@ -96,10 +102,6 @@ class ImageUpload extends React.Component {
           <p>Step 3: Submit</p>
           <button className="submitButton" type="submit" onClick={(e)=>this.handleSubmit(e)}>Submit</button>
         </form>
-        <div>
-          <button className="testAPI" onClick={this.testFunction.bind(this)}>TESTING</button>
-
-        </div>
       </div>
     )
   }
