@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { browserHistory } from 'react-router';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -30,13 +31,14 @@ class NavBar extends React.Component {
   }
 
   testAPI() {
+    var context = this;
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', {fields: 'id, name, email, friends, gender, picture, locale, timezone, location'}, function(response) {
       console.log('Successful login for: ' + response.name);
 
       axios.post('/login/facebook', response)
       .then(function (response) {
-
+        context.props.setUser(response.data[0]);
       })
       .catch(function (error) {
         console.log('Error in sending ajax data');
@@ -79,15 +81,23 @@ class NavBar extends React.Component {
     FB.logout(function(response) {
       console.log('logged out', response);
     });
+    browserHistory.push('/vr');
   }
 
   render() {
-    return (
-       <div>
-         <button onClick={this.login.bind(this)}>Facebook Login</button>
-         <button onClick={this.logout.bind(this)}>Log Out</button>
-       </div>
-    );
+    if (this.props.user.hasOwnProperty('name')) {
+      return (
+         <div>
+           <button onClick={this.logout.bind(this)}>Log Out</button>
+         </div>
+      );
+    } else {
+      return (
+         <div>
+           <button onClick={this.login.bind(this)}>Facebook Login</button>
+         </div>
+      );
+    }
   }
 }
 

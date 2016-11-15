@@ -12,10 +12,10 @@ class Dashboard extends React.Component {
    render() {
       return (
         <div>
-          <ImageUpload />
-          <QueryBox />
-          <Feed />
-          <Social />
+          <ImageUpload user={this.props.user}/>
+          <QueryBox user={this.props.user}/>
+          <Feed user={this.props.user}/>
+          <Social user={this.props.user}/>
         </div>
       );
    }
