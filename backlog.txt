@@ -50,5 +50,9 @@ Category: Feature, bug, UX
 Estimation of work time: 5-10 hours
 Priority: 2
 
+Description: share any item on social media (e.g., Pinterest, instagram, facebook...)
+Category: Feature, UX
+Estimation of work time: 10-15 hours
+Priority: 4
 
 
