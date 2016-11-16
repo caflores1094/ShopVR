@@ -23,47 +23,50 @@ class Profile extends React.Component {
     .then(function(result) {
       context.setState({ myImages: result.data})     
     });
-      this.state = {
+      // this.state = {
 
-      }
-  }
-  onUpdate(e) {
-    e.preventDefault();
+      // }
   }
 
-
+  handleInputChange(name, e) {
+    var update = {};
+    update[name] = e.target.value
+    this.setState(update);
+  }
 
   componentDidMount(){
     this.getMyImages();
   }
 
   render() {
+    console.log('props', this.props.user);
     return (
        <div>
            <h1>Profile</h1>
            <form>
+             <img src={this.props.user.profile_pic} style={{maxHeight: "200px", maxWidth:"200px", height: "auto", width: "auto"}} />
              <p>Name:
-               <input type="text" defaultValue={this.props.user.name}/>
+               <input onChange={this.handleInputChange.bind(this, 'name')} type="text" defaultValue={this.props.user.name}/>
              </p>
              <p>Email:
-               <input type="text" defaultValue={this.props.user.email}/>
+               <input onChange={this.handleInputChange.bind(this, 'email')} type="text" defaultValue={this.props.user.email}/>
              </p>
              <p>Gender:
-               <select defaultValue={this.props.user.gender}>
+               <select onChange={this.handleInputChange.bind(this, 'gender')} defaultValue={this.props.user.gender}>
                 <option value="men's">men</option>
                 <option value="women's">women</option>
                </select>
              </p>
              <p>
              Min Price:
-              <input type="number" defaultValue={this.props.user.min_price}/>
+              <input onChange={this.handleInputChange.bind(this, 'min_price')} type="number" defaultValue={this.props.user.min_price}/>
              </p>
              <p>
              Max Price:
-               <input type="number" defaultValue={this.props.user.max_price}/>
+               <input onChange={this.handleInputChange.bind(this, 'max_price')} type="number" defaultValue={this.props.user.max_price}/>
              </p>
-             <button type="submit" value="Submit">Submit</button>
-             <button onClick={(e) => {e.preventDefault(); browserHistory.push('/');}}>Cancel</button>
+             <button type="submit" value="Submit">Update</button>
+             <button onClick={(e) => {e.preventDefault(); browserHistory.push('/');}}>Back</button>
            </form>
            <div className='myPics'>
             <h2>My Uploaded Pictures</h2>
