@@ -86,11 +86,17 @@ class NavBar extends React.Component {
 
 
   render() {
-    if (this.props.user.hasOwnProperty('name')) {
+    if (this.props.user.hasOwnProperty('name') && window.location.pathname !== '/vr') {
       return (
          <div>
            <button onClick={() => browserHistory.push('/')}>Feed</button>
            <button onClick={() => browserHistory.push('profile')}>Profile</button>
+           <button onClick={this.logout.bind(this)}>Log Out</button>
+         </div>
+      );
+    } else if (this.props.user.hasOwnProperty('name') && window.location.pathname === '/vr') {
+      return (
+         <div>
            <button onClick={this.logout.bind(this)}>Log Out</button>
          </div>
       );

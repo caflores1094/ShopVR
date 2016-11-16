@@ -26728,7 +26728,7 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      if (this.props.user.hasOwnProperty('name')) {
+	      if (this.props.user.hasOwnProperty('name') && window.location.pathname !== '/vr') {
 	        return _react2.default.createElement(
 	          'div',
 	          null,
@@ -26746,6 +26746,16 @@
 	              } },
 	            'Profile'
 	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.logout.bind(this) },
+	            'Log Out'
+	          )
+	        );
+	      } else if (this.props.user.hasOwnProperty('name') && window.location.pathname === '/vr') {
+	        return _react2.default.createElement(
+	          'div',
+	          null,
 	          _react2.default.createElement(
 	            'button',
 	            { onClick: this.logout.bind(this) },
@@ -29075,7 +29085,6 @@
 	  _createClass(ClothingArticle, [{
 	    key: 'render',
 	    value: function render() {
-	      console.log(this.props.size);
 	      return _react2.default.createElement(_aframeReact.Entity, { material: { src: 'url(' + this.props.src + ')' }, geometry: { primitive: 'box', depth: .1, height: this.props.size * 1.25, width: 1.25 }, rotation: '0 0 0', position: this.props.position, 'look-at': '[camera]', 'static-body': true });
 	    }
 	  }]);
