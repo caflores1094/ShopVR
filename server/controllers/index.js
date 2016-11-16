@@ -16,18 +16,23 @@ module.exports = {
       });
     },
     update: function(req, callback) {
-      callback(null, null);
+      console.log('in update controller', req)
       var params = {
-        id: req.id,
-        name: req.name, 
-        email: req.email, 
-        gender: req.gender,
-        min_price: req.min_price, 
-        max_price: req.max_price
+        id: req.body.id,
+        name: req.body.name, 
+        email: req.body.email, 
+        gender: req.body.gender,
+        min_price: req.body.min_price, 
+        max_price: req.body.max_price
       };
       models.users.update(params, function(err, results) {
-        if (err) callback(err, null);
-        else callback(null, results);
+        if (err) {
+          console.log('err', err);
+          callback(err, null);
+        } else {
+          console.log('success');
+          callback(null, null);
+        }
       });
     }
   }
