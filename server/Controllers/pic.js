@@ -20,7 +20,6 @@ module.exports = {
 				}
 			});
 		},
-		// //get all tags associated with a user
 		getAllImages: function(req, res) {
 		  console.log('in get all images', req);
 		  models.pictures.getUserImages(req.body.u_id, function(err, results) {
@@ -43,8 +42,9 @@ module.exports = {
 			})
 		  });
 		  // callback(null, results);
-		},
+		},				
 
+		//get all tags associated with a user
 		getUserTags: function(req, res) {
 		  models.pictures.getUserTags()
 		}
