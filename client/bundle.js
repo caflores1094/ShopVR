@@ -28944,29 +28944,29 @@
 	// extras.registerAll();
 
 	// var imageArr = [
-	//   'url(./lib/testImages/navyDress.jpg)', 
-	//   'url(./lib/testImages/purpleDress.jpg)', 
+	//   'url(./lib/testImages/navyDress.jpg)',
+	//   'url(./lib/testImages/purpleDress.jpg)',
 	//   'url(./lib/testImages/blackDress.jpg)',
 	//   'url(./lib/testImages/blackCoat.jpg)',
 	//   'url(./lib/testImages/blackCoat2.jpg)',
 	//   'url(./lib/testImages/tanCoat.jpg)',
 
-	//   'url(./lib/testImages/navyDress.jpg)', 
-	//   'url(./lib/testImages/purpleDress.jpg)', 
+	//   'url(./lib/testImages/navyDress.jpg)',
+	//   'url(./lib/testImages/purpleDress.jpg)',
 	//   'url(./lib/testImages/blackDress.jpg)',
 	//   'url(./lib/testImages/blackCoat.jpg)',
 	//   'url(./lib/testImages/blackCoat2.jpg)',
 	//   'url(./lib/testImages/tanCoat.jpg)',
 
-	//   'url(./lib/testImages/navyDress.jpg)', 
-	//   'url(./lib/testImages/purpleDress.jpg)', 
+	//   'url(./lib/testImages/navyDress.jpg)',
+	//   'url(./lib/testImages/purpleDress.jpg)',
 	//   'url(./lib/testImages/blackDress.jpg)',
 	//   'url(./lib/testImages/blackCoat.jpg)',
 	//   'url(./lib/testImages/blackCoat2.jpg)',
 	//   'url(./lib/testImages/tanCoat.jpg)',
 
-	//   'url(./lib/testImages/navyDress.jpg)', 
-	//   'url(./lib/testImages/purpleDress.jpg)', 
+	//   'url(./lib/testImages/navyDress.jpg)',
+	//   'url(./lib/testImages/purpleDress.jpg)',
 	//   'url(./lib/testImages/blackDress.jpg)',
 	//   'url(./lib/testImages/blackCoat.jpg)',
 	//   'url(./lib/testImages/blackCoat2.jpg)',
@@ -28974,6 +28974,13 @@
 	// ]
 
 	var positions = ['7 1.5 6', '7 1.5 9', '7 1.5 12', '16 1.5 12', '16 1.5 9', '16 1.5 6', '7 1.5 -6', '7 1.5 -9', '7 1.5 -12', '15 1.5 -12', '15 1.5 -9', '15 1.5 -6', '18 1.5 -6', '18 1.5 -9', '18 1.5 -12', '25 1.5 -12', '25 1.5 -9', '25 1.5 -6', '18 1.5 6', '18 1.5 9', '18 1.5 12', '25 1.5 12', '25 1.5 9', '25 1.5 6'];
+
+	var transformImageUrl = function transformImageUrl(url) {
+	  while (url.indexOf('/') >= 0) {
+	    url = url.replace('/', 'SLASH'); //this is needed to transfer the url over http request
+	  }
+	  return '/api/getimage/' + url;
+	};
 
 	var ClothingMapper = function (_React$Component) {
 	  _inherits(ClothingMapper, _React$Component);
@@ -28983,21 +28990,25 @@
 
 	    var _this = _possibleConstructorReturn(this, (ClothingMapper.__proto__ || Object.getPrototypeOf(ClothingMapper)).call(this, props));
 
-	    _this.state = {};
+	    var newfeed = [];
+	    for (var i = 0; i < 24; i++) {
+	      newfeed.push(transformImageUrl(_this.props.feed[i]));
+	    }
+
+	    _this.state = {
+	      feed: newfeed
+	    };
 	    return _this;
 	  }
 
 	  _createClass(ClothingMapper, [{
 	    key: 'render',
 	    value: function render() {
-	      this.props.feed.length = 24;
-	      console.log(this.props.feed);
 	      return _react2.default.createElement(
 	        _aframeReact.Entity,
 	        null,
-	        this.props.feed.map(function (url, i) {
-	          console.log('INDEX', i);
-	          return _react2.default.createElement(_clothingArticle2.default, { position: positions[i], src: 'url(' + url + ')' });
+	        this.state.feed.map(function (url, i) {
+	          return _react2.default.createElement(_clothingArticle2.default, { position: positions[i], src: url });
 	        })
 	      );
 	    }
@@ -29046,7 +29057,7 @@
 	  _createClass(ClothingArticle, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(_aframeReact.Entity, { material: { src: this.props.src }, geometry: { primitive: 'box', depth: .1, height: 3, width: 1.25 }, rotation: '0 0 0', position: this.props.position, 'look-at': '[camera]', 'static-body': true });
+	      return _react2.default.createElement(_aframeReact.Entity, { material: { src: 'url(' + this.props.src + ')' }, geometry: { primitive: 'box', depth: .1, height: 3, width: 1.25 }, rotation: '0 0 0', position: this.props.position, 'look-at': '[camera]', 'static-body': true });
 	    }
 	  }]);
 

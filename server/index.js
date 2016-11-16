@@ -2,17 +2,18 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var router = require('express').Router();
 var db = require('./db');
+var request = require('request');
 
 var authController = require('./controllers/auth.js');
 var picController = require('./controllers/pic.js');
-  
+
 var server = express();
-    
+
 server.set('port', 3000)
 server.listen(server.get('port'), function () {
   console.log('Server listening');
 });
-  
+
 server.use(bodyParser.json()); // for parsing application/json
 server.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlenco
 server.use(express.static(__dirname + '/../client'));
@@ -37,6 +38,25 @@ router.get('/vr', function(req, res) {
 
 router.get('/view', function(req, res) {
   res.sendFile('/client/index.html', {root: __dirname + '/..'});
+});
+
+router.get('/api/getimage/:id', function (req, res) {
+  var src = req.params.id;
+  while (src.indexOf('SLASH') >= 0) {
+    src = src.replace('SLASH', '/');
+  }
+
+  var options = {
+    url: src,
+    headers: {
+      'Content-Type': 'image/jpeg'
+    },
+    encoding: null
+  };
+
+  request(options, function(err, response, httpResponse) {
+    res.end(httpResponse, 'binary');
+  });
 });
 
 module.exports = server;
