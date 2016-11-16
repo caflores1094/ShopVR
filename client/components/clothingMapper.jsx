@@ -7,29 +7,29 @@ import ClothingArticle from './clothingArticle.jsx'
 // extras.registerAll();
 
 // var imageArr = [
-//   'url(./lib/testImages/navyDress.jpg)', 
-//   'url(./lib/testImages/purpleDress.jpg)', 
+//   'url(./lib/testImages/navyDress.jpg)',
+//   'url(./lib/testImages/purpleDress.jpg)',
 //   'url(./lib/testImages/blackDress.jpg)',
 //   'url(./lib/testImages/blackCoat.jpg)',
 //   'url(./lib/testImages/blackCoat2.jpg)',
 //   'url(./lib/testImages/tanCoat.jpg)',
 
-//   'url(./lib/testImages/navyDress.jpg)', 
-//   'url(./lib/testImages/purpleDress.jpg)', 
+//   'url(./lib/testImages/navyDress.jpg)',
+//   'url(./lib/testImages/purpleDress.jpg)',
 //   'url(./lib/testImages/blackDress.jpg)',
 //   'url(./lib/testImages/blackCoat.jpg)',
 //   'url(./lib/testImages/blackCoat2.jpg)',
 //   'url(./lib/testImages/tanCoat.jpg)',
 
-//   'url(./lib/testImages/navyDress.jpg)', 
-//   'url(./lib/testImages/purpleDress.jpg)', 
+//   'url(./lib/testImages/navyDress.jpg)',
+//   'url(./lib/testImages/purpleDress.jpg)',
 //   'url(./lib/testImages/blackDress.jpg)',
 //   'url(./lib/testImages/blackCoat.jpg)',
 //   'url(./lib/testImages/blackCoat2.jpg)',
 //   'url(./lib/testImages/tanCoat.jpg)',
 
-//   'url(./lib/testImages/navyDress.jpg)', 
-//   'url(./lib/testImages/purpleDress.jpg)', 
+//   'url(./lib/testImages/navyDress.jpg)',
+//   'url(./lib/testImages/purpleDress.jpg)',
 //   'url(./lib/testImages/blackDress.jpg)',
 //   'url(./lib/testImages/blackCoat.jpg)',
 //   'url(./lib/testImages/blackCoat2.jpg)',
@@ -67,26 +67,35 @@ var positions = [
 
 ]
 
+var transformImageUrl = function transformImageUrl(url) {
+  while (url.indexOf('/') >= 0) {
+    url = url.replace('/', 'SLASH');//this is needed to transfer the url over http request
+  }
+  return '/api/getimage/' + url;
+};
+
 class ClothingMapper extends React.Component {
 
   constructor(props){
     super(props);
 
-    this.state = {
-      
+    var newfeed = [];
+    for (var i =0; i < 24; i++) {
+      newfeed.push(transformImageUrl(this.props.feed[i]));
     }
+
+    this.state={
+      feed: newfeed
+    };
   }
 
   render() {
-    this.props.feed.length = 24;
-    console.log(this.props.feed)
     return (
       <Entity>
         {
-          this.props.feed.map(function(url, i){
-            console.log('INDEX', i)
-            return <ClothingArticle position={positions[i]} src={'url(' + url + ')'}/>
-          }) 
+          this.state.feed.map(function(url, i){
+            return <ClothingArticle position={positions[i]} src={url}/>
+          })
         }
       </Entity>
     );
