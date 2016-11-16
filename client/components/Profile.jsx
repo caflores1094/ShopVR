@@ -4,7 +4,6 @@ import { browserHistory } from 'react-router';
 
 class Profile extends React.Component {
   constructor(props) {
-<<<<<<< HEAD
     super(props);
     this.state = {
       name: this.props.user.name,
@@ -14,17 +13,6 @@ class Profile extends React.Component {
       max_price: this.props.user.max_price,
       myImages: []
     }
-=======
-      super(props);
-      this.state = {
-        myImages: []
-        name: this.props.user.name,
-        email: this.props.user.email,
-        gender: this.props.user.gender,
-        min_price: this.props.user.min_price,
-        max_price: this.props.user.max_price
-      }
->>>>>>> feat/update
   }
 
   getMyImages(){
