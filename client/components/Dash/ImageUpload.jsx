@@ -42,8 +42,8 @@ class ImageUpload extends React.Component {
         imagePreviewUrl: reader.result
       });
     }
-
-    reader.readAsDataURL(file)
+    var interest = reader.readAsDataURL(file);
+    console.log('interest', interest);
   }
 
   handleTagChange(e) {
