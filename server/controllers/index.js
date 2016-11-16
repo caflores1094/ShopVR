@@ -15,8 +15,7 @@ module.exports = {
         else callback(null, results);
       });
     },
-    update: function(req, callback) {
-      console.log('in update controller', req)
+    update: function(req) {
       var params = {
         id: req.body.id,
         name: req.body.name, 
@@ -28,10 +27,6 @@ module.exports = {
       models.users.update(params, function(err, results) {
         if (err) {
           console.log('err', err);
-          callback(err, null);
-        } else {
-          console.log('success');
-          callback(null, null);
         }
       });
     }

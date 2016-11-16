@@ -41,10 +41,9 @@ module.exports = {
       var queryStr = 'UPDATE users SET ? WHERE ?';
       db.query(queryStr, [user, condition], function(err, results) {
         if (err) {
-          callback(err, null);
-        } else {
-          callback(null, results);
+          console.log('Error updating', err);
         }
+        callback(null, null);
       });
     }
   },
