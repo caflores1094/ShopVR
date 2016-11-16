@@ -4,7 +4,6 @@ import { browserHistory } from 'react-router';
 
 class Profile extends React.Component {
   constructor(props) {
-<<<<<<< HEAD
     super(props);
     this.state = {
       name: this.props.user.name,
@@ -14,17 +13,6 @@ class Profile extends React.Component {
       max_price: this.props.user.max_price,
       myImages: []
     }
-=======
-      super(props);
-      this.state = {
-        myImages: []
-        name: this.props.user.name,
-        email: this.props.user.email,
-        gender: this.props.user.gender,
-        min_price: this.props.user.min_price,
-        max_price: this.props.user.max_price
-      }
->>>>>>> feat/update
   }
 
   getMyImages(){
@@ -35,47 +23,61 @@ class Profile extends React.Component {
     .then(function(result) {
       context.setState({ myImages: result.data})     
     });
-      this.state = {
+      // this.state = {
 
-      }
+      // }
   }
-  onUpdate(e) {
+
+  handleInputChange(name, e) {
     e.preventDefault();
+    var update = {};
+    update[name] = e.target.value
+    this.setState(update);
   }
 
-
+  handleUpdate(e) {
+    e.preventDefault();
+    var obj = this.state;
+    obj['id'] = this.props.user.id;
+    axios.post('/update/profile', obj)
+         .then(function(result) {
+          console.log('sucessful update');
+         });
+  }
 
   componentDidMount(){
     this.getMyImages();
   }
 
   render() {
+    console.log('props', this.props.user);
     return (
        <div>
            <h1>Profile</h1>
            <form>
+             <img src={this.props.user.profile_pic} style={{maxHeight: "200px", maxWidth:"200px", height: "auto", width: "auto"}} />
              <p>Name:
-               <input type="text" defaultValue={this.props.user.name}/>
+               <input onChange={this.handleInputChange.bind(this, 'name')} type="text" defaultValue={this.props.user.name}/>
              </p>
              <p>Email:
-               <input type="text" defaultValue={this.props.user.email}/>
+               <input onChange={this.handleInputChange.bind(this, 'email')} type="text" defaultValue={this.props.user.email}/>
              </p>
              <p>Gender:
-               <select defaultValue={this.props.user.gender}>
+               <select onChange={this.handleInputChange.bind(this, 'gender')} defaultValue={this.props.user.gender}>
                 <option value="men's">men</option>
                 <option value="women's">women</option>
                </select>
              </p>
              <p>
              Min Price:
-              <input type="number" defaultValue={this.props.user.min_price}/>
+              <input onChange={this.handleInputChange.bind(this, 'min_price')} type="number" defaultValue={this.props.user.min_price}/>
              </p>
              <p>
              Max Price:
-               <input type="number" defaultValue={this.props.user.max_price}/>
+               <input onChange={this.handleInputChange.bind(this, 'max_price')} type="number" defaultValue={this.props.user.max_price}/>
              </p>
-             <button type="submit" value="Submit">Submit</button>
-             <button onClick={(e) => {e.preventDefault(); browserHistory.push('/');}}>Cancel</button>
+             <button type="submit" onClick={(e)=>this.handleUpdate(e)} value="Submit">Update</button>
+             <button onClick={(e) => {e.preventDefault(); browserHistory.push('/');}}>Back</button>
            </form>
            <div className='myPics'>
             <h2>My Uploaded Pictures</h2>
