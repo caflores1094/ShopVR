@@ -4,16 +4,22 @@ var models = require('../models/model.js');
 module.exports = {
 	pictures: {
 		//post a pictures and associated tags
-		post: function(req) {
+		post: function(req, res) {
 			models.pictures.saveImage(req.body.file, req.body.u_id, function(err, results) {
-				if (err) console.log('error saving picture', err);
-				console.log('req', req.body.tag);
-				models.pictures.saveTag([req.body.tag], req.body.file, function(err, results) {
-					if (err) console.log('error adding tags', err);
-				});
+				if (err){
+					console.log('error saving picture');
+					res.send('duplicate image');
+				} else{
+					// console.log('req', req.body.tag);
+					res.send('success')
+					models.pictures.saveTag([req.body.tag], req.body.file, function(err, results) {
+						if (err){ 
+							console.log('error adding tags', err);
+						}
+					});
+				}
 			});
 		},
-		// //get all tags associated with a user
 		getAllImages: function(req, res) {
 		  console.log('in get all images', req);
 		  models.pictures.getUserImages(req.body.u_id, function(err, results) {
@@ -36,8 +42,9 @@ module.exports = {
 			})
 		  });
 		  // callback(null, results);
-		},
+		},				
 
+		//get all tags associated with a user
 		getUserTags: function(req, res) {
 		  models.pictures.getUserTags()
 		}

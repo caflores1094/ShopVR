@@ -29622,13 +29622,16 @@
 	      // TODO: do something with -> this.state.file
 	      var obj = this.state;
 	      obj['u_id'] = this.props.user.id;
-	      console.log('obj: ', obj);
 
-	      _axios2.default.post('/api/upload', obj).then(function () {
-	        console.log('upload successful');
+	      var context = this;
+	      _axios2.default.post('/api/upload', obj).then(function (result) {
+	        console.log(result);
+	        if (result.data === 'duplicate image') {
+	          alert('Image Name already exists!');
+	        } else {
+	          context.getFeedOnImageUpload();
+	        }
 	      });
-
-	      this.getFeedOnImageUpload();
 	    }
 	  }, {
 	    key: 'handleImageChange',
@@ -29674,8 +29677,7 @@
 	        var searchQuery = tags.concat('+');
 	        var productURL = 'http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&filters=Retailer&limit=25&fts=' + searchQuery;
 	        var getProducts = function getProducts(url, callback) {
-	          _axios2.default.get(url) //, function(err, response, body) {
-	          .then(function (result) {
+	          _axios2.default.get(url).then(function (result) {
 	            console.log(result);
 	            callback(null, result);
 	          });
@@ -29777,6 +29779,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _axios = __webpack_require__(229);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
 	var _reactRouter = __webpack_require__(172);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -29793,10 +29799,30 @@
 	  function Profile(props) {
 	    _classCallCheck(this, Profile);
 
-	    return _possibleConstructorReturn(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).call(this, props));
+
+	    _this.state = {
+	      myImages: []
+	    };
+	    return _this;
 	  }
 
 	  _createClass(Profile, [{
+	    key: 'getMyImages',
+	    value: function getMyImages() {
+	      var obj = {};
+	      obj['u_id'] = this.props.user.id;
+	      var context = this;
+	      _axios2.default.post('/api/myImages', obj).then(function (result) {
+	        context.setState({ myImages: result.data });
+	      });
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.getMyImages();
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -29858,6 +29884,22 @@
 	                e.preventDefault();_reactRouter.browserHistory.push('/');
 	              } },
 	            'Cancel'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'myPics' },
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            'My Uploaded Pictures'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'picList' },
+	            this.state.myImages.map(function (picObj) {
+	              return _react2.default.createElement('img', { src: picObj.name });
+	            })
 	          )
 	        )
 	      );
