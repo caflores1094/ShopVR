@@ -29,9 +29,20 @@ class Profile extends React.Component {
   }
 
   handleInputChange(name, e) {
+    e.preventDefault();
     var update = {};
     update[name] = e.target.value
     this.setState(update);
+  }
+
+  handleUpdate(e) {
+    e.preventDefault();
+    var obj = this.state;
+    obj['id'] = this.props.user.id;
+    axios.post('/update/profile', obj)
+         .then(function(result) {
+          console.log('sucessful update');
+         });
   }
 
   componentDidMount(){
@@ -65,7 +76,7 @@ class Profile extends React.Component {
              Max Price:
                <input onChange={this.handleInputChange.bind(this, 'max_price')} type="number" defaultValue={this.props.user.max_price}/>
              </p>
-             <button type="submit" value="Submit">Update</button>
+             <button type="submit" onClick={(e)=>this.handleUpdate(e)} value="Submit">Update</button>
              <button onClick={(e) => {e.preventDefault(); browserHistory.push('/');}}>Back</button>
            </form>
            <div className='myPics'>

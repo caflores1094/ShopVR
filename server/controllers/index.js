@@ -18,6 +18,7 @@ module.exports = {
     update: function(req, callback) {
       callback(null, null);
       var params = {
+        id: req.id,
         name: req.name, 
         email: req.email, 
         gender: req.gender,
