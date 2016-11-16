@@ -5,8 +5,11 @@ module.exports = {
   wishlist: {
     //insert a wishlist item into the DB
     post: function(req) {
+      console.log('req userid', req.body.userID);
       //TODO: edit line below with correct way to get item infeo
-      var item = req.body;
+      //item_name, pic_name, price, url, userid
+      var item = [[req.body.name, req.body.image.sizes.IPhonesmall, req.body.price, req.body.clickUrl, req.body.userID]];
+
       models.wishlist.post(item, function(err, results) {
       	if (err) console.log('error in wishlist controller', err);
       });	
@@ -19,6 +22,6 @@ module.exports = {
       	if (err) console.log('error in wishlist controller', err);
       	res.send(results);
       });		  
-    };
+    }
   }	
 }

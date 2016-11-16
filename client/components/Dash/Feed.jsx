@@ -20,18 +20,39 @@ class Feed extends React.Component {
     });
   }
 
-   render() {
-      return (
-        <div>
-          <h1>Your Recommendations</h1>
-          <p>Sort by: <button onClick={this.props.sortPrice}>Price</button> <button onClick={this.props.sortBrand}>Retailer</button> <button onClick={this.props.sortCat}>Category</button></p>
-          {this.props.feed.map((item) =>
+  like(props) {
+    var userID = props.user.id;
+    //{name:"", id:"", ....}
+    //pass "this" and user id to server endpoint to pass into db
+    var item = this;
+    item['userID'] = props.user.id;
+    console.log(item);
+    // item.userID = userID;
+    axios.post('/api/like', item)
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log('Error liking', error);
+      });
+
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Your Recommendations</h1>
+        <p>Sort by: <button onClick={this.props.sortPrice}>Price</button> <button onClick={this.props.sortBrand}>Retailer</button> <button onClick={this.props.sortCat}>Category</button></p>
+        {this.props.feed.map((item) =>
+          <div>
             <FeedItem item={item} key={item.id}/>
-          )}
-          <button onClick={this.props.toggleShow}>Show {this.props.feed.length > 25 ? 'Less' : 'More'}</button>
-        </div>
-      );
-   }
+            <button onClick={this.like.bind(item)(this.props)}>Heart!</button>
+          </div>
+        )}
+        <button onClick={this.props.toggleShow}>Show {this.props.feed.length > 25 ? 'Less' : 'More'}</button>
+      </div>
+    );
+  }
 }
 
 export default Feed;

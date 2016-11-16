@@ -5,6 +5,7 @@ var db = require('./db');
 
 var authController = require('./controllers/auth.js');
 var picController = require('./controllers/pic.js');
+var wishlistController = require('./controllers/wishlist.js');
   
 var server = express();
     
@@ -26,6 +27,8 @@ router.get('/', function(req, res) {
 
 router.post('/api/upload', picController.pictures.post);
 router.post('/api/feed', picController.pictures.getMostRecentImage);
+router.post('/api/like', wishlistController.wishlist.post);
+
 
 router.post('/api/myImages', picController.pictures.getAllImages);
 

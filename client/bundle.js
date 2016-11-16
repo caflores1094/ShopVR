@@ -29244,8 +29244,26 @@
 	      });
 	    }
 	  }, {
+	    key: 'like',
+	    value: function like(props) {
+	      var userID = props.user.id;
+	      //{name:"", id:"", ....}
+	      //pass "this" and user id to server endpoint to pass into db
+	      var item = this;
+	      item['userID'] = props.user.id;
+	      console.log(item);
+	      // item.userID = userID;
+	      _axios2.default.post('/api/like', item).then(function (response) {
+	        console.log(response);
+	      }).catch(function (error) {
+	        console.log('Error liking', error);
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -29277,7 +29295,16 @@
 	          )
 	        ),
 	        this.props.feed.map(function (item) {
-	          return _react2.default.createElement(_FeedItem2.default, { item: item, key: item.id });
+	          return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(_FeedItem2.default, { item: item, key: item.id }),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: _this2.like.bind(item)(_this2.props) },
+	              'Heart!'
+	            )
+	          );
 	        }),
 	        _react2.default.createElement(
 	          'button',
