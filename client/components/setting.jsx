@@ -14,8 +14,9 @@ var dimensions = {
   sideGrassX: 22.5,
   sideGrassZ: 17.5,
   backGrassZ: 42.5,
-  grassMaterial: 'src: url(./lib/grass.jpg); repeat: 50 50',
-  floorMaterial: 'src: url(./lib/floor.jpg); repeat: 25 25',
+  grassMaterial: 'src: url(./lib/grass.jpg); repeat: 50 50;',
+  floorMaterial: 'src: url(./lib/floor.jpg); repeat: 25 25;',
+  fenceMaterial: 'src: url(./lib/fence.jpg); repeat: 20 0.95;',
   glassTile: 'src: url(./lib/glassTile.png); repeat: 3 3;',
   sidefenceLength: 50,
   backFenceLength: 40,
@@ -25,7 +26,6 @@ var dimensions = {
   backWallLength: 30,
   mallMaterial: 'color: #efeee3',
   ceilingMaterial: 'color: #dbd9c7',
-  fenceColor: 'grey',
   entranceSides: 13,
   ceilingWidth: 30,
   ceilingLength: 35,
@@ -63,10 +63,10 @@ class Setting extends React.Component {
             <Entity material={dimensions.grassMaterial} geometry={{primitive: 'plane', height: dimensions.sideGrassesWidth, width: dimensions.sideGrassesLength}} rotation="-90 0 0" position="22.5 0 17.5" static-body/>
             <Entity material={dimensions.grassMaterial} geometry={{primitive: 'plane', height: dimensions.sideGrassesWidth, width: dimensions.sideGrassesLength}} rotation="-90 0 0" position="22.5 0 -17.5" static-body/>
 
-            <Entity material={'color:' + dimensions.fenceColor} geometry={{primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.sidefenceLength}} rotation="0 0 0" position="20 1 -20" static-body/>
-            <Entity material={'color:' + dimensions.fenceColor} geometry={{primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.sidefenceLength}} rotation="0 -180 0" position="20 1 20" static-body/>
-            <Entity material={'color:' + dimensions.fenceColor} geometry={{primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.backFenceLength}} rotation="0 90 0" position="-5 1 0" static-body/>
-            <Entity material={'color:' + dimensions.fenceColor} geometry={{primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.backFenceLength}} rotation="0 -90 0" position="45 1 0" static-body/>
+            <Entity material={dimensions.fenceMaterial} geometry={{primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.sidefenceLength}} rotation="0 0 0" position="20 1 -20" static-body/>
+            <Entity material={dimensions.fenceMaterial} geometry={{primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.sidefenceLength}} rotation="0 -180 0" position="20 1 20" static-body/>
+            <Entity material={dimensions.fenceMaterial} geometry={{primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.backFenceLength}} rotation="0 90 0" position="-5 1 0" static-body/>
+            <Entity material={dimensions.fenceMaterial} geometry={{primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.backFenceLength}} rotation="0 -90 0" position="45 1 0" static-body/>
 
 
             <Entity material= {dimensions.mallMaterial} geometry={{primitive: 'plane', height: dimensions.wallHeight, width: dimensions.sideWallLength}} rotation="0 0 0" position="22.5 2 -15" static-body/>

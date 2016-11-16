@@ -81,7 +81,7 @@ class ClothingMapper extends React.Component {
 
     var newfeed = [];
     for (var i =0; i < 24; i++) {
-      newfeed.push(transformImageUrl(this.props.feed[i]));
+      newfeed.push([ transformImageUrl(this.props.feed[i][0]), this.props.feed[i][1] ]);
     }
 
     this.state={
@@ -90,11 +90,12 @@ class ClothingMapper extends React.Component {
   }
 
   render() {
+    var context = this;
     return (
       <Entity>
         {
-          this.state.feed.map(function(url, i){
-            return <ClothingArticle position={positions[i]} src={url}/>
+          this.state.feed.map(function(arr, i){
+            return <ClothingArticle position={positions[i]} src={arr[0]} size={arr[1]}/>
           })
         }
       </Entity>

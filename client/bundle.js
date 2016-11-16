@@ -28298,7 +28298,7 @@
 	    value: function render() {
 	      var context = this;
 	      var vrFeed = this.props.feed.map(function (clothingObj) {
-	        return clothingObj.image.sizes.IPhoneSmall.url;
+	        return [clothingObj.image.sizes.IPhoneSmall.url, clothingObj.image.sizes.IPhoneSmall.actualHeight / clothingObj.image.sizes.IPhoneSmall.actualWidth];
 	      });
 
 	      return _react2.default.createElement(
@@ -28436,8 +28436,9 @@
 	  sideGrassX: 22.5,
 	  sideGrassZ: 17.5,
 	  backGrassZ: 42.5,
-	  grassMaterial: 'src: url(./lib/grass.jpg); repeat: 50 50',
-	  floorMaterial: 'src: url(./lib/floor.jpg); repeat: 25 25',
+	  grassMaterial: 'src: url(./lib/grass.jpg); repeat: 50 50;',
+	  floorMaterial: 'src: url(./lib/floor.jpg); repeat: 25 25;',
+	  fenceMaterial: 'src: url(./lib/fence.jpg); repeat: 20 0.95;',
 	  glassTile: 'src: url(./lib/glassTile.png); repeat: 3 3;',
 	  sidefenceLength: 50,
 	  backFenceLength: 40,
@@ -28447,7 +28448,6 @@
 	  backWallLength: 30,
 	  mallMaterial: 'color: #efeee3',
 	  ceilingMaterial: 'color: #dbd9c7',
-	  fenceColor: 'grey',
 	  entranceSides: 13,
 	  ceilingWidth: 30,
 	  ceilingLength: 35,
@@ -28493,10 +28493,10 @@
 	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.grassMaterial, geometry: { primitive: 'plane', height: dimensions.sideGrassesWidth, width: dimensions.fullWidth }, rotation: '-90 90 0', position: dimensions.backGrassZ + "0 0", 'static-body': true }),
 	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.grassMaterial, geometry: { primitive: 'plane', height: dimensions.sideGrassesWidth, width: dimensions.sideGrassesLength }, rotation: '-90 0 0', position: '22.5 0 17.5', 'static-body': true }),
 	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.grassMaterial, geometry: { primitive: 'plane', height: dimensions.sideGrassesWidth, width: dimensions.sideGrassesLength }, rotation: '-90 0 0', position: '22.5 0 -17.5', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: 'color:' + dimensions.fenceColor, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.sidefenceLength }, rotation: '0 0 0', position: '20 1 -20', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: 'color:' + dimensions.fenceColor, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.sidefenceLength }, rotation: '0 -180 0', position: '20 1 20', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: 'color:' + dimensions.fenceColor, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.backFenceLength }, rotation: '0 90 0', position: '-5 1 0', 'static-body': true }),
-	          _react2.default.createElement(_aframeReact.Entity, { material: 'color:' + dimensions.fenceColor, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.backFenceLength }, rotation: '0 -90 0', position: '45 1 0', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.fenceMaterial, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.sidefenceLength }, rotation: '0 0 0', position: '20 1 -20', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.fenceMaterial, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.sidefenceLength }, rotation: '0 -180 0', position: '20 1 20', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.fenceMaterial, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.backFenceLength }, rotation: '0 90 0', position: '-5 1 0', 'static-body': true }),
+	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.fenceMaterial, geometry: { primitive: 'plane', height: dimensions.fenceHeight, width: dimensions.backFenceLength }, rotation: '0 -90 0', position: '45 1 0', 'static-body': true }),
 	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.sideWallLength }, rotation: '0 0 0', position: '22.5 2 -15', 'static-body': true }),
 	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.sideWallLength }, rotation: '0 -180 0', position: '22.5 2 -15', 'static-body': true }),
 	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.mallMaterial, geometry: { primitive: 'plane', height: dimensions.wallHeight, width: dimensions.sideWallLength }, rotation: '0 0 0', position: '22.5 2 15', 'static-body': true }),
@@ -29009,7 +29009,7 @@
 
 	    var newfeed = [];
 	    for (var i = 0; i < 24; i++) {
-	      newfeed.push(transformImageUrl(_this.props.feed[i]));
+	      newfeed.push([transformImageUrl(_this.props.feed[i][0]), _this.props.feed[i][1]]);
 	    }
 
 	    _this.state = {
@@ -29021,11 +29021,12 @@
 	  _createClass(ClothingMapper, [{
 	    key: 'render',
 	    value: function render() {
+	      var context = this;
 	      return _react2.default.createElement(
 	        _aframeReact.Entity,
 	        null,
-	        this.state.feed.map(function (url, i) {
-	          return _react2.default.createElement(_clothingArticle2.default, { position: positions[i], src: url });
+	        this.state.feed.map(function (arr, i) {
+	          return _react2.default.createElement(_clothingArticle2.default, { position: positions[i], src: arr[0], size: arr[1] });
 	        })
 	      );
 	    }
@@ -29074,7 +29075,8 @@
 	  _createClass(ClothingArticle, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(_aframeReact.Entity, { material: { src: 'url(' + this.props.src + ')' }, geometry: { primitive: 'box', depth: .1, height: 3, width: 1.25 }, rotation: '0 0 0', position: this.props.position, 'look-at': '[camera]', 'static-body': true });
+	      console.log(this.props.size);
+	      return _react2.default.createElement(_aframeReact.Entity, { material: { src: 'url(' + this.props.src + ')' }, geometry: { primitive: 'box', depth: .1, height: this.props.size * 1.25, width: 1.25 }, rotation: '0 0 0', position: this.props.position, 'look-at': '[camera]', 'static-body': true });
 	    }
 	  }]);
 
