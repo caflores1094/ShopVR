@@ -34,6 +34,14 @@ module.exports = {
         }
       });
     },
+
+    update: function(user, callback) {
+      var condition = { email: user.email };
+      var queryStr = 'UPDATE users SET ? WHERE ?';
+      db.query(queryStr, [user, condition], function(err, results) {
+        callback(err, results);
+      });
+    }
   },
 
   pictures: {

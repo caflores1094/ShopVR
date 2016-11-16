@@ -14,6 +14,20 @@ module.exports = {
         if (err) callback(err, null);
         else callback(null, results);
       });
+    },
+    update: function(req, callback) {
+      callback(null, null);
+      var params = {
+        name: req.name, 
+        email: req.email, 
+        gender: req.gender,
+        min_price: req.min_price, 
+        max_price: req.max_price
+      };
+      models.users.update(params, function(err, results) {
+        if (err) callback(err, null);
+        else callback(null, results);
+      });
     }
   }
 };
