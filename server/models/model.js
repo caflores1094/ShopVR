@@ -108,7 +108,7 @@ module.exports = {
     },
     getAll: function(userID, callback) {
       var queryStr = 'Select * from wishlist where wishlist.userid = ?';
-      db.query(quertStr, [userID], function(err, results) {
+      db.query(queryStr, [userID], function(err, results) {
         if (err) console.log('error getting user wishlist', err);
         callback(null, results);
       })
