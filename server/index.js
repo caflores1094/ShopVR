@@ -5,6 +5,8 @@ var db = require('./db');
 
 var authController = require('./controllers/auth.js');
 var picController = require('./controllers/pic.js');
+var userController = require('./controllers/index.js');
+
   
 var server = express();
     
@@ -23,6 +25,8 @@ router.post('/login/facebook', authController.login);
 router.get('/', function(req, res) {
   res.sendFile('/client/index.html', {root: __dirname + '/..'});
 });
+
+router.post('/update/profile', userController.users.update);
 
 router.post('/api/upload', picController.pictures.post);
 router.post('/api/feed', picController.pictures.getMostRecentImage);

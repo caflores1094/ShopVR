@@ -14,6 +14,10 @@ module.exports = {
         if (err) callback(err, null);
         else callback(null, results);
       });
+    },
+    update: function(req, callback) {
+      console.log('update req', req);
+      callback(null, null);
     }
   }
 };
