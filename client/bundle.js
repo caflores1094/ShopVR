@@ -26735,6 +26735,13 @@
 	          _react2.default.createElement(
 	            'button',
 	            { onClick: function onClick() {
+	                return _reactRouter.browserHistory.push('/');
+	              } },
+	            'Feed'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: function onClick() {
 	                return _reactRouter.browserHistory.push('profile');
 	              } },
 	            'Profile'
