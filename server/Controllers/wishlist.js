@@ -8,7 +8,7 @@ module.exports = {
       console.log('req userid', req.body.userID);
       //TODO: edit line below with correct way to get item infeo
       //item_name, pic_name, price, url, userid
-      var item = [[req.body.name, req.body.image.sizes.IPhonesmall, req.body.price, req.body.clickUrl, req.body.userID]];
+      var item = [[req.body.name, req.body.image.sizes.IPhoneSmall.url, req.body.price, req.body.clickUrl, req.body.userID]];
 
       models.wishlist.post(item, function(err, results) {
       	if (err) console.log('error in wishlist controller', err);

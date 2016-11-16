@@ -20,23 +20,7 @@ class Feed extends React.Component {
     });
   }
 
-  like(props) {
-    var userID = props.user.id;
-    //{name:"", id:"", ....}
-    //pass "this" and user id to server endpoint to pass into db
-    var item = this;
-    item['userID'] = props.user.id;
-    console.log(item);
-    // item.userID = userID;
-    axios.post('/api/like', item)
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log('Error liking', error);
-      });
 
-  }
 
   render() {
     return (
@@ -45,8 +29,7 @@ class Feed extends React.Component {
         <p>Sort by: <button onClick={this.props.sortPrice}>Price</button> <button onClick={this.props.sortBrand}>Retailer</button> <button onClick={this.props.sortCat}>Category</button></p>
         {this.props.feed.map((item) =>
           <div>
-            <FeedItem item={item} key={item.id}/>
-            <button onClick={this.like.bind(item)(this.props)}>Heart!</button>
+            <FeedItem item={item} key={item.id} user={this.props.user}/>
           </div>
         )}
         <button onClick={this.props.toggleShow}>Show {this.props.feed.length > 25 ? 'Less' : 'More'}</button>

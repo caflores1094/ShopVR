@@ -29244,22 +29244,6 @@
 	      });
 	    }
 	  }, {
-	    key: 'like',
-	    value: function like(props) {
-	      var userID = props.user.id;
-	      //{name:"", id:"", ....}
-	      //pass "this" and user id to server endpoint to pass into db
-	      var item = this;
-	      item['userID'] = props.user.id;
-	      console.log(item);
-	      // item.userID = userID;
-	      _axios2.default.post('/api/like', item).then(function (response) {
-	        console.log(response);
-	      }).catch(function (error) {
-	        console.log('Error liking', error);
-	      });
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
@@ -29298,12 +29282,7 @@
 	          return _react2.default.createElement(
 	            'div',
 	            null,
-	            _react2.default.createElement(_FeedItem2.default, { item: item, key: item.id }),
-	            _react2.default.createElement(
-	              'button',
-	              { onClick: _this2.like.bind(item)(_this2.props) },
-	              'Heart!'
-	            )
+	            _react2.default.createElement(_FeedItem2.default, { item: item, key: item.id, user: _this2.props.user })
 	          );
 	        }),
 	        _react2.default.createElement(
@@ -29328,7 +29307,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	   value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -29336,6 +29315,10 @@
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _axios = __webpack_require__(229);
+
+	var _axios2 = _interopRequireDefault(_axios);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29346,52 +29329,72 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var FeedItem = function (_React$Component) {
-	   _inherits(FeedItem, _React$Component);
+	  _inherits(FeedItem, _React$Component);
 
-	   function FeedItem(props) {
-	      _classCallCheck(this, FeedItem);
+	  function FeedItem(props) {
+	    _classCallCheck(this, FeedItem);
 
-	      return _possibleConstructorReturn(this, (FeedItem.__proto__ || Object.getPrototypeOf(FeedItem)).call(this, props));
-	   }
+	    return _possibleConstructorReturn(this, (FeedItem.__proto__ || Object.getPrototypeOf(FeedItem)).call(this, props));
+	  }
 
-	   _createClass(FeedItem, [{
-	      key: 'render',
-	      value: function render() {
-	         return _react2.default.createElement(
-	            'div',
+	  _createClass(FeedItem, [{
+	    key: 'like',
+	    value: function like() {
+	      console.log(this, 'this in like');
+	      //{name:"", id:"", ....}
+	      //pass "this" and user id to server endpoint to pass into db
+	      var item = this.props.item;
+	      item['userID'] = this.props.user.id;
+	      // item.userID = userID;
+	      _axios2.default.post('/api/like', item).then(function (response) {
+	        console.log(response);
+	      }).catch(function (error) {
+	        console.log('Error liking', error);
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'a',
+	          { href: this.props.item.clickUrl },
+	          _react2.default.createElement('img', { src: this.props.item.image.sizes.IPhoneSmall.url }),
+	          _react2.default.createElement(
+	            'p',
 	            null,
-	            _react2.default.createElement(
-	               'a',
-	               { href: this.props.item.clickUrl },
-	               _react2.default.createElement('img', { src: this.props.item.image.sizes.IPhoneSmall.url }),
-	               _react2.default.createElement(
-	                  'p',
-	                  null,
-	                  this.props.item.name
-	               )
-	            ),
-	            _react2.default.createElement(
-	               'p',
-	               null,
-	               this.props.item.currency,
-	               ' ',
-	               this.props.item.price
-	            ),
-	            _react2.default.createElement(
-	               'p',
-	               null,
-	               this.props.item.categories[0].name
-	            ),
-	            _react2.default.createElement(
-	               'p',
-	               null,
-	               this.props.item.retailer.name
-	            )
-	         );
-	      }
-	   }]);
+	            this.props.item.name
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.like.bind(this) },
+	          'Heart!'
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.item.currency,
+	          ' ',
+	          this.props.item.price
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.item.categories[0].name
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.item.retailer.name
+	        )
+	      );
+	    }
+	  }]);
 
-	   return FeedItem;
+	  return FeedItem;
 	}(_react2.default.Component);
 
 	exports.default = FeedItem;
