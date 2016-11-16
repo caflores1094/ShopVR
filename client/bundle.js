@@ -28298,7 +28298,7 @@
 	    value: function render() {
 	      var context = this;
 	      var vrFeed = this.props.feed.map(function (clothingObj) {
-	        return clothingObj.image.sizes.IPhoneSmall.url;
+	        return [clothingObj.image.sizes.IPhoneSmall.url, clothingObj.image.sizes.IPhoneSmall.actualHeight / clothingObj.image.sizes.IPhoneSmall.actualWidth];
 	      });
 
 	      return _react2.default.createElement(
@@ -29009,7 +29009,7 @@
 
 	    var newfeed = [];
 	    for (var i = 0; i < 24; i++) {
-	      newfeed.push(transformImageUrl(_this.props.feed[i]));
+	      newfeed.push([transformImageUrl(_this.props.feed[i][0]), _this.props.feed[i][1]]);
 	    }
 
 	    _this.state = {
@@ -29021,11 +29021,12 @@
 	  _createClass(ClothingMapper, [{
 	    key: 'render',
 	    value: function render() {
+	      var context = this;
 	      return _react2.default.createElement(
 	        _aframeReact.Entity,
 	        null,
-	        this.state.feed.map(function (url, i) {
-	          return _react2.default.createElement(_clothingArticle2.default, { position: positions[i], src: url });
+	        this.state.feed.map(function (arr, i) {
+	          return _react2.default.createElement(_clothingArticle2.default, { position: positions[i], src: arr[0], size: arr[1] });
 	        })
 	      );
 	    }
@@ -29074,7 +29075,8 @@
 	  _createClass(ClothingArticle, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(_aframeReact.Entity, { material: { src: 'url(' + this.props.src + ')' }, geometry: { primitive: 'box', depth: .1, height: 3, width: 1.25 }, rotation: '0 0 0', position: this.props.position, 'look-at': '[camera]', 'static-body': true });
+	      console.log(this.props.size);
+	      return _react2.default.createElement(_aframeReact.Entity, { material: { src: 'url(' + this.props.src + ')' }, geometry: { primitive: 'box', depth: .1, height: this.props.size * 1.25, width: 1.25 }, rotation: '0 0 0', position: this.props.position, 'look-at': '[camera]', 'static-body': true });
 	    }
 	  }]);
 
