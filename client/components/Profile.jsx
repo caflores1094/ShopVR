@@ -24,9 +24,8 @@ class Profile extends React.Component {
       context.setState({ myImages: result.data})     
     });
   }
-  onUpdate(e) {
-    e.preventDefault();
-  }
+
+
 
   componentDidMount(){
     this.getMyImages();
