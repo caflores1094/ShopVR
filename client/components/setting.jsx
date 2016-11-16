@@ -14,15 +14,17 @@ var dimensions = {
   sideGrassX: 22.5,
   sideGrassZ: 17.5,
   backGrassZ: 42.5,
-  grassMaterial: 'src: url(./lib/grass.jpg); repeat: 25 25',
+  grassMaterial: 'src: url(./lib/grass.jpg); repeat: 50 50',
+  floorMaterial: 'src: url(./lib/floor.jpg); repeat: 25 25',
+  glassTile: 'src: url(./lib/glassTile.png); repeat: 3 3;',
   sidefenceLength: 50,
   backFenceLength: 40,
   fenceHeight: 2,
   wallHeight: 4,
   sideWallLength: 35,
   backWallLength: 30,
-  mallMaterial: 'color: grey',
-  ceilingMaterial: 'color: grey',
+  mallMaterial: 'color: #efeee3',
+  ceilingMaterial: 'color: #dbd9c7',
   fenceColor: 'grey',
   entranceSides: 13,
   ceilingWidth: 30,
@@ -36,6 +38,7 @@ class Setting extends React.Component {
   constructor(props){
     super(props);
   }
+            // <Entity material={dimensions.ceilingMaterial} geometry={{primitive: 'box', depth: '.5', height: dimensions.ceilingLength, width: dimensions.ceilingWidth}} rotation="90 90 0" position="22.5 4.25 0" static-body/>
   render() {
       return(
         <div>
@@ -80,8 +83,7 @@ class Setting extends React.Component {
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: dimensions.wallHeight, width: dimensions.entranceSides}} rotation="0 90 0" position="5 2 -8.5" static-body/>
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: dimensions.wallHeight, width: dimensions.entranceSides}} rotation="0 90 0" position="5 2 8.5" static-body/>
 
-            <Entity material={dimensions.ceilingMaterial} geometry={{primitive: 'box', depth: '.5', height: dimensions.ceilingLength, width: dimensions.ceilingWidth}} rotation="90 90 0" position="22.5 4.25 0" static-body/>
-            <Entity material={'color: grey'} geometry={{primitive: 'plane', height: dimensions.ceilingLength, width: dimensions.ceilingWidth}} rotation="-90 90 0" position="22.5 0 0" static-body/>
+            <Entity material={dimensions.floorMaterial} geometry={{primitive: 'plane', height: dimensions.ceilingLength, width: dimensions.ceilingWidth}} rotation="-90 90 0" position="22.5 0 0" static-body/>
 
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 90 0" position="17 2 10" static-body/>
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 -90 0" position="17 2 10" static-body/>
@@ -91,6 +93,7 @@ class Setting extends React.Component {
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 -90 0" position="27 2 -10" static-body/>
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 90 0" position="27 2 10" static-body/>
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'plane', height: 4, width: 10}} rotation="0 -90 0" position="27 2 10" static-body/>
+
 
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1', height:'4', width:'1'}} position="5.5 2 2.5" static-body/>
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1', height:'4', width:'1'}} position="5.5 2 -2.5" static-body/>
@@ -102,6 +105,8 @@ class Setting extends React.Component {
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1', height:'4', width:'1'}} position="27 2 -5" static-body/>
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1', height:'4', width:'1'}} position="16 2 -5" static-body/>
 
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1', height:'21.5', width:'1.5'}} rotation="0 0 90" position="16.75 4.75 5" static-body/>
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1', height:'21.5', width:'1.5'}} rotation="0 0 90" position="16.75 4.75 -5" static-body/>
 
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', radius: '.5', depth: '1', height:'4', width:'1'}} position="27 2 -2.5" static-body/>
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', radius: '.5', depth: '1', height:'4', width:'1'}} position="27 2 2.5" static-body/>
@@ -125,6 +130,14 @@ class Setting extends React.Component {
             <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: dimensions.glassHeight, width: 3.8}} rotation="0 0 0" position="18.9 1.5 5" static-body/>
             <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: dimensions.glassHeight, width: 3.8}} rotation="0 0 0" position="25.1 1.5 5" static-body/>
             <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: 1, width: 10}} rotation="0 0 0" position="22 3.5 5" static-body/>
+
+            <Entity material={'color: #bcd2f4; opacity: 0.6; side: double;'} geometry={{primitive: 'cylinder',  openEnded: true, radius: '10', height: 35, segmentsHeight: 18, segmentsRadial: 36, thetaLength: 180}} rotation='0 0 90' position='22.5 5.5 0' />
+
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1.5', height:'35', width:'5'}} rotation="90 90 0" position="22.5 4.75 -12.5" static-body/> 
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1.5', height:'35', width:'5'}} rotation="90 90 0" position="22.5 4.75 12.5" static-body/>
+
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1.5', height:'30', width:'1'}} rotation="90 0 0" position="5.5 4.75 0" static-body/>            
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1.5', height:'30', width:'2'}} rotation="90 0 0" position="39 4.75 0" static-body/>            
 
 
             <CashierCounter position={["11 .8 12.7", "11 1.625 12.4", "11 1.7 12.4", "11 2.1 12.4"]}/>
