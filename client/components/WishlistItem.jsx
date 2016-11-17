@@ -26,7 +26,7 @@ class WishlistItem extends React.Component {
 
   render() {
     return (
-      <div key={this.props.picObj.pic_name}>
+      <div>
         <a href={this.props.picObj.url}>
         <img src={this.props.picObj.pic_name} />
         <p>{this.props.picObj.item_name}</p>

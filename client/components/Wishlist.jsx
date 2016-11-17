@@ -12,7 +12,7 @@ class Wishlist extends React.Component {
         <div>
           {
             this.props.list.map((picObj) => (
-                <WishlistItem getWishList={context.props.getWishList} picObj={picObj}/>
+                <WishlistItem key={picObj.pic_name} getWishList={context.props.getWishList} picObj={picObj}/>
               )
             )
           }

@@ -28388,7 +28388,6 @@
 	    value: function render() {
 	      var _this2 = this;
 
-	      console.log(this.state.roomid);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -28500,8 +28499,6 @@
 
 	    return _possibleConstructorReturn(this, (Setting.__proto__ || Object.getPrototypeOf(Setting)).call(this, props));
 	  }
-	  // <Entity material={dimensions.ceilingMaterial} geometry={{primitive: 'box', depth: '.5', height: dimensions.ceilingLength, width: dimensions.ceilingWidth}} rotation="90 90 0" position="22.5 4.25 0" static-body/>
-
 
 	  _createClass(Setting, [{
 	    key: 'render',
@@ -28994,39 +28991,6 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	// var extras = require('aframe-extras');
-	// extras.registerAll();
-
-	// var imageArr = [
-	//   'url(./lib/testImages/navyDress.jpg)',
-	//   'url(./lib/testImages/purpleDress.jpg)',
-	//   'url(./lib/testImages/blackDress.jpg)',
-	//   'url(./lib/testImages/blackCoat.jpg)',
-	//   'url(./lib/testImages/blackCoat2.jpg)',
-	//   'url(./lib/testImages/tanCoat.jpg)',
-
-	//   'url(./lib/testImages/navyDress.jpg)',
-	//   'url(./lib/testImages/purpleDress.jpg)',
-	//   'url(./lib/testImages/blackDress.jpg)',
-	//   'url(./lib/testImages/blackCoat.jpg)',
-	//   'url(./lib/testImages/blackCoat2.jpg)',
-	//   'url(./lib/testImages/tanCoat.jpg)',
-
-	//   'url(./lib/testImages/navyDress.jpg)',
-	//   'url(./lib/testImages/purpleDress.jpg)',
-	//   'url(./lib/testImages/blackDress.jpg)',
-	//   'url(./lib/testImages/blackCoat.jpg)',
-	//   'url(./lib/testImages/blackCoat2.jpg)',
-	//   'url(./lib/testImages/tanCoat.jpg)',
-
-	//   'url(./lib/testImages/navyDress.jpg)',
-	//   'url(./lib/testImages/purpleDress.jpg)',
-	//   'url(./lib/testImages/blackDress.jpg)',
-	//   'url(./lib/testImages/blackCoat.jpg)',
-	//   'url(./lib/testImages/blackCoat2.jpg)',
-	//   'url(./lib/testImages/tanCoat.jpg)'
-	// ]
-
 	var positions = ['7 1.5 6', '7 1.5 9', '7 1.5 12', '16 1.5 12', '16 1.5 9', '16 1.5 6', '7 1.5 -6', '7 1.5 -9', '7 1.5 -12', '15 1.5 -12', '15 1.5 -9', '15 1.5 -6', '18 1.5 -6', '18 1.5 -9', '18 1.5 -12', '25 1.5 -12', '25 1.5 -9', '25 1.5 -6', '18 1.5 6', '18 1.5 9', '18 1.5 12', '25 1.5 12', '25 1.5 9', '25 1.5 6'];
 
 	var transformImageUrl = function transformImageUrl(url) {
@@ -29230,13 +29194,25 @@
 	    var _this = _possibleConstructorReturn(this, (Dashboard.__proto__ || Object.getPrototypeOf(Dashboard)).call(this, props));
 
 	    _this.state = {
-	      imageUpload: "displayNone",
-	      search: "displayNone"
+	      imageUpload: "none",
+	      search: "none"
 	    };
 	    return _this;
 	  }
 
 	  _createClass(Dashboard, [{
+	    key: 'showTool',
+	    value: function showTool(name, e) {
+	      var toShow = {};
+	      if (this.state[name] === "none") {
+	        toShow[name] = "block";
+	        this.setState(toShow);
+	      } else {
+	        toShow[name] = "none";
+	        this.setState(toShow);
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -29253,23 +29229,35 @@
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'dashboard-upload' },
+	          { className: 'dashboard-tools' },
 	          _react2.default.createElement(
-	            'button',
-	            { className: 'upload-button' },
-	            'Upload Image'
+	            'div',
+	            { className: 'dashboard-upload' },
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.showTool.bind(this, 'imageUpload'), className: 'upload-button' },
+	              'Upload Image'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { name: 'imageUpload', className: 'image-upload', style: { display: this.state.imageUpload } },
+	              _react2.default.createElement(_ImageUpload2.default, { user: this.props.user, setFeed: this.props.setFeed })
+	            )
 	          ),
-	          _react2.default.createElement(_ImageUpload2.default, { style: { display: this.state.imageUpload }, user: this.props.user, setFeed: this.props.setFeed })
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'dashboard-search' },
 	          _react2.default.createElement(
-	            'button',
-	            { className: 'search-button' },
-	            'Search'
-	          ),
-	          _react2.default.createElement(_QueryBox2.default, { style: { display: this.state.search }, user: this.props.user, setFeed: this.props.setFeed })
+	            'div',
+	            { className: 'dashboard-search' },
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.showTool.bind(this, 'search'), className: 'search-button' },
+	              'Search'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { name: 'search', className: 'query-box', style: { display: this.state.search } },
+	              _react2.default.createElement(_QueryBox2.default, { style: { display: this.state.search }, user: this.props.user, setFeed: this.props.setFeed })
+	            )
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -29335,7 +29323,6 @@
 	      var context = this;
 	      var gender = this.props.user.gender === 'male' ? "men" : "women";
 	      _axios2.default.get("http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&fts=" + gender + "&limit=50").then(function (response) {
-	        console.log(response);
 	        context.props.setFeed(response.data.products);
 	      }).catch(function (error) {
 	        console.log('Error in sending ajax data ', error);
@@ -29376,13 +29363,13 @@
 	            'Category'
 	          )
 	        ),
-	        this.props.feed.map(function (item) {
-	          return _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(_FeedItem2.default, { item: item, key: item.id, user: _this2.props.user })
-	          );
-	        }),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          this.props.feed.map(function (item) {
+	            return _react2.default.createElement(_FeedItem2.default, { item: item, key: item.id, user: _this2.props.user });
+	          })
+	        ),
 	        _react2.default.createElement(
 	          'button',
 	          { onClick: this.props.toggleShow },
@@ -29405,7 +29392,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	   value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -29427,72 +29414,69 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var FeedItem = function (_React$Component) {
-	  _inherits(FeedItem, _React$Component);
+	   _inherits(FeedItem, _React$Component);
 
-	  function FeedItem(props) {
-	    _classCallCheck(this, FeedItem);
+	   function FeedItem(props) {
+	      _classCallCheck(this, FeedItem);
 
-	    return _possibleConstructorReturn(this, (FeedItem.__proto__ || Object.getPrototypeOf(FeedItem)).call(this, props));
-	  }
+	      return _possibleConstructorReturn(this, (FeedItem.__proto__ || Object.getPrototypeOf(FeedItem)).call(this, props));
+	   }
 
-	  _createClass(FeedItem, [{
-	    key: 'like',
-	    value: function like() {
-	      console.log(this, 'this in like');
-	      //{name:"", id:"", ....}
-	      //pass "this" and user id to server endpoint to pass into db
-	      var item = this.props.item;
-	      item['userID'] = this.props.user.id;
-	      // item.userID = userID;
-	      _axios2.default.post('/api/like', item).then(function (response) {
-	        console.log(response);
-	      }).catch(function (error) {
-	        console.log('Error liking', error);
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'a',
-	          { href: this.props.item.clickUrl },
-	          _react2.default.createElement('img', { src: this.props.item.image.sizes.IPhoneSmall.url }),
-	          _react2.default.createElement(
-	            'p',
+	   _createClass(FeedItem, [{
+	      key: 'like',
+	      value: function like() {
+	         var item = this.props.item;
+	         item['userID'] = this.props.user.id;
+	         // item.userID = userID;
+	         _axios2.default.post('/api/like', item).then(function (response) {
+	            console.log(response);
+	         }).catch(function (error) {
+	            console.log('Error liking', error);
+	         });
+	      }
+	   }, {
+	      key: 'render',
+	      value: function render() {
+	         return _react2.default.createElement(
+	            'div',
 	            null,
-	            this.props.item.name
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: this.like.bind(this) },
-	          'Heart!'
-	        ),
-	        _react2.default.createElement(
-	          'p',
-	          null,
-	          this.props.item.currency,
-	          ' ',
-	          this.props.item.price
-	        ),
-	        _react2.default.createElement(
-	          'p',
-	          null,
-	          this.props.item.categories[0].name
-	        ),
-	        _react2.default.createElement(
-	          'p',
-	          null,
-	          this.props.item.retailer.name
-	        )
-	      );
-	    }
-	  }]);
+	            _react2.default.createElement(
+	               'a',
+	               { href: this.props.item.clickUrl },
+	               _react2.default.createElement('img', { src: this.props.item.image.sizes.IPhoneSmall.url }),
+	               _react2.default.createElement(
+	                  'p',
+	                  null,
+	                  this.props.item.name
+	               )
+	            ),
+	            _react2.default.createElement(
+	               'button',
+	               { onClick: this.like.bind(this) },
+	               'Heart!'
+	            ),
+	            _react2.default.createElement(
+	               'p',
+	               null,
+	               this.props.item.currency,
+	               ' ',
+	               this.props.item.price
+	            ),
+	            _react2.default.createElement(
+	               'p',
+	               null,
+	               this.props.item.categories[0].name
+	            ),
+	            _react2.default.createElement(
+	               'p',
+	               null,
+	               this.props.item.retailer.name
+	            )
+	         );
+	      }
+	   }]);
 
-	  return FeedItem;
+	   return FeedItem;
 	}(_react2.default.Component);
 
 	exports.default = FeedItem;
@@ -29753,7 +29737,6 @@
 
 	      var context = this;
 	      _axios2.default.post('/api/upload', obj).then(function (result) {
-	        console.log(result);
 	        if (result.data === 'duplicate image') {
 	          alert('Image Name already exists!');
 	        } else {
@@ -29806,7 +29789,6 @@
 	        var productURL = 'http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&filters=Retailer&limit=25&fts=' + searchQuery;
 	        var getProducts = function getProducts(url, callback) {
 	          _axios2.default.get(url).then(function (result) {
-	            console.log(result);
 	            callback(null, result);
 	          });
 	        };
@@ -30138,7 +30120,7 @@
 	        'div',
 	        null,
 	        this.props.list.map(function (picObj) {
-	          return _react2.default.createElement(_WishlistItem2.default, { getWishList: context.props.getWishList, picObj: picObj });
+	          return _react2.default.createElement(_WishlistItem2.default, { key: picObj.pic_name, getWishList: context.props.getWishList, picObj: picObj });
 	        })
 	      );
 	    }
@@ -30209,7 +30191,7 @@
 
 	      return _react2.default.createElement(
 	        'div',
-	        { key: this.props.picObj.pic_name },
+	        null,
 	        _react2.default.createElement(
 	          'a',
 	          { href: this.props.picObj.url },

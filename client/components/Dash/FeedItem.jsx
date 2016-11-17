@@ -8,9 +8,6 @@ class FeedItem extends React.Component {
   }
 
   like() {
-    console.log(this, 'this in like');
-    //{name:"", id:"", ....}
-    //pass "this" and user id to server endpoint to pass into db
     var item = this.props.item;
     item['userID'] = this.props.user.id;
     // item.userID = userID;
