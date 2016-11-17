@@ -23,13 +23,15 @@ class FeedItem extends React.Component {
       return (
         <div className="feed-item">
           <img className="feed-item-pic" src={this.props.item.image.sizes.IPhoneSmall.url} />
+          <br />
           <div className="feed-item-info">
-            <p>{this.props.item.name}</p>
-            <p>{this.props.item.currency} {this.props.item.price}</p>
-            <p>{this.props.item.categories[0].name}</p>
-            <p>{this.props.item.retailer.name}</p>
-            <a href={this.props.item.clickUrl}>View</a>
-            <button onClick={this.like.bind(this)}>Heart!</button>
+            <p className="item-name">{this.props.item.name}</p>
+            <p className="item-price">${this.props.item.price}</p>
+            <p className="item-category">{this.props.item.categories[0].name}</p>
+            <p className="item-retailer">{this.props.item.retailer.name}</p>
+            <a className="item-link" href={this.props.item.clickUrl}>View</a>
+            <br />
+            <button className="item-heart" onClick={this.like.bind(this)}>❤</button>
           </div>
         </div>
       );
