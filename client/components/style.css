@@ -162,9 +162,51 @@ table {
   opacity: 0.6;
 }
 
+
 .landing-border {
+  background-color: #A89B9D;
+  height: 5em;
+  width: auto;
+}
+.landing {
   margin-bottom: 2%;
   background-color: #A89B9D;
-  height: 3em;
+  height: 28em;
   width: auto;
+}
+
+.landing-box {
+  width: 25.8%;
+  display: inline-block;
+  border: 0.4em solid #F7EDF0;
+  margin-left: 3.2%;
+  margin-right: 3.2%;
+  height: 60%;
+  font-weight: bolder;
+}
+
+.marketing-title {
+  color: #F7EDF0;
+  width: 90%;
+  height: 90%;
+  display: inline-block;
+  margin: 7%;
+  font-family: 'Noto Serif', serif;
+}
+
+.landing-signup {
+  height: 10%;
+  width: 15%;
+  font-family: 'Noto Serif', serif;
+  margin-left: 42.5%;
+  overflow: none;
+  display: inline-block;
+  margin-top: 7%;
+  vertical-align: center;
+  font-size: 1.3em;
+  background-color: #3B383D;
+  color: #F7EDF0;
+  outline: none;
+  border-radius: 6%;
+  border: none;
 }

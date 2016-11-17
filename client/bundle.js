@@ -26577,24 +26577,40 @@
 	          _react2.default.createElement('div', { className: 'landing-hero' }),
 	          _react2.default.createElement('div', { className: 'landing-border' }),
 	          _react2.default.createElement(
-	            'h1',
-	            null,
-	            'Why use our app?'
-	          ),
-	          _react2.default.createElement(
-	            'h3',
-	            null,
-	            'Enter Your Preferences'
-	          ),
-	          _react2.default.createElement(
-	            'h3',
-	            null,
-	            'Browse Your Recommendations'
-	          ),
-	          _react2.default.createElement(
-	            'h3',
-	            null,
-	            'Shop in Virtual Reality (w/ Friends)'
+	            'div',
+	            { className: 'landing' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'landing-box' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'marketing-title' },
+	                'Tell us about your style'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'landing-box' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'marketing-title' },
+	                'Browse your recommendations'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'landing-box' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'marketing-title' },
+	                'Shop with friends in virtual reality'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'landing-signup' },
+	              'Sign me up!'
+	            )
 	          )
 	        );
 	      }
