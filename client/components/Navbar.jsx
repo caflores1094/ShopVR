@@ -38,6 +38,7 @@ class NavBar extends React.Component {
 
       axios.post('/login/facebook', response)
       .then(function (response) {
+      console.log(response);
         context.props.setUser(response.data[0]);
       })
       .catch(function (error) {
@@ -86,7 +87,7 @@ class NavBar extends React.Component {
 
 
   render() {
-    if (this.props.user.hasOwnProperty('name')) {
+    if (this.props.user.hasOwnProperty('name') && window.location.pathname !== '/vr') {
       return (
         <div className="header">
            <div className="navbar">Shop
@@ -98,6 +99,12 @@ class NavBar extends React.Component {
              <button className="navbar-button" onClick={this.logout.bind(this)}>Logout</button>
            </div>
         </div>
+      );
+    } else if (this.props.user.hasOwnProperty('name') && window.location.pathname === '/vr') {
+      return (
+         <div>
+           <button onClick={this.logout.bind(this)}>Log Out</button>
+         </div>
       );
     } else {
       return (
