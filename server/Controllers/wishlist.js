@@ -17,11 +17,20 @@ module.exports = {
     // //get all wishlist items associated with a user
     getAll: function(req, res) {
       //TODO: edit line right below with correct path to user
-      var user = req.body;
-      models.wishlist.getAll(user, function(err, results) {
+      var userID = req.body.userID;
+      models.wishlist.getAll(userID, function(err, results) {
       	if (err) console.log('error in wishlist controller', err);
       	res.send(results);
       });		  
+    },
+
+    removeItem: function(req, res){
+      var userID = req.body.userID;  
+      var itemName = req.body.itemName;
+      models.wishlist.removeItem(userID, itemName, function(err, results) {
+        if (err) console.log('error in wishlist controller', err);
+        res.sendStatus(202);
+      });     
     }
   }	
 }

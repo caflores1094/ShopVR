@@ -108,9 +108,17 @@ module.exports = {
     },
     getAll: function(userID, callback) {
       var queryStr = 'Select * from wishlist where wishlist.userid = ?';
-      db.query(quertStr, [userID], function(err, results) {
+      db.query(queryStr, [userID], function(err, results) {
         if (err) console.log('error getting user wishlist', err);
         callback(null, results);
+      })
+    },
+    removeItem: function(userID, itemName, callback){
+      console.log('------', itemName)
+      var queryStr = 'DELETE from wishlist where pic_name="'+ itemName +'" and userid='+ userID +';';
+      db.query(queryStr, function(err, results){
+        if (err) console.log('error removing from wishlist', err);
+        callback(null, results)
       })
     }
   }
