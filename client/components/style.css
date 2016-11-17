@@ -123,19 +123,14 @@ table {
   width: auto;
 }
 
-.dashboard-tools {
-  width: 15em;
-  display: inline;
-}
-
 .dashboard-button,
 .upload-button,
 .search-button {
-  width: 11%;
-  height: 2.5em;
-  margin-left: 1%;
+  width: 8em;
+  height: 2.8em;
+  margin-left: 10%;
   margin-right: 3%;
-  margin-bottom: 0.5%;
+  margin-bottom: 1%;
   font-family: 'Noto Serif', serif;
   font-size: 1.2em;
   background-color: #3B383D;
@@ -209,4 +204,42 @@ table {
   outline: none;
   border-radius: 6%;
   border: none;
+}
+
+.dashboard-tools {
+  width: 25%;
+  display: inline;
+  float: left;
+  position: relative;
+}
+
+.preview-component,
+.search-component {
+  margin-left: 10%;
+  margin-bottom: 1%;
+}
+
+.dashboard-feed {
+  width: 65%;
+  display: inline;
+  float: right;
+}
+
+.feed-item {
+  width: 12em;
+  height: 15em;
+  margin: 3%;
+  display: inline;
+  float: left;
+  border: 1px solid black;
+}
+
+.feed-item-pic {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.show-items {
+  display: block;
 }
