@@ -4,37 +4,38 @@ import axios from 'axios';
 
 class WishlistItem extends React.Component {
   constructor(props) {
-      super(props);
+    super(props);
   }
 
-  like() {
-    console.log(this, 'this in like');
-    //{name:"", id:"", ....}
-    //pass "this" and user id to server endpoint to pass into db
-    var item = this.props.item;
-    item['userID'] = this.props.user.id;
-    // item.userID = userID;
-    axios.post('/api/like', item)
+  removeItem(name, userID){
+    console.log(name)
+    var item = {
+      itemName: name,
+      userID: userID
+    }
+    var context = this;
+
+    axios.post('/api/removeFromWishList', item)
       .then(function(response) {
-        console.log(response);
+        context.props.getWishList();
       })
       .catch(function (error) {
         console.log('Error liking', error);
       });
   }
-   render() {
-      return (
-         <div>
-          <a href={this.props.picObj.clickUrl}>
-          <img src={this.props.picObj.image.sizes.IPhoneSmall.url} />
-          <p>{this.props.picObj.name}</p></a>
-          <button onClick={this.like.bind(this)}>Heart!</button>
-          <p>{this.props.picObj.currency} {this.props.picObj.price}</p>
-          <p>{this.props.picObj.categories[0].name}</p>
-          <p>{this.props.picObj.retailer.name}</p>
-         </div>
-      );
-   }
+
+  render() {
+    return (
+      <div key={this.props.picObj.pic_name}>
+        <a href={this.props.picObj.url}>
+        <img src={this.props.picObj.pic_name} />
+        <p>{this.props.picObj.item_name}</p>
+        </a>
+        <p>${this.props.picObj.price}</p>
+        <button onClick={()=> this.removeItem(this.props.picObj.pic_name, this.props.picObj.userid)}>Remove From Wishlist</button>
+      </div>
+    );
+ }
 }
 
 export default WishlistItem;

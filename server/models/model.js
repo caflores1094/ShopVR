@@ -112,6 +112,14 @@ module.exports = {
         if (err) console.log('error getting user wishlist', err);
         callback(null, results);
       })
+    },
+    removeItem: function(userID, itemName, callback){
+      console.log('------', itemName)
+      var queryStr = 'DELETE from wishlist where pic_name="'+ itemName +'" and userid='+ userID +';';
+      db.query(queryStr, function(err, results){
+        if (err) console.log('error removing from wishlist', err);
+        callback(null, results)
+      })
     }
   }
 };

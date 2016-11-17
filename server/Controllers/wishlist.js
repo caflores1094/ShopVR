@@ -22,6 +22,15 @@ module.exports = {
       	if (err) console.log('error in wishlist controller', err);
       	res.send(results);
       });		  
+    },
+
+    removeItem: function(req, res){
+      var userID = req.body.userID;  
+      var itemName = req.body.itemName;
+      models.wishlist.removeItem(userID, itemName, function(err, results) {
+        if (err) console.log('error in wishlist controller', err);
+        res.sendStatus(202);
+      });     
     }
   }	
 }

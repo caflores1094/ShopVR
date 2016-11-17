@@ -51,7 +51,18 @@ class Profile extends React.Component {
     var context = this;
     axios.post('/api/getWishList', obj)
     .then(function(result) {
-      context.setState({ wishList: result.data})         
+      var dataArr = result.data;
+      var wlObj = {};
+      dataArr.forEach((elem) => {
+        wlObj[elem.pic_name] = elem;
+      });
+
+      var finalArr = [];
+
+      for(var key in wlObj){
+        finalArr.push(wlObj[key]);
+      }
+      context.setState({ wishList: finalArr})         
     });
   }
 
@@ -92,7 +103,7 @@ class Profile extends React.Component {
            <div className='wishListArea'>
             <h2>My Wishlist</h2>
             <div className='wishList'>
-              <Wishlist list={this.state.wishList}/>
+              <Wishlist getWishList={this.getWishList.bind(this)} list={this.state.wishList}/>
             </div>
            </div>
        </div>
