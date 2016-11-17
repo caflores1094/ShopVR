@@ -38,6 +38,7 @@ class NavBar extends React.Component {
 
       axios.post('/login/facebook', response)
       .then(function (response) {
+      console.log(response);
         context.props.setUser(response.data[0]);
       })
       .catch(function (error) {

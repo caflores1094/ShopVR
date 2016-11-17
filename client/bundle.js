@@ -26678,6 +26678,7 @@
 	        console.log('Successful login for: ' + response.name);
 
 	        _axios2.default.post('/login/facebook', response).then(function (response) {
+	          console.log(response);
 	          context.props.setUser(response.data[0]);
 	        }).catch(function (error) {
 	          console.log('Error in sending ajax data');
@@ -28332,7 +28333,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	   value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -28352,50 +28353,67 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var ShareBar = function (_React$Component) {
-	   _inherits(ShareBar, _React$Component);
+	  _inherits(ShareBar, _React$Component);
 
-	   function ShareBar(props) {
-	      _classCallCheck(this, ShareBar);
+	  function ShareBar(props) {
+	    _classCallCheck(this, ShareBar);
 
-	      return _possibleConstructorReturn(this, (ShareBar.__proto__ || Object.getPrototypeOf(ShareBar)).call(this, props));
-	   }
+	    var _this = _possibleConstructorReturn(this, (ShareBar.__proto__ || Object.getPrototypeOf(ShareBar)).call(this, props));
 
-	   _createClass(ShareBar, [{
-	      key: 'render',
-	      value: function render() {
-	         return _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(
-	               'div',
-	               null,
-	               _react2.default.createElement('input', { type: 'text', id: 'room-id', defaultValue: 'testing' }),
-	               _react2.default.createElement(
-	                  'button',
-	                  { id: 'open-room', onClick: function onClick() {
-	                        return connection.open(document.getElementById('room-id').value);
-	                     } },
-	                  'Open Room'
-	               ),
-	               _react2.default.createElement('input', { type: 'text' }),
-	               _react2.default.createElement(
-	                  'button',
-	                  null,
-	                  'Send Invite'
-	               ),
-	               _react2.default.createElement(
-	                  'button',
-	                  { onClick: function onClick() {
-	                        return window.location.assign('/');
-	                     } },
-	                  'Back To Dashboard'
-	               )
-	            )
-	         );
-	      }
-	   }]);
+	    _this.state = {
+	      roomid: 'Enter your room name'
+	    };
+	    return _this;
+	  }
 
-	   return ShareBar;
+	  _createClass(ShareBar, [{
+	    key: 'FBmsg',
+	    value: function FBmsg() {
+	      FB.ui({
+	        method: 'send',
+	        link: 'www.google.com/?' + this.state.roomid
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      console.log(this.state.roomid);
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement('input', { type: 'text', id: 'room-id', onChange: function onChange(e) {
+	              return _this2.setState({ roomid: e.target.value });
+	            }, defaultValue: 'Enter your room name' }),
+	          _react2.default.createElement(
+	            'button',
+	            { id: 'open-room', onClick: function onClick() {
+	                return connection.open(document.getElementById('room-id').value);
+	              } },
+	            'Open Room'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.FBmsg.bind(this) },
+	            'Send FB Invite'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: function onClick() {
+	                return window.location.assign('/');
+	              } },
+	            'Back To Dashboard'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ShareBar;
 	}(_react2.default.Component);
 
 	exports.default = ShareBar;
@@ -30052,7 +30070,7 @@
 	      return _react2.default.createElement(
 	        "div",
 	        null,
-	        _react2.default.createElement("input", { type: "text", id: "room-id", defaultValue: "testing" }),
+	        _react2.default.createElement("input", { type: "text", id: "room-id", defaultValue: window.location.search.slice(1) }),
 	        _react2.default.createElement(
 	          "button",
 	          { id: "join-room", onClick: function onClick() {
