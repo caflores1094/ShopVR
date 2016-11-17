@@ -36,14 +36,13 @@ module.exports = {
     },
 
     update: function(user, callback) {
-      console.log('model update', user);
       var condition = { id: user.id };
       var queryStr = 'UPDATE users SET ? WHERE ?';
       db.query(queryStr, [user, condition], function(err, results) {
         if (err) {
           console.log('Error updating', err);
         }
-        callback(null, null);
+        callback(null, results);
       });
     }
   },

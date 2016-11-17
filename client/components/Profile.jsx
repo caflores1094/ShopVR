@@ -24,7 +24,7 @@ class Profile extends React.Component {
     var context = this;
     axios.post('/api/myImages', obj)
     .then(function(result) {
-      context.setState({ myImages: result.data})     
+      context.setState({ myImages: result.data})
     });
   }
 
@@ -39,10 +39,13 @@ class Profile extends React.Component {
     e.preventDefault();
     var obj = this.state;
     obj['id'] = this.props.user.id;
+
+    var context = this;
+
     axios.post('/update/profile', obj)
-         .then(function(result) {
-          console.log('sucessful update');
-         });
+    .then(function(result) {
+      window.location.assign('/profile');
+    });
   }
 
   getWishList(){
@@ -62,12 +65,11 @@ class Profile extends React.Component {
       for(var key in wlObj){
         finalArr.push(wlObj[key]);
       }
-      context.setState({ wishList: finalArr})         
+      context.setState({ wishList: finalArr})
     });
   }
 
   componentDidMount(){
-    // this.getMyImages();
     this.getWishList();
   }
 
@@ -85,8 +87,8 @@ class Profile extends React.Component {
              </p>
              <p>Gender:
                <select onChange={this.handleInputChange.bind(this, 'gender')} defaultValue={this.props.user.gender}>
-                <option value="men's">men</option>
-                <option value="women's">women</option>
+                <option value="male">male</option>
+                <option value="female">female</option>
                </select>
              </p>
              <p>
@@ -98,7 +100,6 @@ class Profile extends React.Component {
                <input onChange={this.handleInputChange.bind(this, 'max_price')} type="number" defaultValue={this.props.user.max_price}/>
              </p>
              <button type="submit" onClick={(e)=>this.handleUpdate(e)} value="Submit">Update</button>
-             <button onClick={(e) => {e.preventDefault(); browserHistory.push('/');}}>Back</button>
            </form>
            <div className='wishListArea'>
             <h2>My Wishlist</h2>

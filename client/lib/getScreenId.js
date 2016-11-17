@@ -50,6 +50,8 @@ getScreenId(function (error, sourceId, screen_constraints) {
             }
 
             if (event.data.chromeExtensionStatus) {
+                alert('Please install WebRTC chrome extension and try again >>> https://chrome.google.com/webstore/detail/screen-capturing/ajhifddimkapgcifgcodmmfdlknahffk');
+                window.location.assign('/');
                 callback(event.data.chromeExtensionStatus, null, getScreenConstraints(event.data.chromeExtensionStatus));
             }
 
