@@ -8,7 +8,6 @@ class WishlistItem extends React.Component {
   }
 
   removeItem(name, userID){
-    console.log(name)
     var item = {
       itemName: name,
       userID: userID

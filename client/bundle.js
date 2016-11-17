@@ -29027,7 +29027,7 @@
 	        _aframeReact.Entity,
 	        null,
 	        this.state.feed.map(function (arr, i) {
-	          return _react2.default.createElement(_clothingArticle2.default, { position: positions[i], src: arr[0], size: arr[1] });
+	          return _react2.default.createElement(_clothingArticle2.default, { key: i, position: positions[i], src: arr[0], size: arr[1] });
 	        })
 	      );
 	    }
@@ -30171,7 +30171,6 @@
 	  _createClass(WishlistItem, [{
 	    key: 'removeItem',
 	    value: function removeItem(name, userID) {
-	      console.log(name);
 	      var item = {
 	        itemName: name,
 	        userID: userID

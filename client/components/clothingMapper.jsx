@@ -61,7 +61,7 @@ class ClothingMapper extends React.Component {
       <Entity>
         {
           this.state.feed.map(function(arr, i){
-            return <ClothingArticle position={positions[i]} src={arr[0]} size={arr[1]}/>
+            return <ClothingArticle key={i}position={positions[i]} src={arr[0]} size={arr[1]}/>
           })
         }
       </Entity>
