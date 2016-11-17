@@ -28500,7 +28500,24 @@
 
 	    return _possibleConstructorReturn(this, (Setting.__proto__ || Object.getPrototypeOf(Setting)).call(this, props));
 	  }
-	  // <Entity material={dimensions.ceilingMaterial} geometry={{primitive: 'box', depth: '.5', height: dimensions.ceilingLength, width: dimensions.ceilingWidth}} rotation="90 90 0" position="22.5 4.25 0" static-body/>
+	  // <Entity
+	  //       light="type: point; angle: 100; penumbra: 1; intensity: 0.35"
+	  //       look-at=""
+	  //       rotation="-90 0 0"
+	  //       position="21.8 2.5 10"
+	  // />
+	  // <Entity
+	  //       light="type: point; angle: 100; penumbra: 1; intensity: 0.35"
+	  //       look-at=""
+	  //       rotation="-90 0 0"
+	  //       position="10.8 2.5 -10"
+	  // />
+	  // <Entity
+	  //       light="type: point; angle: 100; penumbra: 1; intensity: 0.35"
+	  //       look-at=""
+	  //       rotation="-90 0 0"
+	  //       position="21.8 2.5 -10"
+	  // />
 
 
 	  _createClass(Setting, [{
@@ -28522,9 +28539,35 @@
 	          ),
 	          _react2.default.createElement(_aframeReact.Entity, {
 	            geometry: { primitive: 'sphere', radius: 100 },
-	            material: { shader: 'flat', src: "url(./lib/skybox.jpg)" },
+	            material: { shader: 'flat', src: "url(./lib/city.jpg)" },
 	            scale: '1 1 -1',
 	            position: '0 0 0'
+	          }),
+	          _react2.default.createElement(_aframeReact.Entity, { light: 'type: ambient; intensity: 0.5' }),
+	          _react2.default.createElement(_aframeReact.Entity, {
+	            light: 'type: directional; angle: 180; penumbra: 1; intensity: 0.2',
+	            rotation: '-40 0 0',
+	            position: '80 40 0'
+	          }),
+	          _react2.default.createElement(_aframeReact.Entity, {
+	            light: 'type: point; intensity: .1',
+	            rotation: '-90 0 0',
+	            position: '10.8 4.8 10'
+	          }),
+	          _react2.default.createElement(_aframeReact.Entity, {
+	            light: 'type: point; intensity: .1',
+	            rotation: '-90 0 0',
+	            position: '10.8 4.8 -10'
+	          }),
+	          _react2.default.createElement(_aframeReact.Entity, {
+	            light: 'type: point; intensity: .1',
+	            rotation: '-90 0 0',
+	            position: '21.8 4.8 -10'
+	          }),
+	          _react2.default.createElement(_aframeReact.Entity, {
+	            light: 'type: point; intensity: .1',
+	            rotation: '-90 0 0',
+	            position: '21.8 4.8 10'
 	          }),
 	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.grassMaterial, geometry: { primitive: 'plane', height: dimensions.frontGrassLength, width: dimensions.fullWidth }, rotation: '-90 90 0', position: '0 0 0', 'static-body': true }),
 	          _react2.default.createElement(_aframeReact.Entity, { material: dimensions.grassMaterial, geometry: { primitive: 'plane', height: dimensions.sideGrassesWidth, width: dimensions.fullWidth }, rotation: '-90 90 0', position: dimensions.backGrassZ + "0 0", 'static-body': true }),
@@ -29232,13 +29275,25 @@
 	    var _this = _possibleConstructorReturn(this, (Dashboard.__proto__ || Object.getPrototypeOf(Dashboard)).call(this, props));
 
 	    _this.state = {
-	      imageUpload: "displayNone",
-	      search: "displayNone"
+	      imageUpload: "none",
+	      search: "none"
 	    };
 	    return _this;
 	  }
 
 	  _createClass(Dashboard, [{
+	    key: 'showTool',
+	    value: function showTool(name, e) {
+	      var toShow = {};
+	      if (this.state[name] === "none") {
+	        toShow[name] = "block";
+	        this.setState(toShow);
+	      } else {
+	        toShow[name] = "none";
+	        this.setState(toShow);
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -29255,23 +29310,35 @@
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'dashboard-upload' },
+	          { className: 'dashboard-tools' },
 	          _react2.default.createElement(
-	            'button',
-	            { className: 'upload-button' },
-	            'Upload Image'
+	            'div',
+	            { className: 'dashboard-upload' },
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.showTool.bind(this, 'imageUpload'), className: 'upload-button' },
+	              'Upload Image'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { name: 'imageUpload', className: 'image-upload', style: { display: this.state.imageUpload } },
+	              _react2.default.createElement(_ImageUpload2.default, { user: this.props.user, setFeed: this.props.setFeed })
+	            )
 	          ),
-	          _react2.default.createElement(_ImageUpload2.default, { style: { display: this.state.imageUpload }, user: this.props.user, setFeed: this.props.setFeed })
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'dashboard-search' },
 	          _react2.default.createElement(
-	            'button',
-	            { className: 'search-button' },
-	            'Search'
-	          ),
-	          _react2.default.createElement(_QueryBox2.default, { style: { display: this.state.search }, user: this.props.user, setFeed: this.props.setFeed })
+	            'div',
+	            { className: 'dashboard-search' },
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.showTool.bind(this, 'search'), className: 'search-button' },
+	              'Search'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { name: 'search', className: 'query-box', style: { display: this.state.search } },
+	              _react2.default.createElement(_QueryBox2.default, { style: { display: this.state.search }, user: this.props.user, setFeed: this.props.setFeed })
+	            )
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
