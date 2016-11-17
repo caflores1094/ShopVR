@@ -125,6 +125,7 @@ table {
 
 .dashboard-tools {
   width: 15em;
+  display: inline;
 }
 
 .dashboard-button,
