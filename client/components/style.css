@@ -154,7 +154,26 @@ table {
 }
 
 .dashboard-feed {
-  width: 70%;
+  width: 65%;
   display: inline;
   float: right;
+}
+
+.feed-item {
+  width: 12em;
+  height: 15em;
+  margin: 3%;
+  display: inline;
+  float: left;
+  border: 1px solid black;
+}
+
+.feed-item-pic {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.show-items {
+  display: block;
 }

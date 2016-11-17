@@ -31,8 +31,8 @@ class FeedItem extends React.Component {
             <p>{this.props.item.currency} {this.props.item.price}</p>
             <p>{this.props.item.categories[0].name}</p>
             <p>{this.props.item.retailer.name}</p>
+            <a href={this.props.item.clickUrl}>View</a>
             <button onClick={this.like.bind(this)}>Heart!</button>
-            <button href={this.props.item.clickUrl}>View</button>
           </div>
         </div>
       );
