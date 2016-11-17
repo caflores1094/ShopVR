@@ -98,7 +98,7 @@ class Profile extends React.Component {
            <div className='wishListArea'>
             <h2>My Wishlist</h2>
             <div className='wishList'>
-              
+              <Wishlist list={this.state.wishList}/>
             </div>
            </div>
        </div>

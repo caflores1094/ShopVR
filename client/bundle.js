@@ -30009,7 +30009,11 @@
 	            null,
 	            'My Wishlist'
 	          ),
-	          _react2.default.createElement('div', { className: 'wishList' })
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'wishList' },
+	            _react2.default.createElement(_Wishlist2.default, { list: this.state.wishList })
+	          )
 	        )
 	      );
 	    }
@@ -31190,11 +31194,31 @@
 	  _createClass(Wishlist, [{
 	    key: 'render',
 	    value: function render() {
+	      console.log(this.props.list[0]);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
 	        this.props.list.map(function (picObj) {
-	          return _react2.default.createElement('img', { src: picObj.pic_name });
+	          return _react2.default.createElement(
+	            'div',
+	            { key: picObj.pic_name },
+	            _react2.default.createElement(
+	              'a',
+	              { href: picObj.url },
+	              _react2.default.createElement('img', { src: picObj.pic_name }),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                picObj.item_name
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              '$',
+	              picObj.price
+	            )
+	          );
 	        })
 	      );
 	    }
@@ -31202,6 +31226,15 @@
 
 	  return Wishlist;
 	}(_react2.default.Component);
+
+	// div><a href={this.props.item.clickUrl}>
+	//             <img src={this.props.item.image.sizes.IPhoneSmall.url} />
+	//             <p>{this.props.item.name}</p></a>
+	//             <button onClick={this.like.bind(this)}>Heart!</button>
+	// <p>{this.props.item.currency} {this.props.item.price}</p>
+	// <p>{this.props.item.categories[0].name}</p>
+	// <p>{this.props.item.retailer.name}</p>
+	//          </div>
 
 	exports.default = Wishlist;
 
