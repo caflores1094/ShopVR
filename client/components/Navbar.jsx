@@ -95,8 +95,9 @@ class NavBar extends React.Component {
              <p className="color">VR</p>
            </div>
            <div className="buttons">
-             <button className="navbar-button" onClick={() => browserHistory.push('profile')}>Profile</button>
-             <button className="navbar-button" onClick={this.logout.bind(this)}>Logout</button>
+            <button className="navbar-button" onClick={this.logout.bind(this)}>Logout</button>
+            <button className="navbar-button" onClick={() => browserHistory.push('profile')}>Profile</button>
+            <button className="navbar-button" onClick={() => browserHistory.push('/')}>Feed</button>
            </div>
         </div>
       );
