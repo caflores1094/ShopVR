@@ -27,12 +27,14 @@ class Feed extends React.Component {
       <div>
         <h1>Your Recommendations</h1>
         <p>Sort by: <button onClick={this.props.sortPrice}>Price</button> <button onClick={this.props.sortBrand}>Retailer</button> <button onClick={this.props.sortCat}>Category</button></p>
-        <div>
-        {this.props.feed.map((item) =>
+        <br />
+        <button className="show-items" onClick={this.props.toggleShow}>Show {this.props.feed.length > 25 ? 'Less' : 'More'}</button>
+        <div className="feed-items">
+          {this.props.feed.map((item, i) =>
             <FeedItem item={item} key={item.id} user={this.props.user}/>
-        )}
+          )}
         </div>
-        <button onClick={this.props.toggleShow}>Show {this.props.feed.length > 25 ? 'Less' : 'More'}</button>
+        <br />
       </div>
     );
   }
