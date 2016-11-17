@@ -39,24 +39,6 @@ class Setting extends React.Component {
     super(props);
   }
 
-            // <Entity
-            //       light="type: point; angle: 100; penumbra: 1; intensity: 0.35"
-            //       look-at=""
-            //       rotation="-90 0 0"
-            //       position="21.8 2.5 10"
-            // />
-            // <Entity
-            //       light="type: point; angle: 100; penumbra: 1; intensity: 0.35"
-            //       look-at=""
-            //       rotation="-90 0 0"
-            //       position="10.8 2.5 -10"
-            // />
-            // <Entity
-            //       light="type: point; angle: 100; penumbra: 1; intensity: 0.35"
-            //       look-at=""
-            //       rotation="-90 0 0"
-            //       position="21.8 2.5 -10"
-            // />
   render() {
       return(
         <div>
@@ -78,11 +60,11 @@ class Setting extends React.Component {
 
            <Entity light="type: ambient; intensity: 0.5"/>
             <Entity
-              light="type: directional; angle: 180; penumbra: 1; intensity: 0.2"
+              light="type: directional; angle: 180; penumbra: 1; intensity: 0.3"
               rotation="-40 0 0"
               position="80 40 0"
             />
-            
+
             <Entity
               light="type: point; intensity: .1"
               rotation="-90 0 0"
@@ -103,9 +85,9 @@ class Setting extends React.Component {
               rotation="-90 0 0"
               position="21.8 4.8 10"
             />
-            
 
-          
+
+
 
             <Entity material={dimensions.grassMaterial} geometry={{primitive: 'plane', height: dimensions.frontGrassLength, width: dimensions.fullWidth}} rotation="-90 90 0" position="0 0 0" static-body/>
             <Entity material={dimensions.grassMaterial} geometry={{primitive: 'plane', height: dimensions.sideGrassesWidth, width: dimensions.fullWidth}} rotation="-90 90 0" position={dimensions.backGrassZ+ "0 0"} static-body/>
