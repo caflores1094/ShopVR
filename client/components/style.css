@@ -1,0 +1,119 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+/* OUR CSS */
+.main-app {
+}
+
+.navbar{
+  height: 1.1em;
+  width: 2.2em;
+  margin-bottom: 0.1%;
+  background-color: #3B383D;
+  font-family: 'Playfair Display', cursive;
+  font-weight: bolder;
+  font-size: 1.8em;
+  color: #F7EDF0;
+  padding: 2%;
+  display: inline-block;
+}
+.navbar-button{
+  width: 10%;
+  height: 3.5em;
+  margin-top: 1.8%;
+  margin-right: 3%;
+  float: right;  
+  font-family: 'Noto Serif', serif;
+  font-size: 0.7em;
+  background-color: #3B383D;
+  color: #F7EDF0;
+  outline: none;
+  border-radius: 6%;
+  border: none;
+}
+.color{
+  display: inline;
+  font-family: 'Playfair Display', cursive;
+  font-weight: bolder;
+  font-size: 1.8em;
+  color: #DF755A;
+}
+
+.buttons{
+  width: 80%;
+  display: inline;
+}
+
+.navbar-loggedout-button{
+  height: 7%;
+  font-family: 'Noto Serif', serif;
+  margin-left: calc(100% - 15em);
+  overflow: none;
+  display: inline-block;
+  margin-top: 0;
+  vertical-align: center;
+}
+
+.dashboard-hero {
+  margin: 2% 0;
+  width: auto;
+  height: 30em;
+  background-image: url("../lib/cartier.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 1;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+}
+
+.dashboard-hero:hover {
+  opacity: 0.6;
+}

@@ -40,9 +40,9 @@ Category: Pictures, UX
 Estimation of work time: 1.5 hours
 Priority: 2
 
-Description: Can't delete unwated wishlist items from profile view of all wishlist item
+Description: Can't delete unwated wishlist and feed items from profile view of all wishlist item and feed view
 Category: Feature, UX
-Estimation of work time: 1.5 hours
+Estimation of work time: 1.5-5 hours
 Priority: 3
 
 Description: need to prompt new user to download a chrome extension for screen share
