@@ -29046,7 +29046,9 @@
 
 	    var newfeed = [];
 	    for (var i = 0; i < 24; i++) {
-	      newfeed.push([transformImageUrl(_this.props.feed[i][0]), _this.props.feed[i][1]]);
+	      if (i < _this.props.feed.length) {
+	        newfeed.push([transformImageUrl(_this.props.feed[i][0]), _this.props.feed[i][1]]);
+	      }
 	    }
 
 	    _this.state = {
