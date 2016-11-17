@@ -29486,9 +29486,9 @@
 	    var _this = _possibleConstructorReturn(this, (QueryBox.__proto__ || Object.getPrototypeOf(QueryBox)).call(this, props));
 
 	    _this.state = {
-	      gender: _this.props.user.gender === 'male' ? "men" : "women",
-	      minPrice: _this.props.user.minPrice,
-	      maxPrice: _this.props.user.maxPrice,
+	      gender: _this.props.user.gender,
+	      minPrice: _this.props.user.min_price,
+	      maxPrice: _this.props.user.max_price,
 	      brand: '',
 	      item: ''
 	    };
@@ -29499,9 +29499,9 @@
 	    key: 'handleSubmit',
 	    value: function handleSubmit(e) {
 	      e.preventDefault();
-
+	      var gender = this.state.gender === 'male' ? "men" : "women";
 	      var context = this;
-	      _axios2.default.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&limit=50&fts=' + this.state.gender + '+' + this.state.brand + '+' + this.state.item).then(function (response) {
+	      _axios2.default.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&limit=50&fts=' + gender + '+' + this.state.brand + '+' + this.state.item).then(function (response) {
 	        context.props.setFeed(response.data.products, context.state.minPrice, context.state.maxPrice);
 	      }).catch(function (error) {
 	        console.log('asdfError in sending ajax data ', error);
@@ -29531,17 +29531,17 @@
 	            'Gender:',
 	            _react2.default.createElement(
 	              'select',
-	              { onChange: function onChange(e) {
+	              { value: this.state.gender, onChange: function onChange(e) {
 	                  return _this2.setState({ gender: e.target.value });
-	                }, defaultValue: this.props.user.gender },
+	                } },
 	              _react2.default.createElement(
 	                'option',
-	                { value: 'men\'s' },
+	                { value: 'male' },
 	                'men'
 	              ),
 	              _react2.default.createElement(
 	                'option',
-	                { value: 'women\'s' },
+	                { value: 'female' },
 	                'women'
 	              )
 	            )
@@ -29552,11 +29552,11 @@
 	            'Price:',
 	            _react2.default.createElement('input', { onChange: function onChange(e) {
 	                return _this2.setState({ minPrice: e.target.value });
-	              }, defaultValue: this.props.user.minPrice, type: 'number' }),
+	              }, defaultValue: this.props.user.min_price, type: 'number' }),
 	            ' -',
 	            _react2.default.createElement('input', { onChange: function onChange(e) {
 	                return _this2.setState({ maxPrice: e.target.value });
-	              }, defaultValue: this.props.user.maxPrice, type: 'number' })
+	              }, defaultValue: this.props.user.max_price, type: 'number' })
 	          ),
 	          _react2.default.createElement(
 	            'p',
@@ -29919,21 +29919,21 @@
 	      e.preventDefault();
 	      var obj = this.state;
 	      obj['id'] = this.props.user.id;
+
+	      var context = this;
+
 	      _axios2.default.post('/update/profile', obj).then(function (result) {
-	        console.log('sucessful update');
+	        window.location.assign('/profile');
 	      });
 	    }
 	  }, {
 	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      this.getMyImages();
-	    }
+	    value: function componentDidMount() {}
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
 
-	      console.log('props', this.props.user);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -29967,13 +29967,13 @@
 	              { onChange: this.handleInputChange.bind(this, 'gender'), defaultValue: this.props.user.gender },
 	              _react2.default.createElement(
 	                'option',
-	                { value: 'men\'s' },
-	                'men'
+	                { value: 'male' },
+	                'male'
 	              ),
 	              _react2.default.createElement(
 	                'option',
-	                { value: 'women\'s' },
-	                'women'
+	                { value: 'female' },
+	                'female'
 	              )
 	            )
 	          ),
@@ -29995,13 +29995,6 @@
 	                return _this2.handleUpdate(e);
 	              }, value: 'Submit' },
 	            'Update'
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: function onClick(e) {
-	                e.preventDefault();_reactRouter.browserHistory.push('/');
-	              } },
-	            'Back'
 	          )
 	        ),
 	        _react2.default.createElement(

@@ -21,7 +21,7 @@ class Profile extends React.Component {
     var context = this;
     axios.post('/api/myImages', obj)
     .then(function(result) {
-      context.setState({ myImages: result.data})     
+      context.setState({ myImages: result.data})
     });
       // this.state = {
 
@@ -39,18 +39,19 @@ class Profile extends React.Component {
     e.preventDefault();
     var obj = this.state;
     obj['id'] = this.props.user.id;
+
+    var context = this;
+
     axios.post('/update/profile', obj)
-         .then(function(result) {
-          console.log('sucessful update');
-         });
+    .then(function(result) {
+      window.location.assign('/profile');
+    });
   }
 
   componentDidMount(){
-    this.getMyImages();
   }
 
   render() {
-    console.log('props', this.props.user);
     return (
        <div>
            <h1>Profile</h1>
@@ -64,8 +65,8 @@ class Profile extends React.Component {
              </p>
              <p>Gender:
                <select onChange={this.handleInputChange.bind(this, 'gender')} defaultValue={this.props.user.gender}>
-                <option value="men's">men</option>
-                <option value="women's">women</option>
+                <option value="male">male</option>
+                <option value="female">female</option>
                </select>
              </p>
              <p>
@@ -77,7 +78,6 @@ class Profile extends React.Component {
                <input onChange={this.handleInputChange.bind(this, 'max_price')} type="number" defaultValue={this.props.user.max_price}/>
              </p>
              <button type="submit" onClick={(e)=>this.handleUpdate(e)} value="Submit">Update</button>
-             <button onClick={(e) => {e.preventDefault(); browserHistory.push('/');}}>Back</button>
            </form>
            <div className='myPics'>
             <h2>My Uploaded Pictures</h2>

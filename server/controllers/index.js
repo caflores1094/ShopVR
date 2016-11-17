@@ -15,18 +15,20 @@ module.exports = {
         else callback(null, results);
       });
     },
-    update: function(req) {
+    update: function(req, res) {
       var params = {
         id: req.body.id,
-        name: req.body.name, 
-        email: req.body.email, 
+        name: req.body.name,
+        email: req.body.email,
         gender: req.body.gender,
-        min_price: req.body.min_price, 
+        min_price: req.body.min_price,
         max_price: req.body.max_price
       };
       models.users.update(params, function(err, results) {
         if (err) {
           console.log('err', err);
+        } else {
+          res.send(results);
         }
       });
     }
