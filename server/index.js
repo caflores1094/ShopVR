@@ -33,6 +33,9 @@ router.post('/api/upload', picController.pictures.post);
 router.post('/api/feed', picController.pictures.getMostRecentImage);
 router.post('/api/like', wishlistController.wishlist.post);
 
+router.post('/api/getWishList', wishlistController.wishlist.getAll);
+router.post('/api/removeFromWishList', wishlistController.wishlist.removeItem);
+
 router.get('/profile', function(req, res) {
   res.sendFile('/client/index.html', {root: __dirname + '/..'});
 });

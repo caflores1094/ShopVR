@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import Wishlist from './Wishlist.jsx';
+
 
 class Profile extends React.Component {
   constructor(props) {
@@ -11,7 +13,8 @@ class Profile extends React.Component {
       gender: this.props.user.gender,
       min_price: this.props.user.min_price,
       max_price: this.props.user.max_price,
-      myImages: []
+      myImages: [],
+      wishList: []
     }
   }
 
@@ -23,9 +26,6 @@ class Profile extends React.Component {
     .then(function(result) {
       context.setState({ myImages: result.data})     
     });
-      // this.state = {
-
-      // }
   }
 
   handleInputChange(name, e) {
@@ -45,12 +45,33 @@ class Profile extends React.Component {
          });
   }
 
+  getWishList(){
+    var obj = {};
+    obj['userID'] = this.props.user.id;
+    var context = this;
+    axios.post('/api/getWishList', obj)
+    .then(function(result) {
+      var dataArr = result.data;
+      var wlObj = {};
+      dataArr.forEach((elem) => {
+        wlObj[elem.pic_name] = elem;
+      });
+
+      var finalArr = [];
+
+      for(var key in wlObj){
+        finalArr.push(wlObj[key]);
+      }
+      context.setState({ wishList: finalArr})         
+    });
+  }
+
   componentDidMount(){
-    this.getMyImages();
+    // this.getMyImages();
+    this.getWishList();
   }
 
   render() {
-    console.log('props', this.props.user);
     return (
        <div>
            <h1>Profile</h1>
@@ -79,12 +100,10 @@ class Profile extends React.Component {
              <button type="submit" onClick={(e)=>this.handleUpdate(e)} value="Submit">Update</button>
              <button onClick={(e) => {e.preventDefault(); browserHistory.push('/');}}>Back</button>
            </form>
-           <div className='myPics'>
-            <h2>My Uploaded Pictures</h2>
-            <div className='picList'>
-              {
-                this.state.myImages.map((picObj) => <img src={picObj.name} />)
-              }
+           <div className='wishListArea'>
+            <h2>My Wishlist</h2>
+            <div className='wishList'>
+              <Wishlist getWishList={this.getWishList.bind(this)} list={this.state.wishList}/>
             </div>
            </div>
        </div>
