@@ -29838,6 +29838,10 @@
 
 	var _reactRouter = __webpack_require__(172);
 
+	var _Wishlist = __webpack_require__(292);
+
+	var _Wishlist2 = _interopRequireDefault(_Wishlist);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29860,7 +29864,8 @@
 	      gender: _this.props.user.gender,
 	      min_price: _this.props.user.min_price,
 	      max_price: _this.props.user.max_price,
-	      myImages: []
+	      myImages: [],
+	      wishList: []
 	    };
 	    return _this;
 	  }
@@ -29897,9 +29902,21 @@
 	      });
 	    }
 	  }, {
+	    key: 'getWishList',
+	    value: function getWishList() {
+	      console.log('yo');
+	      var obj = {};
+	      obj['userID'] = this.props.user.id;
+	      var context = this;
+	      _axios2.default.post('/api/getWishList', obj).then(function (result) {
+	        context.setState({ wishList: result.data });
+	        // console.log(result.data)     
+	      });
+	    }
+	  }, {
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      this.getMyImages();
+	      // this.getMyImages();
 	    }
 	  }, {
 	    key: 'render',
@@ -29978,20 +29995,21 @@
 	          )
 	        ),
 	        _react2.default.createElement(
+	          'button',
+	          { onClick: function onClick() {
+	              _this2.getWishList();
+	            }, value: 'test' },
+	          'TEST BUTTON'
+	        ),
+	        _react2.default.createElement(
 	          'div',
-	          { className: 'myPics' },
+	          { className: 'wishListArea' },
 	          _react2.default.createElement(
 	            'h2',
 	            null,
-	            'My Uploaded Pictures'
+	            'My Wishlist'
 	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'picList' },
-	            this.state.myImages.map(function (picObj) {
-	              return _react2.default.createElement('img', { src: picObj.name });
-	            })
-	          )
+	          _react2.default.createElement('div', { className: 'wishList' })
 	        )
 	      );
 	    }
@@ -29999,6 +30017,31 @@
 
 	  return Profile;
 	}(_react2.default.Component);
+	// <Feed user={this.props.user} feed={this.state.wishList} setFeed={this.props.setFeed}
+	//   sortPrice={this.props.sortPrice} sortBrand={this.props.sortBrand} sortCat={this.props.sortCat}
+	//   toggleShow={this.props.toggleShow}
+	// />
+	// <div className='myWishList'>
+	//  <h2>My Wishlist</h2>
+	//  <div className='wishList'>
+	// {
+	//   this.state.myWishList.map((picObj) => <img src={picObj.name} />)
+	// }
+	//  </div>
+	// </div>
+	// ****************************************************************************************
+	//look at the mapping of the wish list, now i need to build the actual wish list array,
+	// get it from the server/DB, maybe make a route/query to get all the urls 
+	// ****************************************************************************************
+
+	// <div className='myPics'>
+	//  <h2>My Uploaded Pictures</h2>
+	//  <div className='picList'>
+	// {
+	//   this.state.myImages.map((picObj) => <img src={picObj.name} />)
+	// }
+	//  </div>
+	// </div>
 
 	exports.default = Profile;
 
@@ -31094,6 +31137,73 @@
 	    }, last.apply(undefined, arguments));
 	  };
 	}
+
+/***/ },
+/* 292 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Feed = __webpack_require__(264);
+
+	var _Feed2 = _interopRequireDefault(_Feed);
+
+	var _QueryBox = __webpack_require__(266);
+
+	var _QueryBox2 = _interopRequireDefault(_QueryBox);
+
+	var _Social = __webpack_require__(267);
+
+	var _Social2 = _interopRequireDefault(_Social);
+
+	var _ImageUpload = __webpack_require__(268);
+
+	var _ImageUpload2 = _interopRequireDefault(_ImageUpload);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Wishlist = function (_React$Component) {
+	  _inherits(Wishlist, _React$Component);
+
+	  function Wishlist(props) {
+	    _classCallCheck(this, Wishlist);
+
+	    return _possibleConstructorReturn(this, (Wishlist.__proto__ || Object.getPrototypeOf(Wishlist)).call(this, props));
+	  }
+
+	  _createClass(Wishlist, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        this.props.list.map(function (picObj) {
+	          return _react2.default.createElement('img', { src: picObj.pic_name });
+	        })
+	      );
+	    }
+	  }]);
+
+	  return Wishlist;
+	}(_react2.default.Component);
+
+	exports.default = Wishlist;
 
 /***/ }
 /******/ ]);
