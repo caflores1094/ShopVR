@@ -31,6 +31,36 @@ var positions = [
   '25 1.5 9',
   '25 1.5 6',
 
+  '29 1.5 12',
+  '29 1.5 8',
+  '29 1.5 4.5',
+  '29 1.5 -12',
+  '29 1.5 -8',
+  '29 1.5 -4.5',
+
+  '32 1.5 12',
+  '32 1.5 9',
+  '32 1.5 6',
+  '32 1.5 -12',
+  '32 1.5 -9',
+  '32 1.5 -6',
+
+  '35 1.5 12',
+  '35 1.5 9',
+  '35 1.5 6',
+  '35 1.5 -12',
+  '35 1.5 -9',
+  '35 1.5 -6',
+
+  '38 1.5 12',
+  '38 1.5 8',
+  '38 1.5 4.5',
+  '38 1.5 -12',
+  '38 1.5 -8',
+  '38 1.5 -4.5',
+
+  '38 1.5 -1.5',
+  '38 1.5 1.5',
 ]
 
 var transformImageUrl = function transformImageUrl(url) {
@@ -46,7 +76,7 @@ class ClothingMapper extends React.Component {
     super(props);
 
     var newfeed = [];
-    for (var i =0; i < 24; i++) {
+    for (var i =0; i < positions.length; i++) {
       if(i < this.props.feed.length){
         newfeed.push([ transformImageUrl(this.props.feed[i][0]), this.props.feed[i][1] ]);
       }
