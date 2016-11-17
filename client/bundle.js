@@ -26706,12 +26706,16 @@
 	      console.log('Welcome!  Fetching your information.... ');
 	      FB.api('/me', { fields: 'id, name, email, friends, gender, picture, locale, timezone, location' }, function (response) {
 	        console.log('Successful login for: ' + response.name);
-
-	        _axios2.default.post('/login/facebook', response).then(function (response) {
-	          console.log(response);
-	          context.props.setUser(response.data[0]);
-	        }).catch(function (error) {
-	          console.log('Error in sending ajax data');
+	        //get higher resolution picture
+	        FB.api("/me/picture?width=320&height=320", function (picResponse) {
+	          response.profile_pic = picResponse.data.url;
+	          console.log(response, 'response before posting, after getting larger pic');
+	          _axios2.default.post('/login/facebook', response).then(function (response) {
+	            console.log(response);
+	            context.props.setUser(response.data[0]);
+	          }).catch(function (error) {
+	            console.log('Error in sending ajax data');
+	          });
 	        });
 	      });
 	    }
@@ -30042,12 +30046,13 @@
 	        _react2.default.createElement(
 	          'h1',
 	          null,
-	          'Profile'
+	          'Welcome, ',
+	          this.props.user.name
 	        ),
 	        _react2.default.createElement(
 	          'form',
 	          null,
-	          _react2.default.createElement('img', { src: this.props.user.profile_pic, style: { maxHeight: "200px", maxWidth: "200px", height: "auto", width: "auto" } }),
+	          _react2.default.createElement('img', { className: 'profile-pic', src: this.props.user.profile_pic }),
 	          _react2.default.createElement(
 	            'p',
 	            null,

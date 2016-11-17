@@ -35,17 +35,22 @@ class NavBar extends React.Component {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', {fields: 'id, name, email, friends, gender, picture, locale, timezone, location'}, function(response) {
       console.log('Successful login for: ' + response.name);
-
-      axios.post('/login/facebook', response)
-      .then(function (response) {
-      console.log(response);
-        context.props.setUser(response.data[0]);
-      })
-      .catch(function (error) {
-        console.log('Error in sending ajax data');
-      });
-
+      //get higher resolution picture
+      FB.api("/me/picture?width=320&height=320", function(picResponse) {
+        response.profile_pic = picResponse.data.url;
+        console.log(response, 'response before posting, after getting larger pic');
+        axios.post('/login/facebook', response)
+          .then(function (response) {
+            console.log(response);
+            context.props.setUser(response.data[0]);
+          })
+          .catch(function (error) {
+            console.log('Error in sending ajax data');
+          });
+      }); 
     });
+
+     
   }
 
   loginCallback(response) {

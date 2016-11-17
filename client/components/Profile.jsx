@@ -76,9 +76,9 @@ class Profile extends React.Component {
   render() {
     return (
        <div>
-           <h1>Profile</h1>
+           <h1>Welcome, {this.props.user.name}</h1>
            <form>
-             <img src={this.props.user.profile_pic} style={{maxHeight: "200px", maxWidth:"200px", height: "auto", width: "auto"}} />
+             <img className="profile-pic" src={this.props.user.profile_pic} />
              <p>Name:
                <input onChange={this.handleInputChange.bind(this, 'name')} type="text" defaultValue={this.props.user.name}/>
              </p>
