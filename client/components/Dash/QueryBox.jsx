@@ -29,31 +29,30 @@ class QueryBox extends React.Component {
 
    render() {
       return (
-         <div>
-         <h1>Search</h1>
-         <form onSubmit={(e) => this.handleSubmit(e)}>
-           <p>Gender:
-             <select value={this.state.gender} onChange={(e) => this.setState({gender: e.target.value})}>
-              <option value="male">men</option>
-              <option value="female">women</option>
-             </select>
-           </p>
+        <div className="search-component">
+          <form onSubmit={(e) => this.handleSubmit(e)}>
+            <p>Gender:
+              <select value={this.state.gender} onChange={(e) => this.setState({gender: e.target.value})}>
+                <option value="male">men</option>
+                <option value="female">women</option>
+              </select>
+            </p>
 
-           <p>Price:
-             <input onChange={(e) => this.setState({minPrice: e.target.value})} defaultValue={this.props.user.min_price} type="number"/> -
-             <input onChange={(e) => this.setState({maxPrice: e.target.value})} defaultValue={this.props.user.max_price} type="number"/>
-           </p>
+            <p>Price:
+              <input onChange={(e) => this.setState({minPrice: e.target.value})} defaultValue={this.props.user.min_price} type="number"/> -
+              <input onChange={(e) => this.setState({maxPrice: e.target.value})} defaultValue={this.props.user.max_price} type="number"/>
+            </p>
 
-           <p>Brand:
-             <input onChange={(e) => this.setState({brand: e.target.value})}/>
-           </p>
+            <p>Brand:
+              <input onChange={(e) => this.setState({brand: e.target.value})}/>
+            </p>
 
-           <p>Item:
-             <input onChange={(e) => this.setState({item: e.target.value})}/>
-           </p>
+            <p>Item:
+              <input onChange={(e) => this.setState({item: e.target.value})}/>
+            </p>
 
-           <button type="submit">Submit</button>
-         </form>
+            <button type="submit">Submit</button>
+          </form>
         </div>
       );
    }

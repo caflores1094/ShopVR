@@ -89,22 +89,21 @@ class ImageUpload extends React.Component {
     if (imagePreviewUrl) {
       $imagePreview = (<img src={imagePreviewUrl} />);
     } else {
-      $imagePreview = (<div className="previewText">No preview available</div>);
+      $imagePreview = (<div className="preview-text">No preview available</div>);
     }
 
     return (
-      <div className="previewComponent">
-        <h1>Image Upload</h1>
+      <div className="preview-component">
         <form onSubmit={(e)=>this.handleSubmit(e)}>
-          <p>Step 1: Upload Image</p>
-          <input className="fileInput" type="file" onChange={(e)=>this.handleImageChange(e)} />
-          <div className="imgPreview">
+          <p>Upload Image</p>
+          <input className="file-input" type="file" onChange={(e)=>this.handleImageChange(e)} />
+          <div className="img-preview">
             {$imagePreview}
           </div>
-          <p>Step 2: Add Tags (each separated by ", ")</p>
-          <input className="tagInput" type="text" onChange={(e)=>this.handleTagChange(e)} />
-          <p>Step 3: Submit</p>
-          <button className="submitButton" type="submit" onClick={(e)=>this.handleSubmit(e)}>Submit</button>
+          <p>Add Tags (each separated by ", ")</p>
+          <input className="tag-input" type="text" onChange={(e)=>this.handleTagChange(e)} />
+          <p>Submit</p>
+          <button className="submit-button" type="submit" onClick={(e)=>this.handleSubmit(e)}>Submit</button>
         </form>
       </div>
     )
