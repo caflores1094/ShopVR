@@ -26644,8 +26644,8 @@
 	  }
 
 	  _createClass(NavBar, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
 	      window.fbAsyncInit = function () {
 	        FB.init({
 	          appId: '310454652686518',

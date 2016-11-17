@@ -1,4 +1,4 @@
-import React from 'react';
+  import React from 'react';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
@@ -6,7 +6,7 @@ class NavBar extends React.Component {
   constructor(props) {
       super(props);
   }
-  componentDidMount() {
+  componentWillMount() {
     window.fbAsyncInit = function() {
       FB.init({
         appId      : '310454652686518',
