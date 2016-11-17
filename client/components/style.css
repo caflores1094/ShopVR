@@ -151,12 +151,17 @@ table {
   transition: opacity .25s ease-in-out;
   -moz-transition: opacity .25s ease-in-out;
   -webkit-transition: opacity .25s ease-in-out;
+  color: #F7EDF0;
 }
 
 .landing-hero:hover {
   opacity: 0.6;
 }
 
+.hero-text {
+  height: 80%;
+  margin-left: 2%;
+}
 
 .landing-border {
   background-color: #A89B9D;
@@ -191,7 +196,7 @@ table {
 
 .landing-signup {
   height: 10%;
-  width: 15%;
+  width: 13.2%;
   font-family: 'Noto Serif', serif;
   margin-left: 42.5%;
   overflow: none;
@@ -204,6 +209,15 @@ table {
   outline: none;
   border-radius: 6%;
   border: none;
+  text-decoration: none;
+  padding-top: 1.5%;
+  padding-left: 3%;
+}
+
+.profile-pic {
+  height: auto;
+  width: 10%;
+
 }
 
 .dashboard-tools {

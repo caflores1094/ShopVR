@@ -132,8 +132,14 @@ class App extends React.Component {
     } else {
       return (
         <div>
-          <Navbar user={this.state.user} setUser={this.setUser.bind(this)}/>
-          <div className="landing-hero"></div>
+          <a className="top">
+            <Navbar user={this.state.user} setUser={this.setUser.bind(this)}/>
+          </a>
+          <div className="landing-hero">
+            <div className="hero-text">
+              Placeholder on subtitle / one liner to put here
+            </div>
+          </div>
           <div className="landing-border"></div>
           <div className="landing">
             <div className="landing-box">
@@ -151,7 +157,7 @@ class App extends React.Component {
                 Shop with friends in virtual reality
               </div>
             </div> 
-            <button className="landing-signup">Sign me up!</button>
+            <a className="landing-signup" href="#top">Sign me up!</a>
           </div>
         </div>
       );
