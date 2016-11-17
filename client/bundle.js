@@ -26573,8 +26573,20 @@
 	        return _react2.default.createElement(
 	          'div',
 	          null,
-	          _react2.default.createElement(_Navbar2.default, { user: this.state.user, setUser: this.setUser.bind(this) }),
-	          _react2.default.createElement('div', { className: 'landing-hero' }),
+	          _react2.default.createElement(
+	            'a',
+	            { className: 'top' },
+	            _react2.default.createElement(_Navbar2.default, { user: this.state.user, setUser: this.setUser.bind(this) })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'landing-hero' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'hero-text' },
+	              'Placeholder on subtitle / one liner to put here'
+	            )
+	          ),
 	          _react2.default.createElement('div', { className: 'landing-border' }),
 	          _react2.default.createElement(
 	            'div',
@@ -26607,8 +26619,8 @@
 	              )
 	            ),
 	            _react2.default.createElement(
-	              'button',
-	              { className: 'landing-signup' },
+	              'a',
+	              { className: 'landing-signup', href: '#top' },
 	              'Sign me up!'
 	            )
 	          )
@@ -26808,6 +26820,11 @@
 	            'button',
 	            { className: 'navbar-button', onClick: this.login.bind(this) },
 	            'Login'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'navbar-button', onClick: this.login.bind(this) },
+	            'Signup'
 	          )
 	        );
 	      }

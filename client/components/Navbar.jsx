@@ -1,4 +1,4 @@
-  import React from 'react';
+import React from 'react';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
@@ -114,6 +114,7 @@ class NavBar extends React.Component {
             <p className="color">VR</p>
           </div>
           <button className="navbar-button" onClick={this.login.bind(this)}>Login</button>
+          <button className="navbar-button" onClick={this.login.bind(this)}>Signup</button>
         </div>
       );
     }
