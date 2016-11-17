@@ -29879,9 +29879,6 @@
 	      _axios2.default.post('/api/myImages', obj).then(function (result) {
 	        context.setState({ myImages: result.data });
 	      });
-	      // this.state = {
-
-	      // }
 	    }
 	  }, {
 	    key: 'handleInputChange',
@@ -29904,26 +29901,24 @@
 	  }, {
 	    key: 'getWishList',
 	    value: function getWishList() {
-	      console.log('yo');
 	      var obj = {};
 	      obj['userID'] = this.props.user.id;
 	      var context = this;
 	      _axios2.default.post('/api/getWishList', obj).then(function (result) {
 	        context.setState({ wishList: result.data });
-	        // console.log(result.data)     
 	      });
 	    }
 	  }, {
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      // this.getMyImages();
+	      this.getWishList();
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
 
-	      console.log('props', this.props.user);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -29995,13 +29990,6 @@
 	          )
 	        ),
 	        _react2.default.createElement(
-	          'button',
-	          { onClick: function onClick() {
-	              _this2.getWishList();
-	            }, value: 'test' },
-	          'TEST BUTTON'
-	        ),
-	        _react2.default.createElement(
 	          'div',
 	          { className: 'wishListArea' },
 	          _react2.default.createElement(
@@ -30021,31 +30009,6 @@
 
 	  return Profile;
 	}(_react2.default.Component);
-	// <Feed user={this.props.user} feed={this.state.wishList} setFeed={this.props.setFeed}
-	//   sortPrice={this.props.sortPrice} sortBrand={this.props.sortBrand} sortCat={this.props.sortCat}
-	//   toggleShow={this.props.toggleShow}
-	// />
-	// <div className='myWishList'>
-	//  <h2>My Wishlist</h2>
-	//  <div className='wishList'>
-	// {
-	//   this.state.myWishList.map((picObj) => <img src={picObj.name} />)
-	// }
-	//  </div>
-	// </div>
-	// ****************************************************************************************
-	//look at the mapping of the wish list, now i need to build the actual wish list array,
-	// get it from the server/DB, maybe make a route/query to get all the urls 
-	// ****************************************************************************************
-
-	// <div className='myPics'>
-	//  <h2>My Uploaded Pictures</h2>
-	//  <div className='picList'>
-	// {
-	//   this.state.myImages.map((picObj) => <img src={picObj.name} />)
-	// }
-	//  </div>
-	// </div>
 
 	exports.default = Profile;
 
@@ -31194,7 +31157,6 @@
 	  _createClass(Wishlist, [{
 	    key: 'render',
 	    value: function render() {
-	      console.log(this.props.list[0]);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -31226,15 +31188,6 @@
 
 	  return Wishlist;
 	}(_react2.default.Component);
-
-	// div><a href={this.props.item.clickUrl}>
-	//             <img src={this.props.item.image.sizes.IPhoneSmall.url} />
-	//             <p>{this.props.item.name}</p></a>
-	//             <button onClick={this.like.bind(this)}>Heart!</button>
-	// <p>{this.props.item.currency} {this.props.item.price}</p>
-	// <p>{this.props.item.categories[0].name}</p>
-	// <p>{this.props.item.retailer.name}</p>
-	//          </div>
 
 	exports.default = Wishlist;
 

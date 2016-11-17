@@ -26,9 +26,6 @@ class Profile extends React.Component {
     .then(function(result) {
       context.setState({ myImages: result.data})     
     });
-      // this.state = {
-
-      // }
   }
 
   handleInputChange(name, e) {
@@ -49,23 +46,21 @@ class Profile extends React.Component {
   }
 
   getWishList(){
-    console.log('yo')
     var obj = {};
     obj['userID'] = this.props.user.id;
     var context = this;
     axios.post('/api/getWishList', obj)
     .then(function(result) {
-      context.setState({ wishList: result.data})     
-      // console.log(result.data)     
+      context.setState({ wishList: result.data})         
     });
   }
 
   componentDidMount(){
     // this.getMyImages();
+    this.getWishList();
   }
 
   render() {
-    console.log('props', this.props.user);
     return (
        <div>
            <h1>Profile</h1>
@@ -94,7 +89,6 @@ class Profile extends React.Component {
              <button type="submit" onClick={(e)=>this.handleUpdate(e)} value="Submit">Update</button>
              <button onClick={(e) => {e.preventDefault(); browserHistory.push('/');}}>Back</button>
            </form>
-           <button onClick={()=> {this.getWishList() }} value='test'>TEST BUTTON</button>
            <div className='wishListArea'>
             <h2>My Wishlist</h2>
             <div className='wishList'>
@@ -105,30 +99,5 @@ class Profile extends React.Component {
     );
   }
 }
-              // <Feed user={this.props.user} feed={this.state.wishList} setFeed={this.props.setFeed}
-              //   sortPrice={this.props.sortPrice} sortBrand={this.props.sortBrand} sortCat={this.props.sortCat}
-              //   toggleShow={this.props.toggleShow}
-              // />
-           // <div className='myWishList'>
-           //  <h2>My Wishlist</h2>
-           //  <div className='wishList'>
-              // {
-              //   this.state.myWishList.map((picObj) => <img src={picObj.name} />)
-              // }
-           //  </div>
-           // </div>
-// ****************************************************************************************
-//look at the mapping of the wish list, now i need to build the actual wish list array,
-// get it from the server/DB, maybe make a route/query to get all the urls 
-// ****************************************************************************************
-
-           // <div className='myPics'>
-           //  <h2>My Uploaded Pictures</h2>
-           //  <div className='picList'>
-              // {
-              //   this.state.myImages.map((picObj) => <img src={picObj.name} />)
-              // }
-           //  </div>
-           // </div>
 
 export default Profile;
