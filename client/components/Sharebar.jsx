@@ -17,9 +17,7 @@ class ShareBar extends React.Component {
     });
   }
 
-
    render() {
-   console.log(this.state.roomid);
       return (
          <div>
            <div>

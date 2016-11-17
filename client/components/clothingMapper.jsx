@@ -2,40 +2,6 @@ import React from 'react';
 import {Entity, Scene} from 'aframe-react'
 import ClothingArticle from './clothingArticle.jsx'
 
-
-// var extras = require('aframe-extras');
-// extras.registerAll();
-
-// var imageArr = [
-//   'url(./lib/testImages/navyDress.jpg)',
-//   'url(./lib/testImages/purpleDress.jpg)',
-//   'url(./lib/testImages/blackDress.jpg)',
-//   'url(./lib/testImages/blackCoat.jpg)',
-//   'url(./lib/testImages/blackCoat2.jpg)',
-//   'url(./lib/testImages/tanCoat.jpg)',
-
-//   'url(./lib/testImages/navyDress.jpg)',
-//   'url(./lib/testImages/purpleDress.jpg)',
-//   'url(./lib/testImages/blackDress.jpg)',
-//   'url(./lib/testImages/blackCoat.jpg)',
-//   'url(./lib/testImages/blackCoat2.jpg)',
-//   'url(./lib/testImages/tanCoat.jpg)',
-
-//   'url(./lib/testImages/navyDress.jpg)',
-//   'url(./lib/testImages/purpleDress.jpg)',
-//   'url(./lib/testImages/blackDress.jpg)',
-//   'url(./lib/testImages/blackCoat.jpg)',
-//   'url(./lib/testImages/blackCoat2.jpg)',
-//   'url(./lib/testImages/tanCoat.jpg)',
-
-//   'url(./lib/testImages/navyDress.jpg)',
-//   'url(./lib/testImages/purpleDress.jpg)',
-//   'url(./lib/testImages/blackDress.jpg)',
-//   'url(./lib/testImages/blackCoat.jpg)',
-//   'url(./lib/testImages/blackCoat2.jpg)',
-//   'url(./lib/testImages/tanCoat.jpg)'
-// ]
-
 var positions = [
   '7 1.5 6',
   '7 1.5 9',
@@ -97,7 +63,7 @@ class ClothingMapper extends React.Component {
       <Entity>
         {
           this.state.feed.map(function(arr, i){
-            return <ClothingArticle position={positions[i]} src={arr[0]} size={arr[1]}/>
+            return <ClothingArticle key={i}position={positions[i]} src={arr[0]} size={arr[1]}/>
           })
         }
       </Entity>

@@ -15,11 +15,10 @@ class ImageUpload extends React.Component {
     // TODO: do something with -> this.state.file
     var obj = this.state;
     obj['u_id'] = this.props.user.id;
-    
+
     var context = this;
     axios.post('/api/upload', obj)
          .then(function(result) {
-          console.log(result)
             if(result.data === 'duplicate image'){
               alert('Image Name already exists!')
             } else{
@@ -69,7 +68,6 @@ class ImageUpload extends React.Component {
         var getProducts = function(url, callback) {
           axios.get(url)
             .then(function(result){
-              console.log(result);
               callback(null, result);
           });
         };
@@ -110,5 +108,5 @@ class ImageUpload extends React.Component {
     )
   }
 }
-  
+
 export default ImageUpload;

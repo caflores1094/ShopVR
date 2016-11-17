@@ -38,7 +38,6 @@ class Setting extends React.Component {
   constructor(props){
     super(props);
   }
-            // <Entity material={dimensions.ceilingMaterial} geometry={{primitive: 'box', depth: '.5', height: dimensions.ceilingLength, width: dimensions.ceilingWidth}} rotation="90 90 0" position="22.5 4.25 0" static-body/>
   render() {
       return(
         <div>
@@ -110,11 +109,11 @@ class Setting extends React.Component {
 
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', radius: '.5', depth: '1', height:'4', width:'1'}} position="27 2 -2.5" static-body/>
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', radius: '.5', depth: '1', height:'4', width:'1'}} position="27 2 2.5" static-body/>
-            
+
             <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: 4, width: 2.5}} rotation="0 90 0" position="27 2 -3.75" static-body/>
             <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: 4, width: 2.5}} rotation="0 90 0" position="27 2 3.75" static-body/>
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1', height: 1, width: 6}} rotation="0 90 0" position="27 3.5 0" static-body/>
-            
+
             <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: dimensions.glassHeight, width: 4.3}} rotation="0 0 0" position="7.16 1.5 -5" static-body/>
             <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: dimensions.glassHeight, width: 4.3}} rotation="0 0 0" position="13.85 1.5 -5" static-body/>
             <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: 1, width: 11}} rotation="0 0 0" position="10.8 3.5 -5" static-body/>
@@ -122,7 +121,7 @@ class Setting extends React.Component {
             <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: dimensions.glassHeight, width: 4.3}} rotation="0 0 0" position="18.15 1.5 -5" static-body/>
             <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: dimensions.glassHeight, width: 4.3}} rotation="0 0 0" position="24.85 1.5 -5" static-body/>
             <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: 1, width: 11}} rotation="0 0 0" position="21.8 3.5 -5" static-body/>
-            
+
             <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: dimensions.glassHeight, width: 4.8}} rotation="0 0 0" position="7.5 1.5 5" static-body/>
             <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: dimensions.glassHeight, width: 4.8}} rotation="0 0 0" position="14.6 1.5 5" static-body/>
             <Entity material={dimensions.glassMaterial} geometry={{primitive: 'box', depth: '.05', height: 1, width: 12}} rotation="0 0 0" position="11.1 3.5 5" static-body/>
@@ -133,11 +132,11 @@ class Setting extends React.Component {
 
             <Entity material={'color: #bcd2f4; opacity: 0.6; side: double;'} geometry={{primitive: 'cylinder',  openEnded: true, radius: '10', height: 35, segmentsHeight: 18, segmentsRadial: 36, thetaLength: 180}} rotation='0 0 90' position='22.5 5.5 0' />
 
-            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1.5', height:'35', width:'5'}} rotation="90 90 0" position="22.5 4.75 -12.5" static-body/> 
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1.5', height:'35', width:'5'}} rotation="90 90 0" position="22.5 4.75 -12.5" static-body/>
             <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1.5', height:'35', width:'5'}} rotation="90 90 0" position="22.5 4.75 12.5" static-body/>
 
-            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1.5', height:'30', width:'1'}} rotation="90 0 0" position="5.5 4.75 0" static-body/>            
-            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1.5', height:'30', width:'2'}} rotation="90 0 0" position="39 4.75 0" static-body/>            
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1.5', height:'30', width:'1'}} rotation="90 0 0" position="5.5 4.75 0" static-body/>
+            <Entity material={dimensions.mallMaterial} geometry={{primitive: 'box', depth: '1.5', height:'30', width:'2'}} rotation="90 0 0" position="39 4.75 0" static-body/>
 
 
             <CashierCounter position={["11 .8 12.7", "11 1.625 12.4", "11 1.7 12.4", "11 2.1 12.4"]}/>
