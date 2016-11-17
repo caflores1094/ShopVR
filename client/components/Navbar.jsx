@@ -108,9 +108,13 @@ class NavBar extends React.Component {
       );
     } else {
       return (
-         <div className="navbar">ShopVR
-           <button className="navbar-loggedout-button" onClick={this.login.bind(this)}>Facebook Login</button>
-         </div>
+        <div className="header">
+          <div className="navbar">Shop
+            <br/>
+            <p className="color">VR</p>
+          </div>
+          <button className="navbar-button" onClick={this.login.bind(this)}>Login</button>
+        </div>
       );
     }
   }

@@ -144,3 +144,27 @@ table {
   border-radius: 6%;
   border: none;
 }
+
+.landing-hero {
+  margin-top: 2%;
+  width: auto;
+  height: 42em;
+  background-image: url("../lib/mallatnight.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 1;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+}
+
+.landing-hero:hover {
+  opacity: 0.6;
+}
+
+.landing-border {
+  margin-bottom: 2%;
+  background-color: #A89B9D;
+  height: 3em;
+  width: auto;
+}

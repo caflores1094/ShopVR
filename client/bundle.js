@@ -26572,8 +26572,10 @@
 	      } else {
 	        return _react2.default.createElement(
 	          'div',
-	          { className: 'app' },
+	          null,
 	          _react2.default.createElement(_Navbar2.default, { user: this.state.user, setUser: this.setUser.bind(this) }),
+	          _react2.default.createElement('div', { className: 'landing-hero' }),
+	          _react2.default.createElement('div', { className: 'landing-border' }),
 	          _react2.default.createElement(
 	            'h1',
 	            null,
@@ -26774,12 +26776,22 @@
 	      } else {
 	        return _react2.default.createElement(
 	          'div',
-	          { className: 'navbar' },
-	          'ShopVR',
+	          { className: 'header' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'navbar' },
+	            'Shop',
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement(
+	              'p',
+	              { className: 'color' },
+	              'VR'
+	            )
+	          ),
 	          _react2.default.createElement(
 	            'button',
-	            { className: 'navbar-loggedout-button', onClick: this.login.bind(this) },
-	            'Facebook Login'
+	            { className: 'navbar-button', onClick: this.login.bind(this) },
+	            'Login'
 	          )
 	        );
 	      }

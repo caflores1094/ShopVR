@@ -131,13 +131,15 @@ class App extends React.Component {
       );
     } else {
       return (
-         <div className='app'>
-           <Navbar user={this.state.user} setUser={this.setUser.bind(this)}/>
-           <h1>Why use our app?</h1>
-           <h3>Enter Your Preferences</h3>
-           <h3>Browse Your Recommendations</h3>
-           <h3>Shop in Virtual Reality (w/ Friends)</h3>
-         </div>
+        <div>
+          <Navbar user={this.state.user} setUser={this.setUser.bind(this)}/>
+          <div className="landing-hero"></div>
+          <div className="landing-border"></div>
+          <h1>Why use our app?</h1>
+          <h3>Enter Your Preferences</h3>
+          <h3>Browse Your Recommendations</h3>
+          <h3>Shop in Virtual Reality (w/ Friends)</h3>
+        </div>
       );
     }
   }
