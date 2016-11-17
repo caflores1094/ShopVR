@@ -26572,7 +26572,7 @@
 	      } else {
 	        return _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'app' },
 	          _react2.default.createElement(_Navbar2.default, { user: this.state.user, setUser: this.setUser.bind(this) }),
 	          _react2.default.createElement(
 	            'h1',
@@ -26731,34 +26731,43 @@
 	      if (this.props.user.hasOwnProperty('name')) {
 	        return _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'header' },
 	          _react2.default.createElement(
-	            'button',
-	            { onClick: function onClick() {
-	                return _reactRouter.browserHistory.push('/');
-	              } },
-	            'Feed'
+	            'div',
+	            { className: 'navbar' },
+	            'Shop',
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement(
+	              'p',
+	              { className: 'color' },
+	              'VR'
+	            )
 	          ),
 	          _react2.default.createElement(
-	            'button',
-	            { onClick: function onClick() {
-	                return _reactRouter.browserHistory.push('profile');
-	              } },
-	            'Profile'
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.logout.bind(this) },
-	            'Log Out'
+	            'div',
+	            { className: 'buttons' },
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'navbar-button', onClick: function onClick() {
+	                  return _reactRouter.browserHistory.push('profile');
+	                } },
+	              'Profile'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'navbar-button', onClick: this.logout.bind(this) },
+	              'Logout'
+	            )
 	          )
 	        );
 	      } else {
 	        return _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'navbar' },
+	          'ShopVR',
 	          _react2.default.createElement(
 	            'button',
-	            { onClick: this.login.bind(this) },
+	            { className: 'navbar-loggedout-button', onClick: this.login.bind(this) },
 	            'Facebook Login'
 	          )
 	        );
@@ -29196,6 +29205,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
+	        _react2.default.createElement('div', { className: 'dashboard-hero' }),
 	        _react2.default.createElement(_ImageUpload2.default, { user: this.props.user, setFeed: this.props.setFeed }),
 	        _react2.default.createElement(_QueryBox2.default, { user: this.props.user, setFeed: this.props.setFeed }),
 	        _react2.default.createElement(_Feed2.default, { user: this.props.user, feed: this.props.feed, setFeed: this.props.setFeed,

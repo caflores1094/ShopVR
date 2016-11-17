@@ -88,16 +88,21 @@ class NavBar extends React.Component {
   render() {
     if (this.props.user.hasOwnProperty('name')) {
       return (
-         <div>
-           <button onClick={() => browserHistory.push('/')}>Feed</button>
-           <button onClick={() => browserHistory.push('profile')}>Profile</button>
-           <button onClick={this.logout.bind(this)}>Log Out</button>
-         </div>
+        <div className="header">
+           <div className="navbar">Shop
+             <br/>
+             <p className="color">VR</p>
+           </div>
+           <div className="buttons">
+             <button className="navbar-button" onClick={() => browserHistory.push('profile')}>Profile</button>
+             <button className="navbar-button" onClick={this.logout.bind(this)}>Logout</button>
+           </div>
+        </div>
       );
     } else {
       return (
-         <div>
-           <button onClick={this.login.bind(this)}>Facebook Login</button>
+         <div className="navbar">ShopVR
+           <button className="navbar-loggedout-button" onClick={this.login.bind(this)}>Facebook Login</button>
          </div>
       );
     }
