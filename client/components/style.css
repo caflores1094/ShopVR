@@ -49,10 +49,8 @@ table {
 
 
 /* OUR CSS */
-.main-app {
-}
 
-.navbar{
+.navbar {
   height: 1.1em;
   width: 2.2em;
   margin-bottom: 0.1%;
@@ -64,7 +62,7 @@ table {
   padding: 2%;
   display: inline-block;
 }
-.navbar-button{
+.navbar-button {
   width: 10%;
   height: 3.5em;
   margin-top: 1.8%;
@@ -78,7 +76,7 @@ table {
   border-radius: 6%;
   border: none;
 }
-.color{
+.color {
   display: inline;
   font-family: 'Playfair Display', cursive;
   font-weight: bolder;
@@ -86,12 +84,12 @@ table {
   color: #DF755A;
 }
 
-.buttons{
+.buttons {
   width: 80%;
   display: inline;
 }
 
-.navbar-loggedout-button{
+.navbar-loggedout-button {
   height: 7%;
   font-family: 'Noto Serif', serif;
   margin-left: calc(100% - 15em);
@@ -102,7 +100,7 @@ table {
 }
 
 .dashboard-hero {
-  margin: 2% 0;
+  margin-top: 2%;
   width: auto;
   height: 30em;
   background-image: url("../lib/cartier.jpg");
@@ -116,4 +114,32 @@ table {
 
 .dashboard-hero:hover {
   opacity: 0.6;
+}
+
+.dashboard-border {
+  margin-bottom: 2%;
+  background-color: #DF755A;
+  height: 3em;
+  width: auto;
+}
+
+.dashboard-tools {
+  width: 15em;
+}
+
+.dashboard-button,
+.upload-button,
+.search-button {
+  width: 11%;
+  height: 2.5em;
+  margin-left: 1%;
+  margin-right: 3%;
+  margin-bottom: 0.5%;
+  font-family: 'Noto Serif', serif;
+  font-size: 1.2em;
+  background-color: #3B383D;
+  color: #F7EDF0;
+  outline: none;
+  border-radius: 6%;
+  border: none;
 }
