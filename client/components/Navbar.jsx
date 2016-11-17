@@ -90,15 +90,15 @@ class NavBar extends React.Component {
     if (this.props.user.hasOwnProperty('name') && window.location.pathname !== '/vr') {
       return (
         <div className="header">
-           <div className="navbar">Shop
-             <br/>
-             <p className="color">VR</p>
-           </div>
-           <div className="buttons">
+          <div className="navbar">Shop
+           <br/>
+           <p className="color">VR</p>
+          </div>
+          <div className="buttons">
             <button className="navbar-button" onClick={this.logout.bind(this)}>Logout</button>
             <button className="navbar-button" onClick={() => browserHistory.push('profile')}>Profile</button>
             <button className="navbar-button" onClick={() => browserHistory.push('/')}>Feed</button>
-           </div>
+          </div>
         </div>
       );
     } else if (this.props.user.hasOwnProperty('name') && window.location.pathname === '/vr') {
