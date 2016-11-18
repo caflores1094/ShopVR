@@ -76,37 +76,42 @@ class Profile extends React.Component {
   render() {
     return (
        <div>
-           <h1>Welcome, {this.props.user.name}</h1>
-           <form>
-             <img className="profile-pic" src={this.props.user.profile_pic} />
-             <p>Name:
-               <input onChange={this.handleInputChange.bind(this, 'name')} type="text" defaultValue={this.props.user.name}/>
-             </p>
-             <p>Email:
-               <input onChange={this.handleInputChange.bind(this, 'email')} type="text" defaultValue={this.props.user.email}/>
-             </p>
-             <p>Gender:
-               <select onChange={this.handleInputChange.bind(this, 'gender')} defaultValue={this.props.user.gender}>
-                <option value="male">male</option>
-                <option value="female">female</option>
-               </select>
-             </p>
-             <p>
-             Min Price:
-              <input onChange={this.handleInputChange.bind(this, 'min_price')} type="number" defaultValue={this.props.user.min_price}/>
-             </p>
-             <p>
-             Max Price:
-               <input onChange={this.handleInputChange.bind(this, 'max_price')} type="number" defaultValue={this.props.user.max_price}/>
-             </p>
-             <button type="submit" onClick={(e)=>this.handleUpdate(e)} value="Submit">Update</button>
-           </form>
-           <div className='wishListArea'>
-            <h2>My Wishlist</h2>
-            <div className='wishList'>
+          <div className="profile-welcome">
+            <div className="profile-welcome-text">Welcome, {this.props.user.name}</div>
+          </div>
+            <form className="profile-container">
+              <img className="profile-pic" src={this.props.user.profile_pic} />
+              <div className="profile-info">
+
+                <p>Name:
+                  <input className="profile-input" onChange={this.handleInputChange.bind(this, 'name')} type="text" defaultValue={this.props.user.name}/>
+                </p>
+                <p>Email:
+                  <input className="profile-input" onChange={this.handleInputChange.bind(this, 'email')} type="text" defaultValue={this.props.user.email}/>
+                </p>
+                <p>Gender:
+                  <select className="profile-input" onChange={this.handleInputChange.bind(this, 'gender')} defaultValue={this.props.user.gender}>
+                  <option value="male">male</option>
+                  <option value="female">female</option>
+                 </select>
+                </p>
+                <p>
+                  Min Price:
+                <input className="profile-input" onChange={this.handleInputChange.bind(this, 'min_price')} type="number" defaultValue={this.props.user.min_price}/>
+                </p>
+                <p>
+                  Max Price:
+                  <input className="profile-input" onChange={this.handleInputChange.bind(this, 'max_price')} type="number" defaultValue={this.props.user.max_price}/>
+                </p>
+                <button className="profile-button" type="submit" onClick={(e)=>this.handleUpdate(e)} value="Submit">Update</button>
+              </div>
+            </form>
+          <div className="wishlist-container">
+            <div className="wishlist-header">My Wishlist</div>
+            <div className='wishlist'>
               <Wishlist getWishList={this.getWishList.bind(this)} list={this.state.wishList}/>
             </div>
-           </div>
+          </div>
        </div>
     );
   }
