@@ -12,7 +12,8 @@ class QueryBox extends React.Component {
         minSize: this.props.user.min_size,
         maxSize: this.props.user.max_size,
         brand: '',
-        item: ''
+        item: '',
+        offset: 0
       }
   }
 
@@ -20,7 +21,7 @@ class QueryBox extends React.Component {
     e.preventDefault();
     var gender = this.state.gender === 'male' ? "men" : "women";
     var context = this;
-    axios.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&limit=50&fts=' + gender + '+' + this.state.brand + '+' + this.state.item)
+    axios.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&offset=" + this.state.offset + "&limit=50&fts=' + gender + '+' + this.state.brand + '+' + this.state.item)
     .then(function (response) {
       context.props.setFeed(response.data.products, context.state.minPrice, context.state.maxPrice, context.state.minSize, context.state.maxSize);
     })
