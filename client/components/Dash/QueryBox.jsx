@@ -47,12 +47,7 @@ class QueryBox extends React.Component {
             $<input className="tag-input" onChange={(e) => this.setState({minPrice: e.target.value})} defaultValue={this.props.user.min_price} type="number"/> -
             <br />
             $<input className="tag-input" onChange={(e) => this.setState({maxPrice: e.target.value})} defaultValue={this.props.user.max_price} type="number"/>
-            
-            <p className="search-label">Size:</p>
-            <input className="tag-input" onChange={(e) => this.setState({minSize: e.target.value})} defaultValue={this.props.user.min_size} type="number"/> -
-            <br />
-            <input className="tag-input" onChange={(e) => this.setState({maxSize: e.target.value})} defaultValue={this.props.user.max_size} type="number"/>
-
+  
             <p className="search-label">Brand:</p>
             <input className="tag-input" onChange={(e) => this.setState({brand: e.target.value})}/>
 
