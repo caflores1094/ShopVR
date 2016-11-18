@@ -37,11 +37,13 @@ class NavBar extends React.Component {
       console.log('Successful login for: ' + response.name);
       //get higher resolution picture
       FB.api("/me/picture?width=320&height=320", function(picResponse) {
-        response.profile_pic = picResponse.data.url;
-        console.log(response, 'response before posting, after getting larger pic');
+        console.log('response getting pic', response)
+        response.picture.data.url = picResponse.data.url;
+        console.log('picresponse', picResponse);
         axios.post('/login/facebook', response)
           .then(function (response) {
-            console.log(response);
+            console.log('sent response');
+            console.log('posting response', response);
             context.props.setUser(response.data[0]);
           })
           .catch(function (error) {
