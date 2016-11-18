@@ -4,9 +4,9 @@ var router = require('express').Router();
 var db = require('./db');
 var request = require('request');
 
-var authController = require('./controllers/auth.js');
-var picController = require('./controllers/pic.js');
-var wishlistController = require('./controllers/wishlist.js');
+var authController = require('./Controllers/auth.js');
+var picController = require('./Controllers/pic.js');
+var wishlistController = require('./Controllers/wishlist.js');
 var userController = require('./controllers/index.js');
 
 var server = express();
