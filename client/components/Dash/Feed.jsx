@@ -25,8 +25,8 @@ class Feed extends React.Component {
 
     return (
       <div className="feed">
-        <div className="feed-container">
-          <div className="recommended-items">Feed
+        <div className="feed-container">Feed
+          <div className="recommended-items">
             <button className="sort-btn" onClick={this.props.sortPrice}>Price</button>
             <button className="sort-btn" onClick={this.props.sortBrand}>Retailer</button>
             <button className="sort-btn" onClick={this.props.sortCat}>Category</button>

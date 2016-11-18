@@ -301,13 +301,21 @@ table {
 }
 
 .recommended-items {
-  font-size: 5em;
+  font-size: 2em;
   font-weight: bolder;
-  display: inline;
+  display: inline-block;
   color: #3B383D;
+  width: 100%;
 }
 
+.feed-container {
+  display: inline-block;
+  font-size: 2em;
+  height: 1.6em;
+  font-weight: bolder;
+  font-family: 'Josefin Sans', sans-serif;  
 
+}
 
 .sort-btn {
   width: 4.5em;
@@ -322,6 +330,7 @@ table {
   outline: none;
   border-radius: 6%;
   border: none;
+  display: inline-block;
 }
 
 .feed-item {
