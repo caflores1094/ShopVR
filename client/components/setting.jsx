@@ -105,15 +105,6 @@ class Setting extends React.Component {
               position="21.8 4.8 10"
             />
 
-            <Entity
-              light="type: point; intensity: .6"
-              rotation="-90 0 0"
-              position="33 15 0"
-            />
-            
-
-          
-
             <Entity material={dimensions.grassMaterial} geometry={{primitive: 'plane', height: dimensions.frontGrassLength, width: dimensions.fullWidth}} rotation="-90 90 0" position="0 0 0" static-body/>
             <Entity material={dimensions.grassMaterial} geometry={{primitive: 'plane', height: dimensions.sideGrassesWidth, width: dimensions.fullWidth}} rotation="-90 90 0" position={dimensions.backGrassZ+ "0 0"} static-body/>
             <Entity material={dimensions.grassMaterial} geometry={{primitive: 'plane', height: dimensions.sideGrassesWidth, width: dimensions.sideGrassesLength}} rotation="-90 0 0" position="22.5 0 17.5" static-body/>
