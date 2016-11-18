@@ -144,7 +144,7 @@ class App extends React.Component {
           <div className="landing">
             <div className="landing-box">
               <div className="marketing-title">
-                Tell us about your style
+                Tell us about your style and favorites
               </div>
             </div>
             <div className="landing-box">
