@@ -93,14 +93,15 @@ class ImageUpload extends React.Component {
     return (
       <div className="preview-component">
         <form onSubmit={(e)=>this.handleSubmit(e)}>
-          <p>Upload Image</p>
-          <input className="file-input" type="file" onChange={(e)=>this.handleImageChange(e)} />
+          <p className="upload-instructions">Upload Image</p>
+          <input className="file-input" id="file" name="file" type="file" onChange={(e)=>this.handleImageChange(e)} />
+          <button className="file-button"><label className="file-label" htmlFor="file">Choose Image</label></button>
           <div className="img-preview">
             {$imagePreview}
           </div>
-          <p>Add Tags (each separated by ", ")</p>
+          <p className="upload-instructions">Add Tags (each separated by ", ")</p>
           <input className="tag-input" type="text" onChange={(e)=>this.handleTagChange(e)} />
-          <p>Submit</p>
+          <br />
           <button className="submit-button" type="submit" onClick={(e)=>this.handleSubmit(e)}>Submit</button>
         </form>
       </div>
