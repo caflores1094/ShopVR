@@ -19,14 +19,11 @@ class ShareBar extends React.Component {
 
    render() {
       return (
-         <div>
-           <div>
-              <input type="text" id="room-id" onChange={(e) => this.setState({roomid: e.target.value})} defaultValue='Enter your room name' />
-              <button id="open-room" onClick={() => connection.open(document.getElementById('room-id').value)}>Open Room</button>
-              <button onClick={this.FBmsg.bind(this)}>Send FB Invite</button>
-              <button onClick={() => window.location.assign('/')}>Back To Dashboard</button>
-           </div>
-         </div>
+        <div>
+          <input type="text" id="room-id" onChange={(e) => this.setState({roomid: e.target.value})} placeholder='Enter your room name' />
+          <button className="vr-btn" id="open-room" onClick={() => connection.open(document.getElementById('room-id').value)}>Open Room</button>
+          <button className="vr-btn" onClick={this.FBmsg.bind(this)}>Send FB Invite</button>
+        </div>
       );
    }
 }
