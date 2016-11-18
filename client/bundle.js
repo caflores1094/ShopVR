@@ -26678,7 +26678,7 @@
 	    value: function componentWillMount() {
 	      window.fbAsyncInit = function () {
 	        FB.init({
-	          appId: '310454652686518',
+	          appId: '315282285537088',
 	          cookie: true, // enable cookies to allow the server to access
 	          // the session
 	          xfbml: true, // parse social plugins on this page
