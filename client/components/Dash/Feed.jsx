@@ -24,14 +24,14 @@ class Feed extends React.Component {
     });
   }
   next() {
-    count++;
+    count += 50;
     this.setState({
       offset: count
     });
     var context = this;
     var gender = this.props.user.gender === 'male' ? "men" : "women"
 
-    axios.get("http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&offset=" + this.state.offset + "&fts=" + gender + "&limit=50")
+    axios.get("http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&offset=" + count + "&fts=" + gender + "&limit=50")
       .then(function (response) {
         context.props.setFeed(response.data.products);
       })
@@ -41,7 +41,7 @@ class Feed extends React.Component {
   }
   previous() {
     if (count > 0) {
-      count--;
+      count -= 50;
 
     }
     this.setState({
