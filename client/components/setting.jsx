@@ -2,6 +2,7 @@ import React from 'react';
 import {Entity, Scene} from 'aframe-react'
 import ClothingMapper from './clothingMapper.jsx'
 import CashierCounter from './cashierCounter.jsx'
+import Fountain from './Fountain.jsx'
 // var extras = require('aframe-extras');
 // extras.registerAll();
 
@@ -85,6 +86,9 @@ class Setting extends React.Component {
               rotation="-90 0 0"
               position="21.8 4.8 10"
             />
+
+
+
 
 
 
@@ -177,6 +181,10 @@ class Setting extends React.Component {
             <CashierCounter position={["21.5 .8 -12.7", "21.5 1.625 -12.4", "21.5 1.7 -12.4", "21.5 2.1 -12.4"]}/>
 
             <ClothingMapper feed={this.props.feed}/>
+
+            <Fountain z='33 ' y='0 ' x='0'/>
+
+
 
           </Scene>
         </div>
