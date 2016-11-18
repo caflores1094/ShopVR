@@ -55,4 +55,9 @@ Category: Feature, UX
 Estimation of work time: 10-15 hours
 Priority: 4
 
+Description: allow users to filter by clothing size
+Category: Feature, UX
+Estimation of work time: ~10 hours (need regex and a very detailed lookup table)
+Priority: 4
+
 
