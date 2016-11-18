@@ -9,6 +9,8 @@ class QueryBox extends React.Component {
         gender: this.props.user.gender,
         minPrice: this.props.user.min_price,
         maxPrice: this.props.user.max_price,
+        minSize: this.props.user.min_size,
+        maxSize: this.props.user.max_size,
         brand: '',
         item: ''
       }
@@ -20,7 +22,7 @@ class QueryBox extends React.Component {
     var context = this;
     axios.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&limit=50&fts=' + gender + '+' + this.state.brand + '+' + this.state.item)
     .then(function (response) {
-      context.props.setFeed(response.data.products, context.state.minPrice, context.state.maxPrice);
+      context.props.setFeed(response.data.products, context.state.minPrice, context.state.maxPrice, context.state.minSize, context.state.maxSize);
     })
     .catch(function (error) {
       console.log('asdfError in sending ajax data ', error);
@@ -44,11 +46,16 @@ class QueryBox extends React.Component {
             $<input className="tag-input" onChange={(e) => this.setState({minPrice: e.target.value})} defaultValue={this.props.user.min_price} type="number"/> -
             <br />
             $<input className="tag-input" onChange={(e) => this.setState({maxPrice: e.target.value})} defaultValue={this.props.user.max_price} type="number"/>
+            
+            <p className="search-label">Size:</p>
+            <input className="tag-input" onChange={(e) => this.setState({minSize: e.target.value})} defaultValue={this.props.user.min_size} type="number"/> -
+            <br />
+            <input className="tag-input" onChange={(e) => this.setState({maxSize: e.target.value})} defaultValue={this.props.user.max_size} type="number"/>
 
             <p className="search-label">Brand:</p>
             <input className="tag-input" onChange={(e) => this.setState({brand: e.target.value})}/>
 
-            <p className="search-label">Item:</p>
+            <p className="search-label">What are you looking for?:</p>
             <input className="tag-input" onChange={(e) => this.setState({item: e.target.value})}/>
 
             <button className="submit-button" type="submit">Submit</button>

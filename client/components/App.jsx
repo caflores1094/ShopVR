@@ -19,13 +19,20 @@ class App extends React.Component {
     this.setState({user: user});
   }
 
-  setFeed(feed, min, max) {
-    min = min || 0;
-    max = max || 10000;
+  setFeed(feed, minPrice, maxPrice) {
+    minPrice = minPrice || 0;
+    maxPrice = maxPrice || 10000;
+    
     var newfeed = [];
     for (var i = 0; i < feed.length; i++) {
-      if (feed[i].price >= min && feed[i].price <= max) {
-        newfeed.push(feed[i])
+      //check if the user's sizes are in stock...sizing format is extremely inconsistent
+      //will need regex for this...tabling this feature for now
+      // feed[i].stock.forEach(function(stockItem) {
+      //   console.log(stockItem, 'stockitem');
+      //   var size = stockItem.size.name;
+      // })  
+      if (feed[i].price >= minPrice && feed[i].price <= maxPrice) {
+        newfeed.push(feed[i]);
       }
     }
     this.setState({allitems: newfeed});
