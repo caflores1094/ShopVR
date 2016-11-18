@@ -7,5 +7,3 @@ dist/
 
 *.DS_Store
 .DS_Store
-
-client/bundle.js
