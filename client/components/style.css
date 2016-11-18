@@ -176,7 +176,7 @@ table {
 }
 
 .landing-box {
-  width: 25.8%;
+  width: 25.2%;
   display: inline-block;
   border: 0.4em solid #F7EDF0;
   margin-left: 3.2%;
@@ -196,7 +196,7 @@ table {
 
 .landing-signup {
   height: 10%;
-  width: 13.2%;
+  width: 14.2%;
   font-family: 'Noto Serif', serif;
   margin-left: 42.5%;
   overflow: none;
@@ -210,16 +210,72 @@ table {
   border-radius: 6%;
   border: none;
   text-decoration: none;
-  padding-top: 1.5%;
+  padding-top: 1.9%;
   padding-left: 3%;
+}
+.profile-welcome {
+  margin-top: 2%;
+  height: 4em;
+  background-color: #DF755A;
+}
+
+.profile-welcome-text {
+  
+  padding-left: 2%;
+  height:70%;
+  width: 80%;
+  color: #F7EDF0;
+  font-size: 2em;
+  font-family: 'Noto Serif', serif;
+  line-height: 2em;
+}
+.profile-container {
+  width: 90%;
+  height: auto;
+  display: block;
 }
 
 .profile-pic {
-  height: auto;
-  width: 10%;
+  height: 32%;
+  width: 32%;
+  background-color: #DF755A;
+  display: inline-block;
+}
+
+.profile-info { 
+  display: inline-block;
+  width: 50%;
+  font-size: 1.1em;
+  line-height: 2.4em;
+  margin-left: 2em;
+  font-family: 'Noto Serif', serif;
+  font-weight: bolder;
+  height: 32%;
 
 }
 
+.profile-input {
+  margin-left: 0.5em;
+  line-height: 2.4em;
+  font-size: 1em;
+  font-family: 'Noto Serif', serif;
+
+}
+
+.profile-button {
+  width: 13em;
+  height: 1.8em;
+  margin-right: 3%;
+  margin-bottom: 1%;
+  font-family: 'Noto Serif', serif;
+  font-size: 1.2em;
+  background-color: #3B383D;
+  color: #F7EDF0;
+  outline: none;
+  border-radius: 6%;
+  border: none;
+
+}
 .dashboard-tools {
   width: 25%;
   display: inline;
@@ -306,4 +362,15 @@ table {
 
 .feed-items {
   margin: 3%;
+}
+
+.wishlist-container {
+  margin-top: 2%;
+  border-top: 1pt solid #A89B9D;
+}
+.wishlist-header {
+  font-size: 2em;
+  font-family: 'Noto Serif', serif;
+  margin-left: 2%;
+  margin-top: 2%;
 }
