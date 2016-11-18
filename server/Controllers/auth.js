@@ -1,4 +1,4 @@
-const controller = require('../Controllers/index.js');
+const controller = require('../controllers/index.js');
 
 module.exports = {
 //login
