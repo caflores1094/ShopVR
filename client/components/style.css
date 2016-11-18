@@ -394,3 +394,14 @@ table {
   border-radius: 6%;
   border: none;
 }
+
+.tag-input {
+  padding: 2%;
+  border: solid 5px #3B383D;
+  transition: border 0.3s;
+  outline: none;
+}
+
+.tag-input:focus {
+  border: solid 5px #DF755A;
+}
