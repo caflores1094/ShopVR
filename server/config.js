@@ -1,8 +1,10 @@
-var conf = {
-    client_id:      ,
-    client_secret:  ,
-    scope:          'email, public_profile, user_friends',
-    redirect_uri:   'http://localhost:3000/api/auth/login'
+module.exports = {
+  port: process.env.PORT || 3000,
+  db: {
+    host: process.env.DATABASE_HOST || 'localhost',
+    database: 'shopvr',
+    user: 'newuser',
+    password: 'password',
+    port: 3306
+  }
 };
-
-module.exports = conf;

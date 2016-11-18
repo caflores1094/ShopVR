@@ -8,10 +8,11 @@ var authController = require('./controllers/auth.js');
 var picController = require('./controllers/pic.js');
 var wishlistController = require('./controllers/wishlist.js');
 var userController = require('./controllers/index.js');
+var config = require('./config.js')
 
 var server = express();
 
-server.set('port', 3000)
+server.set('port', config.port)
 server.listen(server.get('port'), function () {
   console.log('Server listening');
 });
