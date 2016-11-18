@@ -60,4 +60,24 @@ Category: Feature, UX
 Estimation of work time: ~10 hours (need regex and a very detailed lookup table)
 Priority: 4
 
+Description: sharing wishlist on social media
+Category: Feature, UX
+Estimation of work time: 10-15 hours
+Priority: 4
+
+Description: see friends' wishlist
+Category: Feature, UX
+Estimation of work time: 10-15 hours
+Priority: 4
+
+Description: chat live with friends who are online on FB messenger
+Category: Feature, UX
+Estimation of work time: 10-15 hours
+Priority: 4
+
+Description: error message when search can't find what user is looking for
+Category: UX
+Estimation of work time: 30 min
+Priority: 4
+
 
