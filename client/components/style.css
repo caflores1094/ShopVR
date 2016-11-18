@@ -437,6 +437,7 @@ table {
   font-weight: bolder;
 }
 
+.item-heart:hover,
 .item-heart:focus,
 .item-heart:target,
 .item-heart:active {
