@@ -40,7 +40,10 @@ class Feed extends React.Component {
       });
   }
   previous() {
-    count--;
+    if (count > 0) {
+      count--;
+
+    }
     this.setState({
       offset: count
     })
@@ -67,9 +70,9 @@ class Feed extends React.Component {
           </div>
         </div>
         <br />
-        <button className="show-items" onClick={this.props.toggleShow}>Show {this.props.feed.length > 25 ? 'Less' : 'More'}</button>
-        <button className="show-previous" onClick={this.previous.bind(this)}>Previous</button>
+        <button className="show-items" onClick={this.props.toggleShow}>Show {this.props.feed.length > 25 ? '25 items' : '50 items'}</button>
         <button className="show-more" onClick={this.next.bind(this)}>Next</button>
+        <button className="show-previous" onClick={this.previous.bind(this)}>{count === 0 ? 'Page 0' : 'Previous'}</button>
         <br />
         <div className="feed-items">
           {this.props.feed.map((item, i) =>
