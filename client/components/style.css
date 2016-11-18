@@ -450,6 +450,7 @@ table {
 }
 
 .tag-input {
+  margin-left: 1%;
   padding: 2%;
   border: solid 5px #3B383D;
   transition: border 0.3s;
