@@ -31,27 +31,24 @@ class QueryBox extends React.Component {
       return (
         <div className="search-component">
           <form onSubmit={(e) => this.handleSubmit(e)}>
-            <p>Gender:
-              <select value={this.state.gender} onChange={(e) => this.setState({gender: e.target.value})}>
-                <option value="male">men</option>
-                <option value="female">women</option>
-              </select>
-            </p>
+            <p className="search-label">Gender:</p>
+            <select value={this.state.gender} onChange={(e) => this.setState({gender: e.target.value})}>
+              <option value="male">men</option>
+              <option value="female">women</option>
+            </select>
 
-            <p>Price:
-              <input onChange={(e) => this.setState({minPrice: e.target.value})} defaultValue={this.props.user.min_price} type="number"/> -
-              <input onChange={(e) => this.setState({maxPrice: e.target.value})} defaultValue={this.props.user.max_price} type="number"/>
-            </p>
+            <p className="search-label">Price:</p>
+            $<input className="tag-input" onChange={(e) => this.setState({minPrice: e.target.value})} defaultValue={this.props.user.min_price} type="number"/> -
+            <br />
+            $<input className="tag-input" onChange={(e) => this.setState({maxPrice: e.target.value})} defaultValue={this.props.user.max_price} type="number"/>
 
-            <p>Brand:
-              <input onChange={(e) => this.setState({brand: e.target.value})}/>
-            </p>
+            <p className="search-label">Brand:</p>
+            <input className="tag-input" onChange={(e) => this.setState({brand: e.target.value})}/>
 
-            <p>Item:
-              <input onChange={(e) => this.setState({item: e.target.value})}/>
-            </p>
+            <p className="search-label">Item:</p>
+            <input className="tag-input" onChange={(e) => this.setState({item: e.target.value})}/>
 
-            <button type="submit">Submit</button>
+            <button className="submit-button" type="submit">Submit</button>
           </form>
         </div>
       );

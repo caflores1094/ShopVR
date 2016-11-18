@@ -363,8 +363,9 @@ table {
   margin: 6%;
 }
 
-.upload-instructions {
-  margin: 2% 0;
+.upload-instructions,
+.search-label {
+  margin: 4% 0;
   font-weight: bolder;
 }
 
@@ -379,7 +380,7 @@ table {
 
 .file-label,
 .tag-input {
-  margin: 6% 0;
+  margin: 4% 0;
 }
 
 .file-button,
