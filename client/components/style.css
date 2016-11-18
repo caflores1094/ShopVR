@@ -466,6 +466,38 @@ table {
   border: none;
 }
 
+.show-previous {
+  margin-right: 3%;
+  display: block;
+  float: right;
+  width: 6.8em;
+  height: 2.5em;
+  font-family: 'Josefin Sans', sans-serif;  
+  font-size: 0.9em;
+  text-align: center;
+  background-color: #3B383D;
+  color: #F7EDF0;
+  outline: none;
+  border-radius: 6%;
+  border: none;
+}
+
+.show-more {
+  margin-right: 3%;
+  display: block;
+  float: right;
+  width: 6.8em;
+  height: 2.5em;
+  font-family: 'Josefin Sans', sans-serif;  
+  font-size: 0.9em;
+  text-align: center;
+  background-color: #3B383D;
+  color: #F7EDF0;
+  outline: none;
+  border-radius: 6%;
+  border: none;
+}
+
 .feed-items {
   margin: 3%;
 }
