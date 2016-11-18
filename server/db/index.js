@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
   database: 'shopvr'
 });
 
-connection.connect();
+// connection.connect();
 // connection.end();
 
 module.exports = connection;
