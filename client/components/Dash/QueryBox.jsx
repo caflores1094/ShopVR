@@ -32,10 +32,13 @@ class QueryBox extends React.Component {
         <div className="search-component">
           <form onSubmit={(e) => this.handleSubmit(e)}>
             <p className="search-label">Gender:</p>
-            <select value={this.state.gender} onChange={(e) => this.setState({gender: e.target.value})}>
-              <option value="male">men</option>
-              <option value="female">women</option>
-            </select>
+            <div className="select">
+              <select className="select-gender" value={this.state.gender} onChange={(e) => this.setState({gender: e.target.value})}>
+                <option value="male">Men</option>
+                <option value="female">Women</option>
+              </select>
+              <div className="select-arrow"></div>
+            </div>
 
             <p className="search-label">Price:</p>
             $<input className="tag-input" onChange={(e) => this.setState({minPrice: e.target.value})} defaultValue={this.props.user.min_price} type="number"/> -

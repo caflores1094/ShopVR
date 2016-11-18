@@ -406,3 +406,23 @@ table {
 .tag-input:focus {
   border: solid 5px #DF755A;
 }
+
+.select-gender {
+  position: relative;
+  display: inline-block;
+  padding: 4%;
+  width: 10em;
+  color: #F7EDF0;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  background: #3B383D;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.select-gender:hover {
+  color: #3B383D;
+  background: #A89B9D;
+}
