@@ -333,7 +333,8 @@ table {
   display: inline-block;
 }
 
-.feed-item {
+.feed-item,
+.wishlist-item {
   width: 13em;
   height: 22em;
   margin: 3%;
@@ -343,11 +344,13 @@ table {
   border: 1px solid transparent;
 }
 
-.feed-item:hover {
+.feed-item:hover,
+.wishlist-item:hover {
   border: 1px solid #A89B9D;
 }
 
-.feed-item-pic {
+.feed-item-pic,
+.wishlist-item-pic {
   display: block;
   margin-top: 3%;
   margin-left: auto;
@@ -358,40 +361,57 @@ table {
   max-height: 9em;
 }
 
-.feed-item-info {
+.feed-item-info,
+.wishlist-item-info {
   margin: 3%;
   line-height: 1.2em;
   font-size: 0.9em;
   font-family: 'Josefin Sans', sans-serif;
 }
 
-.item-name {
+.item-name,
+.wishlist-item-name {
   text-transform: uppercase;
   font-weight: bolder;
 }
 
 .item-price,
 .item-category,
-.item-retailer {
+.item-retailer,
+.wishlist-item-price {
   font-weight: lighter;
 }
 
-.item-link {
+.item-link,
+.wishlist-link {
   font-weight: regular;
   text-decoration: none;
 }
 
-.item-heart {
+.item-heart,
+.wishlist-remove {
   border: none;
   font-size: 2em;
   background-color: transparent;
   outline: none;
 }
 
+.wishlist-remove {
+  font-size: 1.5em;
+  font-weight: bolder;
+}
+
 .item-heart:focus,
 .item-heart:target,
 .item-heart:active {
   color: #C9999A;
+}
+
+.wishlist-remove:hover,
+.wishlist-remove:focus,
+.wishlist-remove:target,
+.wishlist-remove:active {
+  color: #DF755A;
 }
 
 .show-items {
