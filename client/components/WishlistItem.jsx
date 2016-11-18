@@ -25,13 +25,15 @@ class WishlistItem extends React.Component {
 
   render() {
     return (
-      <div>
-        <a href={this.props.picObj.url}>
-        <img src={this.props.picObj.pic_name} />
-        <p>{this.props.picObj.item_name}</p>
-        </a>
-        <p>${this.props.picObj.price}</p>
-        <button onClick={()=> this.removeItem(this.props.picObj.pic_name, this.props.picObj.userid)}>Remove From Wishlist</button>
+      <div className="wishlist-item">
+        <button className="wishlist-remove" onClick={()=> this.removeItem(this.props.picObj.pic_name, this.props.picObj.userid)}>X</button>
+        <img className="wishlist-item-pic" src={this.props.picObj.pic_name} />
+        <div className="wishlist-item-info">
+          <p className="wishlist-item-name">{this.props.picObj.item_name}</p>
+          <p className="wishlist-item-price">${this.props.picObj.price}</p>
+          <a className="wishlist-link" href={this.props.picObj.url}>View</a>
+          <br />
+        </div>
       </div>
     );
  }

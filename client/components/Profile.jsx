@@ -82,27 +82,20 @@ class Profile extends React.Component {
             <form className="profile-container">
               <img className="profile-pic" src={this.props.user.profile_pic} />
               <div className="profile-info">
-
-                <p>Name:
-                  <input className="profile-input" onChange={this.handleInputChange.bind(this, 'name')} type="text" defaultValue={this.props.user.name}/>
-                </p>
-                <p>Email:
-                  <input className="profile-input" onChange={this.handleInputChange.bind(this, 'email')} type="text" defaultValue={this.props.user.email}/>
-                </p>
-                <p>Gender:
-                  <select className="profile-input" onChange={this.handleInputChange.bind(this, 'gender')} defaultValue={this.props.user.gender}>
-                  <option value="male">male</option>
-                  <option value="female">female</option>
-                 </select>
-                </p>
-                <p>
-                  Min Price:
-                <input className="profile-input" onChange={this.handleInputChange.bind(this, 'min_price')} type="number" defaultValue={this.props.user.min_price}/>
-                </p>
-                <p>
-                  Max Price:
+                <p>Name:</p>
+                <input className="profile-input" onChange={this.handleInputChange.bind(this, 'name')} type="text" defaultValue={this.props.user.name}/>
+                <p>Email:</p>
+                <input className="profile-input" onChange={this.handleInputChange.bind(this, 'email')} type="text" defaultValue={this.props.user.email}/>
+                <p>Gender:</p>
+                  <select className="profile-select" onChange={this.handleInputChange.bind(this, 'gender')} defaultValue={this.props.user.gender}>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                <p>Min Price:</p>
+                  <input className="profile-input" onChange={this.handleInputChange.bind(this, 'min_price')} type="number" defaultValue={this.props.user.min_price}/>
+                <p>Max Price:</p>
                   <input className="profile-input" onChange={this.handleInputChange.bind(this, 'max_price')} type="number" defaultValue={this.props.user.max_price}/>
-                </p>
+                <br />
                 <button className="profile-button" type="submit" onClick={(e)=>this.handleUpdate(e)} value="Submit">Update</button>
               </div>
             </form>
