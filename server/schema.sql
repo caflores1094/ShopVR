@@ -1,6 +1,6 @@
-CREATE DATABASE shopvr;
+CREATE DATABASE heroku_8f76abdea29d9e5;
 
-USE shopvr;
+USE heroku_8f76abdea29d9e5;
 
 -- Creating users table
 CREATE TABLE IF NOT EXISTS users (
