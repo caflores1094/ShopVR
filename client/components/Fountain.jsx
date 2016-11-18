@@ -30,3 +30,9 @@ class Fountain extends React.Component {
 }
 
 export default Fountain;
+
+//****************************************************
+// need to:
+// add a torus to make the "molding part " of the rim of the cylinder
+// stack a fountain looking object
+// figure out water animation

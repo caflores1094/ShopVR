@@ -11,7 +11,7 @@ var userController = require('./controllers/index.js');
 
 var server = express();
 
-server.set('port', 3000)
+server.set('port', process.env.PORT || 3000)
 server.listen(server.get('port'), function () {
   console.log('Server listening');
 });
