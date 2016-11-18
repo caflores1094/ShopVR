@@ -24,11 +24,18 @@ class Feed extends React.Component {
   render() {
 
     return (
-      <div>
-        <h1>Your Recommendations</h1>
-        <p>Sort by: <button onClick={this.props.sortPrice}>Price</button> <button onClick={this.props.sortBrand}>Retailer</button> <button onClick={this.props.sortCat}>Category</button></p>
+      <div className="feed">
+        <p className="recommended-items">Feed</p>
+        <p className="sort-items">Sort by:</p>
+        <br />
+        <div className="filter-btn">
+          <button className="sort-btn" onClick={this.props.sortPrice}>Price</button>
+          <button className="sort-btn" onClick={this.props.sortBrand}>Retailer</button>
+          <button className="sort-btn" onClick={this.props.sortCat}>Category</button>
+        </div>
         <br />
         <button className="show-items" onClick={this.props.toggleShow}>Show {this.props.feed.length > 25 ? 'Less' : 'More'}</button>
+        <br />
         <div className="feed-items">
           {this.props.feed.map((item, i) =>
             <FeedItem item={item} key={item.id} user={this.props.user}/>
