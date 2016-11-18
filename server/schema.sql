@@ -1,7 +1,3 @@
-CREATE DATABASE shopvr;
-
-USE shopvr;
-
 -- Creating users table
 CREATE TABLE IF NOT EXISTS users (
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
@@ -44,7 +40,7 @@ CREATE TABLE IF NOT EXISTS pictures (
   name VARCHAR(255),
   u_id INT,
   FOREIGN KEY fk_u(u_id) REFERENCES users(id),
-  PRIMARY KEY (name)  
+  PRIMARY KEY (name)
 );
 
 -- Creating tags table
@@ -56,7 +52,7 @@ CREATE TABLE IF NOT EXISTS tags (
   PRIMARY KEY (ID)
 );
 
--- Creating wishlist table 
+-- Creating wishlist table
 CREATE TABLE IF NOT EXISTS wishlist (
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   item_name VARCHAR(255),
