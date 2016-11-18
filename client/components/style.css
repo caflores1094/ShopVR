@@ -213,6 +213,7 @@ table {
   padding-top: 1.9%;
   padding-left: 3%;
 }
+
 .profile-welcome {
   margin-top: 2%;
   height: 4em;
@@ -229,6 +230,7 @@ table {
   font-family: 'Noto Serif', serif;
   line-height: 2em;
 }
+
 .profile-container {
   width: 90%;
   height: auto;
@@ -236,36 +238,70 @@ table {
 }
 
 .profile-pic {
+  margin-top: 2%;
+  margin-left: 2%;
   height: 32%;
   width: 32%;
   background-color: #DF755A;
-  display: inline-block;
+  display: inline;
+  float: left;
+  margin-right: 5%;
 }
 
-.profile-info { 
-  display: inline-block;
+.profile-info {
+  display: inline;
   width: 50%;
-  font-size: 1.1em;
+  font-size: 0.7em;
   line-height: 2.4em;
-  margin-left: 2em;
   font-family: 'Noto Serif', serif;
   font-weight: bolder;
   height: 32%;
 
 }
+.profile-input {
+  padding: 0.5%;
+  border: solid 4px #3B383D;
+  transition: border 0.3s;
+  outline: none;
+}
 
 .profile-input {
   margin-left: 0.5em;
-  line-height: 2.4em;
+  line-height: 2em;
   font-size: 1em;
   font-family: 'Noto Serif', serif;
+}
 
+.profile-input:focus {
+  border: solid 4px #DF755A;
+}
+
+.profile-select {
+  position: relative;
+  display: inline-block;
+  margin-left: 0.8em;
+  padding: 0.5%;
+  width: 10em;
+  color: #F7EDF0;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  background: #3B383D;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.profile-select:hover {
+  color: #3B383D;
+  background: #A89B9D;
 }
 
 .profile-button {
-  width: 13em;
+  width: 8em;
   height: 1.8em;
-  margin-right: 3%;
+  margin-left: 2em;
+  margin-top: 2%;
   margin-bottom: 1%;
   font-family: 'Noto Serif', serif;
   font-size: 1.2em;
@@ -438,9 +474,15 @@ table {
   margin-top: 2%;
   border-top: 1pt solid #A89B9D;
 }
+
+.wishlist {
+  width: 100%;
+  margin: 0 auto;
+}
+
 .wishlist-header {
   font-size: 2em;
-  font-family: 'Noto Serif', serif;
+  font-family: 'Josefin Sans', sans-serif;  
   margin-left: 2%;
   margin-top: 2%;
 }
