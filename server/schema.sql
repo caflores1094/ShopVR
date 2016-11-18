@@ -18,12 +18,6 @@ CREATE TABLE IF NOT EXISTS users (
   PRIMARY KEY (ID)
 );
 
--- Creating categories table
-CREATE TABLE IF NOT EXISTS categories (
-  id INT NOT NULL AUTO_INCREMENT UNIQUE,
-  name VARCHAR(100) NOT NULL
-);
-
 -- Creating items table
 CREATE TABLE IF NOT EXISTS items (
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
@@ -31,8 +25,6 @@ CREATE TABLE IF NOT EXISTS items (
   item_name VARCHAR(100) NOT NULL,
   price INT NOT NULL,
   pic LONGBLOB NOT NULL,
-  category_id INT,
-  FOREIGN KEY fk_cat(category_id) REFERENCES categories(id),
   user_id INT,
   FOREIGN KEY fk_user(user_id) REFERENCES users(id),
   PRIMARY KEY (ID)
@@ -68,19 +60,11 @@ CREATE TABLE IF NOT EXISTS wishlist (
   PRIMARY KEY (ID)
 );
 
--- -- Creating join table between picture and tags
-CREATE TABLE IF NOT EXISTS pictures_tags AS (
-  SELECT pictures.id, pictures.name, tags.tag
-  FROM pictures
-  INNER JOIN tags
-  ON pictures.name=tags.pic_name
-);
-
--- Creating join table between users and items
--- creates an inner join on foreign key reference in items back to user id
-CREATE TABLE IF NOT EXISTS users_items AS (
-  SELECT users.id, users.name, items.item_name, items.pic, items.brand, items.price
-  FROM users
-  INNER JOIN items
-  ON users.id=items.user_id
+CREATE TABLE IF NOT EXISTS users_friends (
+  id INT NOT NULL AUTO_INCREMENT UNIQUE,
+  name VARCHAR(255),
+  uid INT,
+  FOREIGN KEY fk_p(uid) REFERENCES users(id),
+  fid INT,
+  PRIMARY KEY (ID)
 );

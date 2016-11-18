@@ -31,6 +31,9 @@ module.exports = {
           res.send(results);
         }
       });
+    },
+    postFriends: function(req, res) {
+      
     }
   }
 };

@@ -4,7 +4,10 @@ import { browserHistory } from 'react-router';
 
 class NavBar extends React.Component {
   constructor(props) {
-      super(props);
+    super(props);
+    this.state = {
+      friends: []
+    }
   }
   componentWillMount() {
     window.fbAsyncInit = function() {
@@ -35,24 +38,30 @@ class NavBar extends React.Component {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', {fields: 'id, name, email, friends, gender, picture, locale, timezone, location'}, function(response) {
       console.log('Successful login for: ' + response.name);
+      console.log('FB data', response);
+      context.setState({
+        friends: response.friends.data
+      })
       //get higher resolution picture
       FB.api("/me/picture?width=320&height=320", function(picResponse) {
-        console.log('response getting pic', response)
         response.picture.data.url = picResponse.data.url;
-        console.log('picresponse', picResponse);
         axios.post('/login/facebook', response)
           .then(function (response) {
-            console.log('sent response');
-            console.log('posting response', response);
+            console.log('done posting', response);
             context.props.setUser(response.data[0]);
+            axios.post('/api/friends', {user: response.data[0].id, friends: context.friends.data})
+              .then(function(response) {
+                console.log('posted friends', response);
+              })
+              .catch(function(error) {
+                console.log('Error in posting friends');
+              });
           })
           .catch(function (error) {
             console.log('Error in sending ajax data');
           });
       }); 
     });
-
-     
   }
 
   loginCallback(response) {
