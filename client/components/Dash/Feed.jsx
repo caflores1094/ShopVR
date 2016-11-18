@@ -25,13 +25,12 @@ class Feed extends React.Component {
 
     return (
       <div className="feed">
-        <p className="recommended-items">Feed</p>
-        <p className="sort-items">Sort by:</p>
-        <br />
-        <div className="filter-btn">
-          <button className="sort-btn" onClick={this.props.sortPrice}>Price</button>
-          <button className="sort-btn" onClick={this.props.sortBrand}>Retailer</button>
-          <button className="sort-btn" onClick={this.props.sortCat}>Category</button>
+        <div className="feed-container">
+          <div className="recommended-items">Feed
+            <button className="sort-btn" onClick={this.props.sortPrice}>Price</button>
+            <button className="sort-btn" onClick={this.props.sortBrand}>Retailer</button>
+            <button className="sort-btn" onClick={this.props.sortCat}>Category</button>
+          </div>
         </div>
         <br />
         <button className="show-items" onClick={this.props.toggleShow}>Show {this.props.feed.length > 25 ? 'Less' : 'More'}</button>

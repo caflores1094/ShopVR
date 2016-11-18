@@ -108,10 +108,9 @@ class NavBar extends React.Component {
       );
     } else if (this.props.user.hasOwnProperty('name') && window.location.pathname === '/vr') {
       return (
-         <div className="vr-nav">
-           <button className="vr-btn" onClick={() => window.location.assign('/')}>Back To Dashboard</button>
-           <button className="vr-btn" onClick={this.logout.bind(this)}>Log Out</button>
-         </div>
+        <div className="vr-nav">
+          <button className="navbar-button" onClick={() => window.location.assign('/')}>Back To Dashboard</button><button className="navbar-button" onClick={this.logout.bind(this)}>Log Out</button>
+        </div>
       );
     } else {
       return (
@@ -120,8 +119,7 @@ class NavBar extends React.Component {
             <br/>
             <p className="color">VR</p>
           </div>
-          <button className="navbar-button" onClick={this.login.bind(this)}>Login</button>
-          <button className="navbar-button" onClick={this.login.bind(this)}>Signup</button>
+          <button className="navbar-button" onClick={this.login.bind(this)}>Login</button> <button className="navbar-button" onClick={this.login.bind(this)}>Signup</button>
         </div>
       );
     }
