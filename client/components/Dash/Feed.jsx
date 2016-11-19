@@ -61,7 +61,7 @@ class Feed extends React.Component {
 
     return (
       <div className="feed">
-        <div className="feed-container">Feed
+        <div className="feed-container">{this.props.user.name + "'s"} Feed
           <div className="recommended-items">
             <button className="sort-btn" onClick={this.props.sortPrice}>Price</button>
             <button className="sort-btn" onClick={this.props.sortBrand}>Retailer</button>

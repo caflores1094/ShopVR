@@ -44,7 +44,7 @@ class QueryBox extends React.Component {
             </div>
 
             <p className="search-label">Price:</p>
-            $<input className="tag-input" onChange={(e) => this.setState({minPrice: e.target.value})} defaultValue={this.props.user.min_price} type="number"/> -
+            $<input className="tag-input" onChange={(e) => this.setState({minPrice: e.target.value})} defaultValue={this.props.user.min_price} type="number"/> 
             <br />
             $<input className="tag-input" onChange={(e) => this.setState({maxPrice: e.target.value})} defaultValue={this.props.user.max_price} type="number"/>
   

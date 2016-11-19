@@ -147,7 +147,11 @@ class App extends React.Component {
               Placeholder on subtitle / one liner to put here
             </div>
           </div>
-          <div className="landing-border"></div>
+          <div className="landing-border">
+            <div className="landing-border-text">
+              Get started in 3 steps:
+            </div>
+          </div>
           <div className="landing">
             <div className="landing-box">
               <div className="marketing-title">
