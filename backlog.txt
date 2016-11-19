@@ -80,4 +80,8 @@ Category: UX
 Estimation of work time: 30 min
 Priority: 4
 
+Description: Next and previous don't work for search
+Category: UX
+Estimation of work time: 30 min
+Priority: 4
 

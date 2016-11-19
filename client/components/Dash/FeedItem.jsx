@@ -22,7 +22,9 @@ class FeedItem extends React.Component {
    render() {
       return (
         <div className="feed-item">
-          <img className="feed-item-pic" src={this.props.item.image.sizes.IPhoneSmall.url} />
+          <div className="feed-pic-container">
+            <img className="feed-item-pic" src={this.props.item.image.sizes.IPhoneSmall.url} />
+          </div>
           <br />
           <div className="feed-item-info">
             <p className="item-name">{this.props.item.name}</p>
