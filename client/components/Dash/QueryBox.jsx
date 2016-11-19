@@ -13,7 +13,7 @@ class QueryBox extends React.Component {
         maxSize: this.props.user.max_size,
         brand: '',
         item: '',
-        offset: 0
+        offset: 0,
       }
   }
 
@@ -23,7 +23,7 @@ class QueryBox extends React.Component {
     var context = this;
     axios.post("/api/shopstyle", {offset: this.state.offset, fts: gender + '+' + this.state.brand + '+' + this.state.item, limit: 50})
     .then(function (response) {
-      context.props.setFeed(response.data.products, context.state.minPrice, context.state.maxPrice, context.state.minSize, context.state.maxSize);
+      context.props.setFeed(response.data.products, context.state.minPrice, context.state.maxPrice);
     })
     .catch(function (error) {
       console.log('asdfError in sending ajax data ', error);
