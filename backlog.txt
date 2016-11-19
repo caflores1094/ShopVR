@@ -66,6 +66,12 @@ Category: Feature, UX
 Estimation of work time: 10-15 hours
 Priority: 4
 
+Description: sharing individual item link on social media 
+Notes: http://blog.hubspot.com/blog/tabid/6307/bid/29544/the-ultimate-cheat-sheet-for-creating-social-media-buttons.aspx#sm.001tuod9b1dvuea2zfn2oq6qgxbrt
+Category: Feature, UX
+Estimation of work time: 5 hours
+Priority: 5
+
 Description: see friends' wishlist
 Category: Feature, UX
 Estimation of work time: 10-15 hours
