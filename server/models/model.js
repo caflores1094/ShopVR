@@ -16,7 +16,7 @@ module.exports = {
         if (err) {
           console.log(err);
         }
-        callback(err, results);
+        callback(null, results);
       })
     },
     //create a new user
@@ -49,6 +49,29 @@ module.exports = {
     postFriends: function(friend, callback) {
       var queryStr = 'INSERT INTO users_friends (name, uid, fid, pair) VALUES ?';
       db.query(queryStr, [friend], function(err, results) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, results);
+        }
+      });
+    },
+
+    getFriends: function(user, callback) {
+      var userid = {uid: user.id}
+      var queryStr = 'SELECT * FROM users_friends WHERE ?';
+      db.query(queryStr, [userid], function(err, results) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, results);
+        }
+      });
+    },
+
+    findUser: function(userid, callback) {
+      var queryStr = 'SELECT * from users WHERE users.id=?';
+      db.query(queryStr, [userid], function(err, results) {
         if (err) {
           callback(err, null);
         } else {

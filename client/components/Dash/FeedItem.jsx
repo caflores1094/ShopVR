@@ -8,6 +8,7 @@ class FeedItem extends React.Component {
   }
 
   like() {
+    console.log('liking item ');
     var item = this.props.item;
     item['userID'] = this.props.user.id;
     // item.userID = userID;

@@ -43,12 +43,38 @@ module.exports = {
               var pairing = req.body.user + '' + results[0].id;
               var params = [[results[0].name, req.body.user, results[0].id, pairing]];
               models.users.postFriends(params, function(err, results) {
-                if (err) console.log('error with friends', err);
-                else res.send(results);
+                if (err) {
+                  res.send('duplicate friend');
+                } else {
+                  res.send(results);
+                }
               });
             }
           }
         });
+      });
+    },
+    getFriends: function(req, res) {
+      models.users.getFriends(req.body, function(err, results) {
+        if (err) {
+          console.log('err', err);
+        } else {
+          results.forEach(function(friend) {
+            models.wishlist.getAll(friend.fid, function(err, results) {
+              if (err) {
+                console.log('err, err');
+              } else {
+                res.send(results);
+              }
+            })
+          });
+        }
+      });
+    },
+    findUser: function(req, res) {
+      models.users.findUser(req.body.userid, function(err, results) {
+        if (err) console.log('error finding user', err);
+        else res.send(results);
       });
     }
   }
