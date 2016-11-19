@@ -15,8 +15,8 @@ var fs = require("fs");
 var server = express();
 
 var options = {
-  key: fs.readFileSync('/Users/VictorMu/Downloads/key.pem', 'utf8'),
-  cert: fs.readFileSync('/Users/VictorMu/Downloads/server.crt', 'utf8')
+  key: fs.readFileSync('./server/ssl/key.pem', 'utf8'),
+  cert: fs.readFileSync('./server/ssl/server.crt', 'utf8')
 };
 
 var secureServer = https.createServer(options, server).listen(3001);
