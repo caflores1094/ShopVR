@@ -6,9 +6,26 @@ import {
   generateShareIcon
 } from 'react-share';
 
+//the below blocks are for social network sharing
 const FacebookIcon = generateShareIcon('facebook');
 const TwitterIcon = generateShareIcon('twitter');
 const PinterestIcon = generateShareIcon('pinterest');
+
+const {
+  FacebookShareButton,
+  GooglePlusShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+  PinterestShareButton,
+  VKShareButton,
+} = ShareButtons;
+
+const {
+  FacebookShareCount,
+  GooglePlusShareCount,
+  LinkedinShareCount,
+  PinterestShareCount,
+} = ShareCounts;
 
 
 class FeedItem extends React.Component {
@@ -43,9 +60,27 @@ class FeedItem extends React.Component {
             <p className="item-retailer">{this.props.item.retailer.name}</p>
             <a className="item-link" href={this.props.item.clickUrl}>View</a>
             <br />
+
             <button className="item-heart" onClick={this.like.bind(this)}>❤</button>
-            <div className="social-icon" ><FacebookIcon size={20} round={true} /></div>
-            <div className="social-icon"><PinterestIcon className="social-icon" size={20} square={true} /></div>
+            <div className="share-button-container">
+              <FacebookShareButton
+              url={this.props.item.clickUrl}
+              title={this.props.item.retailer.name}
+              className="social-icon">
+                <FacebookIcon
+                  size={20}
+                  round={false} />
+              </FacebookShareButton>
+
+              <PinterestShareButton
+                url={this.props.item.clickUrl}
+                media={`${this.props.item.image.sizes.IPhoneSmall.url}`}
+                windowWidth={1000}
+                windowHeight={730}
+                className="social-icon">
+                <PinterestIcon size={20} round={true} />
+              </PinterestShareButton>
+            </div>
           </div>
         </div>
 
