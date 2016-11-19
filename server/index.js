@@ -23,6 +23,7 @@ server.use(express.static(__dirname + '/../client'));
 server.use(router);
 
 router.post('/login/facebook', authController.login);
+router.post('/api/getUser', userController.users.findUser);
 router.post('/api/friends', userController.users.postFriends);
 router.post('/api/getFriends', userController.users.getFriends);
 

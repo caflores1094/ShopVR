@@ -70,6 +70,12 @@ module.exports = {
           });
         }
       });
+    },
+    findUser: function(req, res) {
+      models.users.findUser(req.body.userid, function(err, results) {
+        if (err) console.log('error finding user', err);
+        else res.send(results);
+      });
     }
   }
 };

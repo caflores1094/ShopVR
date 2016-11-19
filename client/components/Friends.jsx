@@ -4,13 +4,23 @@ import axios from 'axios';
 class Friends extends React.Component {
   constructor(props) {
     super(props);
-    console.log('props', this.props);
   }
 
   getFriends() {
+    var friends = {};
     axios.post('/api/getFriends', {id: this.props.user.id})
-      .then(function(result) {
-        console.log('getting friends', result.data);
+      .then(function(results) {
+        results.data.forEach(function(item) {
+          axios.post('/api/getUser', {userid: item.userid})
+            .then(function(user) {
+              if (friends[user.data[0].name] === undefined) {
+                friends[user.data[0].name] = { wishlist: [item] };
+              } else {
+                friends[user.data[0].name]['wishlist'].push(item);
+              }
+              console.log('friends obj', friends);
+            });
+        });
       });
   }
 
