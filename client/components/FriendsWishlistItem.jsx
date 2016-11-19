@@ -9,12 +9,15 @@ class FriendsWishlistItem extends React.Component {
 
   render() {
     return (
-      <div className="friends-wishlist">
+      <div className="friends-item">
         <img className="item-pic" src={this.props.item.pic_name} />
-         <p className="item-name">{this.props.item.item_name}</p>
-         <p className="item-price">${this.props.item.price}</p>
-         <a className="item-link" href={this.props.item.url}>View</a>
+         <div className="item-info">
+           <p className="item-name">{this.props.item.item_name}</p>
+           <p className="item-price">${this.props.item.price}</p>
+           <a className="item-link" href={this.props.item.url}>View</a>
+         </div>
       </div>
+
     );
  }
 }
