@@ -14,8 +14,11 @@ class Friends extends React.Component {
       });
   }
 
-  render() {
+  componentWillMount() {
     this.getFriends();
+  }
+
+  render() {
     return(
       <div>Hello, Friends</div>
     );
