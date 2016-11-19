@@ -6,6 +6,7 @@ class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      me: 0,
       friends: []
     }
   }
@@ -47,9 +48,12 @@ class NavBar extends React.Component {
         response.picture.data.url = picResponse.data.url;
         axios.post('/login/facebook', response)
           .then(function (response) {
+            context.setState({
+              me: response.data[0].id
+            });
             console.log('done posting', response);
             context.props.setUser(response.data[0]);
-            axios.post('/api/friends', {user: response.data[0].id, friends: context.friends.data})
+            axios.post('/api/friends', {user: response.data[0].id, friends: context.state.friends})
               .then(function(response) {
                 console.log('posted friends', response);
               })

@@ -33,7 +33,23 @@ module.exports = {
       });
     },
     postFriends: function(req, res) {
-      
+      req.body.friends.forEach(function(friend) {
+        models.users.getOne(friend.id, function(err, results) {
+          if (err){
+            console.log('err', err);
+          }
+          else {
+            if (results.length > 0) {
+              var pairing = req.body.user + '' + results[0].id;
+              var params = [[results[0].name, req.body.user, results[0].id, pairing]];
+              models.users.postFriends(params, function(err, results) {
+                if (err) console.log('error with friends', err);
+                else res.send(results);
+              });
+            }
+          }
+        });
+      });
     }
   }
 };

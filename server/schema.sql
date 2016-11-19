@@ -66,5 +66,7 @@ CREATE TABLE IF NOT EXISTS users_friends (
   uid INT,
   FOREIGN KEY fk_p(uid) REFERENCES users(id),
   fid INT,
+  FOREIGN KEY fk_f(fid) REFERENCES users(id),
+  pair VARCHAR(255) UNIQUE,
   PRIMARY KEY (ID)
 );
