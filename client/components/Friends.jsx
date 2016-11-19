@@ -32,7 +32,8 @@ class Friends extends React.Component {
 
   render() {
     return(
-      <div className="wishlist-container">
+      <div className="friends-container">
+        <div className="friends-header">See Friends' Wishlists</div>
         <FriendsWishlist list={this.state.wishlist} />
       </div>
     );
