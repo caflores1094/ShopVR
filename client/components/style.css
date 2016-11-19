@@ -77,6 +77,14 @@ table {
   border: none;
   line-height: 3.5em;
 }
+
+.navbar-button:hover {
+  opacity: 0.6;
+}
+
+.navbar-button:focus, .navbar-button:active {
+  opacity: 0.2;
+}
 .color {
   display: inline;
   font-family: 'Playfair Display', cursive;
@@ -100,6 +108,13 @@ table {
   vertical-align: center;
 }
 
+.navbar-loggedout-button:hover {
+  opacity: 0.6;
+}
+
+.navbar-loggedout-button:focus .navbar-button:active {
+  opacity: 0.2;
+}
 .dashboard-hero {
   margin-top: 2%;
   width: auto;
@@ -139,6 +154,21 @@ table {
   outline: none;
   border-radius: 6%;
   border: none;
+}
+
+.dashboard-button:hover,
+.upload-button:hover,
+.search-button:hover {
+  opacity: 0.6;
+}
+
+.dashboard-button:active,
+.upload-button:active,
+.search-button:active,
+.dashboard-button:focus,
+.upload-button:focus,
+.search-button:focus {
+  opacity: 0.2;
 }
 
 .landing-hero {
@@ -224,6 +254,15 @@ table {
   padding-top: 4%;
   line-height: 8%;
   text-align: center;
+}
+
+.landing-signup:hover {
+  opacity: 0.6;
+}
+
+.landing-signup:focus,
+.landing-signup:active {
+  opacity: 0.2;
 }
 
 .profile-welcome {
@@ -324,6 +363,13 @@ table {
   border: none;
 
 }
+.profile-button:hover {
+  opacity: 0.6;
+}
+.profile-button:focus,
+.profile-button:active {
+  opacity: 0.2;
+}
 .dashboard-tools {
   width: 20%;
   display: inline;
@@ -383,7 +429,14 @@ table {
   display: inline-block;
 }
 
+.sort-btn:hover {
+  opacity: 0.6;
+}
 
+.sort-btn:active,
+.sort-btn:focus {
+  opacity: 0.2;
+}
 
 .feed-item,
 .wishlist-item {
@@ -510,6 +563,15 @@ table {
   margin-bottom: 2%;
 }
 
+.show-previous:hover {
+  opacity: 0.6;
+}
+
+.show-previous:active,
+.show-previous:focus {
+  opacity: 0.2;
+}
+
 .show-more {
   display: block;
   width: 30%;
@@ -523,6 +585,16 @@ table {
   border-radius: 6%;
   border: none;
 }
+
+.show-more:hover {
+  opacity: 0.6;
+}
+
+.show-more:active,
+.show-more:focus {
+  opacity: 0.2;
+}
+
 
 .feed-items {
   margin-right: 4%;
@@ -579,6 +651,18 @@ table {
   border-radius: 6%;
   border: none;
   line-height: 2.2em;
+}
+
+.file-button:hover, 
+.submit-button:hover {
+  opacity: 0.7;
+}
+
+.file-button:focus, 
+.submit-button:focus,
+.file-button: active,
+.submit-button: active {
+  opacity: 0.2;
 }
 
 .tag-input {
