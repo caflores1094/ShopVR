@@ -14,12 +14,14 @@ var fs = require("fs");
 
 var server = express();
 
+
 // var options = {
 //   key: fs.readFileSync('./server/ssl/key.pem', 'utf8'),
 //   cert: fs.readFileSync('./server/ssl/server.crt', 'utf8')
 // };
 
 // var secureServer = https.createServer(options, server).listen(3001);
+
 
 server.use(bodyParser.json()); // for parsing application/json
 server.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlenco
