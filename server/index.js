@@ -31,7 +31,9 @@ server.listen(config.port, function () {
 });
 
 router.post('/login/facebook', authController.login);
+router.post('/api/getUser', userController.users.findUser);
 router.post('/api/friends', userController.users.postFriends);
+router.post('/api/getFriends', userController.users.getFriends);
 
 router.get('/', function(req, res) {
   res.sendFile('/client/index.html', {root: __dirname + '/..'});
@@ -47,6 +49,10 @@ router.post('/api/getWishList', wishlistController.wishlist.getAll);
 router.post('/api/removeFromWishList', wishlistController.wishlist.removeItem);
 
 router.get('/profile', function(req, res) {
+  res.sendFile('/client/index.html', {root: __dirname + '/..'});
+});
+
+router.get('/friends', function(req, res) {
   res.sendFile('/client/index.html', {root: __dirname + '/..'});
 });
 
