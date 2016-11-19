@@ -21,7 +21,7 @@ class QueryBox extends React.Component {
     e.preventDefault();
     var gender = this.state.gender === 'male' ? "men" : "women";
     var context = this;
-    axios.get('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&offset=' + this.state.offset + '&limit=50&fts=' + gender + '+' + this.state.brand + '+' + this.state.item)
+    axios.post("/api/shopstyle", {offset: this.state.offset, fts: gender + '+' + this.state.brand + '+' + this.state.item, limit: 50})
     .then(function (response) {
       context.props.setFeed(response.data.products, context.state.minPrice, context.state.maxPrice, context.state.minSize, context.state.maxSize);
     })
@@ -47,7 +47,7 @@ class QueryBox extends React.Component {
             $<input className="tag-input" onChange={(e) => this.setState({minPrice: e.target.value})} defaultValue={this.props.user.min_price} type="number"/> -
             <br />
             $<input className="tag-input" onChange={(e) => this.setState({maxPrice: e.target.value})} defaultValue={this.props.user.max_price} type="number"/>
-  
+
             <p className="search-label">Brand:</p>
             <input className="tag-input" onChange={(e) => this.setState({brand: e.target.value})}/>
 

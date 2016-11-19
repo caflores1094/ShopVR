@@ -49,6 +49,18 @@ router.get('/view', function(req, res) {
   res.sendFile('/client/index.html', {root: __dirname + '/..'});
 });
 
+router.post('/api/shopstyle', function(req, res) {
+  request('http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23' + '&offset=' + req.body.offset + '&fts=' + req.body.fts + '&limit=' + req.body.limit
+    , function (error, response) {
+      if (error) {
+        console.log(error)
+      } else {
+        res.send(response.body);
+      }
+  });
+
+});
+
 router.get('/api/getimage/:id', function (req, res) {
   var src = req.params.id;
   while (src.indexOf('SLASH') >= 0) {
