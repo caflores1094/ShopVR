@@ -80,8 +80,8 @@ Category: UX
 Estimation of work time: 30 min
 Priority: 4
 
-Description: Next and previous don't work for search
+Description: Next and previous don't work for search and image upload, will be simpler once we use Redux
 Category: UX
-Estimation of work time: 30 min
-Priority: 4
+Estimation of work time: 30 min (once we refactor to redux), otherwise 2 hours
+Priority: 5
 
