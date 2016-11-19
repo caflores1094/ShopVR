@@ -60,7 +60,8 @@ Category: Feature, UX
 Estimation of work time: ~10 hours (need regex and a very detailed lookup table)
 Priority: 4
 
-Description: sharing wishlist on social media
+Description: sharing wishlist on social media 
+Notes: http://blog.hubspot.com/blog/tabid/6307/bid/29544/the-ultimate-cheat-sheet-for-creating-social-media-buttons.aspx#sm.001tuod9b1dvuea2zfn2oq6qgxbrt
 Category: Feature, UX
 Estimation of work time: 10-15 hours
 Priority: 4
@@ -80,8 +81,8 @@ Category: UX
 Estimation of work time: 30 min
 Priority: 4
 
-Description: Next and previous don't work for search
+Description: Next and previous don't work for search and image upload, will be simpler once we use Redux
 Category: UX
-Estimation of work time: 30 min
-Priority: 4
+Estimation of work time: 30 min (once we refactor to redux), otherwise 2 hours
+Priority: 5
 
