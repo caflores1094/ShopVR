@@ -6,7 +6,7 @@ class ImageUpload extends React.Component {
     this.state = {
       file: '',
       imagePreviewUrl: '',
-      tag: []
+      tag: [],
     };
   }
 
@@ -25,8 +25,6 @@ class ImageUpload extends React.Component {
               context.getFeedOnImageUpload();
             }
           });
-
-
   }
 
   handleImageChange(e) {
