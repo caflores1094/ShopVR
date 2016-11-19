@@ -1,5 +1,14 @@
 import React from 'react';
 import axios from 'axios';
+import {
+  ShareButtons,
+  ShareCounts,
+  generateShareIcon
+} from 'react-share';
+
+const FacebookIcon = generateShareIcon('facebook');
+const TwitterIcon = generateShareIcon('twitter');
+const PinterestIcon = generateShareIcon('pinterest');
 
 
 class FeedItem extends React.Component {
@@ -35,8 +44,11 @@ class FeedItem extends React.Component {
             <a className="item-link" href={this.props.item.clickUrl}>View</a>
             <br />
             <button className="item-heart" onClick={this.like.bind(this)}>❤</button>
+            <div className="social-icon" ><FacebookIcon size={20} round={true} /></div>
+            <div className="social-icon"><PinterestIcon className="social-icon" size={20} square={true} /></div>
           </div>
         </div>
+
       );
    }
 }

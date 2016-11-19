@@ -365,6 +365,7 @@ table {
   width: 66%;
 }
 
+
 .sort-btn {
   width: 4.5em;
   height: 2em;
@@ -381,6 +382,8 @@ table {
   border: none;
   display: inline-block;
 }
+
+
 
 .feed-item,
 .wishlist-item {
@@ -423,6 +426,13 @@ table {
   line-height: 1.2em;
   font-size: 0.9em;
   font-family: 'Josefin Sans', sans-serif;
+}
+
+.social-icon {
+  display: inline-block;
+  float: right;
+  margin-top: 4%;
+  margin-left: 2%;
 }
 
 .item-name,
@@ -620,4 +630,6 @@ table {
   max-width: 80%;
   max-height: 80%;
 }
+
+
 
