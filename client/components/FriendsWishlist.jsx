@@ -1,4 +1,5 @@
 import React from 'react';
+import FriendsWishlistItem from './FriendsWishlistItem.jsx';
 
 class FriendsWishlist extends React.Component {
   constructor(props) {
@@ -6,15 +7,16 @@ class FriendsWishlist extends React.Component {
   }
 
   render() {
-    var context = this;
-    console.log('this', this.props.wishlist);
+    console.log('friends wishlist', this.props);
     return (
-      <div>
-        {this.props.names.map((name) => (
-          name          
-        ))}
+      <div className="friends-wishlist">
+        {
+          this.props.list.map((item, i) => (
+            <FriendsWishlistItem key={i} item={item} />
+            ))
+        }
       </div>
-    );
+    );      
   }
 }
 

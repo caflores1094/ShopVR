@@ -2,48 +2,38 @@ import React from 'react';
 import axios from 'axios';
 import FriendsWishlist from './FriendsWishlist.jsx';
 
+var friends = {};
+var names = [];
+var ids = [];
 class Friends extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      names: [],
-      friends: {}
+      wishlist: []
     }
   }
 
-  getFriends() {
-    var friends = {};
-    var names = [];
+  getFriends(callback) {
     var context = this;
     axios.post('/api/getFriends', {id: this.props.user.id})
       .then(function(results) {
-        results.data.forEach(function(item) {
-          axios.post('/api/getUser', {userid: item.userid})
-            .then(function(user) {
-              if (friends[user.data[0].name] === undefined) {
-                friends[user.data[0].name] = { wishlist: [item] };
-                names.push(user.data[0].name);
-              } else {
-                friends[user.data[0].name]['wishlist'].push(item);
-              }
-
-              context.setState({
-                names: names,
-                friends: friends
-              });
-            });
+        context.setState({
+          wishlist: results.data
         });
+      })
+      .catch(function(error) {
+        console.log('Error getting friends', error);
       });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getFriends();
   }
 
   render() {
     return(
-      <div className="friends-wishlist">
-        <FriendsWishlist wishlist={this.state.friends} names={this.state.names} />
+      <div className="wishlist-container">
+        <FriendsWishlist list={this.state.wishlist} />
       </div>
     );
   }
