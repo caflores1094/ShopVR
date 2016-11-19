@@ -70,7 +70,7 @@ class Feed extends React.Component {
         </div>
         <br />
         <button className="show-more" onClick={this.next.bind(this)}>Next</button>
-        <button className="show-previous" onClick={this.previous.bind(this)}>{count === 0 ? 'Page 0' : 'Previous'}</button>
+        <button className="show-previous" onClick={this.previous.bind(this)}>{count === 0 ? 'None' : 'Previous'}</button>
         <br />
         <div className="feed-items">
           {this.props.feed.map((item, i) =>
