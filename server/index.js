@@ -24,6 +24,7 @@ server.use(router);
 
 router.post('/login/facebook', authController.login);
 router.post('/api/friends', userController.users.postFriends);
+router.post('/api/getFriends', userController.users.getFriends);
 
 router.get('/', function(req, res) {
   res.sendFile('/client/index.html', {root: __dirname + '/..'});

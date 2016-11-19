@@ -53,6 +53,15 @@ module.exports = {
           }
         });
       });
+    },
+    getFriends: function(req, res) {
+      models.users.getFriends(req.body, function(err, results) {
+        if (err) {
+          console.log('err', err);
+        } else {
+          res.send(results);
+        }
+      });
     }
   }
 };

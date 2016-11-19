@@ -55,6 +55,18 @@ module.exports = {
           callback(null, results);
         }
       });
+    },
+
+    getFriends: function(user, callback) {
+      var userid = {uid: user.id}
+      var queryStr = 'SELECT * FROM users_friends WHERE ?';
+      db.query(queryStr, [userid], function(err, results) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, results);
+        }
+      });
     }
   },
 
