@@ -431,8 +431,15 @@ table {
 .social-icon {
   display: inline-block;
   float: right;
-  margin-top: 4%;
-  margin-left: 2%;
+  margin-left: 5%;
+}
+
+.share-button-container {
+  display: inline-block;
+  margin-top: 6%;
+  float: right;
+  line-height: 2em;
+  width: 4em;
 }
 
 .item-name,
@@ -460,7 +467,9 @@ table {
   font-size: 2em;
   background-color: transparent;
   outline: none;
+  margin-left: 0em;
 }
+
 
 .wishlist-remove {
   font-size: 1.5em;
