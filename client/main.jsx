@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard.jsx';
 import Profile from './components/Profile.jsx';
 import Setting from './components/setting.jsx';
 import SharedView from './components/SharedView.jsx';
+import Friends from './components/Friends.jsx';
 import { createStore, combineReducers } from 'redux';
 
 var userReducer = (state={}, action) => {
@@ -41,6 +42,7 @@ ReactDOM.render((
       <IndexRoute component={Dashboard}/>
       <Route path="/profile" component={Profile}/>
       <Route path="/vr" component={VRview} />
+      <Route path="/friends" component={Friends} />
     </Route>
     <Route path="/view" component={SharedView} />
   </Router>

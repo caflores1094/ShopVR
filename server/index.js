@@ -42,6 +42,10 @@ router.get('/profile', function(req, res) {
   res.sendFile('/client/index.html', {root: __dirname + '/..'});
 });
 
+router.get('/friends', function(req, res) {
+  res.sendFile('/client/index.html', {root: __dirname + '/..'});
+});
+
 router.get('/vr', function(req, res) {
   res.sendFile('/client/index.html', {root: __dirname + '/..'});
 });
