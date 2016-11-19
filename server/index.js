@@ -3,24 +3,32 @@ var express = require('express');
 var router = require('express').Router();
 var db = require('./db');
 var request = require('request');
+var https = require('https');
 
 var authController = require('./controllers/auth.js');
 var picController = require('./controllers/pic.js');
 var wishlistController = require('./controllers/wishlist.js');
 var userController = require('./controllers/index.js');
-var config = require('./config.js')
+var config = require('./config.js');
+var fs = require("fs");
 
 var server = express();
 
-server.set('port', config.port)
-server.listen(server.get('port'), function () {
-  console.log('Server listening');
-});
+var options = {
+  key: fs.readFileSync('/Users/VictorMu/Downloads/key.pem', 'utf8'),
+  cert: fs.readFileSync('/Users/VictorMu/Downloads/server.crt', 'utf8')
+};
+
+var secureServer = https.createServer(options, server).listen(3001);
 
 server.use(bodyParser.json()); // for parsing application/json
 server.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlenco
 server.use(express.static(__dirname + '/../client'));
 server.use(router);
+
+server.listen(config.port, function () {
+  console.log('Server listening');
+});
 
 router.post('/login/facebook', authController.login);
 
