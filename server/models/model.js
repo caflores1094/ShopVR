@@ -44,6 +44,17 @@ module.exports = {
         }
         callback(null, results);
       });
+    },
+
+    postFriends: function(friend, callback) {
+      var queryStr = 'INSERT INTO users_friends (name, uid, fid, pair) VALUES ?';
+      db.query(queryStr, [friend], function(err, results) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, results);
+        }
+      });
     }
   },
 

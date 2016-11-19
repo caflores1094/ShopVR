@@ -23,6 +23,7 @@ server.use(express.static(__dirname + '/../client'));
 server.use(router);
 
 router.post('/login/facebook', authController.login);
+router.post('/api/friends', userController.users.postFriends);
 
 router.get('/', function(req, res) {
   res.sendFile('/client/index.html', {root: __dirname + '/..'});
