@@ -362,7 +362,7 @@ table {
   height: 1.6em;
   font-weight: bolder;
   font-family: 'Josefin Sans', sans-serif;  
-
+  width: 66%;
 }
 
 .sort-btn {
@@ -471,28 +471,15 @@ table {
   color: #DF755A;
 }
 
-.show-items {
-  margin-right: 3%;
-  display: block;
-  float: right;
-  width: 6.8em;
-  height: 2.5em;
-  font-family: 'Josefin Sans', sans-serif;  
-  font-size: 0.9em;
-  text-align: center;
-  background-color: #3B383D;
-  color: #F7EDF0;
-  outline: none;
-  border-radius: 6%;
-  border: none;
+.button-container {
+  margin-left: 70%;
+  width: 30%;
 }
 
 .show-previous {
-  margin-right: 3%;
   display: block;
-  float: right;
-  width: 6.8em;
-  height: 2.5em;
+  width: 30%;
+  height: 20%;
   font-family: 'Josefin Sans', sans-serif;  
   font-size: 0.9em;
   text-align: center;
@@ -501,14 +488,13 @@ table {
   outline: none;
   border-radius: 6%;
   border: none;
+  margin-bottom: 2%;
 }
 
 .show-more {
-  margin-right: 3%;
   display: block;
-  float: right;
-  width: 6.8em;
-  height: 2.5em;
+  width: 30%;
+  height: 20%;
   font-family: 'Josefin Sans', sans-serif;  
   font-size: 0.9em;
   text-align: center;
