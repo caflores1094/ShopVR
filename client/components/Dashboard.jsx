@@ -50,7 +50,7 @@ class Dashboard extends React.Component {
           <div className="dashboard-feed">
             <Feed user={this.props.user} feed={this.props.feed} setFeed={this.props.setFeed}
               sortPrice={this.props.sortPrice} sortBrand={this.props.sortBrand} sortCat={this.props.sortCat}
-              toggleShow={this.props.toggleShow}/>
+              />
           </div>
         </div>
       </div>

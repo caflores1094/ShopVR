@@ -8,7 +8,6 @@ class App extends React.Component {
     this.state = {
       user: {},
       feed: [],
-      allitems: [],
       price: true,
       brand: true,
       category: true
@@ -22,7 +21,7 @@ class App extends React.Component {
   setFeed(feed, minPrice, maxPrice) {
     minPrice = minPrice || 0;
     maxPrice = maxPrice || 10000;
-    
+
     var newfeed = [];
     for (var i = 0; i < feed.length; i++) {
       //check if the user's sizes are in stock...sizing format is extremely inconsistent
@@ -30,17 +29,12 @@ class App extends React.Component {
       // feed[i].stock.forEach(function(stockItem) {
       //   console.log(stockItem, 'stockitem');
       //   var size = stockItem.size.name;
-      // })  
+      // })
       if (feed[i].price >= minPrice && feed[i].price <= maxPrice) {
         newfeed.push(feed[i]);
       }
     }
-    this.setState({allitems: newfeed});
-    if (this.state.allitems.length > 25) {
-      this.setState({feed: this.state.allitems.slice(25)});
-    } else {
-      this.setState({feed: this.state.allitems});
-    }
+    this.setState({feed: newfeed});
   }
 
   sortPrice() {
@@ -102,19 +96,6 @@ class App extends React.Component {
     });
   }
 
-  toggleShow() {
-    if (this.state.feed.length === 25) {
-      this.setState({feed: this.state.allitems});
-    } else {
-      if (this.state.allitems.length > 25) {
-        this.setState({feed: this.state.allitems.slice(25)});
-      } else {
-        this.setState({feed: this.state.allitems});
-      }
-    }
-
-  }
-
   render() {
     var context = this;
     var children = React.Children.map(this.props.children, function (child) {
@@ -124,7 +105,6 @@ class App extends React.Component {
         sortBrand: context.sortBrand.bind(context),
         sortCat: context.sortCat.bind(context),
         sortPrice: context.sortPrice.bind(context),
-        toggleShow: context.toggleShow.bind(context),
         feed: context.state.feed
       });
     });
@@ -167,7 +147,7 @@ class App extends React.Component {
               <div className="marketing-title">
                 Shop with friends in virtual reality
               </div>
-            </div> 
+            </div>
             <a className="landing-signup" href="#top">Sign me up!</a>
           </div>
         </div>

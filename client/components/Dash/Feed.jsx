@@ -15,7 +15,7 @@ class Feed extends React.Component {
   componentDidMount() {
     var context = this;
     var gender = this.props.user.gender === 'male' ? "men" : "women"
-    axios.get("http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&offset=" + this.state.offset + "&fts=" + gender + "&limit=50")
+    axios.post("/api/shopstyle", {offset: this.state.offset, fts: gender, limit: 50})
     .then(function (response) {
       context.props.setFeed(response.data.products);
     })
@@ -31,7 +31,7 @@ class Feed extends React.Component {
     var context = this;
     var gender = this.props.user.gender === 'male' ? "men" : "women"
 
-    axios.get("http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&offset=" + count + "&fts=" + gender + "&limit=50")
+    axios.post("/api/shopstyle", {offset: count, fts: gender, limit: 50})
       .then(function (response) {
         context.props.setFeed(response.data.products);
       })
@@ -49,7 +49,7 @@ class Feed extends React.Component {
     var context = this;
     var gender = this.props.user.gender === 'male' ? "men" : "women"
 
-    axios.get("http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&offset=" + count + "&fts=" + gender + "&limit=50")
+    axios.post("/api/shopstyle", {offset: count, fts: gender, limit: 50})
       .then(function (response) {
         context.props.setFeed(response.data.products);
       })
@@ -69,7 +69,6 @@ class Feed extends React.Component {
           </div>
         </div>
         <br />
-        <button className="show-items" onClick={this.props.toggleShow}>Show {this.props.feed.length > 25 ? '25 items' : '50 items'}</button>
         <button className="show-more" onClick={this.next.bind(this)}>Next</button>
         <button className="show-previous" onClick={this.previous.bind(this)}>{count === 0 ? 'Page 0' : 'Previous'}</button>
         <br />

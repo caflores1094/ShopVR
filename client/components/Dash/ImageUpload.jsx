@@ -64,15 +64,14 @@ class ImageUpload extends React.Component {
         var tags = result.data.map((entry)=> entry.tag);
 
         var searchQuery = tags.concat('+');
-        var productURL = 'http://api.shopstyle.com/api/v2/products/?pid=uid4025-36835155-23&filters=Retailer&limit=25&fts=' + searchQuery;
-        var getProducts = function(url, callback) {
-          axios.get(url)
+        var getProducts = function(callback) {
+          axios.post('/api/shopstyle', {offset: 0, fts: context.props.user.gender + '+' + searchQuery, limit: 50})
             .then(function(result){
               callback(null, result);
           });
         };
 
-        getProducts(productURL, function(err, response) {
+        getProducts(function(err, response) {
           if (err) console.log(err);
           else console.log(response.data.products, 'success getting data from api');
           context.props.setFeed(response.data.products);
