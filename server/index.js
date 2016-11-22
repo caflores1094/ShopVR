@@ -14,14 +14,13 @@ var fs = require("fs");
 
 var server = express();
 
+var options = {
+  key: fs.readFileSync('./server/ssl/key.pem', 'utf8'),
+  cert: fs.readFileSync('./server/ssl/server.crt', 'utf8')
+};
 
-// var options = {
-//   key: fs.readFileSync('./server/ssl/key.pem', 'utf8'),
-//   cert: fs.readFileSync('./server/ssl/server.crt', 'utf8')
-// };
-
-// var secureServer = https.createServer(options, server).listen(3001);
-
+var secureServer = https.createServer(options, server).listen(3001);
+var io = require('socket.io')(secureServer);
 
 server.use(bodyParser.json()); // for parsing application/json
 server.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlenco
@@ -30,6 +29,12 @@ server.use(router);
 
 server.listen(config.port, function () {
   console.log('Server listening');
+});
+
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+  });
 });
 
 router.post('/login/facebook', authController.login);

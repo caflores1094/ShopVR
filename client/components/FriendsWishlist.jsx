@@ -7,7 +7,6 @@ class FriendsWishlist extends React.Component {
   }
 
   render() {
-    console.log('friends wishlist', this.props);
     return (
       <div className="friends-wishlist">
         {
@@ -16,7 +15,7 @@ class FriendsWishlist extends React.Component {
             ))
         }
       </div>
-    );      
+    );
   }
 }
 
