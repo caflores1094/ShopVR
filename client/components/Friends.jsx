@@ -8,12 +8,20 @@ var names = [];
 var ids = [];
 class Friends extends React.Component {
   constructor(props) {
+    var string = window.location.search.slice(1).split('');
+    for (var i = 0; i < string.length; i++) {
+      if (string[i] === '+') {
+        string[i] = ' ';
+      }
+    }
+    string = string.join('');
+
     super(props);
     this.state = {
       wishlist: [],
       chatText: '',
       chatLog: [],
-      room: ''
+      room: string ? string : ''
     };
   }
 
@@ -49,7 +57,12 @@ class Friends extends React.Component {
 
   roomSubmit(e) {
     e.preventDefault();
-    this.setState({room: this.refs.room.value});
+    this.state.chatLog = [];
+    this.setState({room: this.refs.room.value}, () => {
+      if (this.state.room !== '') {
+        this.FBmsg();
+      }
+    });
   }
 
   chatSubmit(e) {
@@ -61,11 +74,22 @@ class Friends extends React.Component {
     }
   }
 
+  FBmsg() {
+    FB.ui({
+      method: 'send',
+      link: 'www.google.com/?' + this.state.room
+    });
+  }
+
   render() {
     return(
       <div className="friends-container">
         <div className="friends-header">See Friends' Wishlists</div>
         <FriendsWishlist list={this.state.wishlist} />
+        <form onSubmit={(e) => this.roomSubmit(e)}>
+          <input name='room' ref='room' defaultValue={this.state.room}/>
+          <button>Set Room</button>
+        </form>
         <div className="chatbox">
           {
             this.state.chatLog.map((obj, i) => (
@@ -73,9 +97,6 @@ class Friends extends React.Component {
               ))
           }
         </div>
-        <form onSubmit={(e) => this.roomSubmit(e)}>
-          <input name='room' ref='room'/><button>Set Room</button>
-        </form>
         <form onSubmit={(e) => this.chatSubmit(e)}>
           <input name='text' ref='text' onChange={(e) => this.setState({chatText: e.target.value})}/><button>Send</button>
         </form>
