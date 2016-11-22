@@ -39,7 +39,7 @@ class ClothingArticle extends React.Component {
         </Entity>
         
         {this.state.showPrice ? <Entity bmfont-text={{text: this.props.price}} position={textPos} scale='1.5 1.5 1.5' look-at="[camera]">
-                  <a-animation attribute="scale" from="1 0 0" to="1.5 1.5 1.5" dur="750" delay="500" fill="backwards"></a-animation>
+                  <a-animation attribute="scale" from="1.5 0 1.5" to="1.5 1.5 1.5" dur="750" delay="500" fill="backwards"></a-animation>
                 </Entity> : null}
       </Entity>
     )
