@@ -27,7 +27,8 @@ class VRview extends React.Component {
     console.log(firstFeed)
 
     var vrFeed = firstFeed.map((clothingObj)=> { 
-        return( [clothingObj.image.sizes.IPhone.url, clothingObj.image.sizes.IPhone.actualHeight / clothingObj.image.sizes.IPhone.actualWidth, clothingObj.priceLabel])
+      var brand = clothingObj.brand ? clothingObj.brand.name : '';
+      return( [clothingObj.image.sizes.IPhone.url, clothingObj.image.sizes.IPhone.actualHeight / clothingObj.image.sizes.IPhone.actualWidth, clothingObj.priceLabel, brand])
       });
     return (
       <div>
