@@ -13,7 +13,7 @@ class NavBar extends React.Component {
   componentWillMount() {
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : '310454652686518',
+        appId      : '315880725477244',
         cookie     : true,  // enable cookies to allow the server to access
                           // the session
         xfbml      : true,  // parse social plugins on this page
