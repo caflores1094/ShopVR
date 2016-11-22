@@ -62,7 +62,7 @@ class NavBar extends React.Component {
           .catch(function (error) {
             console.log('Error in sending ajax data');
           });
-      }); 
+      });
     });
   }
 
@@ -91,6 +91,13 @@ class NavBar extends React.Component {
   }
 
   login() {
+    FB.getLoginStatus(function(response) {
+      this.loginCallback(response);
+    }.bind(this));
+  }
+
+  signup() {
+    alert('Please log out of Facebook to sign up for ShopVR.')
     FB.getLoginStatus(function(response) {
       this.loginCallback(response);
     }.bind(this));
@@ -132,7 +139,7 @@ class NavBar extends React.Component {
             <br/>
             <p className="color">VR</p>
           </div>
-          <button className="navbar-button" onClick={this.login.bind(this)}>Login</button> <button className="navbar-button" onClick={this.login.bind(this)}>Signup</button>
+          <button className="navbar-button" onClick={this.login.bind(this)}>Login</button> <button className="navbar-button" onClick={this.signup.bind(this)}>Signup</button>
         </div>
       );
     }
