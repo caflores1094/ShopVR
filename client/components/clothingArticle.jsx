@@ -66,7 +66,7 @@ class ClothingArticle extends React.Component {
                 </Entity> : null}
         {this.state.showPrice ? <Entity onClick={this.heartClick.bind(this)} material={{src: 'url(./lib/heart.png)', transparent: true}} geometry={{primitive: 'plane', height: .2, width: .35}} scale='1.5 1.5 1.5' rotation="0 0 0" position={heartPos} look-at="[camera]" static-body>
                   <a-animation attribute="scale" from="1.5 0 1.5" to="1.5 1.5 1.5" dur="750" delay="500" fill="backwards"></a-animation>
-                  <a-animation begin='click' attribute="scale" from="1.5 1.5 1.5" to="2 2 2" dur="400" delay="0" fill="backwards"></a-animation>
+                  <a-animation begin='click' attribute="scale" from="1.5 1.5 1.5" to="2.5 2.5 2.5" dur="300" delay="0" fill="backwards"></a-animation>
                   </Entity> : null}
       </Entity>
     )
