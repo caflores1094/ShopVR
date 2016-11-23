@@ -29,6 +29,7 @@ class Friends extends React.Component {
     var context = this;
     axios.post('/api/getFriends', {id: this.props.user.id})
       .then(function(results) {
+        console.log('front end results', results);
         context.setState({
           wishlist: results.data
         });

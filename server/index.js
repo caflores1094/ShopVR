@@ -4,20 +4,58 @@ var router = require('express').Router();
 var db = require('./db');
 var request = require('request');
 var https = require('https');
+var fs = require('fs');
+var util = require('util');
+var mime = require('mime');
+var multer = require('multer');
 
 var authController = require('./controllers/auth.js');
 var picController = require('./controllers/pic.js');
 var wishlistController = require('./controllers/wishlist.js');
 var userController = require('./controllers/index.js');
 var config = require('./config.js');
-var fs = require("fs");
 
 var server = express();
+
 
 var options = {
   key: fs.readFileSync('./server/ssl/key.pem', 'utf8'),
   cert: fs.readFileSync('./server/ssl/server.crt', 'utf8')
 };
+
+// Set up auth
+var gcloud = require('gcloud')({
+  keyFilename: __dirname + '/../' + 'shopvr-796e817665e9.json',
+  projectId: 'shopvr-149122'
+});
+
+var vision = gcloud.vision();
+
+server.use(multer({dest: 'uploads/'}).single('image'));
+
+router.post('/upload', function(req, res, next) {
+  console.log('request', req);
+
+  // Choose what the Vision API should detect
+  // Choices are: faces, landmarks, labels, logos, properties, safeSearch, texts
+  var types = ['labels'];
+
+  // Send the image to the Cloud Vision API
+  vision.detect(req.file.path, types, function(err, detections, apiResponse) {
+    if (err) {
+      console.log('cloud vision error', err);
+      res.end('Cloud Vision Error');
+    } else {
+      console.log('response', apiResponse.responses[0].labelAnnotations);
+      res.send(JSON.stringify(detections, null, 4));
+    }
+  });
+});
+
+// function base64Image(src) {
+//   var data = fs.readFileSync(src).toString('base64');
+//   return util.format('data:%s;base64,%s', mime.lookup(src), data);
+// }
 
 var secureServer = https.createServer(options, server).listen(3001);
 var io = require('socket.io')(secureServer);
@@ -103,82 +141,3 @@ router.get('/api/getimage/:id', function (req, res) {
 });
 
 module.exports = server;
-
-
-
-// var https = require('https');
-// var fs = require('fs');
-// var path = require('path');
-
-// console.log(__dirname);
-//  var options = {
-//   key: fs.readFileSync(__dirname + '/server.key', 'utf8'),
-//   cert: fs.readFileSync(__dirname +'/server.crt', 'utf8')
-//  };
-// z
-// https.createServer(options, (req, res) => {
-// 	console.log('req', req);
-// 	console.log('res', res);
-//   res.writeHead(200);
-//   res.send('hello world\n');
-// }).listen(8000);
-
-
-// var express = require('express');
-// var bodyParser = require('body-parser');
-// var router = require('express').Router();
-// var db = require('./db');
-// var https = require('https');
-// var http = require('http');
-// var fs = require('fs');
-
-// var authController = require('./controllers/auth.js');
-// var picController = require('./controllers/pic.js');
-
-// //this is for HTTPS
-// var options = {
-//   key: fs.readFileSync('key.pem'),
-//   cert: fs.readFileSync('cert.pem')
-// };
-
-// // var server = express();
-// var secure = express();
-
-// // var normalServer = http.createServer(server).listen(3000);
-// var secureServer = https.createServer(options, secure).listen(8000);
-
-//  secure.get('/', function (req, res) {
-//       res.header('Content-type', 'text/html');
-//       return res.end('<h1>Hello, Secure World!</h1>');
-//     });
-
-// secure.use(router);
-
-// // server.use(bodyParser.json()); // for parsing application/json
-// // server.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlenco
-// // server.use(express.static(__dirname + '/../client'));
-// // server.use(router);
-
-// router.post('/login/facebook', authController.login);
-
-// router.get('/', function(req, res) {
-//   res.sendFile('/client/index.html', {root: __dirname + '/..'});
-// });
-
-// router.post('/api/upload', picController.pictures.post);
-// router.post('/api/feed', picController.pictures.getMostRecentImage);
-
-// router.get('/profile', function(req, res) {
-//   res.sendFile('/client/index.html', {root: __dirname + '/..'});
-// });
-
-// router.get('/vr', function(req, res) {
-//   res.sendFile('/client/index.html', {root: __dirname + '/..'});
-// });
-
-// router.get('/view', function(req, res) {
-//   res.sendFile('/client/index.html', {root: __dirname + '/..'});
-// });
-
-// // module.exports = server;
-// module.exports = secure;
