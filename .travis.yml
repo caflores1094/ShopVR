@@ -1,0 +1,11 @@
+services:
+  - mysql
+language: node_js
+node_js:
+  - 6.6.0
+before_install:
+  - mysql -e 'create database shopvrtest;'
+  - mysql -u root < server/schematest.sql
+install:
+  - npm install
+script: npm test
