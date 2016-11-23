@@ -39,8 +39,7 @@ describe('Database', function() {
   describe('DB connection', function() {
     it('Should connect to the database', function(done) {
       var connection = mysql.createConnection({
-        user: 'newuser',
-        password: 'password',
+        user: 'root'
         database: 'shopvrtest'
       });
       connection.connect(done);
@@ -50,8 +49,7 @@ describe('Database', function() {
 
       beforeEach(function() {
         dbConnection = mysql.createConnection({
-          user: 'newuser',
-          password: 'password',
+          user: 'root'
           database: 'shopvrtest'
         });
         dbConnection.connect();
