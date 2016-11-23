@@ -1,5 +1,3 @@
-CREATE DATABASE shopvrtest;
-
 USE shopvrtest;
 
 -- Creating users table
