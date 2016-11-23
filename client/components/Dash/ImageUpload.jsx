@@ -106,28 +106,44 @@ class ImageUpload extends React.Component {
   getInfo(event) {
     event.preventDefault();
 
-    let reader = new FileReader();
-    let file = event.target.files[0];
-    console.log('file', file);
+    var image = this.refs.image.files[0];
+    console.log('img', image);
+    var formData = new FormData();
+    formData.append('image', image, image.name);
 
-    reader.onloadend = () => {
-      this.setState({
-        file: file.name,
-        imagePreviewUrl: reader.result
-      });
-    }
-    var interest = reader.readAsDataURL(file);
+    // let reader = new FileReader();
+    // let file = event.target.files[0];
+    // console.log('file', file);
+
+    // reader.onloadend = () => {
+    //   this.setState({
+    //     file: file.name,
+    //     imagePreviewUrl: reader.result
+    //   });
+    // }
+
+    // var interest = reader.readAsDataURL(file);
   }
 
   onSubmit(e) {
     e.preventDefault();
-    axios.post('/upload', this.state)
-      .then(function(response) {
-        console.log('resp', response);
-      })
-      .catch(function(error) {
-        console.log('err', error);
-      })
+    var image = this.refs.image.files[0];
+    var formData = new FormData();
+    formData.append('image', image, image.name);
+
+    // var xhr = new XMLHttpRequest();
+    // xhr.open("POST", "/upload", true);
+    // xhr.responseType = 'json';
+    // xhr.onload = function () {
+    //   if (xhr.readyState === xhr.DONE) {
+    //     if (xhr.status === 200) {
+    //       update({file: image, data: xhr.response});
+    //     }
+    //   } else {
+    //     console.log('error with xhr response');
+    //   }
+    // };
+    // xhr.send(data);
   }
 
   render() {
@@ -139,8 +155,8 @@ class ImageUpload extends React.Component {
     return (
       <div>
         <form method="post" action="/upload" encType="multipart/form-data">
-          <input type="file" name="image" onChange={(event)=>this.getInfo(event)} />
-          <input type="submit" onSubmit={this.onSubmit} />
+          <input ref="image" type="file" name="image" onChange={(event)=>this.getInfo(event)} />
+          <input type="submit" onSubmit={this.onSubmit.bind(this)} />
         </form>
         <div className="img-preview">
           {$imagePreview}

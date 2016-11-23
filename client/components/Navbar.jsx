@@ -41,7 +41,7 @@ class NavBar extends React.Component {
       console.log('Successful login for: ' + response.name);
       context.setState({
         friends: response.friends.data
-      })
+      });
       //get higher resolution picture
       FB.api("/me/picture?width=320&height=320", function(picResponse) {
         response.picture.data.url = picResponse.data.url;
