@@ -86,11 +86,12 @@ class ClothingMapper extends React.Component {
 
   render() {
     var context = this;
+    // console.log('props feed!', this.props.feed)
     return (
       <Entity>
         {
           this.state.feed.map(function(arr, i){
-            return <ClothingArticle key={i} position={positions[i]} price={arr[2]} src={arr[0]} brand={arr[3]} size={arr[1]}/>
+            return <ClothingArticle key={i} likeItem={context.props.likeItems[i]} position={positions[i]} price={arr[2]} src={arr[0]} brand={arr[3]} size={arr[1]}/>
           })
         }
       </Entity>

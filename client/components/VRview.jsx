@@ -24,7 +24,26 @@ class VRview extends React.Component {
         firstFeed.push(elem);
       })
     }
-    console.log(firstFeed)
+    // console.log('first feed', firstFeed)
+
+    var itemsForLike = firstFeed.map((item)=> {
+      return {
+        name: item.name,
+        image: {
+          sizes: {
+            IPhoneSmall: {
+              url: item.image.sizes.IPhoneSmall.url
+            }
+          }
+        },
+        price: item.price,
+        clickUrl: item.clickUrl,
+        userID: this.props.user.id
+
+      }
+    });
+
+    // console.log('like items', itemsForLike);
 
     var vrFeed = firstFeed.map((clothingObj)=> { 
       var brand = clothingObj.retailer ? clothingObj.retailer.name : '-';
@@ -36,7 +55,7 @@ class VRview extends React.Component {
     return (
       <div>
         <Sharebar user={this.props.user}/>
-        <Setting user={this.props.user} feed={vrFeed}/>
+        <Setting user={this.props.user} likeItems={itemsForLike} feed={vrFeed}/>
       </div>
     );
   }
