@@ -44,7 +44,7 @@ module.exports = {
               var params = [[results[0].name, req.body.user, results[0].id, pairing]];
               models.users.postFriends(params, function(err, results) {
                 if (err) {
-                  res.send('duplicate friend');
+                  console.log('err', err);
                 } else {
                   res.send(results);
                 }
@@ -59,12 +59,13 @@ module.exports = {
         if (err) {
           console.log('err', err);
         } else {
+          console.log('friends', results);
           results.forEach(function(friend) {
             models.wishlist.getAll(friend.fid, function(err, results) {
               if (err) {
                 console.log('err, err');
               } else {
-                res.send(results);
+                console.log('wishlist', results);
               }
             })
           });

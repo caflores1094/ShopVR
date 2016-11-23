@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "shopvr-149122",
+  "private_key_id": "796e817665e99cb5ebb4190caf5c83048aa9d0bc",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC262fwCl07l+At\nON/TuYMUx0fjwetgNZoB5yOlzW0+9A0jIIjtyiMlDUfNDQyurqgW/XLAegz+Vl+x\nPDm/fvD4Fb8Rrrxj0EiwmXFHvk84T0soXs0mATFVJlN1gCNJ6DSbTG6baLhBIp4C\n3qcEtjFAJCmoBLQBmQbjnNnWSgV0YFhkOoJcj5AiWsNcDeYP1KL0jb4gYdnjl/bd\nyvKXiCnyfN9is588av0Z7qKLxphsPwaBR3RObHEKF7QTYuKbIe2vuCQWkbmp0r+h\nTFUILzUQqJ8dSsOkllq7u0c3vvB7P+uAcc4RwnjuUepICCSsquQQAg6IqkdWgsyG\nnWRbbC4hAgMBAAECggEADYz84yxxYbPLmK4I7s9kZYqpybaY8ESoRxHPcz33pN1B\nh+OmIS+DUQBd3FPmJ56qtyFJefbQtZrCdgfHI2eNBGPgBrhSHnbUm7iSSsVPaxV8\ntN3pBrK569vt/NtkQdpg40xTOVIVrEWbPQ0vhErW9TB4oYjPqPqkJwJ8pMJRCyDj\n9AOLol9asvTtqIc93nL5kKCmsfYX1gp5T+iQl02XqG40NwEWUkwiLFZ8F0Q9KEJ0\nHPXG3EP/1rMUrOvJ3SVq+40H62XxAwVPU9vcAX0Ibx7ebBFmbduEbtt7TjUQogkt\nQtPKb1u34MvHG2/xlfyThO9cOgNWQk4iOuGEyzaAXQKBgQDh5dADTYnRiDQalTh9\nRD3DWnmW/rq3NxecTwTOMBalmv0JXaqge8Q680r16gaWwyF8pzyodIIVi/I2oiMD\nn32b/KPxgqEfJzALUqgPZ5OemRmGiJv8h/JHnKMOW9QXunSZ0PunboIcce3veE/G\n4QlUOOo5srn4Rxb0QowJ9aDRhwKBgQDPS3QPEPlZc4UrktkUVuhx1zuuxXDVyaTt\n3N9SBZGGjiJQLp9ciZQDxhw+SGjSpxRYDbj4WjZ+JtTLbb6yKqlSVXvkGCOfrgPC\npAAUn6gWsjsEY4xsxfT/pQf5Erx0Fn02KRrc6hx+NJdyz8UtqEtFM5Yb8pf5IW8V\n9U2+wV6NFwKBgG/fKAz6sW4bTfJ8Q+WFjjDY9a5ZqI5jskWuvGqAVjbdcsLYqE+h\n+6RWKKFwrKKtMEBTci7axDF3hRSZZ028BrDhhS9tye1rstdor+IxIWJB3+pIbTe6\n+7mLURUjVP4LUQN8A6T/jWAY7ATUSG3ttHkJVrYMVR0n165P5ppoEqSxAoGAYeRr\nAXZtmo2QNPybIRzNln0jBSzeVUdtaJrmp1BT4ewbTixGO6gIyyNyUQNW5Svb0p1g\nXYAUvcxOr2a7KF43KdeOsy+nGxBNXEygcRzYfydZ8X+lX/S390YTFs9/SX8ZUEtn\nES5JmFvzrVdq8V3JdfufhsEwfYkJcaAvP8cHhK8CgYEAut7NbRhl2coEGeKH1sZ2\nxxO4I2OT1kW25nPJG4p/3oyAL9dTFKmdYedF829XsT6RMhZrnZR77Z+htv2QG4Xa\nQpPMgsJMVamRTIwW405oqj0yy7ELsZl1ts034XYDWnty3I66t5QqLSYlLgaD5bdC\nAjnVj83XXV/3D39day5P1QA=\n-----END PRIVATE KEY-----\n",
+  "client_email": "marissaokada@shopvr-149122.iam.gserviceaccount.com",
+  "client_id": "115073112768542497153",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/marissaokada%40shopvr-149122.iam.gserviceaccount.com"
+}

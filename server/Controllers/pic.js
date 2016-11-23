@@ -21,20 +21,20 @@ module.exports = {
 			});
 		},
 		getAllImages: function(req, res) {
-		  console.log('in get all images', req);
+		  // console.log('in get all images', req);
 		  models.pictures.getUserImages(req.body.u_id, function(err, results) {
 			if (err) console.log('error retrieving user images', err);
-			console.log('get user tags results', results);
+			// console.log('get user tags results', results);
 		    res.send(results);
 		  });
 		  // callback(null, results);
 		},
 
 		getMostRecentImage: function(req, res) {
-		  console.log('in get all images', req);
+		  // console.log('in get all images', req);
 		  models.pictures.getRecentImage(req.body.u_id, function(err, results) {
 			if (err) console.log('error retrieving user images', err);
-			console.log('get user tags results', results);
+			// console.log('get user tags results', results);
 			var picName = results[0].name;
 			models.pictures.getUserTags(picName, function(err, results){
 				console.log(results);
