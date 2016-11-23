@@ -8,6 +8,7 @@ import Profile from './components/Profile.jsx';
 import Setting from './components/setting.jsx';
 import SharedView from './components/SharedView.jsx';
 import Friends from './components/Friends.jsx';
+import ImageUpload from './components/Dash/ImageUpload.jsx';
 import { createStore, combineReducers } from 'redux';
 
 var userReducer = (state={}, action) => {
