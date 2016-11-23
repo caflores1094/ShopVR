@@ -5,8 +5,6 @@ var db = require('./db');
 var request = require('request');
 var https = require('https');
 var fs = require('fs');
-var util = require('util');
-var mime = require('mime');
 var multer = require('multer');
 
 var authController = require('./controllers/auth.js');
@@ -18,13 +16,13 @@ var config = require('./config.js');
 var server = express();
 
 
-var options = {
-  key: fs.readFileSync('./server/ssl/key.pem', 'utf8'),
-  cert: fs.readFileSync('./server/ssl/server.crt', 'utf8')
-};
+// var options = {
+//   key: fs.readFileSync('./server/ssl/key.pem', 'utf8'),
+//   cert: fs.readFileSync('./server/ssl/server.crt', 'utf8')
+// };
 
 // Set up auth
-var gcloud = require('gcloud')({
+var gcloud = require('google-cloud')({
   keyFilename: __dirname + '/../' + 'shopvr-796e817665e9.json',
   projectId: 'shopvr-149122'
 });
@@ -34,19 +32,16 @@ var vision = gcloud.vision();
 server.use(multer({dest: 'uploads/'}).single('image'));
 
 router.post('/upload', function(req, res, next) {
-  console.log('request', req);
-
   // Choose what the Vision API should detect
   // Choices are: faces, landmarks, labels, logos, properties, safeSearch, texts
   var types = ['labels'];
-
   // Send the image to the Cloud Vision API
   vision.detect(req.file.path, types, function(err, detections, apiResponse) {
     if (err) {
       console.log('cloud vision error', err);
       res.end('Cloud Vision Error');
     } else {
-      console.log('response', apiResponse.responses[0].labelAnnotations);
+      fs.unlinkSync(req.file.path);
       res.send(JSON.stringify(detections, null, 4));
     }
   });
@@ -57,8 +52,8 @@ router.post('/upload', function(req, res, next) {
 //   return util.format('data:%s;base64,%s', mime.lookup(src), data);
 // }
 
-var secureServer = https.createServer(options, server).listen(3001);
-var io = require('socket.io')(secureServer);
+// var secureServer = https.createServer(options, server).listen(3001);
+// var io = require('socket.io')(secureServer);
 
 server.use(bodyParser.json()); // for parsing application/json
 server.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlenco
@@ -69,11 +64,11 @@ server.listen(config.port, function () {
   console.log('Server listening');
 });
 
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
-  });
-});
+// io.on('connection', function(socket){
+//   socket.on('chat message', function(msg){
+//     io.emit('chat message', msg);
+//   });
+// });
 
 router.post('/login/facebook', authController.login);
 router.post('/api/getUser', userController.users.findUser);
