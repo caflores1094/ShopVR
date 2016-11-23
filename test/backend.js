@@ -39,9 +39,8 @@ describe('Database', function() {
   describe('DB connection', function() {
     it('Should connect to the database', function(done) {
       var connection = mysql.createConnection({
-        user: 'newuser',
-        password: 'password',
-        database: 'shopvr'
+        user: 'root',
+        database: 'shopvrtest'
       });
       connection.connect(done);
     });
@@ -50,9 +49,8 @@ describe('Database', function() {
 
       beforeEach(function() {
         dbConnection = mysql.createConnection({
-          user: 'newuser',
-          password: 'password',
-          database: 'shopvr'
+          user: 'root',
+          database: 'shopvrtest'
         });
         dbConnection.connect();
       });
@@ -60,7 +58,7 @@ describe('Database', function() {
       afterEach(function() {
         dbConnection.end();
       });
-      
+
       it('Should insert into users table', function(done) {
         var sample = {
           name: 'Bob Bob',
@@ -85,15 +83,17 @@ describe('Database', function() {
           expect(results.length).to.equal(1);
           expect(results[0].name).to.equal('Bob Bob');
           done();
-        });          
+        });
       });
       it('Should insert into items table', function(done) {
+        dbConnection.query('DELETE FROM users WHERE name="Bob Bob"', function(err, results) {
+        });
+
         var sample = {
           brand: 'Zara',
           item_name: 'DENIM CULOTTES',
           price: 69.90,
-          pic: 'http://static.zara.net/photos///2016/I/0/1/p/6840/265/400/2/w/560/6840265400_1_1_1.jpg?ts=1473326581415',
-          user_id: 1
+          pic: 'http://static.zara.net/photos///2016/I/0/1/p/6840/265/400/2/w/560/6840265400_1_1_1.jpg?ts=1473326581415'
         };
         dbConnection.query('INSERT INTO items SET ?', sample, function(err, results) {
           if (err) {
@@ -107,9 +107,14 @@ describe('Database', function() {
         dbConnection.query('SELECT * FROM items', function(err, results) {
           expect(results.length).to.equal(1);
           expect(results[0].brand).to.equal('Zara');
+          dbConnection.query('DELETE FROM items WHERE brand="Zara"', function(err, results) {
+          });
+          dbConnection.query('DELETE FROM users WHERE name="Bob Bob"', function(err, results) {
+          });
           done();
-        });          
+        });
       });
+
     });
   });
 });
