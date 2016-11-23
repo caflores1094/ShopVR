@@ -21,12 +21,27 @@ class ClothingArticle extends React.Component {
   }
 
   render() {
-    var priceBoxPos = this.props.position.slice().split(' ');
+    var priceBoxPos = this.props.position.pos.slice().split(' ');
     priceBoxPos[1] = 1.5 + this.props.size*0.625 + 0.7;
     priceBoxPos = priceBoxPos.join(' ');
 
-    var textPos = this.props.position.slice().split(' '); 
-    textPos[1] = 1.5 + this.props.size*0.625 + 0.3;
+    var heartPos = this.props.position.pos.slice().split(' ');
+    heartPos[1] = 1.5 + this.props.size*0.625 + 0.2;
+
+    var textPos = this.props.position.pos.slice().split(' '); 
+    if(this.props.position.rotation === '0 90 0'){
+      textPos[2] = parseInt(textPos[2]) + 0.7
+    } else if(this.props.position.rotation === '0 -90 0'){
+      textPos[2] -= 0.625
+    } else if (this.props.position.rotation === '0 180 0'){
+      textPos[0] = parseInt(textPos[0]) + 0.625
+    }
+    else if (this.props.position.rotation === '0 0 0'){
+      textPos[0] = parseInt(textPos[0]) - 0.625
+    }
+    textPos[1] = 1.5 + this.props.size*0.625 + 0.6;
+    // textPos[2] += 0.3;
+    console.log((textPos[2]))
 
 
         //<a-box mixin="plane" depth='0.1' height='1' width='1.25 ' position={priceBoxPos} opacity='0.3' look-at="[camera]">
@@ -34,13 +49,16 @@ class ClothingArticle extends React.Component {
         //</a-box>
     return (
       <Entity>
-        <Entity onClick={this.clicked.bind(this)} material={{src: `url(${this.props.src})`}} geometry={{primitive: 'box', depth: .1, height: this.props.size*1.25, width: 1.25}} rotation="0 0 0" position={this.props.position} look-at="[camera]" static-body>
+        <Entity onClick={this.clicked.bind(this)} material={{src: `url(${this.props.src})`}} geometry={{primitive: 'box', depth: .1, height: this.props.size*1.25, width: 1.25}} rotation="0 0 0" position={this.props.position.pos} look-at="[camera]" static-body>
           <a-mouseenter scale='4 4 4'></a-mouseenter>
         </Entity>
         
-        {this.state.showPrice ? <Entity bmfont-text={{text: this.props.price+"\n"+this.props.brand}} position={textPos} scale='1.5 1.5 1.5' look-at="[camera]">
-                  <a-animation attribute="scale" from="1.5 0 1.5" to="1.5 1.5 1.5" dur="750" delay="500" fill="backwards"></a-animation>
+        {this.state.showPrice ? <Entity bmfont-text={{align: 'left', text: this.props.brand + ': ' + this.props.price}} position={textPos} scale='1 1 1' rotation={this.props.position.rotation}>
+                  <a-animation attribute="scale" from="1 0 1" to="1 1 1" dur="750" delay="500" fill="backwards"></a-animation>
                 </Entity> : null}
+        {this.state.showPrice ? <Entity material={{src: 'url(./lib/heart.png)', transparent: true}} geometry={{primitive: 'plane', height: .2, width: .35}} scale='1.5 1.5 1.5' rotation="0 0 0" position={heartPos} look-at="[camera]" static-body>
+                  <a-animation attribute="scale" from="1.5 0 1.5" to="1.5 1.5 1.5" dur="750" delay="500" fill="backwards"></a-animation>
+                  </Entity> : null}
       </Entity>
     )
 

@@ -44,7 +44,6 @@ class Setting extends React.Component {
       return(
         <div>
           <Scene physics>
-
             <Entity id="camera" active camera position="0 1.8 0" rotation="0 0 0" universal-controls kinematic-body jump-ability="maxJumps: 100;">
               <Entity cursor="maxDistance: 30"
                     position="0 0 -1"
