@@ -31,7 +31,7 @@ var vision = gcloud.vision();
 
 server.use(multer({dest: 'uploads/'}).single('image'));
 
-router.post('/upload', function(req, res, next) {
+server.post('/upload', function(req, res, next) {
   // Choose what the Vision API should detect
   // Choices are: faces, landmarks, labels, logos, properties, safeSearch, texts
   var types = ['labels'];
