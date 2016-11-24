@@ -39,9 +39,9 @@ class NavBar extends React.Component {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', {fields: 'id, name, email, friends, gender, picture, locale, timezone, location'}, function(response) {
       console.log('Successful login for: ' + response.name);
-      context.setState({
-        friends: response.friends.data
-      });
+      // context.setState({
+      //   friends: response.friends.data
+      // });
       //get higher resolution picture
       FB.api("/me/picture?width=320&height=320", function(picResponse) {
         response.picture.data.url = picResponse.data.url;
@@ -51,16 +51,16 @@ class NavBar extends React.Component {
               me: response.data[0].id
             });
             context.props.setUser(response.data[0]);
-            axios.post('/api/friends', {user: response.data[0].id, friends: context.state.friends})
-              .then(function(response) {
-                console.log('Post successful');
-              })
-              .catch(function(error) {
-                console.log('Error in posting friends');
-              });
+            // axios.post('/api/friends', {user: response.data[0].id, friends: context.state.friends})
+            //   .then(function(response) {
+            //     console.log('Post successful');
+            //   })
+            //   .catch(function(error) {
+            //     console.log('Error in posting friends');
+            //   });
           })
           .catch(function (error) {
-            console.log('Error in sending ajax data');
+            console.log('Error posting user');
           });
       });
     });
