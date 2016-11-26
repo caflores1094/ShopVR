@@ -747,7 +747,6 @@ table {
   width: 15em;
   height: 1.5em;
   margin-right: 16%;
-  margin-bottom: 1%;
   float: right;
   font-family: 'Noto Serif', serif;
   font-size: 0.5em;
@@ -775,7 +774,7 @@ table {
   border: 1pt solid black;
   display: block;
   height: auto;
-  font-size: 1em;
+  font-size: 0.5em;
   font-family: 'Josefin Sans', sans-serif;
   color: #3B383D;
   padding: 4%;
@@ -792,4 +791,17 @@ table {
   margin-top: 1%;
   background-color: #F7EDF0;
   color: #3B383D;
+}
+
+.wishlist-share {
+  margin-left: 34%;
+  width: 50%;
+  font-size: 1em;
+  font-family: 'Josefin Sans', sans-serif;
+  color: #3B383D;
+}
+.share-container {
+  margin-top: 2%;
+  margin-right: 1%;
+  margin-bottom: 3%;
 }
