@@ -625,6 +625,7 @@ table {
 .wishlist {
   width: 100%;
   margin: 0 auto;
+  display: inline-block;
 }
 
 .wishlist-header {
@@ -632,6 +633,9 @@ table {
   font-family: 'Josefin Sans', sans-serif;  
   margin-left: 2%;
   margin-top: 2%;
+  display: block;
+  width: 100%;
+  margin-bottom: 10%;
 }
 
 .upload-instructions,
@@ -739,5 +743,53 @@ table {
   max-height: 80%;
 }
 
+.wishlist-button {
+  width: 15em;
+  height: 1.5em;
+  margin-right: 16%;
+  margin-bottom: 1%;
+  float: right;
+  font-family: 'Noto Serif', serif;
+  font-size: 0.5em;
+  background-color: #3B383D;
+  color: #F7EDF0;
+  outline: none;
+  border-radius: 6%;
+  border: none;
+}
 
+.wishlist-button:hover {
+  opacity: 0.6;
+}
 
+.wishlist-button:focus, 
+.wishlist-button: active {
+  opacity: 0.2;
+}
+
+.share-instructions {
+  display: none;
+}
+
+.share-link-bar {
+  border: 1pt solid black;
+  display: block;
+  height: auto;
+  font-size: 1em;
+  font-family: 'Josefin Sans', sans-serif;
+  color: #3B383D;
+  padding: 4%;
+  text-align: left;
+
+}
+.share-link.text {
+  color: black;
+}
+
+.share-link {
+  border: 1pt solid black;
+  width: 98%;
+  margin-top: 1%;
+  background-color: #F7EDF0;
+  color: #3B383D;
+}

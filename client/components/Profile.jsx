@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import Wishlist from './Wishlist.jsx';
+import ShareLink from './ShareLink.jsx';
+
 
 
 class Profile extends React.Component {
@@ -14,7 +16,8 @@ class Profile extends React.Component {
       min_price: this.props.user.min_price,
       max_price: this.props.user.max_price,
       myImages: [],
-      wishList: []
+      wishList: [], 
+      showShare: false
     }
   }
 
@@ -48,7 +51,7 @@ class Profile extends React.Component {
     });
   }
 
-  getWishList(){
+  getWishList() {
     var obj = {};
     obj['userID'] = this.props.user.id;
     var context = this;
@@ -71,6 +74,13 @@ class Profile extends React.Component {
 
   componentDidMount(){
     this.getWishList();
+  }
+
+  shareWishlist() {
+    console.log('this in sharewishlist', this);
+    //display sharing wishlist url structure
+    this.setState({ showShare: !this.state.showShare });
+    console.log(this.state.showShare, 'share state');
   }
 
   render() {
@@ -100,7 +110,12 @@ class Profile extends React.Component {
               </div>
             </form>
           <div className="wishlist-container">
-            <div className="wishlist-header">My Wishlist</div>
+            <div className="wishlist-header">
+              My Wishlist
+              <button className="wishlist-button" onClick={this.shareWishlist.bind(this)}>Share My Wishlist 
+                { this.state.showShare ? <ShareLink userid={this.props.user.id}/> : null }
+              </button>
+            </div>
             <div className='wishlist'>
               <Wishlist getWishList={this.getWishList.bind(this)} list={this.state.wishList}/>
             </div>
