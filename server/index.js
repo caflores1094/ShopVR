@@ -135,4 +135,8 @@ router.get('/api/getimage/:id', function (req, res) {
   });
 });
 
+router.post('/:userid', function(req, res) {
+  
+})
+
 module.exports = server;
