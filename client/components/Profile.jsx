@@ -112,9 +112,8 @@ class Profile extends React.Component {
           <div className="wishlist-container">
             <div className="wishlist-header">
               My Wishlist
-              <button className="wishlist-button" onClick={this.shareWishlist.bind(this)}>Share My Wishlist 
-                { this.state.showShare ? <ShareLink userid={this.props.user.id}/> : null }
-              </button>
+              <button className="wishlist-button" onClick={this.shareWishlist.bind(this)}>Share My Wishlist</button>
+              <div className="wishlist-share">{ this.state.showShare ? <ShareLink userid={this.props.user.id} username={this.props.user.name}/> : null }</div>
             </div>
             <div className='wishlist'>
               <Wishlist getWishList={this.getWishList.bind(this)} list={this.state.wishList}/>
