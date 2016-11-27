@@ -86,6 +86,8 @@ router.post('/api/feed', picController.pictures.getMostRecentImage);
 router.post('/api/like', wishlistController.wishlist.post);
 
 router.post('/api/getWishList', wishlistController.wishlist.getAll);
+router.post('/api/getWishListForFriend', wishlistController.wishlist.getAllForFriend);
+
 router.post('/api/removeFromWishList', wishlistController.wishlist.removeItem);
 
 router.get('/profile', function(req, res) {
@@ -135,8 +137,8 @@ router.get('/api/getimage/:id', function (req, res) {
   });
 });
 
-router.post('/:userid', function(req, res) {
-  
-})
+router.get('/profile/:userid', function(req, res) {
+  res.sendFile('/client/index.html', {root: __dirname + '/..'});
+});
 
 module.exports = server;

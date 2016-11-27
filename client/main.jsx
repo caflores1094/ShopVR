@@ -8,6 +8,8 @@ import Profile from './components/Profile.jsx';
 import Setting from './components/setting.jsx';
 import SharedView from './components/SharedView.jsx';
 import Friends from './components/Friends.jsx';
+import SharedWishlist from './components/SharedWishlist.jsx';
+
 import { createStore, combineReducers } from 'redux';
 
 var userReducer = (state={}, action) => {
@@ -43,8 +45,8 @@ ReactDOM.render((
       <Route path="/profile" component={Profile}/>
       <Route path="/vr" component={VRview} />
       <Route path="/friends" component={Friends} />
-      <Route path="/profile/:userid" component={Profile} />
     </Route>
+    <Route path="/profile/:userid" component={SharedWishlist} />
     <Route path="/view" component={SharedView} />
   </Router>
 ), document.getElementById('app'));

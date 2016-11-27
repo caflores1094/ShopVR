@@ -140,6 +140,7 @@ module.exports = {
 
     },
     getAll: function(userID, callback) {
+      console.log('in wishlist model');
       var queryStr = 'Select * from wishlist where wishlist.userid = ?';
       db.query(queryStr, [userID], function(err, results) {
         if (err) console.log('error getting user wishlist', err);
