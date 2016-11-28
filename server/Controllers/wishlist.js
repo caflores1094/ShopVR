@@ -32,12 +32,13 @@ module.exports = {
         res.sendStatus(202);
       });     
     },
+
     getAllForFriend: function(req, res) {
-      console.log('in wishlist controller');
       //TODO: edit line right below with correct path to user
       var userID = req.body.friendUserID;
       models.wishlist.getAll(userID, function(err, results) {
         if (err) console.log('error in wishlist controller', err);
+        console.log(results, 'results in controller');
         res.send(results);
       });     
     },

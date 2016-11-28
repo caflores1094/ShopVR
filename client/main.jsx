@@ -9,6 +9,7 @@ import Setting from './components/setting.jsx';
 import SharedView from './components/SharedView.jsx';
 import Friends from './components/Friends.jsx';
 import SharedWishlist from './components/SharedWishlist.jsx';
+import Test from './components/Test.jsx'
 
 import { createStore, combineReducers } from 'redux';
 
@@ -46,7 +47,8 @@ ReactDOM.render((
       <Route path="/vr" component={VRview} />
       <Route path="/friends" component={Friends} />
     </Route>
-    <Route path="/profile/:userid" component={SharedWishlist} />
+    <Route path="/test" component={Test} />
+    <Route path="/:userid" component={SharedWishlist} />
     <Route path="/view" component={SharedView} />
   </Router>
 ), document.getElementById('app'));

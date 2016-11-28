@@ -130,10 +130,22 @@ router.get('/api/getimage/:id', function (req, res) {
   request(options, function(err, response, httpResponse) {
     res.end(httpResponse, 'binary');
   });
+}); 
+
+router.get('/test', function(req, res) {
+  res.sendFile('/client/index.html', {root: __dirname + '/..'});
 });
 
 router.get('/profile/:userid', function(req, res) {
   res.sendFile('/client/index.html', {root: __dirname + '/..'});
 });
+
+router.get('/:userid', function(req, res) {
+  res.sendFile('/client/index.html', {root: __dirname + '/..'});
+});
+
+
+
+
 
 module.exports = server;
