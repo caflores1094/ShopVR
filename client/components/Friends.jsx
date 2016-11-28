@@ -78,7 +78,7 @@ class Friends extends React.Component {
   FBmsg() {
     FB.ui({
       method: 'send',
-      link: 'www.google.com/?' + this.state.room
+      link: window.location.href + '?' + this.state.room
     });
   }
 

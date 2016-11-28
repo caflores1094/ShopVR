@@ -13,7 +13,7 @@ class ShareBar extends React.Component {
   FBmsg() {
     FB.ui({
       method: 'send',
-      link: 'www.google.com/?' + this.state.roomid
+      link: window.location.origin + '/view?' + this.state.roomid
     });
   }
 
