@@ -23,6 +23,22 @@ class ImageUpload extends React.Component {
     });
   }
 
+  handleImageChange(e) {
+    e.preventDefault();
+
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result
+      });
+    }
+
+    reader.readAsDataURL(file)
+  }
+
   getFeedOnImageUpload(){
     var context = this;
     var tags = this.state.shared.data
@@ -80,7 +96,7 @@ class ImageUpload extends React.Component {
     return (
       <div>
         <form onSubmit={this.onSubmit.bind(this)} encType="multipart/form-data">
-          <input ref="image" type="file" name="image" />
+          <input onChange={(e) => (this.handleImageChange(e))} ref="image" type="file" name="image" />
           <input type="submit" />
         </form>
         <div className="img-preview">
