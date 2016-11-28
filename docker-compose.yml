@@ -3,7 +3,7 @@ services:
   shop_vr:
     build: ./
     ports:
-     - "80:3000"
+     - "443:3001"
     depends_on:
      - db
     environment:
