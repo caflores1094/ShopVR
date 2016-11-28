@@ -41,7 +41,7 @@ class Setting extends React.Component {
   }
 
   render() {
-    
+
       return(
         <div>
           <Scene physics>
