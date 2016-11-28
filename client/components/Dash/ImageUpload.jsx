@@ -41,13 +41,17 @@ class ImageUpload extends React.Component {
 
   getFeedOnImageUpload(){
     var context = this;
-    var tags = this.state.shared.data
-    console.log('tags', tags.join('+'));
+    var tags = this.state.shared.data;
+    console.log('actual tags', tags);
+    tags = tags.sort(function(a, b) {
+      return a.length - b.length;
+    });
 
-    var searchQuery = tags.slice(0, 2).join('+');
+    var searchQuery = tags.slice(0, 2).join(' ');
     console.log('searchQuery', searchQuery);
+    var gender = this.props.user.gender === 'male' ? "men" : "women";
     var getProducts = function(callback) {
-      axios.post('/api/shopstyle', {offset: 0, fts: context.props.user.gender + '+' + searchQuery, limit: 50})
+      axios.post('/api/shopstyle', {offset: 0, fts: gender + '+' + searchQuery, limit: 50})
         .then(function(result){
           console.log('result', result);
           callback(null, result);
@@ -77,7 +81,6 @@ class ImageUpload extends React.Component {
         if (xhr.status === 200) {
           update({file: image, data: xhr.response});
           context.getFeedOnImageUpload();
-          console.log('state after update', context.state.shared);
         }
       } else {
         console.log('error with xhr response');
@@ -87,7 +90,6 @@ class ImageUpload extends React.Component {
   }
 
   render() {
-    console.log('state', this.state);
     let {imagePreviewUrl} = this.state;
     let $imagePreview = null;
     if (imagePreviewUrl) {
