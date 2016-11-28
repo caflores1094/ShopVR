@@ -47,11 +47,6 @@ server.post('/upload', function(req, res, next) {
   });
 });
 
-// function base64Image(src) {
-//   var data = fs.readFileSync(src).toString('base64');
-//   return util.format('data:%s;base64,%s', mime.lookup(src), data);
-// }
-
 // var secureServer = https.createServer(options, server).listen(3001);
 // var io = require('socket.io')(secureServer);
 
