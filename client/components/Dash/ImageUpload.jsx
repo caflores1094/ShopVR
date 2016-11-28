@@ -43,9 +43,6 @@ class ImageUpload extends React.Component {
     var context = this;
     var tags = this.state.shared.data;
     console.log('actual tags', tags);
-    // console.log('tags', tags.sort(function(a, b) {
-    //   return a.length - b.length;
-    // }));
     tags = tags.sort(function(a, b) {
       return a.length - b.length;
     });
