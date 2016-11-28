@@ -186,8 +186,6 @@ class Setting extends React.Component {
             <Fountain z='33 ' y='0 ' x='0'/>
 
           </Scene>
-          <div id="videos-container"></div>
-          <div id="audios-container"></div>
         </div>
       )
     }
