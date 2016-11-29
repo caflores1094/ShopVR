@@ -8,7 +8,8 @@ class SharedWishlist extends React.Component {
     this.state = {
       friendWishlist: [],
       friend: null,
-      photo: null
+      photo: null,
+      friendFound: false
     }
   }
 
@@ -24,6 +25,9 @@ class SharedWishlist extends React.Component {
     axios.post('/api/getWishListForFriend', obj)
       .then(function(result) {
         var dataArr = result.data;
+        if (dataArr.length > 1) {
+          context.setState({friendFound: true});
+        }
         var wlObj = {};
         dataArr.forEach((elem) => {
           wlObj[elem.pic_name] = elem;
@@ -59,7 +63,7 @@ class SharedWishlist extends React.Component {
     var context = this;
     return (
       <div>
-        <SharedWishlistPage getWishList={this.getWishList.bind(this)} list={this.state.friendWishlist} friend={this.state.friend} photo={this.state.photo}/>          
+        <SharedWishlistPage getWishList={this.getWishList.bind(this)} list={this.state.friendWishlist} friend={this.state.friend} photo={this.state.photo} friendFound={this.state.friendFound}/>          
       </div>
     );
   }
