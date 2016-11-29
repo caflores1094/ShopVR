@@ -31,17 +31,17 @@ class ShareLink extends React.Component {
   }
 
   render() {
-    
+
     return (
       <div>
 	      <div className="share-link-bar">
 	        <div className="share-link-text">
 	        Copy and paste to share your wishlist items with your friends
 	        </div>
-	        <input className="share-link" onClick={this.handleClick.bind(this)} type="text" value={"54.201.209.146/" + this.props.userid}/>
+	        <input className="share-link" onClick={this.handleClick.bind(this)} type="text" value={window.location.origin + '/' + this.props.userid}/>
 	      	<div className="share-container">
 	            <FacebookShareButton
-	            url={"https://54.201.209.146/" + this.props.userid}
+	            url={window.location.origin + "/" + this.props.userid}
 	            title={this.props.username}
 	            className="social-icon">
 	              <FacebookIcon
