@@ -9,7 +9,8 @@ class ImageUpload extends React.Component {
       shared: {
         file: null,
         data: null
-      }
+      },
+      feedType: 'upload'
     };
 
     this.update = this.update.bind(this);
@@ -61,7 +62,7 @@ class ImageUpload extends React.Component {
     getProducts(function(err, response) {
       if (err) console.log(err);
       else /*console.log(response.data.products, 'success getting data from api');*/
-      context.props.setFeed(response.data.products);
+      context.props.setFeed(response.data.products, this.state.feedType);
     });
   }
 

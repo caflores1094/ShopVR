@@ -10,7 +10,9 @@ class App extends React.Component {
       feed: [],
       price: true,
       brand: true,
-      category: true
+      category: true,
+      feedType: 'default',
+      offset: 0
     };
   }
 
@@ -18,9 +20,17 @@ class App extends React.Component {
     this.setState({user: user});
   }
 
-  setFeed(feed, minPrice, maxPrice) {
+  setFeed(feed, feedType, minPrice, maxPrice) {
     minPrice = minPrice || 0;
     maxPrice = maxPrice || 10000;
+    //every time setFeed is called with new feedType, reset offset to 0
+      //if setFeed is called with same feedType, increment offset by 50
+    if (feedType === this.state.feedType) {
+      var newOffset = this.state.offset + 50;
+      this.setState({offset: newOffset});
+    } else {
+      this.setState({offset: 0, feedType: feedType});
+    }
 
     var newfeed = [];
     for (var i = 0; i < feed.length; i++) {

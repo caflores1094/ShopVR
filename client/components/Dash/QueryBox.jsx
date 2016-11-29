@@ -14,6 +14,8 @@ class QueryBox extends React.Component {
         brand: '',
         item: '',
         offset: 0,
+        query: false,
+        feedType: 'query'
       }
   }
 
@@ -23,7 +25,8 @@ class QueryBox extends React.Component {
     var context = this;
     axios.post("/api/shopstyle", {offset: this.state.offset, fts: gender + '+' + this.state.brand + '+' + this.state.item, limit: 50})
     .then(function (response) {
-      context.props.setFeed(response.data.products, context.state.minPrice, context.state.maxPrice);
+      this.setState({query: true});
+      context.props.setFeed(response.data.products, context.state.feedType, context.state.minPrice, context.state.maxPrice);
     })
     .catch(function (error) {
       console.log('asdfError in sending ajax data ', error);
