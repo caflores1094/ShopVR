@@ -653,7 +653,7 @@ table {
   z-index: -1;
 }
 
-.file-label,
+.file-button,
 .tag-input {
   margin: 4% 0;
 }
@@ -670,6 +670,12 @@ table {
   border-radius: 6%;
   border: none;
   line-height: 2.2em;
+  text-align: center;
+}
+
+.file-button {
+  background-color: #DF755A;
+  padding: 3%;
 }
 
 .file-button:hover, 
@@ -690,6 +696,10 @@ table {
   border: solid 5px #3B383D;
   transition: border 0.3s;
   outline: none;
+}
+
+.image-upload {
+  margin-left: 9%;
 }
 
 .vr-nav {
