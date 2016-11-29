@@ -33,7 +33,6 @@ class Dashboard extends React.Component {
         <div className="content">
           <div className="dashboard-tools">
             <button className="dashboard-button" onClick={() => browserHistory.push('/vr')}>View In VR</button>
-            <button className="dashboard-button" onClick={() => browserHistory.push('/friends')}>See Friends</button>
             <div className="dashboard-upload">
               <button onClick={this.showTool.bind(this, 'imageUpload')} className="upload-button">Upload Image</button>
               <div name="imageUpload" className="image-upload" style={{display: this.state.imageUpload}}>
