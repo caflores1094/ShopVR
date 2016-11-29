@@ -84,16 +84,6 @@ class SharedWishlist extends React.Component {
     this.getWishList();
   }
 
-  roomSubmit(e) {
-    e.preventDefault();
-    this.state.chatLog = [];
-    this.setState({room: this.refs.room.value}, () => {
-      if (this.state.room !== '') {
-
-      }
-    });
-  }
-
   chatSubmit(e) {
     e.preventDefault();
     if (this.state.chatText !== '' && this.state.room !== '') {
@@ -103,22 +93,12 @@ class SharedWishlist extends React.Component {
     }
   }
 
-  FBmsg() {
-    FB.ui({
-      method: 'send',
-      link: window.location.href + '?' + this.state.room
-    });
-  }
-
   render() {
     if (this.props.user.hasOwnProperty('name')) {
       return (
         <div>
           <SharedWishlistPage getWishList={this.getWishList.bind(this)} list={this.state.friendWishlist} friend={this.state.friend} photo={this.state.photo} friendFound={this.state.friendFound}/>
-          <form onSubmit={(e) => this.roomSubmit(e)}>
-            <input name='room' ref='room' defaultValue={this.state.room}/>
-            <button>Set Room</button>
-          </form>
+          <p>{this.state.room === '' ? 'Oops, no one is here! - Please ask your friend for an invite' : 'Chat Room: ' + this.state.room}</p>
           <div className="chatbox">
             {
               this.state.chatLog.map((obj, i) => (
