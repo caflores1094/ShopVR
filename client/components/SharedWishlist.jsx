@@ -37,9 +37,7 @@ class SharedWishlist extends React.Component {
     axios.post('/api/getWishListForFriend', obj)
       .then(function(result) {
         var dataArr = result.data;
-        if (dataArr.length > 1) {
-          context.setState({friendFound: true});
-        }
+
         var wlObj = {};
         dataArr.forEach((elem) => {
           wlObj[elem.pic_name] = elem;
@@ -52,9 +50,11 @@ class SharedWishlist extends React.Component {
         axios.post('/api/getUserInfo', obj)
           .then(function(result) {
             console.log('result from getting userinfo', result);
-            context.setState({ friend: result.data[0].name});
-            context.setState({ photo: result.data[0].profile_pic});
-
+            if (result.data[0]) {
+              context.setState({friendFound: true});
+              context.setState({ friend: result.data[0].name});
+              context.setState({ photo: result.data[0].profile_pic});
+            }
            })
           .catch(function (error) {
             console.log('Error getting friend wishlist', error);
