@@ -38,10 +38,10 @@ class ShareLink extends React.Component {
 	        <div className="share-link-text">
 	        Copy and paste to share your wishlist items with your friends
 	        </div>
-	        <input className="share-link" onClick={this.handleClick.bind(this)} type="text" value={"localhost:3000/profile/" + this.props.userid}/>
+	        <input className="share-link" onClick={this.handleClick.bind(this)} type="text" value={"localhost:3000/" + this.props.userid}/>
 	      	<div className="share-container">
 	            <FacebookShareButton
-	            url={"https://54.201.209.146/profile/" + this.props.userid}
+	            url={"https://54.201.209.146/" + this.props.userid}
 	            title={this.props.username}
 	            className="social-icon">
 	              <FacebookIcon
