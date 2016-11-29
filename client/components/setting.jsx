@@ -183,7 +183,7 @@ class Setting extends React.Component {
 
             <ClothingMapper feed={this.props.feed} likeItems={this.props.likeItems}/>
 
-            <Fountain z='33 ' y='0 ' x='0'/>
+            <Fountain z='0 ' y='0 ' x='0'/>
 
           </Scene>
         </div>
