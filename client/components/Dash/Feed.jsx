@@ -2,6 +2,8 @@ import React from 'react';
 import FeedItem from './FeedItem.jsx';
 import axios from 'axios';
 
+var count = 0;
+var start = true;
 
 class Feed extends React.Component {
   constructor(props) {
@@ -12,15 +14,18 @@ class Feed extends React.Component {
   }
 
   componentDidUpdate() {
-    var context = this;
-    var gender = this.props.user.gender === 'male' ? "men" : "women"
-    axios.post("/api/shopstyle", {offset: this.props.offset, fts: gender, limit: 50})
-    .then(function (response) {
-      context.props.setFeed(response.data.products);
-    })
-    .catch(function (error) {
-      console.log('Error in sending ajax data ', error);
-    });
+    if (start) {
+      var context = this;
+      var gender = this.props.user.gender === 'male' ? "men" : "women"
+      axios.post("/api/shopstyle", {offset: this.state.offset, fts: gender, limit: 50})
+      .then(function (response) {
+        context.props.setFeed(response.data.products);
+      })
+      .catch(function (error) {
+        console.log('Error in sending ajax data ', error);
+      });
+    }
+    start = false;
   }
   next() {
     //check feedType props to see if query or image upload or default
