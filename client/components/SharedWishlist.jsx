@@ -1,24 +1,23 @@
 import React from 'react';
-import SharedWishlistItem from './SharedWishlistItem.jsx';
+import SharedWishlistPage from './SharedWishlistPage.jsx';
 import axios from 'axios';
 
 class SharedWishlist extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      friendWishlist: {}
+      friendWishlist: [],
+      friend: null,
+      photo: null
     }
   }
 
-  componentDidMount() {
+  getWishList() {
     var friendUserID = this.props.location.pathname.slice(1,);  
     var context = this;
-    console.log(friendUserID, 'friend user id');
-    console.log(context, 'context');
 
     var obj = {};
     obj['friendUserID'] = friendUserID;
-    console.log(obj, 'obj');        
     var finalArr = [];
 
     //get all wishlist items for this particular user
@@ -33,25 +32,34 @@ class SharedWishlist extends React.Component {
         for(var key in wlObj){
           finalArr.push(wlObj[key]);
         }
-        console.log(context, 'context');
+        context.setState({ friendWishlist: finalArr });
+        axios.post('/api/getUserInfo', obj)
+          .then(function(result) {
+            console.log('result from getting userinfo', result);
+            context.setState({ friend: result.data[0].name});
+            context.setState({ photo: result.data[0].profile_pic});
+
+           })
+          .catch(function (error) {
+            console.log('Error getting friend wishlist', error);
+          });
+
       })
       .catch(function (error) {
         console.log('Error getting friend wishlist', error);
       });
-    context.setState({ friendWishlist: finalArr});
-    console.log(this.state.friendWishlist);
+  }
+
+
+  componentDidMount(){
+    this.getWishList();
   }
 
   render() {
     var context = this;
     return (
       <div>
-         {
-          context.state.friendsWishlist.map((picObj) => (
-              <SharedWishlistItem key={picObj.pic_name} picObj={picObj} />
-            )
-          )
-        }
+        <SharedWishlistPage getWishList={this.getWishList.bind(this)} list={this.state.friendWishlist} friend={this.state.friend} photo={this.state.photo}/>          
       </div>
     );
   }

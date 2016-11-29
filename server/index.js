@@ -82,6 +82,7 @@ router.post('/api/like', wishlistController.wishlist.post);
 
 router.post('/api/getWishList', wishlistController.wishlist.getAll);
 router.post('/api/getWishListForFriend', wishlistController.wishlist.getAllForFriend);
+router.post('/api/getUserInfo', userController.users.findUser);
 
 router.post('/api/removeFromWishList', wishlistController.wishlist.removeItem);
 
@@ -133,10 +134,6 @@ router.get('/api/getimage/:id', function (req, res) {
 }); 
 
 router.get('/test', function(req, res) {
-  res.sendFile('/client/index.html', {root: __dirname + '/..'});
-});
-
-router.get('/profile/:userid', function(req, res) {
   res.sendFile('/client/index.html', {root: __dirname + '/..'});
 });
 

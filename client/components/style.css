@@ -781,6 +781,7 @@ table {
   text-align: left;
 
 }
+
 .share-link.text {
   color: black;
 }
@@ -800,8 +801,17 @@ table {
   font-family: 'Josefin Sans', sans-serif;
   color: #3B383D;
 }
+
 .share-container {
   margin-top: 2%;
   margin-right: 1%;
   margin-bottom: 3%;
+}
+
+.shared-wishlist-header {
+  font-family: 'Noto Serif', serif;
+  font-size: 2em;
+  font-weight: bolder;
+  margin-left: 0.5em;
+  margin-top: 0.5em;
 }
