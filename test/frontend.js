@@ -1,4 +1,3 @@
-// # /test/helloWorld.spec.js
 import { expect } from 'chai';
 import sinon from 'sinon';
 import React from 'react';
@@ -10,8 +9,6 @@ import Dashboard from '../client/components/Dashboard';
 import ClothingMapper from '../client/components/ClothingMapper';
 import ClothingArticle from '../client/components/ClothingArticle';
 import Profile from '../client/components/Profile';
-import FriendsWishlist from '../client/components/FriendsWishlist';
-import FriendsWishlistItem from '../client/components/FriendsWishlistItem';
 import Wishlist from '../client/components/Wishlist';
 import WishlistItem from '../client/components/WishlistItem';
 import {
@@ -24,25 +21,31 @@ import {
 describe('Frontend Testing', ()=>{
   describe('App Test', () => {
     it('renders as a <div>', () => {
-      const wrapper = shallow(<App />);
+      const wrapper = shallow(<App location={{pathname: '/21'}} />);
       expect(wrapper.type()).to.eql('div');
     });
 
     it('renders an instance of <Navbar />', () => {
-      const wrapper = shallow(<App />);
+      const wrapper = shallow(<App location={{pathname: '/21'}}/>);
       expect(wrapper.find(Navbar)).to.have.length(1);
     });
 
     it('should not contain a valid user to start', () => {
-      const wrapper = shallow(<App />);
+      const wrapper = shallow(<App location={{pathname: 'avc'}}/>);
       expect(wrapper.state('user').name).to.eql(undefined);
       expect(wrapper.find('.landing-hero')).to.have.length(1);
     });
     it('should render properly when a user is set into the state', () => {
-      const wrapper = shallow(<App />);
+      const wrapper = shallow(<App location={{pathname: ''}}/>);
       wrapper.setState({user: {name: 'carlos'} });
       expect(wrapper.find('.landing-hero')).to.have.length(0);
     });
+
+    it('should still render children when not logged in yet a valid User Id is inputted in url', () => {
+      const wrapper = shallow(<App location={{pathname: '/21'}}/>);
+      expect(wrapper.find(Navbar)).to.have.length(1);
+      expect(wrapper.find('.landing-hero')).to.have.length(0);
+    })
   });
 
   describe('Feed Test', () => {
@@ -74,14 +77,6 @@ describe('Frontend Testing', ()=>{
       var fakeLikes = [1,2];
       const wrapper = shallow(<ClothingMapper likeItems={fakeLikes} feed={fakeFeed}/>);
       expect(wrapper.state('feed')).to.have.length(2);
-    });
-  });
-
-  describe('FriendsWishlist Test', () => {
-    it('should render 3 instances of FriendsWishlistItem', () => {
-      var fakeList = [1,2,3];
-      const wrapper = shallow(<FriendsWishlist list={fakeList} />);
-      expect(wrapper.find(FriendsWishlistItem)).to.have.length(3);
     });
   });
 

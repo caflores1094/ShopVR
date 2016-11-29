@@ -108,8 +108,8 @@ class App extends React.Component {
         feed: context.state.feed
       });
     });
-
-    if (this.state.user.hasOwnProperty('name') || Number(window.location.pathname.slice(1)) % 1 === 0) {
+    
+    if (this.state.user.hasOwnProperty('name') || Number(this.props.location.pathname.slice(1)) % 1 === 0) {
       return (
         <div>
           <Navbar user={this.state.user} setUser={this.setUser.bind(this)}/>
