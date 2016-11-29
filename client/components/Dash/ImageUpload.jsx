@@ -96,10 +96,12 @@ class ImageUpload extends React.Component {
       $imagePreview = (<img className="preview-img" src={imagePreviewUrl} />);
     }
     return (
-      <div>
+      <div className="image-upload">
         <form onSubmit={this.onSubmit.bind(this)} encType="multipart/form-data">
-          <input onChange={(e) => (this.handleImageChange(e))} ref="image" type="file" name="image" />
-          <input type="submit" />
+          <input className="file-input" onChange={(e) => (this.handleImageChange(e))} ref="image" id="image" type="file" name="image" />
+          <label className="file-button" htmlFor="image">Choose Image</label>
+          <br />
+          <input className="submit-button" type="submit" />
         </form>
         <div className="img-preview">
           {$imagePreview}
