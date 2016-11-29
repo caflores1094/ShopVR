@@ -2,20 +2,19 @@ import React from 'react';
 import FeedItem from './FeedItem.jsx';
 import axios from 'axios';
 
-var count = 0;
 
 class Feed extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      offset: 0
+      count: 0
     }
   }
 
   componentDidUpdate() {
     var context = this;
     var gender = this.props.user.gender === 'male' ? "men" : "women"
-    axios.post("/api/shopstyle", {offset: this.state.offset, fts: gender, limit: 50})
+    axios.post("/api/shopstyle", {offset: this.props.offset, fts: gender, limit: 50})
     .then(function (response) {
       context.props.setFeed(response.data.products);
     })
@@ -24,34 +23,36 @@ class Feed extends React.Component {
     });
   }
   next() {
-    count += 50;
+    //check feedType props to see if query or image upload or default
+    //increment count by 50
+    var newCount = this.state.count + 50;
     this.setState({
-      offset: count
+      count: newCount
     });
     var context = this;
     var gender = this.props.user.gender === 'male' ? "men" : "women"
 
-    axios.post("/api/shopstyle", {offset: count, fts: gender, limit: 50})
+    //TODO: change query parameters depending on feedtype
+    axios.post("/api/shopstyle", {offset: this.state.count, fts: gender, limit: 50})
       .then(function (response) {
-        context.props.setFeed(response.data.products);
+        context.props.setFeed(response.data.products, this.props.feedType);
       })
       .catch(function (error) {
         console.log('Error in sending ajax data ', error);
       });
   }
   previous() {
-    if (count >= 50) {
-      count -= 50;
-    }
+    var newCount = this.state.count - 50;
     this.setState({
-      offset: count
-    })
+      count: newCount
+    });
     var context = this;
     var gender = this.props.user.gender === 'male' ? "men" : "women"
 
-    axios.post("/api/shopstyle", {offset: count, fts: gender, limit: 50})
+    //TODO: change query parameters depending on feedtype
+    axios.post("/api/shopstyle", {offset: this.state.count, fts: gender, limit: 50})
       .then(function (response) {
-        context.props.setFeed(response.data.products);
+        context.props.setFeed(response.data.products, this.props.feedType);
       })
       .catch(function (error) {
         console.log('Error in sending ajax data ', error);
