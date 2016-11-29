@@ -10,6 +10,10 @@ import Dashboard from '../client/components/Dashboard';
 import ClothingMapper from '../client/components/ClothingMapper';
 import ClothingArticle from '../client/components/ClothingArticle';
 import Profile from '../client/components/Profile';
+import FriendsWishlist from '../client/components/FriendsWishlist';
+import FriendsWishlistItem from '../client/components/FriendsWishlistItem';
+import Wishlist from '../client/components/Wishlist';
+import WishlistItem from '../client/components/WishlistItem';
 import {
   describeWithDOM,
   mount,
@@ -42,6 +46,12 @@ describe('Frontend Testing', ()=>{
   });
 
   describe('Feed Test', () => {
+    it('should contain all the necessary elements', () => {
+      var arr = [{id: 1}, {id: 2}, {id: 3}]
+      const wrapper = shallow(<Feed feed={arr} user={{name: 'me'}}/>);
+      expect(wrapper.find('button')).to.have.length(5);
+    });
+
     it('should render 3 items in the feed', () => {
       var arr = [{id: 1}, {id: 2}, {id: 3}]
       const wrapper = shallow(<Feed feed={arr} user={{name: 'me'}}/>);
@@ -65,9 +75,23 @@ describe('Frontend Testing', ()=>{
       const wrapper = shallow(<ClothingMapper likeItems={fakeLikes} feed={fakeFeed}/>);
       expect(wrapper.state('feed')).to.have.length(2);
     });
-  })
+  });
 
-  describe('')
+  describe('FriendsWishlist Test', () => {
+    it('should render 3 instances of FriendsWishlistItem', () => {
+      var fakeList = [1,2,3];
+      const wrapper = shallow(<FriendsWishlist list={fakeList} />);
+      expect(wrapper.find(FriendsWishlistItem)).to.have.length(3);
+    });
+  });
+
+  describe('Wishlist Test', () => {
+    it('should render 2 instances of WishlistItem', () => {
+      var fakeList = [{pic_name: 'abc'}, {pic_name: 'abc'}]
+      const wrapper = shallow(<Wishlist list={fakeList} getWishList={{}}/>)
+      expect(wrapper.find(WishlistItem)).to.have.length(2);
+    });
+  });
 
 });
 
