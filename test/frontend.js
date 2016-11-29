@@ -1,13 +1,12 @@
 import { expect } from 'chai';
-import sinon from 'sinon';
 import React from 'react';
 import App from '../client/components/App';
 import Navbar from '../client/components/Navbar';
 import Feed from '../client/components/Dash/Feed';
 import FeedItem from '../client/components/Dash/FeedItem';
 import Dashboard from '../client/components/Dashboard';
-import ClothingMapper from '../client/components/ClothingMapper';
-import ClothingArticle from '../client/components/ClothingArticle';
+import ClothingMapper from '../client/components/clothingMapper';
+import ClothingArticle from '../client/components/clothingArticle';
 import Profile from '../client/components/Profile';
 import Wishlist from '../client/components/Wishlist';
 import WishlistItem from '../client/components/WishlistItem';
