@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import sinon from 'sinon';
 import React from 'react';
 import App from '../client/components/App';
 import Navbar from '../client/components/Navbar';
