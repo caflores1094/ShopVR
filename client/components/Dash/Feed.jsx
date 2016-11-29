@@ -12,7 +12,7 @@ class Feed extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentDidUpdate() {
     var context = this;
     var gender = this.props.user.gender === 'male' ? "men" : "women"
     axios.post("/api/shopstyle", {offset: this.state.offset, fts: gender, limit: 50})
