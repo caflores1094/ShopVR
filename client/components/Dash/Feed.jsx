@@ -18,8 +18,29 @@ class Feed extends React.Component {
     }
   }
 
+  componentWillMount(){
+    var context = this;
+
+      var gender = this.props.user.gender === 'male' ? "men" : "women";
+      axios.post("/api/shopstyle", {offset: 0, fts: gender, limit: 50})
+
+      // var gender = this.props.user.gender === 'male' ? "men" : "women"
+      var gender = this.props.user.gender;
+      axios.post("/api/shopstyle", {offset: count, fts: gender, limit: 50})
+
+      .then(function (response) {
+        context.props.setFeed(response.data.products, context.props.feedType);
+      })
+      .catch(function (error) {
+        console.log('Error in sending ajax data ', error);
+      });
+  }
+
+//use component did update if facebook is too slow to get the gender in
   componentDidUpdate() {
     if (start) {
+      console.log('updating')
+
       var context = this;
 
       var gender = this.props.user.gender === 'male' ? "men" : "women";
