@@ -21,8 +21,15 @@ class Feed extends React.Component {
   componentDidUpdate() {
     if (start) {
       var context = this;
+
       var gender = this.props.user.gender === 'male' ? "men" : "women";
       axios.post("/api/shopstyle", {offset: 0, fts: gender, limit: 50})
+
+      // var gender = this.props.user.gender === 'male' ? "men" : "women"
+      var gender = this.props.user.gender;
+      console.log(gender)
+      axios.post("/api/shopstyle", {offset: count, fts: gender, limit: 50})
+
       .then(function (response) {
         context.props.setFeed(response.data.products, context.props.feedType);
       })
@@ -107,7 +114,6 @@ class Feed extends React.Component {
     }
   }
   render() {
-
     return (
       <div className="feed">
         <div className="feed-container">{this.props.user.name + "'s"} Feed

@@ -26,7 +26,6 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    console.log(this.props.feedType, 'feedType in dash');
     return (
       <div>
         <div className="dashboard-hero"></div>
