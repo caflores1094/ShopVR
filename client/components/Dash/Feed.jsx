@@ -26,7 +26,6 @@ class Feed extends React.Component {
 
       // var gender = this.props.user.gender === 'male' ? "men" : "women"
       var gender = this.props.user.gender;
-      console.log(gender)
       axios.post("/api/shopstyle", {offset: count, fts: gender, limit: 50})
 
       .then(function (response) {
