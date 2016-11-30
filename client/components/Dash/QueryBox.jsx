@@ -1,32 +1,46 @@
 import React from 'react';
 import axios from 'axios';
 
+var start = true;
+
 class QueryBox extends React.Component {
   constructor(props) {
       super(props);
 
       this.state = {
-        gender: this.props.user.gender,
-        minPrice: this.props.user.min_price,
-        maxPrice: this.props.user.max_price,
         minSize: this.props.user.min_size,
         maxSize: this.props.user.max_size,
         brand: '',
         item: '',
         offset: 0,
+        feedType: 'query',
+        limit: 50
       }
+  }
+
+  componentDidUpdate() {
+    if (start) {
+      this.setState({
+        gender: this.props.user.gender,
+        minPrice: this.props.user.min_price,
+        maxPrice: this.props.user.max_price
+      })
+      this.refs.min.value = this.props.user.min_price;
+      this.refs.max.value = this.props.user.max_price;
+    }
+    start = false;
   }
 
   handleSubmit(e) {
     e.preventDefault();
     var gender = this.state.gender === 'male' ? "men" : "women";
     var context = this;
-    axios.post("/api/shopstyle", {offset: this.state.offset, fts: gender + '+' + this.state.brand + '+' + this.state.item, limit: 50})
+    axios.post("/api/shopstyle", {offset: this.state.offset, fts: gender + '+' + this.state.brand + '+' + this.state.item, limit: this.state.limit})
     .then(function (response) {
-      context.props.setFeed(response.data.products, context.state.minPrice, context.state.maxPrice);
+      context.props.setFeed(response.data.products, context.state.feedType, context.state.minPrice, context.state.maxPrice);
     })
     .catch(function (error) {
-      console.log('asdfError in sending ajax data ', error);
+      console.log('Error in sending ajax data ', error);
     });
   }
 
@@ -44,9 +58,9 @@ class QueryBox extends React.Component {
             </div>
 
             <p className="search-label">Price:</p>
-            $<input className="tag-input" onChange={(e) => this.setState({minPrice: e.target.value})} defaultValue={this.props.user.min_price} type="number"/> 
+            $<input className="tag-input" ref='min' onChange={(e) => this.setState({minPrice: e.target.value})} defaultValue={this.props.user.min_price} type="number"/>
             <br />
-            $<input className="tag-input" onChange={(e) => this.setState({maxPrice: e.target.value})} defaultValue={this.props.user.max_price} type="number"/>
+            $<input className="tag-input" ref='max' onChange={(e) => this.setState({maxPrice: e.target.value})} defaultValue={this.props.user.max_price} type="number"/>
 
             <p className="search-label">Brand:</p>
             <input className="tag-input" onChange={(e) => this.setState({brand: e.target.value})}/>

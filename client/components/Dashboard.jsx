@@ -26,6 +26,7 @@ class Dashboard extends React.Component {
   }
 
   render() {
+    console.log(this.props.feedType, 'feedType in dash');
     return (
       <div>
         <div className="dashboard-hero"></div>
@@ -49,7 +50,7 @@ class Dashboard extends React.Component {
 
           <div className="dashboard-feed">
             <Feed user={this.props.user} feed={this.props.feed} setFeed={this.props.setFeed}
-              sortPrice={this.props.sortPrice} sortBrand={this.props.sortBrand} sortCat={this.props.sortCat}
+              sortPrice={this.props.sortPrice} sortBrand={this.props.sortBrand} sortCat={this.props.sortCat} feedType={this.props.feedType}
               />
           </div>
         </div>
