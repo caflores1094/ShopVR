@@ -17,24 +17,27 @@ class Feed extends React.Component {
     if (start) {
       var context = this;
       var gender = this.props.user.gender === 'male' ? "men" : "women"
-      axios.post("/api/shopstyle", {offset: this.state.offset, fts: gender, limit: 50})
+      axios.post("/api/shopstyle", {offset: count, fts: gender, limit: 50})
       .then(function (response) {
-        context.props.setFeed(response.data.products);
+        context.props.setFeed(response.data.products, context.props.feedType);
       })
       .catch(function (error) {
         console.log('Error in sending ajax data ', error);
       });
     }
     start = false;
+  
   }
 
-
-  checkQueryType(updatedCount, callback) {
+  checkQueryType(updatedCount, context, callback) {
+    console.log(this.props.feedType, 'feedtype in checkquerytype');
+    console.log(this, 'this in checkquerytype');
     if (this.props.feedType === 'upload') {
       this.setState({ query: {offset: updatedCount, fts: gender + '+' + this.props.searchQuery, limit: this.props.limit}});
     } else if (this.props.feedType ==='query') {
       this.setState({ query: {offset: updatedCount, fts: gender + '+' + this.props.brand + '+' + this.props.item, limit: this.props.limit}});
-    } else {
+    } else if (this.props.feedType ==='default') {
+      console.log(context.state.query.offset, 'offset in else if'); 
       this.setState({query: {offset: updatedCount, fts: this.props.gender, limit: 50}});
     }
     console.log(this.state.query.offset, 'count in query is this');
@@ -67,7 +70,7 @@ class Feed extends React.Component {
     var context = this;
     var gender = this.props.user.gender === 'male' ? "men" : "women";
     console.log('before checking query');
-    this.checkQueryType(count, function() {
+    this.checkQueryType(count, context, function() {
       console.log('before api query');
       context.queryAPI();
     });
@@ -77,7 +80,7 @@ class Feed extends React.Component {
     count = count - 50;
     var context = this;
     var gender = this.props.user.gender === 'male' ? "men" : "women";
-    this.checkQueryType(count, function() {
+    this.checkQueryType(count, context, function() {
       console.log('before api query');
       context.queryAPI();
     });
