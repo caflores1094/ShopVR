@@ -31,22 +31,22 @@ class Feed extends React.Component {
   
   }
 
-  checkQueryType(updatedCount, context, callback) {
+  checkQueryType(updatedCount, callback) {
     console.log(this.props.feedType, 'feedtype in checkquerytype');
     console.log(this, 'this in checkquerytype');
     if (this.props.feedType === 'upload') {
       this.setState({ offset: updatedCount, fts: this.props.user.gender + '+' + this.props.searchQuery, limit: this.props.limit}, function() {
         console.log(this.state.offset, 'offset after update');
-
         callback();
       });
     } else if (this.props.feedType ==='query') {
-      this.setState({ offset: updatedCount, fts: this.props.user.gender + '+' + this.props.brand + '+' + this.props.item, limit: this.props.limit}, function() {
-        console.log(this.state.offset, 'offset after update');
-        callback();
-      });
+        this.setState({ offset: updatedCount, fts: this.props.user.gender + '+' + this.props.brand + '+' + this.props.item, limit: this.props.limit}, function() {
+          console.log(this.state.offset, 'offset after update');
+          callback();
+        });
+      
     } else if (this.props.feedType ==='default') {
-      console.log(context.state.offset, 'offset in else if'); 
+      console.log(this.state.offset, 'offset in else if'); 
       console.log(updatedCount, 'updatedCount else if'); 
       console.log('this in else if', this);
       this.setState({ offset: updatedCount, fts: this.props.user.gender, limit: 50 }, function() {
@@ -62,10 +62,11 @@ class Feed extends React.Component {
   queryAPI() {
     var setFeed = this.props.setFeed;
     var feedType = this.props.feedType
-    console.log(this, 'this in queryAPI');
-    console.log(this.state.fts, 'this.state.fts in queryAPI');
+    console.log(this.state, 'state in queryAPI');
+    
     axios.post("/api/shopstyle", {offset: this.state.offset, fts: this.state.fts, limit: this.state.limit})
       .then(function (response) {
+        console.log('api response', response);
         setFeed(response.data.products, feedType);
       })
       .catch(function (error) {
@@ -85,7 +86,7 @@ class Feed extends React.Component {
     var context = this;
     var gender = this.props.user.gender === 'male' ? "men" : "women";
     console.log('before checking query');
-    this.checkQueryType(count, context, function() {
+    this.checkQueryType(count, function() {
       console.log('before api query');
       context.queryAPI();
     });
@@ -95,7 +96,7 @@ class Feed extends React.Component {
     count = count - 50;
     var context = this;
     var gender = this.props.user.gender === 'male' ? "men" : "women";
-    this.checkQueryType(count, context, function() {
+    this.checkQueryType(count, function() {
       console.log('before api query');
       context.queryAPI();
     });
