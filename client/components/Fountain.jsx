@@ -35,13 +35,13 @@ class Fountain extends React.Component {
 
         <Entity material={fountainMaterial} geometry={{primitive: 'ring',  openEnded: true, segmentsTheta: 360, radiusOuter: '2', radiusInner: '1.8', thetaLength: 360}} rotation='90 0 0' position={this.props.z + "0.75" + this.props.x}/>
 
-        <Entity material={fountainMaterial} geometry={{primitive: 'cylinder', radius: '0.25', height: 1.3, segmentsHeight: 18, segmentsRadial: 360, thetaLength: 360}} rotation='0 0 0' position={this.props.z + "0.65" + this.props.x}/>        
+        <Entity material={fountainMaterial} geometry={{primitive: 'cylinder', radius: '0.25', height: 1.3, segmentsHeight: 18, segmentsRadial: 360, thetaLength: 360}} rotation='0 0 0' position={this.props.z + "0.65" + this.props.x} static-body/>        
         <Entity material={fountainMaterial} geometry={{primitive: 'sphere', radius: '2.5', thetaLength: 30}} rotation='0 0 0' position={this.props.z + '3.79' + this.props.x} rotation="180 0 0"/>        
 
-        <Entity material={fountainMaterial} geometry={{primitive: 'cylinder', radius: '0.2', height: 0.9, segmentsHeight: 18, segmentsRadial: 360, thetaLength: 360}} rotation='0 0 0' position={this.props.z + "1.9" + this.props.x}/>        
+        <Entity material={fountainMaterial} geometry={{primitive: 'cylinder', radius: '0.2', height: 0.9, segmentsHeight: 18, segmentsRadial: 360, thetaLength: 360}} rotation='0 0 0' position={this.props.z + "1.9" + this.props.x} static-body/>        
         <Entity material={fountainMaterial} geometry={{primitive: 'sphere', radius: '2.5', thetaLength: 20}} rotation='0 0 0' position={this.props.z + '4.85' + this.props.x} rotation="180 0 0"/>        
 
-        <Entity material={fountainMaterial} geometry={{primitive: 'cylinder', radius: '0.15', height: 0.6, segmentsHeight: 18, segmentsRadial: 360, thetaLength: 360}} rotation='0 0 0' position={this.props.z + "2.65" + this.props.x}/>        
+        <Entity material={fountainMaterial} geometry={{primitive: 'cylinder', radius: '0.15', height: 0.6, segmentsHeight: 18, segmentsRadial: 360, thetaLength: 360}} rotation='0 0 0' position={this.props.z + "2.65" + this.props.x} static-body/>        
         <Entity material={fountainMaterial} geometry={{primitive: 'sphere', radius: '2.5', thetaLength: 12}} rotation='0 0 0' position={this.props.z + '5.45' + this.props.x} rotation="180 0 0"/>        
         <Entity material={fountainMaterial} geometry={{primitive: 'icosahedron', radius: '0.25'}} rotation='0 0 0' position={this.props.z + '3.23' + this.props.x} rotation="180 0 0"/>        
         
