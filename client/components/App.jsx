@@ -108,6 +108,7 @@ class App extends React.Component {
 
   render() {
     var context = this;
+     console.log(this.state.feedType, 'feedType getting passed');
     var children = React.Children.map(this.props.children, function (child) {
       return React.cloneElement(child, {
         user: context.state.user,
@@ -115,7 +116,8 @@ class App extends React.Component {
         sortBrand: context.sortBrand.bind(context),
         sortCat: context.sortCat.bind(context),
         sortPrice: context.sortPrice.bind(context),
-        feed: context.state.feed
+        feed: context.state.feed,
+        feedType: context.state.feedType
       });
     });
     
