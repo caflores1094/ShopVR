@@ -65,9 +65,9 @@ class ImageUpload extends React.Component {
     };
 
     getProducts(function(err, response) {
-      if (err) console.log(err);
-      else /*console.log(response.data.products, 'success getting data from api');*/
-      context.props.setFeed(response.data.products, this.state.feedType, queryParams);
+      if (err) console.log(err, 'err in getProducts');
+      console.log(response.data.products, 'success getting data from api');
+      context.props.setFeed(response.data.products, context.state.feedType, queryParams);
     });
   }
 
