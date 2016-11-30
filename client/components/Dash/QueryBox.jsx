@@ -15,9 +15,7 @@ class QueryBox extends React.Component {
         offset: 0,
         feedType: 'query',
         limit: 50,
-
-        queryParams: null
-
+        queryParams: null,
         gender: this.props.user.gender 
 
       }
@@ -39,7 +37,6 @@ class QueryBox extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     var gender = this.state.gender === 'male' ? "men" : "women";
-    console.log('Search gender: ', gender)
     var context = this;
     var queryParams = {offset: this.state.offset, fts: gender + '+' + this.state.brand + '+' + this.state.item, limit: this.state.limit};
 
