@@ -12,7 +12,9 @@ class Feed extends React.Component {
       offset: count, 
       fts: this.props.user.gender, 
       limit: 50,
-      currentFeedType: 'default',
+      currentFeedType: this.props.feedType || 'default',
+      queryParams: this.props.queryParams
+
     }
   }
 
@@ -36,12 +38,12 @@ class Feed extends React.Component {
   queryAPI(query) {
     var setFeed = this.props.setFeed;
     var feedType = this.props.feedType;
-    console.log(this.state, 'state in queryAPI');
+    var context = this;
     
     axios.post("/api/shopstyle", query)
       .then(function (response) {
         console.log('api response', response);
-        setFeed(response.data.products, feedType);
+        setFeed(response.data.products, feedType, context.state.queryParams);
       })
       .catch(function (error) {
         console.log('Error in sending ajax data ', error);
@@ -50,37 +52,59 @@ class Feed extends React.Component {
 
   next() {
     //increment count by 50
-    console.log('in next');
-    count = count + 50;
-    console.log(count, 'newCount');
     var context = this;
     var gender = this.props.user.gender === 'male' ? "men" : "women";
     //check feedType props to see if query or image upload or default
     if (this.props.feedType !== this.state.currentFeedType) {
-      this.setState({currentFeedType: this.props.feedType}, function() {
+      this.setState({currentFeedType: this.props.feedType, queryParams: this.props.queryParams}, function() {
         count = 0;
       })
-    }
-    //take query props and update count
-    if (feedType !== 'default') {
-      this.props.queryParams.offset = count;
     } else {
+      count += 50;
+      console.log(count, 'count in else');
 
+      var queryParams = this.state.queryParams;
+      console.log(queryParams, 'qeuryParams before setting count');
+      //take query props and update count
+      if (this.props.feedType !== 'default') {
+        queryParams.offset = count;
+        console.log(queryParams.offset, 'queryparams offset');
+      } else {
+
+      }
+      console.log('checking to see if offset got updated', queryParams);
+      //pass query into queryAPI
+      this.queryAPI(queryParams);
     }
-    console.log('checking to see if offset got updated', this.props.queryParams.offset);
-    //pass query into queryAPI
-    this.queryAPI(this.props.queryParams);
+
 
     
   }
 
   previous() {
-    count = count - 50;
     var context = this;
     var gender = this.props.user.gender === 'male' ? "men" : "women";
-    //check feedType props to see if query or image upload or default
-    //take query props and update count
-    //pass query into queryAPI
+    if (this.props.feedType !== this.state.currentFeedType) {
+      this.setState({currentFeedType: this.props.feedType, queryParams: this.props.queryParams}, function() {
+        count = 0;
+      })
+    } else {
+      count -= 50;
+      console.log(count, 'count in else');
+
+      var queryParams = this.state.queryParams;
+      console.log(queryParams, 'qeuryParams before setting count');
+      //take query props and update count
+      if (this.props.feedType !== 'default') {
+        queryParams.offset = count;
+        console.log(queryParams.offset, 'queryparams offset');
+      } else {
+
+      }
+      console.log('checking to see if offset got updated', queryParams);
+      //pass query into queryAPI
+      this.queryAPI(queryParams);
+    }
   }
   render() {
 

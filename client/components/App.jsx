@@ -21,7 +21,7 @@ class App extends React.Component {
     this.setState({user: user});
   }
 
-  setFeed(feed, feedType, minPrice, maxPrice, queryParams) {
+  setFeed(feed, feedType, queryParams, minPrice, maxPrice) {
     minPrice = minPrice || 0;
     maxPrice = maxPrice || 10000;
     //every time setFeed is called with new feedType, reset offset to 0
@@ -45,8 +45,7 @@ class App extends React.Component {
         newfeed.push(feed[i]);
       }
     }
-    this.setState({feed: newfeed});
-    this.setState({queryParams: queryParams});
+    this.setState({feed: newfeed, queryParams: queryParams});
 
   }
 
