@@ -10,7 +10,9 @@ class ImageUpload extends React.Component {
         file: null,
         data: null
       },
-      feedType: 'upload'
+      feedType: 'upload',
+      limit: 50,
+      searchQuery: null
     };
 
     this.update = this.update.bind(this);
@@ -50,9 +52,10 @@ class ImageUpload extends React.Component {
 
     var searchQuery = tags.slice(0, 2).join(' ');
     console.log('searchQuery', searchQuery);
+    context.setState({searchQuery: searchQuery});
     var gender = this.props.user.gender === 'male' ? "men" : "women";
     var getProducts = function(callback) {
-      axios.post('/api/shopstyle', {offset: 0, fts: gender + '+' + searchQuery, limit: 50})
+      axios.post('/api/shopstyle', {offset: 0, fts: gender + '+' + this.state.searchQuery, limit: this.state.limit})
         .then(function(result){
           console.log('result', result);
           callback(null, result);
