@@ -12,7 +12,8 @@ class App extends React.Component {
       brand: true,
       category: true,
       feedType: 'default',
-      offset: 0
+      offset: 0,
+      queryParams: null
     };
   }
 
@@ -20,7 +21,7 @@ class App extends React.Component {
     this.setState({user: user});
   }
 
-  setFeed(feed, feedType, minPrice, maxPrice) {
+  setFeed(feed, feedType, minPrice, maxPrice, queryParams) {
     minPrice = minPrice || 0;
     maxPrice = maxPrice || 10000;
     //every time setFeed is called with new feedType, reset offset to 0
@@ -45,6 +46,8 @@ class App extends React.Component {
       }
     }
     this.setState({feed: newfeed});
+    this.setState({queryParams: queryParams});
+
   }
 
   sortPrice() {
@@ -117,7 +120,8 @@ class App extends React.Component {
         sortCat: context.sortCat.bind(context),
         sortPrice: context.sortPrice.bind(context),
         feed: context.state.feed,
-        feedType: context.state.feedType
+        feedType: context.state.feedType,
+        queryParams: context.state.queryParams
       });
     });
     

@@ -11,15 +11,16 @@ class Feed extends React.Component {
     this.state = {
       offset: count, 
       fts: this.props.user.gender, 
-      limit: 50
+      limit: 50,
+      currentFeedType: 'default',
     }
   }
 
   componentDidUpdate() {
     if (start) {
       var context = this;
-      var gender = this.props.user.gender === 'male' ? "men" : "women"
-      axios.post("/api/shopstyle", {offset: count, fts: gender, limit: 50})
+      var gender = this.props.user.gender === 'male' ? "men" : "women";
+      axios.post("/api/shopstyle", {offset: 0, fts: gender, limit: 50})
       .then(function (response) {
         context.props.setFeed(response.data.products, context.props.feedType);
       })
@@ -31,40 +32,13 @@ class Feed extends React.Component {
   
   }
 
-  checkQueryType(updatedCount, callback) {
-    console.log(this.props.feedType, 'feedtype in checkquerytype');
-    console.log(this, 'this in checkquerytype');
-    if (this.props.feedType === 'upload') {
-      this.setState({ offset: updatedCount, fts: this.props.user.gender + '+' + this.props.searchQuery, limit: this.props.limit}, function() {
-        console.log(this.state.offset, 'offset after update');
-        callback();
-      });
-    } else if (this.props.feedType ==='query') {
-        this.setState({ offset: updatedCount, fts: this.props.user.gender + '+' + this.props.brand + '+' + this.props.item, limit: this.props.limit}, function() {
-          console.log(this.state.offset, 'offset after update');
-          callback();
-        });
-      
-    } else if (this.props.feedType ==='default') {
-      console.log(this.state.offset, 'offset in else if'); 
-      console.log(updatedCount, 'updatedCount else if'); 
-      console.log('this in else if', this);
-      this.setState({ offset: updatedCount, fts: this.props.user.gender, limit: 50 }, function() {
-        console.log(this.state.offset, 'offset after update');
 
-        callback();
-      });
-
-    }
-
-  }
-
-  queryAPI() {
+  queryAPI(query) {
     var setFeed = this.props.setFeed;
-    var feedType = this.props.feedType
+    var feedType = this.props.feedType;
     console.log(this.state, 'state in queryAPI');
     
-    axios.post("/api/shopstyle", {offset: this.state.offset, fts: this.state.fts, limit: this.state.limit})
+    axios.post("/api/shopstyle", query)
       .then(function (response) {
         console.log('api response', response);
         setFeed(response.data.products, feedType);
@@ -75,31 +49,38 @@ class Feed extends React.Component {
   }
 
   next() {
-    //check feedType props to see if query or image upload or default
     //increment count by 50
     console.log('in next');
     count = count + 50;
-    // this.setState({
-    //   count: newCount
-    // });
     console.log(count, 'newCount');
     var context = this;
     var gender = this.props.user.gender === 'male' ? "men" : "women";
-    console.log('before checking query');
-    this.checkQueryType(count, function() {
-      console.log('before api query');
-      context.queryAPI();
-    });
+    //check feedType props to see if query or image upload or default
+    if (this.props.feedType !== this.state.currentFeedType) {
+      this.setState({currentFeedType: this.props.feedType}, function() {
+        count = 0;
+      })
+    }
+    //take query props and update count
+    if (feedType !== 'default') {
+      this.props.queryParams.offset = count;
+    } else {
+
+    }
+    console.log('checking to see if offset got updated', this.props.queryParams.offset);
+    //pass query into queryAPI
+    this.queryAPI(this.props.queryParams);
+
+    
   }
 
   previous() {
     count = count - 50;
     var context = this;
     var gender = this.props.user.gender === 'male' ? "men" : "women";
-    this.checkQueryType(count, function() {
-      console.log('before api query');
-      context.queryAPI();
-    });
+    //check feedType props to see if query or image upload or default
+    //take query props and update count
+    //pass query into queryAPI
   }
   render() {
 
