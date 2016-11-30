@@ -15,7 +15,7 @@ class QueryBox extends React.Component {
         offset: 0,
         feedType: 'query',
         limit: 50,
-        gender: this.props.user.gender
+        gender: this.props.user.gender 
       }
   }
 
