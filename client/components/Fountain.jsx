@@ -309,41 +309,6 @@ class Fountain extends React.Component {
   }
 }
 
-// {largeArr.map((num) => (
-//           <a-entity>
-//           <a-sphere radius='.04' color={waterColor} opacity='0.6' position="0 1.7 0"></a-sphere>
-//           <a-animation attribute="rotation"
-//                        dur="900"
-//                        begin={num}
-//                        fill="forwards"
-//                        to="90 0 0"
-//                        easing='linear'
-//                        repeat="indefinite"></a-animation>
-//         </a-entity>
-//         ))}
-        // {largeArr.map((num) => (
-        //   <a-entity>
-        //   <a-sphere radius='.04' color='#42c0ff' position="0 1.7 0"></a-sphere>
-        //   <a-animation attribute="rotation"
-        //                dur="900"
-        //                begin={num}
-        //                fill="forwards"
-        //                to="-90 0 0"
-        //                easing='linear'
-        //                repeat="indefinite"></a-animation>
-        // </a-entity>
-        // ))}
-//         {largeArr.map((num) => (
-//           <a-entity>
-//           <a-sphere radius='.04' color='#42c0ff' position="0 1.7 0"></a-sphere>
-//           <a-animation attribute="rotation"
-//                        dur="900"
-//                        begin={num}
-//                        fill="forwards"
-//                        to="0 0 90"
-//                        easing='linear'
-//                        repeat="indefinite"></a-animation>
-//         </a-entity>
-//         ))}
+
 
 export default Fountain;
