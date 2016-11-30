@@ -30,8 +30,8 @@ class Fountain extends React.Component {
     var context = this;
     return (
       <Entity>
-        <Entity material={fountainMaterial} geometry={{primitive: 'cylinder',  openEnded: true, radius: '2', height: 1.5, segmentsHeight: 18, segmentsRadial: 360, thetaLength: 360}} rotation='0 0 0' position={this.props.z + this.props.y + this.props.x} />
-        <Entity material={fountainMaterial} geometry={{primitive: 'cylinder',  openEnded: true, radius: '1.8', height: 1.5, segmentsHeight: 18, segmentsRadial: 360, thetaLength: 360}} rotation='0 0 0' position={this.props.z + this.props.y + this.props.x}/>
+        <Entity material={fountainMaterial} geometry={{primitive: 'cylinder',  openEnded: true, radius: '2', height: 0.75, segmentsHeight: 18, segmentsRadial: 360, thetaLength: 360}} rotation='0 0 0' position={this.props.z + '0.375' + this.props.x} />
+        <Entity material={fountainMaterial} geometry={{primitive: 'cylinder',  openEnded: true, radius: '1.8', height: 0.75, segmentsHeight: 18, segmentsRadial: 360, thetaLength: 360}} rotation='0 0 0' position={this.props.z + '0.375' + this.props.x}/>
 
         <Entity material={fountainMaterial} geometry={{primitive: 'ring',  openEnded: true, segmentsTheta: 360, radiusOuter: '2', radiusInner: '1.8', thetaLength: 360}} rotation='90 0 0' position={this.props.z + "0.75" + this.props.x}/>
 
@@ -211,7 +211,7 @@ class Fountain extends React.Component {
                        begin={num}
                        fill="forwards"
                        from="34.24 1.62 0"
-                       to="34.24 0 0"
+                       to="34.24 0.5 0"
                        easing='linear'
                        repeat="indefinite"></a-animation>
           </a-sphere>
@@ -223,7 +223,7 @@ class Fountain extends React.Component {
                        begin={num}
                        fill="forwards"
                        from="31.76 1.62 0"
-                       to="31.76 0 0"
+                       to="31.76 0.5 0"
                        easing='linear'
                        repeat="indefinite"></a-animation>
           </a-sphere>
@@ -235,7 +235,7 @@ class Fountain extends React.Component {
                        begin={num}
                        fill="forwards"
                        from="33 1.62 1.24"
-                       to="33 0 1.24"
+                       to="33 0.5 1.24"
                        easing='linear'
                        repeat="indefinite"></a-animation>
           </a-sphere>
@@ -247,7 +247,7 @@ class Fountain extends React.Component {
                        begin={num}
                        fill="forwards"
                        from="33 1.62 -1.24"
-                       to="33 0 -1.24"
+                       to="33 0.5 -1.24"
                        easing='linear'
                        repeat="indefinite"></a-animation>
           </a-sphere>
@@ -259,7 +259,7 @@ class Fountain extends React.Component {
                        begin={num}
                        fill="forwards"
                        from="33.87 1.62 -0.87"
-                       to="33.87 0 -0.87"
+                       to="33.87 0.5 -0.87"
                        easing='linear'
                        repeat="indefinite"></a-animation>
           </a-sphere>
@@ -271,7 +271,7 @@ class Fountain extends React.Component {
                        begin={num}
                        fill="forwards"
                        from="32.13 1.62 -0.87"
-                       to="32.13 0 -0.87"
+                       to="32.13 0.5 -0.87"
                        easing='linear'
                        repeat="indefinite"></a-animation>
           </a-sphere>
@@ -283,7 +283,7 @@ class Fountain extends React.Component {
                        begin={num}
                        fill="forwards"
                        from="33.87 1.62 0.87"
-                       to="33.87 0 0.87"
+                       to="33.87 0.5 0.87"
                        easing='linear'
                        repeat="indefinite"></a-animation>
           </a-sphere>
@@ -295,7 +295,7 @@ class Fountain extends React.Component {
                        begin={num}
                        fill="forwards"
                        from="32.13 1.62 0.87"
-                       to="32.13 0 0.87"
+                       to="32.13 0.5 0.87"
                        easing='linear'
                        repeat="indefinite"></a-animation>
           </a-sphere>
