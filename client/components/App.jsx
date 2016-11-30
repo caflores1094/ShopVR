@@ -110,7 +110,7 @@ class App extends React.Component {
 
   render() {
     var context = this;
-     console.log(this.state.feedType, 'feedType getting passed');
+     // console.log(this.state.feedType, 'feedType getting passed');
     var children = React.Children.map(this.props.children, function (child) {
       return React.cloneElement(child, {
         user: context.state.user,
