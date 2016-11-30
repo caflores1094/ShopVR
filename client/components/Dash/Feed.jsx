@@ -16,6 +16,7 @@ class Feed extends React.Component {
       queryParams: this.props.queryParams
 
     }
+    console.log(this.props.queryParams, 'queryParams in props');
   }
 
   componentWillMount(){
@@ -85,7 +86,18 @@ class Feed extends React.Component {
     //check feedType props to see if query or image upload or default
     if (this.props.feedType !== this.state.currentFeedType) {
       this.setState({currentFeedType: this.props.feedType, queryParams: this.props.queryParams}, function() {
-        count = 0;
+        count = 50;
+        console.log('in if statement');
+        var queryParams = this.state.queryParams;
+        if (this.props.feedType !== 'default') {
+          queryParams.offset = count;
+          console.log(queryParams.offset, 'queryparams offset');
+        } else {
+
+        }
+        console.log('checking to see if offset got updated', queryParams);
+        //pass query into queryAPI
+        this.queryAPI(queryParams);
       })
     } else {
       count += 50;
