@@ -9,7 +9,9 @@ class Feed extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: {offset: count, fts: this.props.gender, limit: 50}
+      offset: count, 
+      fts: this.props.user.gender, 
+      limit: 50
     }
   }
 
@@ -33,15 +35,27 @@ class Feed extends React.Component {
     console.log(this.props.feedType, 'feedtype in checkquerytype');
     console.log(this, 'this in checkquerytype');
     if (this.props.feedType === 'upload') {
-      this.setState({ query: {offset: updatedCount, fts: gender + '+' + this.props.searchQuery, limit: this.props.limit}});
+      this.setState({ offset: updatedCount, fts: this.props.user.gender + '+' + this.props.searchQuery, limit: this.props.limit}, function() {
+        console.log(this.state.offset, 'offset after update');
+
+        callback();
+      });
     } else if (this.props.feedType ==='query') {
-      this.setState({ query: {offset: updatedCount, fts: gender + '+' + this.props.brand + '+' + this.props.item, limit: this.props.limit}});
+      this.setState({ offset: updatedCount, fts: this.props.user.gender + '+' + this.props.brand + '+' + this.props.item, limit: this.props.limit}, function() {
+        console.log(this.state.offset, 'offset after update');
+        callback();
+      });
     } else if (this.props.feedType ==='default') {
-      console.log(context.state.query.offset, 'offset in else if'); 
-      this.setState({query: {offset: updatedCount, fts: this.props.gender, limit: 50}});
+      console.log(context.state.offset, 'offset in else if'); 
+      console.log(updatedCount, 'updatedCount else if'); 
+      console.log('this in else if', this);
+      this.setState({ offset: updatedCount, fts: this.props.user.gender, limit: 50 }, function() {
+        console.log(this.state.offset, 'offset after update');
+
+        callback();
+      });
+
     }
-    console.log(this.state.query.offset, 'count in query is this');
-    callback();
 
   }
 
@@ -49,7 +63,8 @@ class Feed extends React.Component {
     var setFeed = this.props.setFeed;
     var feedType = this.props.feedType
     console.log(this, 'this in queryAPI');
-    axios.post("/api/shopstyle", this.state.query)
+    console.log(this.state.fts, 'this.state.fts in queryAPI');
+    axios.post("/api/shopstyle", {offset: this.state.offset, fts: this.state.fts, limit: this.state.limit})
       .then(function (response) {
         setFeed(response.data.products, feedType);
       })
