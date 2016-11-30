@@ -13,7 +13,7 @@ class Feed extends React.Component {
       fts: this.props.user.gender, 
       limit: 50,
       currentFeedType: this.props.feedType || 'default',
-      queryParams: this.props.queryParams
+      queryParams: this.props.queryParams 
 
     }
     console.log(this.props.queryParams, 'queryParams in props');
@@ -22,18 +22,18 @@ class Feed extends React.Component {
   componentWillMount(){
     var context = this;
 
-      var gender = this.props.user.gender === 'male' ? "men" : "women";
-      axios.post("/api/shopstyle", {offset: 0, fts: gender, limit: 50})
+    var gender = this.props.user.gender === 'male' ? "men" : "women";
+ 
 
-      // var gender = this.props.user.gender === 'male' ? "men" : "women"
-      var gender = this.props.user.gender;
-      axios.post("/api/shopstyle", {offset: count, fts: gender, limit: 50})
+    // var gender = this.props.user.gender === 'male' ? "men" : "women"
+    var gender = this.props.user.gender;
+    axios.post("/api/shopstyle", {offset: count, fts: gender, limit: 50})
 
-      .then(function (response) {
-        context.props.setFeed(response.data.products, context.props.feedType);
-      })
-      .catch(function (error) {
-        console.log('Error in sending ajax data ', error);
+    .then(function (response) {
+      context.props.setFeed(response.data.products, context.props.feedType);
+    })
+    .catch(function (error) {
+      console.log('Error in sending ajax data ', error);
       });
   }
 
@@ -45,7 +45,6 @@ class Feed extends React.Component {
       var context = this;
 
       var gender = this.props.user.gender === 'male' ? "men" : "women";
-      axios.post("/api/shopstyle", {offset: 0, fts: gender, limit: 50})
 
       // var gender = this.props.user.gender === 'male' ? "men" : "women"
       var gender = this.props.user.gender;
@@ -93,7 +92,7 @@ class Feed extends React.Component {
           queryParams.offset = count;
           console.log(queryParams.offset, 'queryparams offset');
         } else {
-
+          queryParams = {offset: count, fts: gender, limit: 50};
         }
         console.log('checking to see if offset got updated', queryParams);
         //pass query into queryAPI
@@ -108,9 +107,8 @@ class Feed extends React.Component {
       //take query props and update count
       if (this.props.feedType !== 'default') {
         queryParams.offset = count;
-        console.log(queryParams.offset, 'queryparams offset');
       } else {
-
+        queryParams = {offset: count, fts: gender, limit: 50};
       }
       console.log('checking to see if offset got updated', queryParams);
       //pass query into queryAPI
@@ -139,7 +137,7 @@ class Feed extends React.Component {
         queryParams.offset = count;
         console.log(queryParams.offset, 'queryparams offset');
       } else {
-
+        queryParams = {offset: count, fts: gender, limit: 50};
       }
       console.log('checking to see if offset got updated', queryParams);
       //pass query into queryAPI
