@@ -14,7 +14,8 @@ class QueryBox extends React.Component {
         item: '',
         offset: 0,
         feedType: 'query',
-        limit: 50
+        limit: 50,
+        queryParams: null
       }
   }
 
@@ -35,13 +36,17 @@ class QueryBox extends React.Component {
     e.preventDefault();
     var gender = this.state.gender === 'male' ? "men" : "women";
     var context = this;
-    axios.post("/api/shopstyle", {offset: this.state.offset, fts: gender + '+' + this.state.brand + '+' + this.state.item, limit: this.state.limit})
-    .then(function (response) {
-      context.props.setFeed(response.data.products, context.state.feedType, context.state.minPrice, context.state.maxPrice);
+    var queryParams = {offset: this.state.offset, fts: gender + '+' + this.state.brand + '+' + this.state.item, limit: this.state.limit};
+
+    this.setState({queryParams: queryParams}, function() { 
+      axios.post("/api/shopstyle", queryParams)
+      .then(function (response) {
+        context.props.setFeed(response.data.products, context.state.feedType, queryParams, context.state.minPrice, context.state.maxPrice);
+      })
+      .catch(function (error) {
+        console.log('Error in sending ajax data ', error);
+      });
     })
-    .catch(function (error) {
-      console.log('Error in sending ajax data ', error);
-    });
   }
 
    render() {
