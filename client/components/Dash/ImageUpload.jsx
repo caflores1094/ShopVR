@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+
+var queryParams;
 class ImageUpload extends React.Component {
   constructor(props) {
     super(props);
@@ -53,8 +55,9 @@ class ImageUpload extends React.Component {
     var searchQuery = tags.slice(0, 2).join(' ');
     console.log('searchQuery', searchQuery);
     context.setState({searchQuery: searchQuery});
+    queryParams = {offset: 0, fts: this.state.searchQuery, limit: this.state.limit};
     var getProducts = function(callback) {
-      axios.post('/api/shopstyle', {offset: 0, fts: this.state.searchQuery, limit: this.state.limit})
+      axios.post('/api/shopstyle', queryParams)
         .then(function(result){
           console.log('result', result);
           callback(null, result);
@@ -64,7 +67,7 @@ class ImageUpload extends React.Component {
     getProducts(function(err, response) {
       if (err) console.log(err);
       else /*console.log(response.data.products, 'success getting data from api');*/
-      context.props.setFeed(response.data.products, this.state.feedType);
+      context.props.setFeed(response.data.products, this.state.feedType, queryParams);
     });
   }
 
