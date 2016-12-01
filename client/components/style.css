@@ -664,13 +664,14 @@ table {
   font-family: 'Noto Serif', serif;
   float: left;
   text-align: center;
+  display: inline;
 }
 
 .shared-wishlist-photo {
   width: 8%;
   height: 8%;
   margin: 2%;
-  float: right;
+  margin-left: 75%;
 }
 
 .friends-header {
