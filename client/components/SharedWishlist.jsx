@@ -97,7 +97,9 @@ class SharedWishlist extends React.Component {
     if (this.props.user.hasOwnProperty('name')) {
       return (
         <div>
-          <SharedWishlistPage getWishList={this.getWishList.bind(this)} list={this.state.friendWishlist} friend={this.state.friend} photo={this.state.photo} friendFound={this.state.friendFound}/>
+          <div>
+            <SharedWishlistPage getWishList={this.getWishList.bind(this)} list={this.state.friendWishlist} friend={this.state.friend} photo={this.state.photo} friendFound={this.state.friendFound}/>
+          </div>
           <p>{this.state.room === '' ? 'Oops, no one is here! - Please ask your friend for an invite' : 'Chat Room: ' + this.state.room}</p>
           <div className="chatbox">
             {
