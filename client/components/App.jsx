@@ -152,7 +152,7 @@ class App extends React.Component {
               <div className="marketing-title">
                 Tell us about your style and favorites
                 <img className="Gif" src="https://i.imgflip.com/1f68br.gif" title="made at imgflip.com"/>
-              </div>
+              </div> 
             </div>
             <div className="landing-box">
               <div className="marketing-title">
