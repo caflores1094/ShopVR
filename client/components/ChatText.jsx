@@ -7,7 +7,9 @@ class ChatText extends React.Component {
 
   render() {
     return (
-      <p>{this.props.user.name === this.props.name ? 'Me' : this.props.name}: {this.props.text}</p>
+      <div className="chat-text">
+        <p className="chat-user">{this.props.user.name === this.props.name ? 'Me' : this.props.name}:</p> <p className="chat-message"> {this.props.text}</p>
+      </div>
     );
   }
 }

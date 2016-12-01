@@ -180,14 +180,17 @@ class Profile extends React.Component {
             <div className='wishlist'>
               <Wishlist getWishList={this.getWishList.bind(this)} list={this.state.wishList}/>
             </div>
-            <div className="chat-area">
+          </div>
+          <div className="chat-area">
+            <p className="chat-header">Chat</p>
+            <div className="chat-box-area">
               <form onSubmit={(e) => this.roomSubmit(e)}>
                 <input placeholder="Room name" className="chat-room" name='room' ref='room' defaultValue={this.state.room}/>
-                <button>Set Room</button>
+                <button className="chat-btn">Set Room</button>
               </form>
               <br />
               <form onSubmit={(e) => this.chatSubmit(e)}>
-                <input placeholder="Type message here..." className="chat-room" name='text' ref='text' onChange={(e) => this.setState({chatText: e.target.value})}/><button>Send</button>
+                <input placeholder="Type message here..." className="chat-room" name='text' ref='text' onChange={(e) => this.setState({chatText: e.target.value})}/><button className="chat-btn">Send</button>
               </form>
               <br />
               <div className="chatbox">

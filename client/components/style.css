@@ -647,9 +647,30 @@ table {
   margin-top: 3%;
 }
 
-.wishlist-container {
+.wishlist-container,
+.shared-wishlist-container {
   margin-top: 2%;
   border-top: 1pt solid #A89B9D;
+  width: 70%;
+  position: relative;
+  float: left;
+}
+
+.shared-wishlist-headline {
+  border: 1px solid #3B383D;
+}
+
+.shared-wishlist-header {
+  font-family: 'Noto Serif', serif;
+  float: left;
+  text-align: center;
+}
+
+.shared-wishlist-photo {
+  width: 8%;
+  height: 8%;
+  margin: 2%;
+  float: right;
 }
 
 .friends-header {
@@ -741,14 +762,54 @@ table {
 
 .chat-area {
   float: right;
+  width: 20%;
   position: fixed;
+  top: 45%;
+  right: 0;
+  border: 5px solid #A89B9D;
+  margin-right: 1%;
+}
+
+.chat-box-area {
+  margin: 3%;
+}
+
+.chat-header {
+  margin: 5%;
+  font-size: 1.2em;
+  font-weight: bolder;
+  font-family: 'Josefin Sans', sans-serif;    
+}
+
+.chat-text {
+  margin: 4%;
+  font-family: 'Josefin Sans', sans-serif;  
+}
+
+.chat-user {
+  font-weight: bolder;
+}
+
+.chat-btn {
+  background-color: #A89B9D;
+  height: 20%;
+  width: 30%;
+  font-size: 0.7em;
+  font-family: 'Josefin Sans', sans-serif;  
+  margin: 2% 2%;
+  outline: none;
+  border-radius: 6%;
+  border: none;
+  line-height: 1.4em;
+  text-align: center;
 }
 
 .chat {
-  border: 1px solid black;
-  width: 20%;
-  height: 5em;
+  width: 90%;
+  height: 10em;
+  border: 3px solid #DF755A;
   overflow-y: scroll;
+  margin: 0 auto;
 }
 
 .image-upload {
