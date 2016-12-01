@@ -160,7 +160,8 @@ class App extends React.Component {
             </div>
             <div className="landing-box">
               <div className="marketing-title">
-                Shop with friends in virtual reality
+                <p>Shop with friends in virtual reality</p>
+                <img className="VRGif" src="https://i.imgflip.com/1f62g7.gif" title="VR Demo"/>
               </div>
             </div>
             <a className="landing-signup" href="#top">Sign me up!</a>
