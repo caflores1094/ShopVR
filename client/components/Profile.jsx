@@ -28,7 +28,8 @@ class Profile extends React.Component {
       showShare: false,
       chatText: '',
       chatLog: [],
-      room: string ? string : ''
+      room: string ? string : '',
+      chat: 'none'
     }
   }
 
@@ -133,6 +134,17 @@ class Profile extends React.Component {
     console.log(this.state.showShare, 'share state');
   }
 
+  toggleChat(name, e) {
+    var toShow = {};
+    if (this.state[name] === "none") {
+      toShow[name] = "block";
+      this.setState(toShow);
+    } else {
+      toShow[name] = "none";
+      this.setState(toShow);
+    }
+  }
+
   render() {
     return (
        <div>
@@ -168,21 +180,26 @@ class Profile extends React.Component {
             <div className='wishlist'>
               <Wishlist getWishList={this.getWishList.bind(this)} list={this.state.wishList}/>
             </div>
-            <div>
+            <div className="chat-area">
               <form onSubmit={(e) => this.roomSubmit(e)}>
-                <input name='room' ref='room' defaultValue={this.state.room}/>
+                <input placeholder="Room name" className="chat-room" name='room' ref='room' defaultValue={this.state.room}/>
                 <button>Set Room</button>
               </form>
-              <div className="chatbox">
-                {
-                  this.state.chatLog.map((obj, i) => (
-                    <ChatText key={i} text={obj.text} name={obj.user} user={this.props.user}/>
-                    ))
-                }
-              </div>
+              <br />
               <form onSubmit={(e) => this.chatSubmit(e)}>
-                <input name='text' ref='text' onChange={(e) => this.setState({chatText: e.target.value})}/><button>Send</button>
+                <input placeholder="Type message here..." className="chat-room" name='text' ref='text' onChange={(e) => this.setState({chatText: e.target.value})}/><button>Send</button>
               </form>
+              <br />
+              <div className="chatbox">
+                <button onClick={this.toggleChat.bind(this, 'chat')} className="chat-btn">Show Chat</button>
+                <div name="chat" style={{ display: this.state.chat }} className="chat">
+                  {
+                    this.state.chatLog.map((obj, i) => (
+                      <ChatText key={i} text={obj.text} name={obj.user} user={this.props.user}/>
+                      ))
+                  }
+                </div>
+              </div>
             </div>
           </div>
        </div>
