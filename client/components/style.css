@@ -247,6 +247,7 @@ table {
   font-family: 'Playfair Display', cursive;
   color: #F7EDF0;
   margin-left: 3.2%;
+
 }
 
 .landing {
@@ -254,17 +255,19 @@ table {
   background-color: #A89B9D;
   height: 40em;
   width: auto;
+
 }
 
 .landing-box {
   width: 25.2%;
-  display: inline-block;
+  float: left;
   border: 0.4em solid #F7EDF0;
   margin-left: 3.2%;
   margin-right: 3.2%;
   height: 50%;
   font-weight: bolder;
   margin-bottom: 5%;
+  
 }
 
 .marketing-title {
@@ -272,9 +275,12 @@ table {
   width: 90%;
   height: 90%;
   display: inline-block;
-  margin: 7%;
+  padding: 5.5%;
   font-family: 'Noto Serif', serif;
+  text-align: center;
 }
+
+.marketing-title {}
 
 .landing-signup {
   height: 8%;
@@ -949,4 +955,10 @@ table {
   margin-top: 0.5em;
   font-family: 'Noto Serif', serif;
   font-size: 2em;
+}
+
+.Gif {
+  width: 90%;
+  padding-top: 8%;
+  display: inline;
 }

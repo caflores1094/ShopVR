@@ -151,16 +151,19 @@ class App extends React.Component {
             <div className="landing-box">
               <div className="marketing-title">
                 Tell us about your style and favorites
-              </div>
+                <img className="Gif" src="https://i.imgflip.com/1f68br.gif" title="made at imgflip.com"/>
+              </div> 
             </div>
             <div className="landing-box">
               <div className="marketing-title">
                 Browse your recommendations
+                <img className="Gif" src="https://i.imgflip.com/1f66qg.gif" title="Feed Demo"/>
               </div>
             </div>
             <div className="landing-box">
               <div className="marketing-title">
-                Shop with friends in virtual reality
+                <p>Shop with friends in virtual reality</p>
+                <img className="Gif" src="https://i.imgflip.com/1f62g7.gif" title="VR Demo"/>
               </div>
             </div>
             <a className="landing-signup" href="#top">Sign me up!</a>
