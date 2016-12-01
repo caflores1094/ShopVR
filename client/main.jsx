@@ -11,12 +11,12 @@ import SharedWishlist from './components/SharedWishlist.jsx';
 
 ReactDOM.render((
   <Router history={browserHistory}>
+    <Route path="/view" component={SharedView} />
     <Route path="/" component={App}>
       <IndexRoute component={Dashboard}/>
       <Route path="/profile" component={Profile}/>
       <Route path="/vr" component={VRview} />
       <Route path="/:userid" component={SharedWishlist} />
     </Route>
-    <Route path="/view" component={SharedView} />
   </Router>
 ), document.getElementById('app'));

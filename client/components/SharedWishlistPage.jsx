@@ -11,7 +11,7 @@ class SharedWishlistPage extends React.Component {
     var context = this;
     return (
       <div>
-        {this.props.friendFound ? 
+        {this.props.friendFound ?
         <div>
           <div className="shared-wishlist-headline">
             <div className="shared-wishlist-header">{this.props.friend + "'s"}<br/> Wishlist</div>
@@ -25,7 +25,7 @@ class SharedWishlistPage extends React.Component {
               )
             }
           </div>
-        </div> : <div className="fourofour">404 not found - you may not have permission for the page you're looking for</div>}
+        </div> : <div className="fourofour">404 not found - this page does not exist</div>}
       </div>
     );
   }

@@ -136,7 +136,7 @@ class SharedWishlist extends React.Component {
       return (
         <div>
           <SharedWishlistPage getWishList={this.getWishList.bind(this)} list={this.state.friendWishlist} friend={this.state.friend} photo={this.state.photo} friendFound={this.state.friendFound}/>
-          <p>Please log in to chat with your friends!</p>
+          <p className="fourofour">Log in to chat with your friend!</p>
         </div>
       );
     }
