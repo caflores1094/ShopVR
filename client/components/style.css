@@ -62,6 +62,7 @@ table {
   padding: 2%;
   display: inline-block;
 }
+
 .navbar-button {
   width: 10%;
   height: 3.5em;
@@ -78,11 +79,51 @@ table {
   line-height: 3.5em;
 }
 
-.navbar-button:hover {
+.vr-nav {
+  margin-right: 8%;
+  margin-left: 1%;
+  margin-bottom: 1%;
+}
+
+.vr-btn {
+  width: 10%;
+  height: 2.2em;
+  margin-top: 1.8%;
+  margin-right: 1%;
+  font-family: 'Josefin Sans', sans-serif;  
+  font-size: 0.9em;
+  background-color: #3B383D;
+  color: #F7EDF0;
+  outline: none;
+  border-radius: 6%;
+  border: none;
+  line-height: 2.0em;
+}
+
+.vr-nav-button {
+  width: 10%;
+  height: 2.2em;
+  margin-top: 1.8%;
+  margin-right: 1%;
+  font-family: 'Josefin Sans', sans-serif;  
+  font-size: 1.1em;
+  background-color: #3B383D;
+  color: #F7EDF0;
+  outline: none;
+  border-radius: 6%;
+  border: none;
+  line-height: 2.0em;
+}
+
+.navbar-button:hover,
+.vr-nav-button:hover,
+.vr-btn:hover {
   opacity: 0.6;
 }
 
-.navbar-button:focus, .navbar-button:active {
+.navbar-button:focus, .navbar-button:active,
+.vr-nav-button:focus, .navbar-button:active,
+.vr-btn:focus, .vr-btn:active {
   opacity: 0.2;
 }
 .color {
@@ -698,12 +739,20 @@ table {
   outline: none;
 }
 
-.image-upload {
-  margin-left: 9%;
+.chat-area {
+  float: right;
+  position: fixed;
 }
 
-.vr-nav {
-  margin-left: 75%;
+.chat {
+  border: 1px solid black;
+  width: 20%;
+  height: 5em;
+  overflow-y: scroll;
+}
+
+.image-upload {
+  margin-left: 9%;
 }
 
 .vr-btn {
@@ -714,14 +763,21 @@ table {
   border: solid 5px #DF755A;
 }
 
-#room-id {
+#room-id,
+.chat-room {
+  margin-left: 1%;
   padding: 1em;
   border: solid 5px #3B383D;
   transition: border 0.3s;
   outline: none;
 }
 
-#room-id:focus {
+.chat-room {
+  padding: 0.5em;
+}
+
+#room-id:focus,
+.chat-room:focus {
   border: solid 5px #DF755A;
 }
 
