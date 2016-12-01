@@ -9,6 +9,13 @@ Category:
 Estimation of work time:
 Priority: 
 
+
+Outstanding items (as of 12/1/2016):
+1. documentation /readme
+2. refactor backend 
+3. transactions
+4. image recognition and search 
+
 Backend
 
 Description: Different users are currently unable to name their images the same name as other existing images regardless of who created it in the first place
