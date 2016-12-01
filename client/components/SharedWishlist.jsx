@@ -21,8 +21,20 @@ class SharedWishlist extends React.Component {
       friendFound: false,
       chatText: '',
       chatLog: [],
-      room: string ? string : ''
+      room: string ? string : '',
+      chat: 'none'
     };
+  }
+
+  toggleChat(name, e) {
+    var toShow = {};
+    if (this.state[name] === 'none') {
+      toShow[name] = 'block';
+      this.setState(toShow);
+    } else {
+      toShow[name] = 'none';
+      this.setState(toShow);
+    }
   }
 
   getWishList() {
@@ -97,18 +109,27 @@ class SharedWishlist extends React.Component {
     if (this.props.user.hasOwnProperty('name')) {
       return (
         <div>
-          <SharedWishlistPage getWishList={this.getWishList.bind(this)} list={this.state.friendWishlist} friend={this.state.friend} photo={this.state.photo} friendFound={this.state.friendFound}/>
-          <p>{this.state.room === '' ? 'Oops, no one is here! - Please ask your friend for an invite' : 'Chat Room: ' + this.state.room}</p>
-          <div className="chatbox">
-            {
-              this.state.chatLog.map((obj, i) => (
-                <ChatText key={i} text={obj.text} name={obj.user} user={this.props.user}/>
-                ))
-            }
+          <div>
+            <SharedWishlistPage getWishList={this.getWishList.bind(this)} list={this.state.friendWishlist} friend={this.state.friend} photo={this.state.photo} friendFound={this.state.friendFound}/>
           </div>
-          <form onSubmit={(e) => this.chatSubmit(e)}>
-            <input name='text' ref='text' onChange={(e) => this.setState({chatText: e.target.value})}/><button>Send</button>
-          </form>
+          <div className="chat-area">
+            <p className="chat-header">{this.state.room === '' ? 'Oops, no one is here! - Please ask your friend for an invite' : 'Chat Room: ' + this.state.room}</p>
+            <div className="chat-box-area">
+              <form onSubmit={(e) => this.chatSubmit(e)}>
+                <input placeholder="Type message here..." name="text" className="chat-room" ref="text" onChange={(e) => this.setState({chatText: e.target.value})}/><button className="chat-btn">Send</button>
+              </form>
+              <div className="chatbox">
+                <button onClick={this.toggleChat.bind(this, 'chat')} className="chat-btn">Show Chat</button>
+                <div name="chat" style={{ display: this.state.chat }} className="chat">
+                  {
+                    this.state.chatLog.map((obj, i) => (
+                      <ChatText key={i} text={obj.text} name={obj.user} user={this.props.user}/>
+                      ))
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       );
     } else {
