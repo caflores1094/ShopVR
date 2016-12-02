@@ -139,34 +139,33 @@ class App extends React.Component {
           </a>
           <div className="landing-hero">
             <div className="hero-text">
-              Placeholder on subtitle / one liner to put here
             </div>
           </div>
           <div className="landing-border">
             <div className="landing-border-text">
-              Get started in 3 steps:
+              <p>Get started in 3 steps:</p>
             </div>
           </div>
           <div className="landing">
             <div className="landing-box">
               <div className="marketing-title">
-                Tell us about your style and favorites
+                <p className="gif-text">Tell us about your style and favorites</p>
                 <img className="Gif" src="https://i.imgflip.com/1f68br.gif" title="made at imgflip.com"/>
               </div>
             </div>
             <div className="landing-box">
               <div className="marketing-title">
-                Browse your recommendations
+                <p className="gif-text">Browse your recommendations</p>
                 <img className="Gif" src="https://i.imgflip.com/1f66qg.gif" title="Feed Demo"/>
               </div>
             </div>
             <div className="landing-box">
               <div className="marketing-title">
-                <p>Shop with friends in virtual reality</p>
+                <p className="gif-text">Shop with friends in virtual reality</p>
                 <img className="Gif" src="https://i.imgflip.com/1f62g7.gif" title="VR Demo"/>
               </div>
             </div>
-            <a className="landing-signup" href="#top">Sign me up!</a>
+              <a className="landing-signup" href="#top">Sign me up!</a>
           </div>
         </div>
       );
