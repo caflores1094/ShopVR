@@ -141,7 +141,7 @@ class NavBar extends React.Component {
             <p className="color">VR</p>
           </div>
           <p className="catch-phrase">
-            The Future is Nao
+            Shop Better. Faster. Together.
           </p>
           <button className="navbar-button" onClick={this.login.bind(this)}>Login</button> <button className="navbar-button" onClick={this.signup.bind(this)}>Signup</button>
         </div>

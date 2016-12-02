@@ -171,10 +171,12 @@ button{
 .catch-phrase{
   position: absolute;
   top: 160px;
-  left: 37%;
+  /*left: 36%;*/
   color: #F7EDF0;
   font-family: 'Noto Serif', sans-serif;
   font-size: 2.9em;
+  width: 100%;
+  text-align: center;
 }
 
 .buttons {
@@ -1014,4 +1016,6 @@ button{
 
 .gif-text{
   font-size: 1.08em;
+  font-weight: bolder;
+  font-family: 'Noto Serif', serif;
 }
