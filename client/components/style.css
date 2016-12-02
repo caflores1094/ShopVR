@@ -618,6 +618,7 @@ button{
 }
 
 .item-heart,
+.item-heart2,
 .wishlist-remove {
   border: none;
   font-size: 2em;
@@ -632,11 +633,18 @@ button{
   font-weight: bolder;
 }
 
-.item-heart:hover,
-/*.item-heart:focus,*/
+/*.item-heart:hover,
 .item-heart:target,
 .item-heart:active {
   color: #C9999A;
+}*/
+
+.item-heart{
+  color: #C9999A;
+}
+
+.item-heart2{
+  color: black;
 }
 
 .wishlist-remove:hover,
