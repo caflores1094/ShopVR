@@ -123,7 +123,7 @@ class App extends React.Component {
         queryParams: context.state.queryParams
       });
     });
-    
+
     if (this.state.user.hasOwnProperty('name') || (this.props.location.pathname.slice(1) !== '' && Number(this.props.location.pathname.slice(1)) % 1 === 0)) {
       return (
         <div>
@@ -151,7 +151,7 @@ class App extends React.Component {
               <div className="marketing-title">
                 Tell us about your style and favorites
                 <img className="Gif" src="https://i.imgflip.com/1f68br.gif" title="made at imgflip.com"/>
-              </div> 
+              </div>
             </div>
             <div className="landing-box">
               <div className="marketing-title">

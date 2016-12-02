@@ -3,6 +3,8 @@ services:
 language: node_js
 node_js:
   - 6.6.0
+before_script:
+- echo "USE mysql;\nUPDATE user SET password=PASSWORD('1107') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
 before_install:
   - mysql -e 'create database shopvrtest;'
   - mysql -u root < server/schematest.sql
