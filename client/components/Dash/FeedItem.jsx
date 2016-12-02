@@ -31,9 +31,14 @@ const {
 class FeedItem extends React.Component {
   constructor(props) {
       super(props);
+
+      this.state = {
+        liked: false
+      }
   }
 
   like() {
+    this.setState({liked: true})
     console.log('liking item ');
     var item = this.props.item;
     item['userID'] = this.props.user.id;
@@ -61,7 +66,7 @@ class FeedItem extends React.Component {
             <a className="item-link" href={this.props.item.clickUrl}>View</a>
             <br />
 
-            <button className="item-heart" onClick={this.like.bind(this)}>❤</button>
+            <button className={this.state.liked ? "item-heart" : "item-heart2"} onClick={this.like.bind(this)}>❤</button>
             <div className="share-button-container">
               <FacebookShareButton
               url={this.props.item.clickUrl}
