@@ -140,6 +140,9 @@ class NavBar extends React.Component {
             <p className="shop">Shop</p>
             <p className="color">VR</p>
           </div>
+          <p className="catch-phrase">
+            The Future is Nao
+          </p>
           <button className="navbar-button" onClick={this.login.bind(this)}>Login</button> <button className="navbar-button" onClick={this.signup.bind(this)}>Signup</button>
         </div>
       );

@@ -52,23 +52,26 @@ table {
 
 
 /* OUR CSS */
-
+button{
+  cursor: pointer;
+}
 .header{
   position: absolute;
   background-color: rgba(0,0,0,0);
   width: 100%;
-  height: 100px;
+  /* height: 100px; */
+  top: 0px;
 }
 
 .navbar {
   height: 1.1em;
   width: 2.2em;
-  margin-bottom: 0.1%;
+  /* margin-bottom: 0.1%; */
   font-family: 'Playfair Display', cursive;
   font-weight: bolder;
   font-size: 2.3em;
   color: #F7EDF0;
-  padding: 2%;
+  padding-left: 2%;
   display: inline-block;
 }
 
@@ -76,7 +79,7 @@ table {
   padding: 0;
   width: 10%;
   height: 3.5em;
-  margin-top: 18px;
+  margin-top: 4px;
   margin-right: 3%;
   float: right;
   font-family: 'Noto Serif', serif;
@@ -87,7 +90,7 @@ table {
   outline: none;
   border-radius: 6%;
   border: none;
-  line-height: 3.5em;
+  /* line-height: 3.5em; */
   cursor: pointer;
 }
 
@@ -133,9 +136,12 @@ table {
   opacity: 0.6;
 }*/
 
-.navbar-button:focus, .navbar-button:active,
-.vr-nav-button:focus, .navbar-button:active,
-.vr-btn:focus, .vr-btn:active {
+/*.navbar-button:focus, */
+.navbar-button:active,
+/*.vr-nav-button:focus, */
+.navbar-button:active,
+/*.vr-btn:focus, */
+.vr-btn:active {
   opacity: 0.2;
 }
 /*.color {
@@ -153,13 +159,22 @@ table {
   font-size: 1.8em;
   color: #DF755A;
   position: absolute;
-  top: 36px;
+  top: 18px;
   z-index: 1;
 }
 .shop{
   position: absolute;
   z-index: 2;
-  top: 18px;
+  top: 0;
+}
+
+.catch-phrase{
+  position: absolute;
+  top: 160px;
+  left: 37%;
+  color: #F7EDF0;
+  font-family: 'Noto Serif', sans-serif;
+  font-size: 2.9em;
 }
 
 .buttons {
@@ -181,7 +196,8 @@ table {
   opacity: 0.6;
 }
 
-.navbar-loggedout-button:focus .navbar-button:active {
+/*.navbar-loggedout-button:focus */
+.navbar-button:active {
   opacity: 0.2;
 }
 .dashboard-hero {
@@ -194,7 +210,7 @@ table {
   opacity: 1;
   -webkit-box-shadow: inset 0px 151px 186px -79px rgba(0,0,0,0.41);
   -moz-box-shadow: inset 0px 151px 186px -79px rgba(0,0,0,0.41);
-  box-shadow: inset 0px 151px 186px -79px rgba(0,0,0,0.41);
+  box-shadow: inset 0px 151px 186px -79px rgba(0,0,0,0.8);
 }
 
 .dashboard-border {
@@ -230,10 +246,19 @@ table {
 .dashboard-button:active,
 .upload-button:active,
 .search-button:active,
-.dashboard-button:focus,
-.upload-button:focus,
-.search-button:focus {
+/*.dashboard-button:focus,*/
+/*.upload-button:focus,*/
+/*.search-button:focus */
+{
   opacity: 0.2;
+}
+
+.profile-image{
+  background-image: url("../lib/nightMall.jpg");
+  width: auto;
+  height: 6.1em;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .landing-hero {
@@ -260,9 +285,8 @@ table {
 }
 
 .landing-border {
-  margin-bottom: 2%;
   background-color: #DF755A;
-  height: 4em;
+  height: 5em;
   width: auto;
   text-align: center;
   /*background-color: #A89B9D;
@@ -272,36 +296,35 @@ table {
 }
 
 .landing-border-text {
-  font-size: 2em; 
+  font-size: 1.8em;
   /*font-family: 'Playfair Display', cursive;*/
   font-family: 'Noto Serif', serif;
   color: #F7EDF0;
-  margin-left: 3.2%;
-
+  /* margin-left: 3.2%; */
+  padding-top: 18px;
 }
 
 .landing {
-  margin-bottom: 2%;
-  background-color: #A89B9D;
+  margin-top: 40px;
+  /* background-color: #A89B9D; */
   height: 40em;
   width: auto;
-
+  text-align: center;
 }
 
 .landing-box {
-  width: 25.2%;
+  width: 26.5%;
   float: left;
-  border: 0.4em solid #F7EDF0;
+  /* border: 0.4em solid #F7EDF0; */
   margin-left: 3.2%;
   margin-right: 3.2%;
   height: 50%;
   font-weight: bolder;
   margin-bottom: 5%;
-  
 }
 
 .marketing-title {
-  color: #F7EDF0;
+  color: black;
   width: 90%;
   height: 90%;
   display: inline-block;
@@ -313,39 +336,35 @@ table {
 .marketing-title {}
 
 .landing-signup {
-  height: 8%;
-  width: 20%;
+  /* height: 8%; */
+  /* width: 20%; */
   font-family: 'Noto Serif', serif;
-  margin-left: 39.2%;
+  /* margin-left: 39.2%; */
   overflow: none;
-  display: inline-block;
-  margin-top: 6%;
+  /* display: inline-block; */
+  /* margin-top: 6%; */
   vertical-align: center;
   font-size: 1.3em;
   background-color: #3B383D;
   color: #F7EDF0;
-  outline: none;
+  /* outline: none; */
   border-radius: 6%;
-  border: none;
+  /* border: none; */
   text-decoration: none;
-  padding-top: 4%;
-  line-height: 8%;
+  /* padding-top: 4%; */
+  /* line-height: 8%; */
   text-align: center;
+  padding:  20px;
 }
 
-.landing-signup:hover {
-  opacity: 0.6;
-}
-
-.landing-signup:focus,
 .landing-signup:active {
   opacity: 0.2;
 }
 
 .profile-welcome {
-  margin-top: 2%;
   height: 4em;
   background-color: #DF755A;
+  /* margin-top: 99px; */
 }
 
 .profile-welcome-text {
@@ -400,16 +419,16 @@ table {
   font-family: 'Noto Serif', serif;
 }
 
-.profile-input:focus {
+/*.profile-input:focus {
   border: solid 4px #DF755A;
-}
+}*/
 
 .profile-select {
   position: relative;
   display: inline-block;
-  margin-left: 0.8em;
-  padding: 0.5%;
-  width: 10em;
+  margin-left: 0.5em;
+  padding: 1.2%;
+  width: 12.8em;
   color: #F7EDF0;
   border: 0;
   border-radius: 0;
@@ -443,7 +462,7 @@ table {
 .profile-button:hover {
   opacity: 0.6;
 }
-.profile-button:focus,
+/*.profile-button:focus,*/
 .profile-button:active {
   opacity: 0.2;
 }
@@ -510,8 +529,9 @@ table {
   opacity: 0.6;
 }
 
-.sort-btn:active,
-.sort-btn:focus {
+.sort-btn:active
+/*.sort-btn:focus */
+{
   opacity: 0.2;
 }
 
@@ -611,14 +631,14 @@ table {
 }
 
 .item-heart:hover,
-.item-heart:focus,
+/*.item-heart:focus,*/
 .item-heart:target,
 .item-heart:active {
   color: #C9999A;
 }
 
 .wishlist-remove:hover,
-.wishlist-remove:focus,
+/*.wishlist-remove:focus,*/
 .wishlist-remove:target,
 .wishlist-remove:active {
   color: #DF755A;
@@ -648,8 +668,9 @@ table {
   opacity: 0.6;
 }
 
-.show-previous:active,
-.show-previous:focus {
+.show-previous:active
+/*.show-previous:focus */
+{
   opacity: 0.2;
 }
 
@@ -671,8 +692,9 @@ table {
   opacity: 0.6;
 }
 
-.show-more:active,
-.show-more:focus {
+.show-more:active
+/*.show-more:focus */
+{
   opacity: 0.2;
 }
 
@@ -782,8 +804,8 @@ table {
   opacity: 0.7;
 }
 
-.file-button:focus, 
-.submit-button:focus,
+/*.file-button:focus, 
+.submit-button:focus,*/
 .file-button: active,
 .submit-button: active {
   opacity: 0.2;
@@ -857,9 +879,9 @@ table {
   margin: 1%;
 }
 
-.tag-input:focus {
+/*.tag-input:focus {
   border: solid 5px #DF755A;
-}
+}*/
 
 #room-id,
 .chat-room {
@@ -925,7 +947,7 @@ table {
   opacity: 0.6;
 }
 
-.wishlist-button:focus, 
+/*.wishlist-button:focus, */
 .wishlist-button: active {
   opacity: 0.2;
 }
@@ -983,12 +1005,13 @@ table {
 .fourofour {
   margin-left: 0.5em;
   margin-top: 0.5em;
-  font-family: 'Noto Serif', serif;
-  font-size: 2em;
 }
 
-.Gif {
-  width: 90%;
-  padding-top: 8%;
-  display: inline;
+.Gif{
+  margin-top: 40px;
+  width: 100%;
+}
+
+.gif-text{
+  font-size: 1.08em;
 }
