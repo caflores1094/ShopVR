@@ -88,7 +88,7 @@ class SharedWishlist extends React.Component {
         if (chat.length > 49) {
           chat = chat.slice(1);
         }
-        chat.push(msg);
+        chat.unshift(msg);
         context.setState({chatLog: chat});
       }
     });
