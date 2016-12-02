@@ -230,12 +230,12 @@ button{
   margin-left: 10%;
   margin-right: 3%;
   margin-bottom: 3%;
-  font-family: 'Josefin Sans', sans-serif;  
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 1.2em;
   background-color: #3B383D;
   color: #F7EDF0;
   outline: none;
-  border-radius: 6%;
+  border-radius: 3px;
   border: none;
 }
 
@@ -350,7 +350,7 @@ button{
   background-color: #3B383D;
   color: #F7EDF0;
   /* outline: none; */
-  border-radius: 6%;
+  border-radius: 3px;
   /* border: none; */
   text-decoration: none;
   /* padding-top: 4%; */
@@ -364,18 +364,17 @@ button{
 }
 
 .profile-welcome {
-  height: 4em;
+  height: 3em;
   background-color: #DF755A;
   /* margin-top: 99px; */
 }
 
 .profile-welcome-text {
-  
   padding-left: 2%;
   height:70%;
   width: 80%;
   color: #F7EDF0;
-  font-size: 2em;
+  font-size: 1.5em;
   font-family: 'Noto Serif', serif;
   line-height: 2em;
 }
@@ -419,6 +418,7 @@ button{
   line-height: 2em;
   font-size: 1em;
   font-family: 'Noto Serif', serif;
+  border-radius: 2px;
 }
 
 /*.profile-input:focus {
@@ -433,7 +433,7 @@ button{
   width: 12.8em;
   color: #F7EDF0;
   border: 0;
-  border-radius: 0;
+  border-radius: 2px;
   outline: 0;
   background: #3B383D;
   appearance: none;
@@ -457,9 +457,8 @@ button{
   background-color: #3B383D;
   color: #F7EDF0;
   outline: none;
-  border-radius: 6%;
+  border-radius: 2px;
   border: none;
-
 }
 .profile-button:hover {
   opacity: 0.6;
@@ -516,13 +515,13 @@ button{
   line-height: 2em;
   margin-left: 1%;
   margin-right: 1%;
-  font-family: 'Josefin Sans', sans-serif;  
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 0.2em;
   text-align: center;
   background-color: #3B383D;
   color: #F7EDF0;
   outline: none;
-  border-radius: 6%;
+  border-radius: 3px;
   border: none;
   display: inline-block;
 }
@@ -663,13 +662,13 @@ button{
   display: block;
   width: 30%;
   height: 20%;
-  font-family: 'Josefin Sans', sans-serif;  
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 0.9em;
   text-align: center;
   background-color: #3B383D;
   color: #F7EDF0;
   outline: none;
-  border-radius: 6%;
+  border-radius: 3px;
   border: none;
   margin-bottom: 2%;
 }
@@ -688,13 +687,13 @@ button{
   display: block;
   width: 30%;
   height: 20%;
-  font-family: 'Josefin Sans', sans-serif;  
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 0.9em;
   text-align: center;
   background-color: #3B383D;
   color: #F7EDF0;
   outline: none;
-  border-radius: 6%;
+  border-radius: 3px;
   border: none;
 }
 
@@ -717,30 +716,39 @@ button{
 
 .wishlist-container,
 .shared-wishlist-container {
-  margin-top: 2%;
-  border-top: 1pt solid #A89B9D;
+  /* margin-top: 2%; */
+  /* border-top: 1pt solid #A89B9D; */
   width: 70%;
-  position: relative;
+  /* position: relative; */
   float: left;
 }
 
 .shared-wishlist-headline {
-  border: 1px solid #3B383D;
+  height: 100px;
+  /* border: 3px solid red; */
+  padding: 10px;
 }
 
 .shared-wishlist-header {
+  /* float: left; */
+  ter; */
+  display: block;
   font-family: 'Noto Serif', serif;
-  float: left;
-  text-align: center;
-  display: inline;
+  font-size: 2em;
+  font-weight: bolder;
 }
 
 .shared-wishlist-photo {
-  width: 8%;
-  height: 8%;
-  margin: 2%;
-  margin-left: 75%;
+  width: 90px;
+  /* height: 8%; */
+  /* margin: 1%; */
+  /* margin-left: 75%; */
+  /* display:  inline-block; */
+  float:  right;
+  padding: 1%;
 }
+
+img.shared-wishlist-photo {}
 
 .friends-header {
   margin: 2% 2%;
@@ -837,6 +845,7 @@ button{
   right: 0;
   border: 5px solid #A89B9D;
   margin-right: 1%;
+  border-radius: 2px;
 }
 
 .chat-box-area {
@@ -900,6 +909,7 @@ button{
   border: solid 5px #3B383D;
   transition: border 0.3s;
   outline: none;
+  border-radius: 2px;
 }
 
 .chat-room {
@@ -949,7 +959,7 @@ button{
   background-color: #3B383D;
   color: #F7EDF0;
   outline: none;
-  border-radius: 6%;
+  border-radius: 2px;
   border: none;
 }
 
@@ -1005,11 +1015,12 @@ button{
 }
 
 .shared-wishlist-header {
-  font-family: 'Noto Serif', serif;
-  font-size: 2em;
-  font-weight: bolder;
-  margin-left: 0.5em;
-  margin-top: 0.5em;
+  /* font-family: 'Noto Serif', serif; */
+  /* font-size: 2em; */
+  /* font-weight: bolder; */
+  /* margin-left: 0.5em; */
+  /* width: 400px; */
+  /* margin-top: 0.5em; */
 }
 
 .fourofour {
@@ -1020,6 +1031,9 @@ button{
 .Gif{
   margin-top: 40px;
   width: 100%;
+  -webkit-box-shadow: 4px 5px 11px -1px rgba(0,0,0,0.9);
+  -moz-box-shadow: 4px 5px 11px -1px rgba(0,0,0,0.9);
+  box-shadow: 4px 5px 11px -3px rgba(100,100,100,0.4);
 }
 
 .gif-text{

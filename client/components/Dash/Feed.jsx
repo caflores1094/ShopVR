@@ -156,7 +156,7 @@ class Feed extends React.Component {
         </div>
         <br />
         <div className="button-container">
-          <button className="show-previous" onClick={this.previous.bind(this)}>{count === 0 ? '' : 'Previous'}</button>
+          {count === 0 ? null : <button className="show-previous" onClick={this.previous.bind(this)}>Previous</button>}
           <button className="show-more" onClick={this.next.bind(this)}>Next</button>
         </div>
         <br />
