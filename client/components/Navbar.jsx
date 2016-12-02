@@ -133,7 +133,19 @@ class NavBar extends React.Component {
           <button className="vr-nav-button" onClick={this.logout.bind(this)}>Log Out</button>
         </div>
       );
-    } else {
+    } else if(window.location.pathname.length > 1){
+      return (
+        <div className="header">
+          <div className="navbar">
+            <p className="shop">Shop</p>
+            <p className="color">VR</p>
+          </div>
+          <button className="navbar-button" onClick={this.login.bind(this)}>Login</button> <button className="navbar-button" onClick={this.signup.bind(this)}>Signup</button>
+        </div>
+      );
+    }
+
+    else {
       return (
         <div className="header">
           <div className="navbar">
