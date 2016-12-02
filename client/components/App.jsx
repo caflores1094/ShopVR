@@ -139,7 +139,6 @@ class App extends React.Component {
           </a>
           <div className="landing-hero">
             <div className="hero-text">
-              Placeholder on subtitle / one liner to put here
             </div>
           </div>
           <div className="landing-border">

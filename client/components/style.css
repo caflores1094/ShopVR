@@ -29,7 +29,10 @@ footer, header, hgroup, menu, nav, section {
   display: block;
 }
 body {
-  line-height: 1;
+  /* line-height: 1; */
+  maring: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 ol, ul {
   list-style: none;
@@ -50,33 +53,42 @@ table {
 
 /* OUR CSS */
 
+.header{
+  position: absolute;
+  background-color: rgba(0,0,0,0);
+  width: 100%;
+  height: 100px;
+}
+
 .navbar {
   height: 1.1em;
   width: 2.2em;
   margin-bottom: 0.1%;
-  background-color: #3B383D;
   font-family: 'Playfair Display', cursive;
   font-weight: bolder;
-  font-size: 1.8em;
+  font-size: 2.3em;
   color: #F7EDF0;
   padding: 2%;
   display: inline-block;
 }
 
 .navbar-button {
+  padding: 0;
   width: 10%;
   height: 3.5em;
-  margin-top: 1.8%;
+  margin-top: 18px;
   margin-right: 3%;
-  float: right;  
-  font-family: 'Josefin Sans', sans-serif;  
-  font-size: 0.9em;
-  background-color: #3B383D;
+  float: right;
+  font-family: 'Noto Serif', serif;
+  /*font-family: 'Josefin Sans', sans-serif;*/
+  font-size: 1.5em;
+  background-color: rgba(0,0,0,0);
   color: #F7EDF0;
   outline: none;
   border-radius: 6%;
   border: none;
   line-height: 3.5em;
+  cursor: pointer;
 }
 
 .vr-nav {
@@ -114,24 +126,40 @@ table {
   border: none;
   line-height: 2.0em;
 }
-
+/*
 .navbar-button:hover,
 .vr-nav-button:hover,
 .vr-btn:hover {
   opacity: 0.6;
-}
+}*/
 
 .navbar-button:focus, .navbar-button:active,
 .vr-nav-button:focus, .navbar-button:active,
 .vr-btn:focus, .vr-btn:active {
   opacity: 0.2;
 }
+/*.color {
+  display: inline;
+  font-family: 'Playfair Display', cursive;
+  font-weight: bolder;
+  font-size: 1.8em;
+  color: #DF755A;
+}*/
+
 .color {
   display: inline;
   font-family: 'Playfair Display', cursive;
   font-weight: bolder;
   font-size: 1.8em;
   color: #DF755A;
+  position: absolute;
+  top: 36px;
+  z-index: 1;
+}
+.shop{
+  position: absolute;
+  z-index: 2;
+  top: 18px;
 }
 
 .buttons {
@@ -157,20 +185,16 @@ table {
   opacity: 0.2;
 }
 .dashboard-hero {
-  margin-top: 2%;
+  /* margin-top: 2%; */
   width: auto;
   height: 30em;
   background-image: url("../lib/cartier.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 1;
-  transition: opacity .25s ease-in-out;
-  -moz-transition: opacity .25s ease-in-out;
-  -webkit-transition: opacity .25s ease-in-out;
-}
-
-.dashboard-hero:hover {
-  opacity: 0.6;
+  -webkit-box-shadow: inset 0px 151px 186px -79px rgba(0,0,0,0.41);
+  -moz-box-shadow: inset 0px 151px 186px -79px rgba(0,0,0,0.41);
+  box-shadow: inset 0px 151px 186px -79px rgba(0,0,0,0.41);
 }
 
 .dashboard-border {
@@ -213,7 +237,7 @@ table {
 }
 
 .landing-hero {
-  margin-top: 2%;
+  /* margin-top: 2%; */
   width: auto;
   height: 42em;
   background-image: url("../lib/mallatnight.jpg");
@@ -226,9 +250,9 @@ table {
   color: #F7EDF0;
 }
 
-.landing-hero:hover {
+/*.landing-hero:hover {
   opacity: 0.6;
-}
+}*/
 
 .hero-text {
   height: 80%;
@@ -236,15 +260,21 @@ table {
 }
 
 .landing-border {
-  background-color: #A89B9D;
+  margin-bottom: 2%;
+  background-color: #DF755A;
+  height: 4em;
+  width: auto;
+  text-align: center;
+  /*background-color: #A89B9D;
   height: 9em;
   width: auto;
-  line-height: 9em;
+  line-height: 9em;*/
 }
 
 .landing-border-text {
-  font-size: 3em; 
-  font-family: 'Playfair Display', cursive;
+  font-size: 2em; 
+  /*font-family: 'Playfair Display', cursive;*/
+  font-family: 'Noto Serif', serif;
   color: #F7EDF0;
   margin-left: 3.2%;
 

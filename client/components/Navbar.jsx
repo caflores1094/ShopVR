@@ -115,9 +115,9 @@ class NavBar extends React.Component {
     if (this.props.user.hasOwnProperty('name') && window.location.pathname !== '/vr') {
       return (
         <div className="header">
-          <div className="navbar">Shop
-           <br/>
-           <p className="color">VR</p>
+          <div className="navbar">
+            <p className="shop">Shop</p>
+            <p className="color">VR</p>
           </div>
           <div className="buttons">
             <button className="navbar-button" onClick={this.logout.bind(this)}>Logout</button>
@@ -136,8 +136,8 @@ class NavBar extends React.Component {
     } else {
       return (
         <div className="header">
-          <div className="navbar">Shop
-            <br/>
+          <div className="navbar">
+            <p className="shop">Shop</p>
             <p className="color">VR</p>
           </div>
           <button className="navbar-button" onClick={this.login.bind(this)}>Login</button> <button className="navbar-button" onClick={this.signup.bind(this)}>Signup</button>
