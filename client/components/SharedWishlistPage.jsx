@@ -13,10 +13,17 @@ class SharedWishlistPage extends React.Component {
       <div>
         {this.props.friendFound ?
         <div>
-          <div className="shared-wishlist-headline">
-            <div className="shared-wishlist-header">{this.props.friend + "'s"}<br/> Wishlist</div>
-            <div className="shared-wishlist-pic"><img className="shared-wishlist-photo" src={this.props.photo}></img></div>
+          <div className="profile-image">
           </div>
+
+          <div className="shared-wishlist-headline">
+            <p className="shared-wishlist-header">
+              <img className="shared-wishlist-pic" className="shared-wishlist-photo" src={this.props.photo}></img>
+              {this.props.friend + "'s"}<br/>Wishlist
+            </p>
+          </div>
+          <div className="dashboard-border"></div>
+
           <div className="shared-wishlist-container">
             {
               this.props.list.map((picObj) => (

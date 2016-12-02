@@ -364,18 +364,17 @@ button{
 }
 
 .profile-welcome {
-  height: 4em;
+  height: 3em;
   background-color: #DF755A;
   /* margin-top: 99px; */
 }
 
 .profile-welcome-text {
-  
   padding-left: 2%;
   height:70%;
   width: 80%;
   color: #F7EDF0;
-  font-size: 2em;
+  font-size: 1.5em;
   font-family: 'Noto Serif', serif;
   line-height: 2em;
 }
@@ -717,30 +716,39 @@ button{
 
 .wishlist-container,
 .shared-wishlist-container {
-  margin-top: 2%;
-  border-top: 1pt solid #A89B9D;
+  /* margin-top: 2%; */
+  /* border-top: 1pt solid #A89B9D; */
   width: 70%;
-  position: relative;
+  /* position: relative; */
   float: left;
 }
 
 .shared-wishlist-headline {
-  border: 1px solid #3B383D;
+  height: 100px;
+  /* border: 3px solid red; */
+  padding: 10px;
 }
 
 .shared-wishlist-header {
+  /* float: left; */
+  ter; */
+  display: block;
   font-family: 'Noto Serif', serif;
-  float: left;
-  text-align: center;
-  display: inline;
+  font-size: 2em;
+  font-weight: bolder;
 }
 
 .shared-wishlist-photo {
-  width: 8%;
-  height: 8%;
-  margin: 2%;
-  margin-left: 75%;
+  width: 90px;
+  /* height: 8%; */
+  /* margin: 1%; */
+  /* margin-left: 75%; */
+  /* display:  inline-block; */
+  float:  right;
+  padding: 1%;
 }
+
+img.shared-wishlist-photo {}
 
 .friends-header {
   margin: 2% 2%;
@@ -1005,11 +1013,12 @@ button{
 }
 
 .shared-wishlist-header {
-  font-family: 'Noto Serif', serif;
-  font-size: 2em;
-  font-weight: bolder;
-  margin-left: 0.5em;
-  margin-top: 0.5em;
+  /* font-family: 'Noto Serif', serif; */
+  /* font-size: 2em; */
+  /* font-weight: bolder; */
+  /* margin-left: 0.5em; */
+  /* width: 400px; */
+  /* margin-top: 0.5em; */
 }
 
 .fourofour {
