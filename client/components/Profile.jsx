@@ -148,6 +148,8 @@ class Profile extends React.Component {
   render() {
     return (
        <div>
+          <div className="profile-image">
+          </div>
           <div className="profile-welcome">
             <div className="profile-welcome-text">Welcome, {this.props.user.name}</div>
           </div>
