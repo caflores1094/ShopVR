@@ -1,6 +1,8 @@
 # Project Name
 
-Find new fashion based on your style, shop in virtual reality
+Find new fashion based on your style, shop in virtual reality.
+
+Checkout screen shots and detailed descriptions: [My Portfolio](http://carlosalbertoflores.com/works)
 
 ## Team
 
@@ -37,9 +39,15 @@ npm install
 bower install
 ```
 
-### Roadmap
+## Built With
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+*Modular front end with React
+*Aframe-React: Virtual Reality Framework
+*Socket.io for real time, bidirectional chat
+*Google Cloud Vision API for image - recognition based search
+*Server built with Node and Express
+*Relational schema with MySQL for fast and efficient querying
+*Test Driven Development with the use of Mocha and Chai
 
 
 ## Contributing
