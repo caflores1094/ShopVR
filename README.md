@@ -1,4 +1,4 @@
-# Project Name
+# ShopVR
 
 Find new fashion based on your style, shop in virtual reality.
 
