@@ -41,13 +41,13 @@ bower install
 
 ## Built With
 
-*Modular front end with React
-*Aframe-React: Virtual Reality Framework
-*Socket.io for real time, bidirectional chat
-*Google Cloud Vision API for image - recognition based search
-*Server built with Node and Express
-*Relational schema with MySQL for fast and efficient querying
-*Test Driven Development with the use of Mocha and Chai
+* Modular front end with React
+* Aframe-React: Virtual Reality Framework
+* Socket.io for real time, bidirectional chat
+* Google Cloud Vision API for image - recognition based search
+* Server built with Node and Express
+* Relational schema with MySQL for fast and efficient querying
+* Test Driven Development with the use of Mocha and Chai
 
 
 ## Contributing
